@@ -88,7 +88,6 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                         GL.MultMatrix(trans.ToGLArray());
 
                         DrawAxis();
-                        GL.Color4(1.0, 1.0, 1.0, 1.0);
                         DrawBox();
 
                     } finally {
@@ -103,7 +102,6 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                         GL.MultMatrix(trans.ToGLArray());
 
                         DrawAxis();
-                        GL.Color4(1.0, 1.0, 1.0, 1.0);
                         DrawBox();
 
                     } finally {
@@ -134,13 +132,19 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         {
             GL.Begin(PrimitiveType.Quads);
             // X
+            GL.Color4(1.0, 0.0, 0.0, 1.0);
             GL.Vertex3(-0.5, 0.5, -0.5); GL.Vertex3(-0.5, -0.5, -0.5); GL.Vertex3(-0.5, -0.5, 0.5); GL.Vertex3(-0.5, 0.5, 0.5);
+            GL.Color4(0.0, 1.0, 1.0, 1.0);
             GL.Vertex3(0.5, 0.5, 0.5); GL.Vertex3(0.5, -0.5, 0.5); GL.Vertex3(0.5, -0.5, -0.5); GL.Vertex3(0.5, 0.5, -0.5);
             // Y
+            GL.Color4(0.0, 1.0, 0.0, 1.0);
             GL.Vertex3(-0.5, -0.5, -0.5); GL.Vertex3(0.5, -0.5, -0.5); GL.Vertex3(0.5, -0.5, 0.5); GL.Vertex3(-0.5, -0.5, 0.5);
+            GL.Color4(1.0, 0.0, 1.0, 1.0);
             GL.Vertex3(-0.5, 0.5, -0.5); GL.Vertex3(-0.5, 0.5, 0.5); GL.Vertex3(0.5, 0.5, 0.5); GL.Vertex3(0.5, 0.5, -0.5);
             // Z
+            GL.Color4(0.0, 0.0, 1.0, 1.0);
             GL.Vertex3(0.5, 0.5, -0.5); GL.Vertex3(0.5, -0.5, -0.5); GL.Vertex3(-0.5, -0.5, -0.5); GL.Vertex3(-0.5, 0.5, -0.5);
+            GL.Color4(1.0, 1.0, 0.0, 1.0);
             GL.Vertex3(-0.5, 0.5, 0.5); GL.Vertex3(-0.5, -0.5, 0.5); GL.Vertex3(0.5, -0.5, 0.5); GL.Vertex3(0.5, 0.5, 0.5);
             //
             GL.End();
