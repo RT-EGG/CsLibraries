@@ -130,6 +130,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             this.ComboRotationOrder.Name = "ComboRotationOrder";
             this.ComboRotationOrder.Size = new System.Drawing.Size(121, 20);
             this.ComboRotationOrder.TabIndex = 1;
+            this.ComboRotationOrder.SelectedIndexChanged += new System.EventHandler(this.ComboRotationOrder_SelectedIndexChanged);
             // 
             // timer1
             // 

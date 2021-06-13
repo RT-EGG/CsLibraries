@@ -152,6 +152,13 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
+        private void ComboRotationOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_Transform.LocalRotation = Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder);
+            UpdateDecomposited();
+            return;
+        }
+
         private Transform m_Transform = new Transform();
     }
 }
