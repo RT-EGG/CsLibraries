@@ -91,5 +91,10 @@
       <Name>RtCs</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="ResourceObject\Shader\presets\Color.fragment.glsl" />
+    <None Include="ResourceObject\Shader\presets\Color.vertex.glsl" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,7 +2,6 @@
 
 layout (location = 0) uniform mat4 inProjectionMatrix;
 layout (location = 1) uniform mat4 inModelviewMatrix;
-layout (location = 2) uniform ivec2 inViewportSize;
 
 out gl_PerVertex
 {

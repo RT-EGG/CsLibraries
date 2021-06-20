@@ -2,7 +2,7 @@
 
 out vec4 outColor;
 
-layout (location = 3) uniform vec4 inColor;
+layout (location = 2) uniform vec4 inColor;
 
 void main()
 {
