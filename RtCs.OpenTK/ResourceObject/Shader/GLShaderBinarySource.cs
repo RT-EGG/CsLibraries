@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace RtCs.OpenGL.ResourceObject.Shader
+namespace RtCs.OpenGL
 {
     public class GLShaderBinarySource : GLShaderSource
     {
