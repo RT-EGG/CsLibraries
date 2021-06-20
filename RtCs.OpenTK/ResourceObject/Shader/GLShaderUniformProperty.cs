@@ -2,13 +2,16 @@
 
 namespace RtCs.OpenGL
 {
-    public abstract class GLShaderUniformProperty<T>
+    public abstract class GLShaderUniformProperty
     {
-        public abstract void CommitProperty(int inProgramID);
-
         public string Name
         { get; set; } = "";
 
+        public abstract void CommitProperty(int inProgramID);
+    }
+
+    public abstract class GLShaderUniformProperty<T> : GLShaderUniformProperty
+    {
         public T Value
         { get; set; } = default;
 

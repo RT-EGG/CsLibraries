@@ -42,5 +42,7 @@ namespace RtCs.OpenGL.Renderer
 
         public GLMesh Mesh
         { get; set; } = null;
+        public GLMaterial Material
+        { get; set; } = null;
     }
 }
