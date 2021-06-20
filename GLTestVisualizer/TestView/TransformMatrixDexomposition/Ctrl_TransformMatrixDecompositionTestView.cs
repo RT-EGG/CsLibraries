@@ -3,6 +3,8 @@ using OpenTK.Graphics.OpenGL;
 using RtCs.MathUtils;
 using System;
 using System.Windows.Forms;
+using RtCs.OpenGL;
+using RtCs.OpenGL.Renderer;
 
 namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 {
@@ -11,6 +13,8 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         public Ctrl_TransformMatrixDecompositionTestView()
         {
             InitializeComponent();
+            m_Renderer.Mesh = m_Cube;
+            return;
         }
 
         public override string SceneName => "Transform Matrix Decomposition";
@@ -20,7 +24,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             base.Start();
 
             ComboRotationOrder.Items.Clear();
-            foreach (EulerRotationOrder order in Enum.GetValues(typeof(EulerRotationOrder))) {
+            foreach (EEulerRotationOrder order in Enum.GetValues(typeof(EEulerRotationOrder))) {
                 ComboRotationOrder.Items.Add(order);
             }
             ComboRotationOrder.SelectedIndex = 0;
@@ -29,21 +33,21 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
         private void UpdateDecomposited()
         {
-            Ctrl_MatrixOutput.Translation = m_Transform.LocalTranslation;
+            Ctrl_MatrixOutput.Translation = m_Transform.LocalPosition;
             Ctrl_MatrixOutput.Rotation = m_Transform.LocalRotation.ToEuler(RotationOrder).RadToDeg();
             Ctrl_MatrixOutput.Scale = m_Transform.LocalScale;
             return;
         }
 
-        private EulerRotationOrder RotationOrder
+        private EEulerRotationOrder RotationOrder
         {
-            get => (EulerRotationOrder)ComboRotationOrder.SelectedItem;
+            get => (EEulerRotationOrder)ComboRotationOrder.SelectedItem;
             set => ComboRotationOrder.SelectedItem = value;
         }
 
         private void Ctrl_MatrixInput_TranslationChanged(object inSender, Vector3 inValue)
         {
-            m_Transform.LocalTranslation = inValue;
+            m_Transform.LocalPosition = inValue;
             UpdateDecomposited();
             return;
         }
@@ -62,7 +66,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
-        private void GLViewer_OnPaintScene(OpenTK.GLControl inControl, PaintEventArgs inArgs)
+        private void GLViewr_OnRenderScene(RtCs.OpenGL.Controls.GLControl inControl, RtCs.OpenGL.GLRenderingStatus inStatus)
         {
             GL.MatrixMode(MatrixMode.Projection);
             GL.PushMatrix();
@@ -80,9 +84,11 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                     GL.Enable(EnableCap.CullFace);
                     GL.LineWidth(1.0f);
 
+                    m_Renderer.Render(inStatus);
+
                     GL.PushMatrix();
                     try {
-                        Matrix4x4 trans = Matrix4x4.MakeTranslate(-1.0, 0.0, 0.0) 
+                        Matrix4x4 trans = Matrix4x4.MakeTranslate(-1.0, 0.0, 0.0)
                                         * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder));
 
                         GL.MultMatrix(trans.ToGLArray());
@@ -163,6 +169,8 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
+        private GLRenderer m_Renderer = new GLRenderer();
+        private GLMesh m_Cube = GLPrimitiveMesh.CreateCube(1.0, 1.0, 1.0);
         private Transform m_Transform = new Transform();
     }
 }

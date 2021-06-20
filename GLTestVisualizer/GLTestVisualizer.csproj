@@ -62,7 +62,6 @@
     </Compile>
     <Compile Include="Model\CameraController.cs" />
     <Compile Include="Model\CameraMouseController.cs" />
-    <Compile Include="Model\Transform.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestView\Ctrl_GLViewer.cs">
@@ -141,6 +140,10 @@
     <ProjectReference Include="..\RtCs.MathUtils\RtCs.MathUtils.csproj">
       <Project>{47a7c945-e8a1-413b-96d0-41d1d669b4aa}</Project>
       <Name>RtCs.MathUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RtCs.OpenTK\RtCs.OpenGL.csproj">
+      <Project>{d601c9f1-17d8-413e-9bc7-4fff732479f4}</Project>
+      <Name>RtCs.OpenGL</Name>
     </ProjectReference>
     <ProjectReference Include="..\RtCs\RtCs.csproj">
       <Project>{3631604b-1a60-422f-9932-d18ed0fc9458}</Project>

@@ -32,10 +32,10 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             this.PanelBaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.Ctrl_MatrixOutput = new GLTestVisualizer.TestView.TransformMatrixDexomposition.Ctrl_DecompositeTransformMatrixView();
             this.Ctrl_MatrixInput = new GLTestVisualizer.TestView.TransformMatrixDexomposition.Ctrl_DecompositeTransformMatrixView();
-            this.GLViewer = new GLTestVisualizer.TestView.Ctrl_GLViewer();
             this.PanelProperties = new System.Windows.Forms.TableLayoutPanel();
             this.LabelRotationOrder = new System.Windows.Forms.Label();
             this.ComboRotationOrder = new System.Windows.Forms.ComboBox();
+            this.GLViewer = new RtCs.OpenGL.Controls.GLControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.PanelBaseLayout.SuspendLayout();
             this.PanelProperties.SuspendLayout();
@@ -48,8 +48,8 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             this.PanelBaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.PanelBaseLayout.Controls.Add(this.Ctrl_MatrixOutput, 1, 2);
             this.PanelBaseLayout.Controls.Add(this.Ctrl_MatrixInput, 0, 2);
-            this.PanelBaseLayout.Controls.Add(this.GLViewer, 0, 1);
             this.PanelBaseLayout.Controls.Add(this.PanelProperties, 0, 0);
+            this.PanelBaseLayout.Controls.Add(this.GLViewer, 0, 1);
             this.PanelBaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelBaseLayout.Location = new System.Drawing.Point(0, 0);
             this.PanelBaseLayout.Name = "PanelBaseLayout";
@@ -81,18 +81,6 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             this.Ctrl_MatrixInput.TranslationChanged += new GLTestVisualizer.TestView.TransformMatrixDexomposition.Vector3EventHandler(this.Ctrl_MatrixInput_TranslationChanged);
             this.Ctrl_MatrixInput.RotationChanged += new GLTestVisualizer.TestView.TransformMatrixDexomposition.Vector3EventHandler(this.Ctrl_MatrixInput_RotationChanged);
             this.Ctrl_MatrixInput.ScaleChanged += new GLTestVisualizer.TestView.TransformMatrixDexomposition.Vector3EventHandler(this.Ctrl_MatrixInput_ScaleChanged);
-            // 
-            // GLViewer
-            // 
-            this.GLViewer.BackColor = System.Drawing.Color.Black;
-            this.PanelBaseLayout.SetColumnSpan(this.GLViewer, 2);
-            this.GLViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GLViewer.Location = new System.Drawing.Point(3, 36);
-            this.GLViewer.Name = "GLViewer";
-            this.GLViewer.Size = new System.Drawing.Size(605, 283);
-            this.GLViewer.TabIndex = 2;
-            this.GLViewer.VSync = false;
-            this.GLViewer.OnPaintScene += new GLTestVisualizer.TestView.GLControlPaintEvent(this.GLViewer_OnPaintScene);
             // 
             // PanelProperties
             // 
@@ -132,6 +120,18 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             this.ComboRotationOrder.TabIndex = 1;
             this.ComboRotationOrder.SelectedIndexChanged += new System.EventHandler(this.ComboRotationOrder_SelectedIndexChanged);
             // 
+            // GLViewer
+            // 
+            this.GLViewer.BackColor = System.Drawing.Color.Black;
+            this.PanelBaseLayout.SetColumnSpan(this.GLViewer, 2);
+            this.GLViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GLViewer.Location = new System.Drawing.Point(3, 36);
+            this.GLViewer.Name = "GLViewer";
+            this.GLViewer.Size = new System.Drawing.Size(605, 283);
+            this.GLViewer.TabIndex = 4;
+            this.GLViewer.VSync = false;
+            this.GLViewer.OnRenderScene += new RtCs.OpenGL.Controls.GLRenderSceneEventHandler(this.GLViewr_OnRenderScene);
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -155,10 +155,10 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         private System.Windows.Forms.TableLayoutPanel PanelBaseLayout;
         private TransformMatrixDexomposition.Ctrl_DecompositeTransformMatrixView Ctrl_MatrixInput;
         private TransformMatrixDexomposition.Ctrl_DecompositeTransformMatrixView Ctrl_MatrixOutput;
-        private Ctrl_GLViewer GLViewer;
         private System.Windows.Forms.TableLayoutPanel PanelProperties;
         private System.Windows.Forms.Label LabelRotationOrder;
         private System.Windows.Forms.ComboBox ComboRotationOrder;
         private System.Windows.Forms.Timer timer1;
+        private RtCs.OpenGL.Controls.GLControl GLViewer;
     }
 }

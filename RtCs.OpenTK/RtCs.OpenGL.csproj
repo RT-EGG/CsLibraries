@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D601C9F1-17D8-413E-9BC7-4FFF732479F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RtCs.OpenGL</RootNamespace>
+    <AssemblyName>RtCs.OpenTK</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Axis.cs" />
+    <Compile Include="Controls\GLControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GLControl.Designer.cs">
+      <DependentUpon>GLControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GLRenderingStatus.cs" />
+    <Compile Include="ResourceObject\GLBufferObject.cs" />
+    <Compile Include="ResourceObject\GLResourceIdObject.cs" />
+    <Compile Include="ResourceObject\GLResourceObject.cs" />
+    <Compile Include="GLViewport.cs" />
+    <Compile Include="MatrixStack\GLMatrixStack.cs" />
+    <Compile Include="MatrixStack\GLModelMatrixStack.cs" />
+    <Compile Include="MatrixStack\GLModelviewMatrixStack.cs" />
+    <Compile Include="MatrixStack\GLProjectionMatrixStack.cs" />
+    <Compile Include="MatrixStack\GLViewMatrixStack.cs" />
+    <Compile Include="Mesh\GLCubeMesh.cs" />
+    <Compile Include="Mesh\GLMesh.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderer\GLRenderer.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderBinarySource.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderProgram.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderTextSource.cs" />
+    <Compile Include="ResourceObject\Shader\GLShader.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderSource.cs" />
+    <Compile Include="Utils\Extensions\MatrixExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="OpenTK">
+      <Version>3.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="OpenTK.GLControl">
+      <Version>3.1.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RtCs.MathUtils\RtCs.MathUtils.csproj">
+      <Project>{47a7c945-e8a1-413b-96d0-41d1d669b4aa}</Project>
+      <Name>RtCs.MathUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RtCs\RtCs.csproj">
+      <Project>{3631604b-1a60-422f-9932-d18ed0fc9458}</Project>
+      <Name>RtCs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
