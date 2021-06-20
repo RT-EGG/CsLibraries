@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RtCs.MathUtils
 {
@@ -24,10 +22,6 @@ namespace RtCs.MathUtils
         public static float Clamp(this float inValue, float inMin, float inMax)=> Math.Min(inMax, Math.Max(inMin, inValue));
         public static double Clamp(this double inValue, double inMin, double inMax) => Math.Min(inMax, Math.Max(inMin, inValue));
 
-        public static IEnumerable<int> Range(this int inCount)
-            => Enumerable.Range(0, inCount);
-        public static IEnumerable<T> Enumerate<T>(this int inCount, Func<int, T> inInitializer)
-            => inCount.Range().Select(i => inInitializer(i));
         public static bool InRange(this int inValue, int inMin, int inMax)
             => (inMin <= inValue) && (inValue <= inMax);
 
