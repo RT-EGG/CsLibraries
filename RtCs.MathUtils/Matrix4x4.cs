@@ -6,6 +6,10 @@ namespace RtCs.MathUtils
 {
     public struct Matrix4x4 : IMatrix, IEquatable<Matrix4x4>
     {
+        public Matrix4x4(params double[] inValues)
+            : this((IEnumerable<double>) inValues)
+        { }
+
         public Matrix4x4(IEnumerable<double> inValues)
         {
             var e = inValues.GetEnumerator();
@@ -177,6 +181,14 @@ namespace RtCs.MathUtils
         public Vector4 GetColumn(int inColIndex)
             => new Vector4(this[0, inColIndex], this[1, inColIndex], this[2, inColIndex], this[3, inColIndex]);
 
+        public Matrix4x4 Transposed
+            => new Matrix4x4(
+                    this[0, 0], this[1, 0], this[2, 0], this[3, 0],
+                    this[0, 1], this[1, 1], this[2, 1], this[3, 1],
+                    this[0, 2], this[1, 2], this[2, 2], this[3, 2],
+                    this[0, 3], this[1, 3], this[2, 3], this[3, 3]
+                );        
+
         public Vector3 Translation
             => new Vector3(GetColumn(3));
         public Quaternion Rotation
@@ -262,9 +274,9 @@ namespace RtCs.MathUtils
             }
         }
 
-        public Vector3 GetEulerRotation(EulerRotationOrder inOrder)
+        public Vector3 GetEulerRotation(EEulerRotationOrder inOrder)
             => EulerAngles.MatrixToEuler(this, inOrder);
-        public void SetEulerRotation(Vector3 inEuler, EulerRotationOrder inOrder)
+        public void SetEulerRotation(Vector3 inEuler, EEulerRotationOrder inOrder)
             => Set3x3(0, 0, MakeRotateEuelr(inEuler, inOrder).Extract3x3(0, 0));
 
 
@@ -416,12 +428,12 @@ namespace RtCs.MathUtils
             => new Vector4(Matrix.Multiply(inLeft, inRight));
 
         public static Matrix4x4 MakeTranslate(double inX, double inY, double inZ)
-            => new Matrix4x4(EnumerableExtensions.AsEnumerable(
+            => new Matrix4x4(
                     1.0, 0.0, 0.0, inX,
                     0.0, 1.0, 0.0, inY,
                     0.0, 0.0, 1.0, inZ,
                     0.0, 0.0, 0.0, 1.0
-                ));
+                );
 
         public static Matrix4x4 MakeTranslate(Vector3 inXYZ)
             => MakeTranslate(inXYZ.x, inXYZ.y, inXYZ.z);
@@ -430,36 +442,36 @@ namespace RtCs.MathUtils
         {
             double c = Math.Cos(inRadian);
             double s = Math.Sin(inRadian);
-            return new Matrix4x4(EnumerableExtensions.AsEnumerable(
+            return new Matrix4x4(
                     1.0, 0.0, 0.0, 0.0,
                     0.0, c, -s, 0.0,
                     0.0, s, c, 0.0,
                     0.0, 0.0, 0.0, 1.0
-                ));
+                );
         }
 
         public static Matrix4x4 MakeRotateY(double inRadian)
         {
             double c = Math.Cos(inRadian);
             double s = Math.Sin(inRadian);
-            return new Matrix4x4(EnumerableExtensions.AsEnumerable(
+            return new Matrix4x4(
                        c, 0.0, s, 0.0,
                     0.0, 1.0, 0.0, 0.0,
                       -s, 0.0, c, 0.0,
                     0.0, 0.0, 0.0, 1.0
-                ));
+                );
         }
 
         public static Matrix4x4 MakeRotateZ(double inRadian)
         {
             double c = Math.Cos(inRadian);
             double s = Math.Sin(inRadian);
-            return new Matrix4x4(EnumerableExtensions.AsEnumerable(
+            return new Matrix4x4(
                        c, -s, 0.0, 0.0,
                        s, c, 0.0, 0.0,
                     0.0, 0.0, 1.0, 0.0,
                     0.0, 0.0, 0.0, 1.0
-                ));
+                );
         }
 
         public static Matrix4x4 MakeRotate(double inRadian, double inAxisX, double inAxisY, double inAxisZ)
@@ -471,7 +483,7 @@ namespace RtCs.MathUtils
             double c = Math.Cos(inRadian);
             double s = Math.Sin(inRadian);
 
-            return new Matrix4x4(EnumerableExtensions.AsEnumerable(
+            return new Matrix4x4(
                     (inAxisX * inAxisX * (1.0 - c)) + c,
                     (inAxisX * inAxisY * (1.0 - c)) - (inAxisZ * s),
                     (inAxisX * inAxisZ * (1.0 - c)) + (inAxisY * s),
@@ -485,7 +497,7 @@ namespace RtCs.MathUtils
                     (inAxisZ * inAxisZ * (1.0 - c)) + c,
                     0.0,
                     0.0, 0.0, 0.0, 1.0
-                ));
+                );
         }
 
         public static Matrix4x4 MakeRotate(Quaternion inValue)
@@ -501,24 +513,24 @@ namespace RtCs.MathUtils
             double zz2 = q.z * q.z * 2.0;
             double zw2 = q.z * q.w * 2.0;
             double ww2 = q.w * q.w * 2.0;
-            return new Matrix4x4(EnumerableExtensions.AsEnumerable(
+            return new Matrix4x4(
                     ww2 + xx2 - 1.0,       xy2 - zw2,       xz2 + yw2, 0.0,
                           xy2 + zw2, ww2 + yy2 - 1.0,       yz2 - xw2, 0.0,
                           xz2 - yw2,       yz2 + xw2, ww2 + zz2 - 1.0, 0.0,
                                 0.0,             0.0,             0.0, 1.0
-                ));
+                );
         }
 
-        public static Matrix4x4 MakeRotateEuelr(Vector3 inEuler, EulerRotationOrder inOrder)
+        public static Matrix4x4 MakeRotateEuelr(Vector3 inEuler, EEulerRotationOrder inOrder)
             => EulerAngles.EulerToMatrix(inEuler, inOrder);
 
         public static Matrix4x4 MakeScale(double inX, double inY, double inZ)
-            => new Matrix4x4(EnumerableExtensions.AsEnumerable(
+            => new Matrix4x4(
                     inX, 0.0, 0.0, 0.0,
                     0.0, inY, 0.0, 0.0,
                     0.0, 0.0, inZ, 0.0,
                     0.0, 0.0, 0.0, 1.0
-                ));
+                );
 
         public static Matrix4x4 MakeScale(Vector3 inValue)
             => MakeScale(inValue.x, inValue.y, inValue.z);
@@ -539,12 +551,12 @@ namespace RtCs.MathUtils
                     -Vector3.Dot(z, inCenter)
                 );
 
-            return new Matrix4x4(EnumerableExtensions.AsEnumerable(
+            return new Matrix4x4(
                     x.x, x.y, x.z, t.x,
                     y.x, y.y, y.z, t.y,
                     z.x, z.y, z.z, t.z,
                     0.0, 0.0, 0.0, 1.0
-                ));
+                );
         }
 
         public static Matrix4x4 MakeOrtho(double inLeft, double inRight, double inBottom, double inTop, double inNear, double inFar)
@@ -559,12 +571,12 @@ namespace RtCs.MathUtils
                 throw new DivideByZeroException($"Argument \"{nameof(inNear)}\" and \"{nameof(inFar)}\" must be different value.");
             }
 
-            return new Matrix4x4(EnumerableExtensions.AsEnumerable(
-                    2.0 / (inRight - inLeft), 0.0, 0.0, -(inRight + inLeft) / (inRight - inLeft),
-                    0.0, 2.0 / (inTop - inBottom), 0.0, -(inTop + inBottom) / (inTop - inBottom),
-                    0.0, 0.0, -2.0 / (inFar - inNear), -(inFar + inNear) / (inFar - inNear),
-                    0.0, 0.0, 0.0, 1.0
-                ));
+            return new Matrix4x4(
+                    2.0 / (inRight - inLeft),                      0.0,                     0.0, -(inRight + inLeft) / (inRight - inLeft),
+                                         0.0, 2.0 / (inTop - inBottom),                     0.0, -(inTop + inBottom) / (inTop - inBottom),
+                                         0.0,                      0.0, -2.0 / (inFar - inNear),     -(inFar + inNear) / (inFar - inNear),
+                                         0.0,                      0.0,                     0.0,                                      1.0
+                );
         }
         public static Matrix4x4 MakeOrtho(double aWidth, double aHeight, double aNear, double aFar)
             => MakeOrtho(-aWidth * 0.5f, aWidth * 0.5f, -aHeight * 0.5f, aHeight * 0.5f, aNear, aFar);
@@ -583,12 +595,12 @@ namespace RtCs.MathUtils
                 throw new DivideByZeroException($"Argument \"{nameof(inNear)}\" and \"{nameof(inFar)}\" must be different value.");
             }
 
-            return new Matrix4x4(EnumerableExtensions.AsEnumerable(
-                    (2.0 * inNear) / (inRight - inLeft), 0.0, (inRight + inLeft) / (inRight - inLeft), 0.0,
-                    0.0, (2.0 * inNear) / (inTop - inBottom), (inTop + inBottom) / (inTop - inBottom), 0.0,
-                    0.0, 0.0, -(inFar + inNear) / (inFar - inNear), -(2.0 * inFar * inNear) / (inFar - inNear),
-                    0.0, 0.0, -1.0, 0.0
-                ));
+            return new Matrix4x4(
+                    (2.0 * inNear) / (inRight - inLeft),                                 0.0, (inRight + inLeft) / (inRight - inLeft),                                        0.0,
+                                                    0.0, (2.0 * inNear) / (inTop - inBottom), (inTop + inBottom) / (inTop - inBottom),                                        0.0,
+                                                    0.0,                                 0.0,    -(inFar + inNear) / (inFar - inNear), -(2.0 * inFar * inNear) / (inFar - inNear),
+                                                    0.0,                                 0.0,                                    -1.0,                                        0.0
+                );
         }
 
         public static Matrix4x4 MakeFrustum(double inWidth, double inHeight, double inNear, double inFar)

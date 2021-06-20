@@ -6,6 +6,10 @@ namespace RtCs.MathUtils
 {
     public struct Matrix3x3 : IMatrix, IEquatable<Matrix3x3>
     {
+        public Matrix3x3(params double[] inValues)
+            : this((IEnumerable<double>)inValues)
+        { }
+
         public Matrix3x3(IEnumerable<double> inValues)
         {
             var e = inValues.GetEnumerator();
@@ -118,6 +122,13 @@ namespace RtCs.MathUtils
         public Vector3 GetColumn(int inColIndex)
             => new Vector3(this[0, inColIndex], this[1, inColIndex], this[2, inColIndex]);
 
+        public Matrix3x3 Transposed
+            => new Matrix3x3(
+                    this[0, 0], this[1, 0], this[2, 0],
+                    this[0, 1], this[1, 1], this[2, 1],
+                    this[0, 2], this[1, 2], this[2, 2]
+                );
+
         int IMatrix.ElemCount => Matrix3x3.ElemCount;
         int IMatrix.RowCount => Matrix3x3.RowCount;
         int IMatrix.ColCount => Matrix3x3.ColCount;
@@ -223,34 +234,31 @@ namespace RtCs.MathUtils
             => new Vector3(Matrix.Multiply(inLeft, inRight));
 
         public static Matrix3x3 MakeTranslate(double inX, double inY)
-            => new Matrix3x3(EnumerableExtensions.AsEnumerable(
+            => new Matrix3x3(
                     1.0f, 0.0f, inX,
                     0.0f, 1.0f, inY,
                     0.0f, 0.0f, 1.0f
-                ));
+                );
         public static Matrix3x3 MakeTranslate(Vector2 inValue)
             => MakeTranslate(inValue.x, inValue.y);
 
         public static Matrix3x3 MakeRotate(double inRadian)
         {
-            var result = Identity;
             double s = Math.Sin(inRadian);
             double c = Math.Cos(inRadian);
-            result.SetElements(
-                (0, 0, c),
-                (0, 1, -s),
-                (1, 0, s),
-                (1, 1, c)
-            );
-            return result;
+            return new Matrix3x3(
+                      c,  -s, 0.0,
+                      s,   c, 0.0,
+                    0.0, 0.0, 1.0
+                );
         }
 
         public static Matrix3x3 MakeScale(double inX, double inY)
-            => new Matrix3x3(EnumerableExtensions.AsEnumerable(
+            => new Matrix3x3(
                      inX, 0.0f, 0.0f,
                     0.0f, inY, 0.0f,
                     0.0f, 0.0f, 1.0f
-                ));
+                );
         public static Matrix3x3 MakeScale(Vector2 inValue)
             => MakeScale(inValue.x, inValue.y);
     }

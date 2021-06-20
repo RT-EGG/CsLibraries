@@ -38,9 +38,9 @@ namespace RtCs.MathUtils
             }
         }
 
-        public Vector3 ToEuler(EulerRotationOrder inOrder)
+        public Vector3 ToEuler(EEulerRotationOrder inOrder)
             => EulerAngles.QuaternionToEuler(this, inOrder);
-        public static Quaternion FromEuler(Vector3 inEuler, EulerRotationOrder inOrder)
+        public static Quaternion FromEuler(Vector3 inEuler, EEulerRotationOrder inOrder)
             => EulerAngles.EulerToQuaternion(inEuler, inOrder);
 
         public double Norm => Real.Sqr() + Imaginary.Length2;
