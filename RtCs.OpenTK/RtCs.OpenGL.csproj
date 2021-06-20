@@ -50,6 +50,7 @@
     <Compile Include="Controls\GLControl.Designer.cs">
       <DependentUpon>GLControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GLMaterial.cs" />
     <Compile Include="GLRenderingStatus.cs" />
     <Compile Include="ResourceObject\GLBufferObject.cs" />
     <Compile Include="ResourceObject\GLResourceIdObject.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Renderer\GLRenderer.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderBinarySource.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderProgram.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderUniformProperty.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderTextSource.cs" />
     <Compile Include="ResourceObject\Shader\GLShader.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderSource.cs" />
