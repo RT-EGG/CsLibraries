@@ -1,15 +1,11 @@
 ﻿using OpenTK.Graphics.OpenGL;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RtCs.OpenGL
 {
     public abstract partial class GLShader : GLResourceIdObject
     {
-        private bool Compile(GLShaderSource inSource)
+        public bool Compile(GLShaderSource inSource)
         {
             m_CompileError.Clear();
             if (ID == 0) {
