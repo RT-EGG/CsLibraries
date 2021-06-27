@@ -6,41 +6,56 @@ namespace RtCs.OpenGL
 {
     public abstract class GLShaderUniformProperty
     {
-        public string Name
-        { get; set; } = "";
+        public GLShaderUniformProperty(GLShaderUniformPropertySocket inSocket)
+        {
+            Socket = inSocket;
+            return; 
+        }
 
-        public abstract void CommitProperty(int inProgramID);
+        public string Name => Socket.Name;
+        public int Location => Socket.Location;
 
-        protected int GetUniformLocation(int inProgramID)
-            => GL.GetUniformLocation(inProgramID, Name);
+        public void CommitProperty(GLShaderProgram inShader)
+            => DoCommitProperty(inShader.ID, Location);
+
+        protected abstract void DoCommitProperty(int inProgramID, int inLocation);
+
+        public readonly GLShaderUniformPropertySocket Socket;
 
         public class Int : GLShaderUniformProperty<int>
         {
-            public override void CommitProperty(int inProgramID)
-                => GL.ProgramUniform1(inProgramID, GetUniformLocation(inProgramID), Value);
+            public Int(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
+            protected override void DoCommitProperty(int inProgramID, int inLocation)
+                => GL.ProgramUniform1(inProgramID, inLocation, Value);
         }
 
         public class Double : GLShaderUniformProperty<double>
         {
-            public override void CommitProperty(int inProgramID)
-                => GL.ProgramUniform1(inProgramID, GetUniformLocation(inProgramID), Value);
+            public Double(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
+            protected override void DoCommitProperty(int inProgramID, int inLocation)
+                => GL.ProgramUniform1(inProgramID, inLocation, Value);
         }
 
         public class Vec4 : GLShaderUniformProperty<Vector4>
         {
-            public override void CommitProperty(int inProgramID)
-                => GL.ProgramUniform4(inProgramID, GetUniformLocation(inProgramID), 1, Value.Select(v => (float)v).ToArray());
+            public Vec4(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
+            protected override void DoCommitProperty(int inProgramID, int inLocation)
+                => GL.ProgramUniform4(inProgramID, inLocation, 1, Value.Select(v => (float)v).ToArray());
         }
 
         public class Mat4 : GLShaderUniformProperty<Matrix4x4>
         {
-            public override void CommitProperty(int inProgramID)
-                => GL.ProgramUniformMatrix4(inProgramID, GetUniformLocation(inProgramID), 1, false, Value.ToGLArrayF());
+            public Mat4(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
+            protected override void DoCommitProperty(int inProgramID, int inLocation)
+                => GL.ProgramUniformMatrix4(inProgramID, inLocation, 1, false, Value.ToGLArrayF());
         }
     }
 
     public abstract class GLShaderUniformProperty<T> : GLShaderUniformProperty
     {
+        public GLShaderUniformProperty(GLShaderUniformPropertySocket inSocket)
+            : base (inSocket) { }
+
         public T Value
         { get; set; } = default;
     }

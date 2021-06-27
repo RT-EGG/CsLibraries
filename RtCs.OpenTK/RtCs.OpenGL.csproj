@@ -71,6 +71,7 @@
     <Compile Include="ResourceObject\Shader\GLShaderTextSource.cs" />
     <Compile Include="ResourceObject\Shader\GLShader.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderSource.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderUniformPropertySocket.cs" />
     <Compile Include="Utils\Extensions\MatrixExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

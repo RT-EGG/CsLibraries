@@ -1,4 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using System;
 using System.Collections.Generic;
 
 namespace RtCs.OpenGL
@@ -18,13 +19,18 @@ namespace RtCs.OpenGL
             GL.GetProgram(ID, GetProgramParameterName.LinkStatus, out m_LinkState);
 
             if (Linked) {
-                CollectUniformProperties();
+                m_UniformPropertySockets = CollectUniformPropertySockets(ID);
             } else {
-                m_UniformProperties.Clear();
+                m_UniformPropertySockets.Clear();
                 m_LinkError.AddRange(GL.GetProgramInfoLog(ID).Split('\n'));
             }
+
+            OnAfterLinked?.Invoke(this);
             return Linked;
         }
+
+        public IReadOnlyList<GLShaderUniformPropertySocket> UniformPropertySockets
+            => m_UniformPropertySockets;
 
         protected override void InternalCreateResource()
         {
@@ -44,44 +50,29 @@ namespace RtCs.OpenGL
             return;
         }
 
-        private void CollectUniformProperties()
+        protected static List<GLShaderUniformPropertySocket> CollectUniformPropertySockets(int inProgramID)
         {
-            m_UniformProperties.Clear();
-            int size, length;
-
-            GL.GetProgram(ID, GetProgramParameterName.ActiveUniforms, out int count);
+            GL.GetProgram(inProgramID, GetProgramParameterName.ActiveUniforms, out int count);
+            var result = new List<GLShaderUniformPropertySocket>(count);
+            
+            int size, length;            
             for (int i = 0; i < count; ++i) {
-                GL.GetActiveUniform(ID, i, 255, out length, out size, out ActiveUniformType type, out string name);
+                GL.GetActiveUniform(inProgramID, i, 255, out length, out size, out ActiveUniformType type, out string name);
+                int location = GL.GetUniformLocation(inProgramID, name);
 
-                GLShaderUniformProperty property = CreatePropertyFor(type); ;
-                if (property != null) {
-                    property.Name = name;
-                    m_UniformProperties.Add(property);
-                }
+                result.Add(new GLShaderUniformPropertySocket(name, location, type));
             }
-            return;
-        }
-
-        private static GLShaderUniformProperty CreatePropertyFor(ActiveUniformType inType)
-        {
-            switch (inType) {
-                case ActiveUniformType.Int:
-                    return new GLShaderUniformProperty.Int();
-                case ActiveUniformType.FloatVec4:
-                    return new GLShaderUniformProperty.Vec4();
-                case ActiveUniformType.FloatMat4:
-                    return new GLShaderUniformProperty.Mat4();
-            }
-            // not support now...
-            return null;
+            return result;
         }
 
         public bool Linked => m_LinkState != 0;
         public IReadOnlyList<string> LinkError => m_LinkError;
 
+        public event Action<GLShaderProgram> OnAfterLinked;
+
         private int m_LinkState = 0;
         private List<string> m_LinkError = new List<string>();
 
-        private List<GLShaderUniformProperty> m_UniformProperties = new List<GLShaderUniformProperty>();
+        private List<GLShaderUniformPropertySocket> m_UniformPropertySockets = new List<GLShaderUniformPropertySocket>();
     }
 }

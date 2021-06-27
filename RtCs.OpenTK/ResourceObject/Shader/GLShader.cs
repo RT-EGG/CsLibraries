@@ -48,8 +48,6 @@ namespace RtCs.OpenGL
         }
 
         public abstract ShaderType ShaderType { get; }
-        private GLShaderSource ShaderSource 
-        { get; set; } = null;
 
         public bool Compiled => m_CompileState != 0;
         public IReadOnlyList<string> CompileError => m_CompileError;
