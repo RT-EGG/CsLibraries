@@ -64,7 +64,7 @@
     <Compile Include="Mesh\GLCubeMesh.cs" />
     <Compile Include="Mesh\GLMesh.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderer\GLRenderer.cs" />
+    <Compile Include="GLRenderer.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderBinarySource.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderProgram.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderUniformProperty.cs" />
@@ -94,8 +94,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="ResourceObject\Shader\presets\Color.fragment.glsl" />
-    <None Include="ResourceObject\Shader\presets\Color.vertex.glsl" />
+    <None Include="ResourceObject\Shader\presets\Sources\Color.fragment.glsl" />
+    <None Include="ResourceObject\Shader\presets\Sources\Color.vertex.glsl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
