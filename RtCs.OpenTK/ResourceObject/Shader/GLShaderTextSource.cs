@@ -6,6 +6,16 @@ namespace RtCs.OpenGL
 {
     public class GLShaderTextSource : GLShaderSource
     {
+        public static GLShaderTextSource CreateFileSource(string inFilepath)
+        {
+            GLShaderTextSource result = new GLShaderTextSource();
+            result.LoadFromFile(inFilepath);
+            return result;
+        }
+
+        public static GLShaderTextSource CreateTextSource(string inText)
+            => new GLShaderTextSource { Text = inText };
+
         public void LoadFromFile(string inFilepath)
         {
             if (!File.Exists(inFilepath)) {

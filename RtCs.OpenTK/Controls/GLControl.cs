@@ -13,13 +13,17 @@ namespace RtCs.OpenGL.Controls
         [Category("Rendering")]
         public event GLRenderSceneEventHandler OnRenderScene;
 
+        static GLControl()
+        {
+            GLRenderShaderProgram.Preset.CreatePresets();
+            return;
+        }
 
         public GLControl()
         { 
             InitializeComponent();
             return;
         }        
-
 
         public new void MakeCurrent()
         {
