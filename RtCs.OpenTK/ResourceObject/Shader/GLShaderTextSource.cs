@@ -1,6 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using System;
 using System.IO;
+using System.Reflection;
 
 namespace RtCs.OpenGL
 {
@@ -15,6 +16,15 @@ namespace RtCs.OpenGL
 
         public static GLShaderTextSource CreateTextSource(string inText)
             => new GLShaderTextSource { Text = inText };
+
+        public static GLShaderTextSource CreateAssemblyTextResourceSource(string inResourceName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var names = assembly.GetManifestResourceNames();
+            using (StreamReader reader = new StreamReader(assembly.GetManifestResourceStream(inResourceName))) {
+                return CreateTextSource(reader.ReadToEnd());
+            }
+        }
 
         public void LoadFromFile(string inFilepath)
         {

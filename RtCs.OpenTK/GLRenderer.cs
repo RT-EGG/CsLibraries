@@ -1,9 +1,4 @@
 ﻿using OpenTK.Graphics.OpenGL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RtCs.OpenGL.Renderer
 {
@@ -14,27 +9,37 @@ namespace RtCs.OpenGL.Renderer
             if (Mesh == null) {
                 return;
             }
-            Mesh.UpdateBuffers();
 
-            var buffers = Mesh.Buffers;
-            if ((buffers.Positions == null) || (buffers.Indices == null)) {
+            var shader = Material?.Shader;
+            if (shader == null) {
                 return;
             }
-            
-            
+
+            if (!shader.Linked) {
+                if (!shader.Link()) {
+                    return;
+                }
+            }
             try {
-                GL.EnableClientState(ArrayCap.VertexArray);
-                GL.EnableClientState(ArrayCap.NormalArray);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, buffers.Positions);
-                GL.VertexPointer(3, VertexPointerType.Float, 0, 0);
-                GL.BindBuffer(BufferTarget.ArrayBuffer, buffers.Normals);
-                GL.NormalPointer(NormalPointerType.Float, 0, 0);
+                GL.UseProgram(shader.ID);
+                Material.CommitProperties(inStatus);
 
-                GL.BindBuffer(BufferTarget.ElementArrayBuffer, buffers.Indices);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, Mesh.VertexBuffer);
 
+                foreach (var attribPointer in shader.VertexAttribPointers) {
+                    var attrib = Mesh.VertexAttributes[attribPointer.AttributeType];
+                    if (attrib == null) {
+                        continue;
+                    }
+                    GL.EnableVertexAttribArray(attribPointer.Index);
+                    GL.VertexAttribPointer(attribPointer.Index, attrib.Size, VertexAttribPointerType.Float, false, attrib.Stride, attrib.Offset);
+                }
+
+                GL.BindBuffer(BufferTarget.ElementArrayBuffer, Mesh.IndexBuffer);
                 GL.DrawElements(Mesh.Topology.ToPrimitiveType(), Mesh.Indices.Length, DrawElementsType.UnsignedInt, 0);
 
             } finally {
+                GL.UseProgram(0);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
                 GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
             }

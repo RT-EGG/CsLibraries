@@ -4,10 +4,10 @@ namespace RtCs.OpenGL
 {
     public partial class GLPrimitiveMesh
     {
-        public static GLMesh CreateCube()
-            => CreateCube(1.0, 1.0, 1.0);
+        public static GLMesh CreateBox()
+            => CreateBox(1.0, 1.0, 1.0);
 
-        public static GLMesh CreateCube(double inSizeX, double inSizeY, double inSizeZ)
+        public static GLMesh CreateBox(double inSizeX, double inSizeY, double inSizeZ)
         {
             GLMesh mesh = new GLMesh();
             mesh.Clear();
@@ -109,7 +109,7 @@ namespace RtCs.OpenGL
             return mesh;
         }
 
-        public static GLMesh CreateCube(Vector3 inSize)
-            => CreateCube(inSize.x, inSize.y, inSize.z);
+        public static GLMesh CreateBox(Vector3 inSize)
+            => CreateBox(inSize.x, inSize.y, inSize.z);
     }
 }

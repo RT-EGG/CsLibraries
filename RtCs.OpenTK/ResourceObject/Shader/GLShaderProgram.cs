@@ -1,6 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RtCs.OpenGL
 {
@@ -31,6 +32,11 @@ namespace RtCs.OpenGL
 
         public IReadOnlyList<GLShaderUniformPropertySocket> UniformPropertySockets
             => m_UniformPropertySockets;
+        public GLShaderUniformPropertySocket GetPropertySocket(string inName)
+            => UniformPropertySockets.FirstOrDefault(s => s.Name == inName);
+
+        public virtual IEnumerable<GLShaderUniformProperty> CreateDefaultProperties()
+            => new GLShaderUniformProperty[0];
 
         protected override void InternalCreateResource()
         {

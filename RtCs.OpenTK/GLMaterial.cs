@@ -4,7 +4,13 @@ namespace RtCs.OpenGL
 {
     public class GLMaterial
     {
-        public void CommitProperties()
+        public GLMaterial()
+        {
+            Shader = GLRenderShaderProgram.Preset.Color;
+            return;
+        }
+
+        public virtual void CommitProperties(GLRenderingStatus inRenderingStatus)
         {
             if (Shader == null) {
                 return;
@@ -26,7 +32,7 @@ namespace RtCs.OpenGL
         public GLShaderUniformProperty<T> GetProperty<T>(string inName)
             => m_Properties[inName] as GLShaderUniformProperty<T>;
 
-        public GLShaderProgram Shader
+        public GLRenderShaderProgram Shader
         {
             get => m_Shader;
             set {
@@ -53,7 +59,16 @@ namespace RtCs.OpenGL
             if (m_Shader != null) {
                 foreach (var socket in m_Shader.UniformPropertySockets) {
                     if (newList.TryGetValue(socket.Name, out var property)) {
+                        newList.Add(socket.Name, property);
+                    }
+                }
 
+                foreach (var @default in m_Shader.CreateDefaultProperties()) {
+                    if (@default?.Socket == null) {
+                        continue;
+                    }
+                    if (!newList.ContainsKey(@default.Name)) {
+                        newList.Add(@default.Name, @default);
                     }
                 }
             }
@@ -63,6 +78,6 @@ namespace RtCs.OpenGL
         }
 
         private Dictionary<string, GLShaderUniformProperty> m_Properties = new Dictionary<string, GLShaderUniformProperty>();
-        private GLShaderProgram m_Shader = null;
+        private GLRenderShaderProgram m_Shader = null;
     }
 }

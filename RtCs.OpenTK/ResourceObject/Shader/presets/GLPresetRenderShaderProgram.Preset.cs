@@ -1,12 +1,15 @@
-﻿using System.IO;
-using System.Reflection;
-
-namespace RtCs.OpenGL
+﻿namespace RtCs.OpenGL
 {
     public partial class GLRenderShaderProgram
     {
         public abstract class Preset
         {
+            static Preset()
+            {
+                CreatePresets();
+                return;
+            }
+
             internal static void CreatePresets()
             {
                 Color = new Color();
@@ -19,14 +22,6 @@ namespace RtCs.OpenGL
 
         public abstract partial class PresetType : GLRenderShaderProgram
         {
-            protected static string LoadAssemblyText(string inName)
-            {
-                var assembly = Assembly.GetExecutingAssembly();
-                var names = assembly.GetManifestResourceNames();
-                using (StreamReader reader = new StreamReader(assembly.GetManifestResourceStream($"RtCs.OpenGL.Resources.{inName}"))) {
-                    return reader.ReadToEnd();
-                }
-            }
         }
     }
 }

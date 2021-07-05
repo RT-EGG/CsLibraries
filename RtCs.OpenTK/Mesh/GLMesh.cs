@@ -1,7 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using RtCs.MathUtils;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace RtCs.OpenGL
@@ -39,41 +38,15 @@ namespace RtCs.OpenGL
             get => m_Positions;
             set {
                 m_Positions = value;
-                m_BufferUpdateQueue.Enqueue(() => {
-                    if (m_Positions.IsNullOrEmpty()) {
-                        Buffers.Positions?.Dispose();
-                        Buffers.Positions = null;
-                    } else {
-                        if (Buffers.Positions == null) {
-                            Buffers.Positions = new GLBufferObject();
-                        }
-                        Buffers.Positions.OnAfterCreateResource += _ => {
-                            GL.BindBuffer(BufferTarget.ArrayBuffer, Buffers.Positions);
-                            GLBufferData(BufferTarget.ArrayBuffer, m_Positions, BufferUsageHint.StaticDraw);
-                        };
-                    }
-                });
+                m_VertexBufferChanged = true;
             }
         }
         public Vector3[] Normals
         {
-            get => m_Normal;
+            get => m_Normals;
             set {
-                m_Normal = value;
-                m_BufferUpdateQueue.Enqueue(() => {
-                    if (m_Normal.IsNullOrEmpty()) {
-                        Buffers.Normals?.Dispose();
-                        Buffers.Normals = null;
-                    } else {
-                        if (Buffers.Normals == null) {
-                            Buffers.Normals = new GLBufferObject();
-                        }
-                        Buffers.Normals.OnAfterCreateResource += _ => {
-                            GL.BindBuffer(BufferTarget.ArrayBuffer, Buffers.Normals);
-                            GLBufferData(BufferTarget.ArrayBuffer, m_Normal, BufferUsageHint.StaticDraw);
-                        };
-                    }                    
-                });
+                m_Normals = value;
+                m_VertexBufferChanged = true;
             }
         }
         public Vector2[] TexCoords
@@ -81,20 +54,7 @@ namespace RtCs.OpenGL
             get => m_TexCoords;
             set {
                 m_TexCoords = value;
-                m_BufferUpdateQueue.Enqueue(() => {
-                    if (m_TexCoords.IsNullOrEmpty()) {
-                        Buffers.TexCoords?.Dispose();
-                        Buffers.TexCoords = null;
-                    } else {
-                        if (Buffers.TexCoords == null) {
-                            Buffers.TexCoords = new GLBufferObject();
-                        }
-                        Buffers.TexCoords.OnAfterCreateResource += _ => {
-                            GL.BindBuffer(BufferTarget.ArrayBuffer, Buffers.TexCoords);
-                            GLBufferData(BufferTarget.ArrayBuffer, m_TexCoords, BufferUsageHint.StaticDraw);
-                        };
-                    }
-                });
+                m_VertexBufferChanged = true;
             }
         }
 
@@ -105,20 +65,7 @@ namespace RtCs.OpenGL
             get => m_Indices;
             set {
                 m_Indices = value;
-                m_BufferUpdateQueue.Enqueue(() => {
-                    if (m_Indices.IsNullOrEmpty()) {
-                        Buffers.Indices.Dispose();
-                        Buffers.Indices = null;
-                    } else {
-                        if (Buffers.Indices == null) {
-                            Buffers.Indices = new GLBufferObject();
-                        }
-                        Buffers.Indices.OnAfterCreateResource += _ => {
-                            GL.BindBuffer(BufferTarget.ElementArrayBuffer, Buffers.Indices);
-                            GL.BufferData(BufferTarget.ElementArrayBuffer, m_Indices.Length * sizeof(int), m_Indices, BufferUsageHint.StaticDraw);
-                        };
-                    }
-                });
+                m_IndexBufferChanged = true;
             }
         }
 
@@ -168,34 +115,74 @@ namespace RtCs.OpenGL
 
         internal void UpdateBuffers()
         {
-            while (!m_BufferUpdateQueue.IsEmpty()) {
-                m_BufferUpdateQueue.Dequeue()();
+            if (m_VertexBufferChanged) {
+                int offset = 0;
+                void AddAttribute(EGLVertexAttributeType inType, GLVertexAttribute inAtt)
+                {
+                    VertexAttributes[inType] = inAtt;
+                    offset += inAtt.Data.Length;
+                }
+
+                VertexAttributes.Clear();
+                if (!m_Positions.IsNullOrEmpty()) {
+                    AddAttribute(EGLVertexAttributeType.Position, new GLVertexAttribute.Position { DataOffset = offset, Data = m_Positions.ToFloatArray() });
+                }
+                if (!m_Normals.IsNullOrEmpty()) {
+                    AddAttribute(EGLVertexAttributeType.Normal, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_Normals.ToFloatArray() });
+                }
+                if (!m_TexCoords.IsNullOrEmpty()) {
+                    AddAttribute(EGLVertexAttributeType.TexCoord, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_TexCoords.ToFloatArray() });
+                }
+
+                float[] buffer = new float[offset];
+                foreach (var attrib in VertexAttributes.Cast<GLVertexAttribute>()) {
+                    Array.Copy(attrib.Data, 0, buffer, attrib.DataOffset, attrib.Data.Length);
+                }
+
+                GL.BindBuffer(BufferTarget.ArrayBuffer, m_VertexBuffer);
+                GL.BufferData(BufferTarget.ArrayBuffer, buffer.Length * sizeof(float), buffer, BufferUsageHint.StaticDraw);
+
+                m_VertexBufferChanged = false;
+            }
+
+            if (m_IndexBufferChanged) {
+                GL.BindBuffer(BufferTarget.ElementArrayBuffer, m_IndexBuffer);
+                GL.BufferData(BufferTarget.ElementArrayBuffer, m_Indices.Length * sizeof(int), m_Indices, BufferUsageHint.StaticDraw);
+                m_IndexBufferChanged = false;
             }
             return;
         }
 
-        private void GLBufferData(BufferTarget inTarget, Vector3[] inBuffer, BufferUsageHint inHint)
-            => GL.BufferData(inTarget, inBuffer.Length * 3 * sizeof(float), inBuffer.Select(v => (IVector)v).Flatten().Select(v => (float)v).ToArray(), inHint);
-        private void GLBufferData(BufferTarget inTarget, Vector2[] inBuffer, BufferUsageHint inHint)
-            => GL.BufferData(inTarget, inBuffer.Length * 2 * sizeof(float), inBuffer.Select(v => (IVector)v).Flatten().Select(v => (float)v).ToArray(), inHint);
-
         private Vector3[] m_Positions = null;
-        private Vector3[] m_Normal = null;
+        private Vector3[] m_Normals = null;
         private Vector2[] m_TexCoords = null;
         private int[] m_Indices = null;
 
-        private Queue<Action> m_BufferUpdateQueue = new Queue<Action>();
-        internal MeshBuffers Buffers = new MeshBuffers();
-        internal class MeshBuffers
+        private bool m_VertexBufferChanged = true;
+        private GLBufferObject m_VertexBuffer = new GLBufferObject();
+        internal GLBufferObject VertexBuffer
         {
-            public GLBufferObject Positions
-            { get; set; } = null;
-            public GLBufferObject Normals
-            { get; set; } = null;
-            public GLBufferObject TexCoords
-            { get; set; } = null;
-            public GLBufferObject Indices
-            { get; set; } = null;
+            get {
+                if (m_VertexBufferChanged) {
+                    UpdateBuffers();
+                }
+                return m_VertexBuffer;
+            }
         }
+
+        private bool m_IndexBufferChanged = true;
+        private GLBufferObject m_IndexBuffer = new GLBufferObject();
+        internal GLBufferObject IndexBuffer
+        {
+            get {
+                if (m_IndexBufferChanged) {
+                    UpdateBuffers();
+                }
+                return m_IndexBuffer;
+            }
+        }
+
+        public GLVertexAttributeList VertexAttributes
+        { get; } = new GLVertexAttributeList();
     }
 }
