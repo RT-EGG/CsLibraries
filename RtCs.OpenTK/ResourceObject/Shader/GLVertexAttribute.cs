@@ -9,7 +9,8 @@ namespace RtCs.OpenGL
     {
         Position,
         Normal,
-        TexCoord
+        TexCoord,
+        Color
     }
 
     public interface IGLVertexAttribute
@@ -46,6 +47,12 @@ namespace RtCs.OpenGL
         {
             public override EGLVertexAttributeType Type => EGLVertexAttributeType.TexCoord;
             public override int Size => 2;
+        }
+
+        public class Color : GLVertexAttribute
+        {
+            public override EGLVertexAttributeType Type => EGLVertexAttributeType.Color;
+            public override int Size => 4;
         }
     }
 

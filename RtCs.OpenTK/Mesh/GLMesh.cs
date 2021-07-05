@@ -57,6 +57,14 @@ namespace RtCs.OpenGL
                 m_VertexBufferChanged = true;
             }
         }
+        public Vector4[] Colors
+        {
+            get => m_Colors;
+            set {
+                m_Colors = value;
+                m_VertexBufferChanged = true;
+            }
+        }
 
         public EGLMeshTopology Topology
         { get; set; } = EGLMeshTopology.Triangles;
@@ -98,6 +106,8 @@ namespace RtCs.OpenGL
             Positions = null;
             Normals = null;
             TexCoords = null;
+            Colors = null;
+            Indices = null;
             BoundingBox = default;
             return;
         }
@@ -133,6 +143,9 @@ namespace RtCs.OpenGL
                 if (!m_TexCoords.IsNullOrEmpty()) {
                     AddAttribute(EGLVertexAttributeType.TexCoord, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_TexCoords.ToFloatArray() });
                 }
+                if (!m_Colors.IsNullOrEmpty()) {
+                    AddAttribute(EGLVertexAttributeType.Color, new GLVertexAttribute.Color { DataOffset = offset, Data = m_Colors.ToFloatArray() });
+                }
 
                 float[] buffer = new float[offset];
                 foreach (var attrib in VertexAttributes.Cast<GLVertexAttribute>()) {
@@ -156,6 +169,7 @@ namespace RtCs.OpenGL
         private Vector3[] m_Positions = null;
         private Vector3[] m_Normals = null;
         private Vector2[] m_TexCoords = null;
+        private Vector4[] m_Colors = null;
         private int[] m_Indices = null;
 
         private bool m_VertexBufferChanged = true;

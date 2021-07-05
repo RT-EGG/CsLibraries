@@ -103,5 +103,42 @@ namespace RtCs.OpenGL.Properties {
                 return ResourceManager.GetString("Color.vertex.glsl", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///    に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string VertexColor_fragment_glsl {
+            get {
+                return ResourceManager.GetString("VertexColor.fragment.glsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   #version 460
+        ///
+        ///layout (location = 0) uniform mat4 inProjectionMatrix;
+        ///layout (location = 1) uniform mat4 inModelviewMatrix;
+        ///
+        ///layout (location = 0) in vec3 inPosition;
+        ///layout (location = 1) in vec4 inColor;
+        ///
+        ///out gl_PerVertex
+        ///{
+        ///	vec4 gl_Position;
+        ///};
+        ///layout (location = 0) out vec4 outColor;
+        ///
+        ///void main()
+        ///{
+        ///    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);	
+        ///    outColor = inColor;
+        ///    return;
+        ///} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string VertexColor_vertex_glsl {
+            get {
+                return ResourceManager.GetString("VertexColor.vertex.glsl", resourceCulture);
+            }
+        }
     }
 }

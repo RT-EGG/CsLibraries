@@ -83,6 +83,7 @@
     <Compile Include="ResourceObject\Shader\GLVertexAttributePointer.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Color.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Preset.cs" />
+    <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.VertexColor.cs" />
     <Compile Include="Utils\Extensions\MatrixExtensions.cs" />
     <Compile Include="Utils\Extensions\VectorExtensions.cs" />
   </ItemGroup>
@@ -113,6 +114,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Color.fragment.glsl.txt" />
     <EmbeddedResource Include="Resources\Color.vertex.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\VertexColor.vertex.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\VertexColor.fragment.glsl.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,10 +13,13 @@
             internal static void CreatePresets()
             {
                 Color = new Color();
+                VertexColor = new VertexColor();
                 return;
             }
 
             public static Color Color
+            { get; private set; }
+            public static VertexColor VertexColor
             { get; private set; }
         }
 
