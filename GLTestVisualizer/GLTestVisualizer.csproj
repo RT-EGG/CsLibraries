@@ -94,6 +94,7 @@
     <Compile Include="TestView\Ctrl_TestView.Designer.cs">
       <DependentUpon>Ctrl_TestView.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestView\TransformMatrixDexomposition\GLBoxMaterial.cs" />
     <Compile Include="Utils\Extensions\MatrixExtensions.cs" />
     <Compile Include="Utils\Extensions\VectorExtensions.cs" />
     <EmbeddedResource Include="FormMain.resx">

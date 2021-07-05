@@ -1,10 +1,8 @@
-﻿using GLTestVisualizer.Model;
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
 using RtCs.MathUtils;
-using System;
-using System.Windows.Forms;
 using RtCs.OpenGL;
 using RtCs.OpenGL.Renderer;
+using System;
 
 namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 {
@@ -14,6 +12,25 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         {
             InitializeComponent();
             m_Renderer.Mesh = m_Cube;
+            m_Renderer.Material = m_Material;
+
+            Vector4[] vertColors = new Vector4[m_Cube.Positions.Length];
+            for (int i = 0; i < m_Cube.Positions.Length; ++i) {
+                if ((0 <= i) && (i <= 3)) {
+                    vertColors[i] = new Vector4(1.0, 0.0, 0.0, 1.0); // -x
+                } else if ((4 <= i) && (i <= 7)) {
+                    vertColors[i] = new Vector4(0.0, 1.0, 1.0, 1.0); // +x
+                } else if ((8 <= i) && (i <= 11)) {
+                    vertColors[i] = new Vector4(0.0, 1.0, 0.0, 1.0); // -y
+                } else if ((12 <= i) && (i <= 15)) {
+                    vertColors[i] = new Vector4(1.0, 0.0, 1.0, 1.0); // +y
+                } else if ((16 <= i) && (i <= 19)) {
+                    vertColors[i] = new Vector4(0.0, 0.0, 1.0, 1.0); // -z
+                } else if ((20 <= i) && (i <= 23)) {
+                    vertColors[i] = new Vector4(1.0, 1.0, 0.0, 1.0); // +z
+                }
+            }
+            m_Cube.Colors = vertColors;
             return;
         }
 
@@ -68,59 +85,51 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
         private void GLViewr_OnRenderScene(RtCs.OpenGL.Controls.GLControl inControl, RtCs.OpenGL.GLRenderingStatus inStatus)
         {
-            GL.MatrixMode(MatrixMode.Projection);
-            GL.PushMatrix();
+            inStatus.ProjectionMatrix.PushMatrix();
             try {
-                GL.LoadMatrix(Matrix4x4.MakePerspective(45.0, (double)GLViewer.Width / (double)GLViewer.Height, 0.01, 100.0).ToGLArray());
+                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0, (double)GLViewer.Width / (double)GLViewer.Height, 0.01, 100.0));
 
-                GL.MatrixMode(MatrixMode.Modelview);
-                GL.PushMatrix();
+                inStatus.ModelViewMatrix.View.PushMatrix();
+                inStatus.ModelViewMatrix.Model.PushMatrix();
                 try {
-                    GL.LoadIdentity();
-                    GL.MultMatrix(Matrix4x4.MakeLookAt(new Vector3(0.0, 2.0, 2.0), new Vector3(0.0), new Vector3(0.0, 1.0, 0.0)).ToGLArray());
+                    inStatus.ModelViewMatrix.View.LoadMatrix(Matrix4x4.MakeLookAt(new Vector3(0.0, 2.0, 2.0), new Vector3(0.0), new Vector3(0.0, 1.0, 0.0)));
+                    inStatus.ModelViewMatrix.Model.LoadIdentity();
 
                     GL.Disable(EnableCap.Lighting);
                     GL.Enable(EnableCap.DepthTest);
                     GL.Enable(EnableCap.CullFace);
                     GL.LineWidth(1.0f);
 
-                    m_Renderer.Render(inStatus);
-
-                    GL.PushMatrix();
+                    inStatus.ModelViewMatrix.Model.PushMatrix();
                     try {
-                        Matrix4x4 trans = Matrix4x4.MakeTranslate(-1.0, 0.0, 0.0)
-                                        * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder));
-
-                        GL.MultMatrix(trans.ToGLArray());
+                        inStatus.ModelViewMatrix.Model.MultiMatrix(Matrix4x4.MakeTranslate(-1.0, 0.0, 0.0)
+                                                                 * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder)));
 
                         DrawAxis();
-                        DrawBox();
+                        m_Renderer.Render(inStatus);
 
                     } finally {
-                        GL.PopMatrix();
+                        inStatus.ModelViewMatrix.Model.PopMatrix();
                     }
 
-                    GL.PushMatrix();
+                    inStatus.ModelViewMatrix.Model.PushMatrix();
                     try {
-                        Matrix4x4 trans = Matrix4x4.MakeTranslate(1.0, 0.0, 0.0)
-                                        * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixOutput.Rotation.DegToRad(), RotationOrder));
-
-                        GL.MultMatrix(trans.ToGLArray());
+                        inStatus.ModelViewMatrix.Model.MultiMatrix(Matrix4x4.MakeTranslate(1.0, 0.0, 0.0)
+                                                                 * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixOutput.Rotation.DegToRad(), RotationOrder)));
 
                         DrawAxis();
-                        DrawBox();
+                        m_Renderer.Render(inStatus);
 
                     } finally {
-                        GL.PopMatrix();
+                        inStatus.ModelViewMatrix.Model.PopMatrix();
                     }
 
                 } finally {
-                    GL.MatrixMode(MatrixMode.Modelview);
-                    GL.PopMatrix();
+                    inStatus.ModelViewMatrix.Model.PopMatrix();
+                    inStatus.ModelViewMatrix.View.PopMatrix();
                 }
             } finally {
-                GL.MatrixMode(MatrixMode.Projection);
-                GL.PopMatrix();
+                inStatus.ProjectionMatrix.PopMatrix();
             }
             return;
         }
@@ -131,28 +140,6 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             GL.Color4(1.0, 0.0, 0.0, 1.0); GL.Vertex3(0.0, 0.0, 0.0); GL.Vertex3(1.0, 0.0, 0.0);
             GL.Color4(0.0, 1.0, 0.0, 1.0); GL.Vertex3(0.0, 0.0, 0.0); GL.Vertex3(0.0, 1.0, 0.0);
             GL.Color4(0.0, 0.0, 1.0, 1.0); GL.Vertex3(0.0, 0.0, 0.0); GL.Vertex3(0.0, 0.0, 1.0);
-            GL.End();
-        }
-
-        private void DrawBox()
-        {
-            GL.Begin(PrimitiveType.Quads);
-            // X
-            GL.Color4(1.0, 0.0, 0.0, 1.0);
-            GL.Vertex3(-0.5, 0.5, -0.5); GL.Vertex3(-0.5, -0.5, -0.5); GL.Vertex3(-0.5, -0.5, 0.5); GL.Vertex3(-0.5, 0.5, 0.5);
-            GL.Color4(0.0, 1.0, 1.0, 1.0);
-            GL.Vertex3(0.5, 0.5, 0.5); GL.Vertex3(0.5, -0.5, 0.5); GL.Vertex3(0.5, -0.5, -0.5); GL.Vertex3(0.5, 0.5, -0.5);
-            // Y
-            GL.Color4(0.0, 1.0, 0.0, 1.0);
-            GL.Vertex3(-0.5, -0.5, -0.5); GL.Vertex3(0.5, -0.5, -0.5); GL.Vertex3(0.5, -0.5, 0.5); GL.Vertex3(-0.5, -0.5, 0.5);
-            GL.Color4(1.0, 0.0, 1.0, 1.0);
-            GL.Vertex3(-0.5, 0.5, -0.5); GL.Vertex3(-0.5, 0.5, 0.5); GL.Vertex3(0.5, 0.5, 0.5); GL.Vertex3(0.5, 0.5, -0.5);
-            // Z
-            GL.Color4(0.0, 0.0, 1.0, 1.0);
-            GL.Vertex3(0.5, 0.5, -0.5); GL.Vertex3(0.5, -0.5, -0.5); GL.Vertex3(-0.5, -0.5, -0.5); GL.Vertex3(-0.5, 0.5, -0.5);
-            GL.Color4(1.0, 1.0, 0.0, 1.0);
-            GL.Vertex3(-0.5, 0.5, 0.5); GL.Vertex3(-0.5, -0.5, 0.5); GL.Vertex3(0.5, -0.5, 0.5); GL.Vertex3(0.5, 0.5, 0.5);
-            //
             GL.End();
         }
 
@@ -169,8 +156,9 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
+        private GLMaterial m_Material = new GLBoxMaterial();
         private GLRenderer m_Renderer = new GLRenderer();
-        private GLMesh m_Cube = GLPrimitiveMesh.CreateCube(1.0, 1.0, 1.0);
+        private GLMesh m_Cube = GLPrimitiveMesh.CreateBox(1.0, 1.0, 1.0);
         private Transform m_Transform = new Transform();
     }
 }
