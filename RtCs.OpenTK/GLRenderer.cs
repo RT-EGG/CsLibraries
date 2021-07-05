@@ -1,6 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 
-namespace RtCs.OpenGL.Renderer
+namespace RtCs.OpenGL
 {
     public class GLRenderer
     {

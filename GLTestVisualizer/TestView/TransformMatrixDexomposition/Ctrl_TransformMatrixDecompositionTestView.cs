@@ -1,7 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using RtCs.MathUtils;
 using RtCs.OpenGL;
-using RtCs.OpenGL.Renderer;
 using System;
 
 namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
@@ -11,8 +10,6 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         public Ctrl_TransformMatrixDecompositionTestView()
         {
             InitializeComponent();
-            m_Renderer.Mesh = m_Cube;
-            m_Renderer.Material = m_Material;
 
             Vector4[] vertColors = new Vector4[m_Cube.Positions.Length];
             for (int i = 0; i < m_Cube.Positions.Length; ++i) {
@@ -31,6 +28,13 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                 }
             }
             m_Cube.Colors = vertColors;
+
+            m_MatrixInputView.Renderer.Mesh = m_Cube;
+            m_MatrixInputView.Renderer.Material = m_Material;
+            m_MatrixInputView.Transform.LocalPosition = new Vector3(-1.0, 0.0, 0.0);
+            m_MatrixOutputView.Renderer.Mesh = m_Cube;
+            m_MatrixOutputView.Renderer.Material = m_Material;
+            m_MatrixOutputView.Transform.LocalPosition = new Vector3(1.0, 0.0, 0.0);
             return;
         }
 
@@ -50,9 +54,12 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
         private void UpdateDecomposited()
         {
-            Ctrl_MatrixOutput.Translation = m_Transform.LocalPosition;
-            Ctrl_MatrixOutput.Rotation = m_Transform.LocalRotation.ToEuler(RotationOrder).RadToDeg();
-            Ctrl_MatrixOutput.Scale = m_Transform.LocalScale;
+            Ctrl_MatrixOutput.Translation = m_DummyTransform.LocalPosition;
+            Ctrl_MatrixOutput.Rotation = m_DummyTransform.LocalRotation.ToEuler(RotationOrder).RadToDeg();
+            Ctrl_MatrixOutput.Scale = m_DummyTransform.LocalScale;
+
+            m_MatrixInputView.Transform.LocalRotation = m_DummyTransform.LocalRotation;
+            m_MatrixOutputView.Transform.LocalRotation = Quaternion.FromEuler(Ctrl_MatrixOutput.Rotation.DegToRad(), RotationOrder);
             return;
         }
 
@@ -64,21 +71,21 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
         private void Ctrl_MatrixInput_TranslationChanged(object inSender, Vector3 inValue)
         {
-            m_Transform.LocalPosition = inValue;
+            m_DummyTransform.LocalPosition = inValue;
             UpdateDecomposited();
             return;
         }
 
         private void Ctrl_MatrixInput_RotationChanged(object inSender, Vector3 inValue)
         {
-            m_Transform.LocalRotation = Quaternion.FromEuler(inValue.DegToRad(), RotationOrder);
+            m_DummyTransform.LocalRotation = Quaternion.FromEuler(inValue.DegToRad(), RotationOrder);
             UpdateDecomposited();
             return;
         }
 
         private void Ctrl_MatrixInput_ScaleChanged(object inSender, Vector3 inValue)
         {
-            m_Transform.LocalScale = inValue;
+            m_DummyTransform.LocalScale = inValue;
             UpdateDecomposited();
             return;
         }
@@ -100,29 +107,32 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                     GL.Enable(EnableCap.CullFace);
                     GL.LineWidth(1.0f);
 
-                    inStatus.ModelViewMatrix.Model.PushMatrix();
-                    try {
-                        inStatus.ModelViewMatrix.Model.MultiMatrix(Matrix4x4.MakeTranslate(-1.0, 0.0, 0.0)
-                                                                 * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder)));
+                    m_MatrixInputView.Render(inStatus);
+                    m_MatrixOutputView.Render(inStatus);
 
-                        DrawAxis();
-                        m_Renderer.Render(inStatus);
+                    //inStatus.ModelViewMatrix.Model.PushMatrix();
+                    //try {
+                    //    inStatus.ModelViewMatrix.Model.MultiMatrix(Matrix4x4.MakeTranslate(-1.0, 0.0, 0.0)
+                    //                                             * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder)));
 
-                    } finally {
-                        inStatus.ModelViewMatrix.Model.PopMatrix();
-                    }
+                    //    DrawAxis();
+                    //    m_Renderer.Render(inStatus);
 
-                    inStatus.ModelViewMatrix.Model.PushMatrix();
-                    try {
-                        inStatus.ModelViewMatrix.Model.MultiMatrix(Matrix4x4.MakeTranslate(1.0, 0.0, 0.0)
-                                                                 * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixOutput.Rotation.DegToRad(), RotationOrder)));
+                    //} finally {
+                    //    inStatus.ModelViewMatrix.Model.PopMatrix();
+                    //}
 
-                        DrawAxis();
-                        m_Renderer.Render(inStatus);
+                    //inStatus.ModelViewMatrix.Model.PushMatrix();
+                    //try {
+                    //    inStatus.ModelViewMatrix.Model.MultiMatrix(Matrix4x4.MakeTranslate(1.0, 0.0, 0.0)
+                    //                                             * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixOutput.Rotation.DegToRad(), RotationOrder)));
 
-                    } finally {
-                        inStatus.ModelViewMatrix.Model.PopMatrix();
-                    }
+                    //    DrawAxis();
+                    //    m_Renderer.Render(inStatus);
+
+                    //} finally {
+                    //    inStatus.ModelViewMatrix.Model.PopMatrix();
+                    //}
 
                 } finally {
                     inStatus.ModelViewMatrix.Model.PopMatrix();
@@ -151,14 +161,18 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
         private void ComboRotationOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_Transform.LocalRotation = Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder);
+            m_DummyTransform.LocalRotation = Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder);
             UpdateDecomposited();
             return;
         }
 
+        private void Ctrl_MatrixOutput_RotationChanged(object inSender, Vector3 inValue)
+            => m_MatrixOutputView.Transform.LocalRotation = Quaternion.FromEuler(inValue.DegToRad(), RotationOrder);
+
         private GLMaterial m_Material = new GLBoxMaterial();
-        private GLRenderer m_Renderer = new GLRenderer();
         private GLMesh m_Cube = GLPrimitiveMesh.CreateBox(1.0, 1.0, 1.0);
-        private Transform m_Transform = new Transform();
+        private GLRenderObject m_MatrixInputView = new GLRenderObject();
+        private GLRenderObject m_MatrixOutputView = new GLRenderObject();
+        private Transform m_DummyTransform = new Transform();
     }
 }

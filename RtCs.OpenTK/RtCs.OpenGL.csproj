@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="GLMaterial.cs" />
     <Compile Include="GLRenderingStatus.cs" />
+    <Compile Include="GLRenderObject.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
