@@ -144,5 +144,8 @@ namespace RtCs.MathUtils
                 return ((Math.Sin(thete * (1.0f - aRatio)) / sThete) * inValue1) + ((Math.Sin(thete * aRatio) / sThete) * inValue2);
             }
         }
+
+        public override string ToString()
+            => $"({x}, {y}, {z}), {w}";
     }
 }

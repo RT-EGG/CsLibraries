@@ -119,5 +119,8 @@ namespace RtCs.MathUtils
                 (inLeft.z * inRight.x) - (inLeft.x * inRight.z),
                 (inLeft.x * inRight.y) - (inLeft.y * inRight.x)
             );
+
+        public override string ToString()
+            => $"{x}, {y}, {z}";
     }
 }

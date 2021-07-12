@@ -204,73 +204,59 @@ namespace RtCs.MathUtils
 
                 int s = 0;
                 double max = px;
+                double v = Math.Sqrt(px) * 0.5;
                 if (max < py) {
                     s = 1;
+                    v = Math.Sqrt(py) * 0.5;
                     max = py;
                 }
                 if (max < pz) {
                     s = 2;
+                    v = Math.Sqrt(pz) * 0.5;
                     max = pz;
                 }
                 if (max < pw) {
                     s = 3;
+                    v = Math.Sqrt(pw) * 0.5;
                     max = pw;
                 }
 
-                double d;
+                double d = 0.25 / v;
                 switch (s) {
                     case 0:
-                        double x = Math.Sqrt(px) * 0.5;
-                        d = 1.0 / (4.0 * x);
                         return new Quaternion(
-                                x,
+                                v,
                                 (this[1, 0] + this[0, 1]) * d,
                                 (this[0, 2] + this[2, 0]) * d,
                                 (this[2, 1] - this[1, 2]) * d
                             );
 
                     case 1:
-                        double y = Math.Sqrt(py) * 0.5;
-                        d = 1.0 / (4.0 * y);
                         return new Quaternion(
                                 (this[1, 0] + this[0, 1]) * d,
-                                y,
+                                v,
                                 (this[2, 1] + this[1, 2]) * d,
                                 (this[0, 2] - this[2, 0]) * d
                             );
 
                     case 2:
-                        double z = Math.Sqrt(pz) * 0.5f;
-                        d = 1.0 / (4.0 * z);
                         return new Quaternion(
                                 (this[0, 2] + this[2, 0]) * d,
                                 (this[2, 1] + this[1, 2]) * d,
-                                z,
+                                v,
                                 (this[1, 0] - this[0, 1]) * d
                             );
 
                     case 3:
-                        double w = Math.Sqrt(pw) * 0.5f;
-                        d = 1.0 / (4.0 * w);
                         return new Quaternion(
                                 (this[2, 1] - this[1, 2]) * d,
                                 (this[0, 2] - this[2, 0]) * d,
                                 (this[1, 0] - this[0, 1]) * d,
-                                w
+                                v
                             );
                 }
 
                 throw new InvalidProgramException();
-
-                //double w = Math.Sqrt(1.0 + m00 + m11 + m22) / 2.0;
-                //double w4 = 4.0 * w;
-
-                //return new Quaternion(
-                //        (m21 - m12) / w4,
-                //        (m02 - m20) / w4,
-                //        (m10 - m01) / w4,
-                //        w
-                //    );
             }
         }
 
@@ -278,7 +264,6 @@ namespace RtCs.MathUtils
             => EulerAngles.MatrixToEuler(this, inOrder);
         public void SetEulerRotation(Vector3 inEuler, EEulerRotationOrder inOrder)
             => Set3x3(0, 0, MakeRotateEuelr(inEuler, inOrder).Extract3x3(0, 0));
-
 
         int IMatrix.ElemCount => Matrix4x4.ElemCount;
         int IMatrix.RowCount => Matrix4x4.RowCount;
@@ -502,6 +487,7 @@ namespace RtCs.MathUtils
 
         public static Matrix4x4 MakeRotate(Quaternion inValue)
         {
+            // refered http://marupeke296.sakura.ne.jp/DXG_No58_RotQuaternionTrans.html
             ref Quaternion q = ref inValue;
             double xx2 = q.x * q.x * 2.0;
             double xy2 = q.x * q.y * 2.0;
@@ -513,10 +499,16 @@ namespace RtCs.MathUtils
             double zz2 = q.z * q.z * 2.0;
             double zw2 = q.z * q.w * 2.0;
             double ww2 = q.w * q.w * 2.0;
+            //return new Matrix4x4(
+            //        ww2 + xx2 - 1.0,       xy2 - zw2,       xz2 + yw2, 0.0,
+            //              xy2 + zw2, ww2 + yy2 - 1.0,       yz2 - xw2, 0.0,
+            //              xz2 - yw2,       yz2 + xw2, ww2 + zz2 - 1.0, 0.0,
+            //                    0.0,             0.0,             0.0, 1.0
+            //    );
             return new Matrix4x4(
-                    ww2 + xx2 - 1.0,       xy2 - zw2,       xz2 + yw2, 0.0,
-                          xy2 + zw2, ww2 + yy2 - 1.0,       yz2 - xw2, 0.0,
-                          xz2 - yw2,       yz2 + xw2, ww2 + zz2 - 1.0, 0.0,
+                    1.0 - yy2 - zz2,       xy2 - zw2,       xz2 + yw2, 0.0,
+                          xy2 + zw2, 1.0 - xx2 - zz2,       yz2 - xw2, 0.0,
+                          xz2 - yw2,       yz2 + xw2, 1.0 - xx2 - yy2, 0.0,
                                 0.0,             0.0,             0.0, 1.0
                 );
         }
@@ -616,5 +608,13 @@ namespace RtCs.MathUtils
 
         public void MakePerspective(double aFovY, double aWidth, double aHeight, double aNear, double aFar)
             => MakePerspective(aFovY, aWidth / aHeight, aNear, aFar);
+
+        public override string ToString()
+        {
+            return $"{m00}, {m01}, {m02}, {m03}, {Environment.NewLine}" +
+                   $"{m10}, {m11}, {m12}, {m13}, {Environment.NewLine}" +
+                   $"{m20}, {m21}, {m22}, {m23}, {Environment.NewLine}" +
+                   $"{m30}, {m31}, {m32}, {m33}{Environment.NewLine}";
+        }
     }
 }
