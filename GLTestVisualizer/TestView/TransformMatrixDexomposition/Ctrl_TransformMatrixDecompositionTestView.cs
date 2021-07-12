@@ -1,4 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
 using RtCs.OpenGL;
 using System;
@@ -35,6 +35,9 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             m_MatrixOutputView.Renderer.Mesh = m_Cube;
             m_MatrixOutputView.Renderer.Material = m_Material;
             m_MatrixOutputView.Transform.LocalPosition = new Vector3(1.0, 0.0, 0.0);
+
+            m_MatrixInputAxisView.Transform.Parent = m_MatrixInputView.Transform;
+            m_MatrixOutputAxisView.Transform.Parent = m_MatrixOutputView.Transform;
             return;
         }
 
@@ -102,37 +105,14 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                     inStatus.ModelViewMatrix.View.LoadMatrix(Matrix4x4.MakeLookAt(new Vector3(0.0, 2.0, 2.0), new Vector3(0.0), new Vector3(0.0, 1.0, 0.0)));
                     inStatus.ModelViewMatrix.Model.LoadIdentity();
 
-                    GL.Disable(EnableCap.Lighting);
                     GL.Enable(EnableCap.DepthTest);
                     GL.Enable(EnableCap.CullFace);
                     GL.LineWidth(1.0f);
 
+                    m_MatrixInputAxisView.Render(inStatus);
                     m_MatrixInputView.Render(inStatus);
+                    m_MatrixOutputAxisView.Render(inStatus);
                     m_MatrixOutputView.Render(inStatus);
-
-                    //inStatus.ModelViewMatrix.Model.PushMatrix();
-                    //try {
-                    //    inStatus.ModelViewMatrix.Model.MultiMatrix(Matrix4x4.MakeTranslate(-1.0, 0.0, 0.0)
-                    //                                             * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixInput.Rotation.DegToRad(), RotationOrder)));
-
-                    //    DrawAxis();
-                    //    m_Renderer.Render(inStatus);
-
-                    //} finally {
-                    //    inStatus.ModelViewMatrix.Model.PopMatrix();
-                    //}
-
-                    //inStatus.ModelViewMatrix.Model.PushMatrix();
-                    //try {
-                    //    inStatus.ModelViewMatrix.Model.MultiMatrix(Matrix4x4.MakeTranslate(1.0, 0.0, 0.0)
-                    //                                             * Matrix4x4.MakeRotate(Quaternion.FromEuler(Ctrl_MatrixOutput.Rotation.DegToRad(), RotationOrder)));
-
-                    //    DrawAxis();
-                    //    m_Renderer.Render(inStatus);
-
-                    //} finally {
-                    //    inStatus.ModelViewMatrix.Model.PopMatrix();
-                    //}
 
                 } finally {
                     inStatus.ModelViewMatrix.Model.PopMatrix();
@@ -142,15 +122,6 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                 inStatus.ProjectionMatrix.PopMatrix();
             }
             return;
-        }
-
-        private void DrawAxis()
-        {
-            GL.Begin(PrimitiveType.Lines);
-            GL.Color4(1.0, 0.0, 0.0, 1.0); GL.Vertex3(0.0, 0.0, 0.0); GL.Vertex3(1.0, 0.0, 0.0);
-            GL.Color4(0.0, 1.0, 0.0, 1.0); GL.Vertex3(0.0, 0.0, 0.0); GL.Vertex3(0.0, 1.0, 0.0);
-            GL.Color4(0.0, 0.0, 1.0, 1.0); GL.Vertex3(0.0, 0.0, 0.0); GL.Vertex3(0.0, 0.0, 1.0);
-            GL.End();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -166,13 +137,13 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
-        private void Ctrl_MatrixOutput_RotationChanged(object inSender, Vector3 inValue)
-            => m_MatrixOutputView.Transform.LocalRotation = Quaternion.FromEuler(inValue.DegToRad(), RotationOrder);
-
         private GLMaterial m_Material = new GLBoxMaterial();
         private GLMesh m_Cube = GLPrimitiveMesh.CreateBox(1.0, 1.0, 1.0);
         private GLRenderObject m_MatrixInputView = new GLRenderObject();
+        private GLAxisRenderObject m_MatrixInputAxisView = new GLAxisRenderObject();
         private GLRenderObject m_MatrixOutputView = new GLRenderObject();
+
+        private GLAxisRenderObject m_MatrixOutputAxisView = new GLAxisRenderObject();
         private Transform m_DummyTransform = new Transform();
     }
 }
