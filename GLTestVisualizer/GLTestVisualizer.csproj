@@ -64,11 +64,8 @@
     <Compile Include="Model\CameraMouseController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestView\Ctrl_GLViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TestView\Ctrl_GLViewer.Designer.cs">
-      <DependentUpon>Ctrl_GLViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.cs">
       <SubType>UserControl</SubType>
@@ -81,12 +78,6 @@
     </Compile>
     <Compile Include="TestView\TransformMatrixDexomposition\Ctrl_TransformMatrixDecompositionTestView.Designer.cs">
       <DependentUpon>Ctrl_TransformMatrixDecompositionTestView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestView\Ctrl_ProjectionTestSceneView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TestView\Ctrl_ProjectionTestSceneView.Designer.cs">
-      <DependentUpon>Ctrl_ProjectionTestSceneView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\Ctrl_TestView.cs">
       <SubType>UserControl</SubType>
@@ -110,17 +101,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TestView\Ctrl_GLViewer.resx">
-      <DependentUpon>Ctrl_GLViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.resx">
       <DependentUpon>Ctrl_DecompositeTransformMatrixView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\TransformMatrixDexomposition\Ctrl_TransformMatrixDecompositionTestView.resx">
       <DependentUpon>Ctrl_TransformMatrixDecompositionTestView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestView\Ctrl_ProjectionTestSceneView.resx">
-      <DependentUpon>Ctrl_ProjectionTestSceneView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
