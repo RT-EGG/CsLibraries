@@ -1,12 +1,24 @@
-﻿using RtCs.MathUtils;
+﻿using OpenTK.Graphics.OpenGL4;
+using RtCs.MathUtils;
+using System;
 using System.Linq;
 
 namespace RtCs.OpenGL
 {
+    [Flags]
+    public enum EGLRenderPolygonMode
+    {
+        Face = PolygonMode.Fill,
+        Line = PolygonMode.Line,
+        Point = PolygonMode.Point
+    }
+
     public class GLRenderObject
     {
         public void Render(GLRenderingStatus inRenderingStatus)
         {
+            GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)PolygonMode);
+
             inRenderingStatus.ModelViewMatrix.Model.PushMatrix();
             try {
                 inRenderingStatus.ModelViewMatrix.Model.MultiMatrix(Transform.WorldMatrix);
@@ -33,6 +45,9 @@ namespace RtCs.OpenGL
 
         public AABB3D BoundingBox
         { get; set; } = new AABB3D();
+
+        public EGLRenderPolygonMode PolygonMode
+        { get; set; } = EGLRenderPolygonMode.Face;
 
         public Transform Transform
         { get; } = new Transform();

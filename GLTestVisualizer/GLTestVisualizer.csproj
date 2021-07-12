@@ -64,9 +64,17 @@
     <Compile Include="Model\CameraMouseController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestView\Ctrl_TestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TestView\Ctrl_TestView.Designer.cs" />
+    <Compile Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.cs">
+      <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.Designer.cs">
+      <DependentUpon>Ctrl_SphereMeshTestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\SphereMesh\GLSphereMaterial.cs" />
     <Compile Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -78,12 +86,6 @@
     </Compile>
     <Compile Include="TestView\TransformMatrixDexomposition\Ctrl_TransformMatrixDecompositionTestView.Designer.cs">
       <DependentUpon>Ctrl_TransformMatrixDecompositionTestView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestView\Ctrl_TestView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TestView\Ctrl_TestView.Designer.cs">
-      <DependentUpon>Ctrl_TestView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\Common\GLAxisRenderObject.cs" />
     <Compile Include="TestView\TransformMatrixDexomposition\GLBoxMaterial.cs" />
@@ -102,6 +104,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.resx">
+      <DependentUpon>Ctrl_SphereMeshTestView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.resx">
       <DependentUpon>Ctrl_DecompositeTransformMatrixView.cs</DependentUpon>

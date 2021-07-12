@@ -1,21 +1,16 @@
 ﻿using GLTestVisualizer.TestView;
+using GLTestVisualizer.TestView.SphereMesh;
 using GLTestVisualizer.TestView.TransformMatrixDexomposition;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GLTestVisualizer
 {
     enum TestContentType
     {
-        TransformMatrixDecomposition
+        TransformMatrixDecomposition,
+        SphereMesh
     }
 
     public partial class FormMain : Form
@@ -23,6 +18,7 @@ namespace GLTestVisualizer
         public FormMain()
         {
             InitializeComponent();
+            return;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -33,6 +29,11 @@ namespace GLTestVisualizer
                 Text = "Transform Matrix Decomposition",
                 ViewGenerator = () => new Ctrl_TransformMatrixDecompositionTestView()
             });
+            ComboTestContent.Items.Add(new TestContentItem {
+                Type = TestContentType.SphereMesh,
+                Text = "Sphere Mesh",
+                ViewGenerator = () => new Ctrl_SphereMeshTestView()
+            }); ;
 
             ComboTestContent.SelectedIndex = 0;
             ComboTestContent_SelectionChangeCommitted(ComboTestContent, EventArgs.Empty);

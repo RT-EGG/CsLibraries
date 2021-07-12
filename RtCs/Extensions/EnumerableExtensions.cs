@@ -56,5 +56,13 @@ namespace RtCs
 
         public static bool IsNullOrEmpty(this IEnumerable inItems)
             => (inItems == null) || inItems.IsEmpty();
+
+        public static void Add<T>(this IList<T> inItems, params T[] inNewItems)
+        {
+            foreach (var newItem in inNewItems) {
+                inItems.Add(newItem);
+            }
+            return;
+        }
     }
 }
