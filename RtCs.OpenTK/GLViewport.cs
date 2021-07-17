@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace RtCs.OpenGL
 {
-    public class GLViewport
+    public class GLViewport : GLObject
     {
         public GLViewport()
             : this(0, 0, 1, 1)
@@ -26,7 +26,7 @@ namespace RtCs.OpenGL
 
         public void Adapt()
         {
-            OpenTK.Graphics.OpenGL.GL.Viewport(X, Y, Width, Height);
+            GL.Viewport(X, Y, Width, Height);
             return;
         }
 

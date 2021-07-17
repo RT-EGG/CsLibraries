@@ -13,7 +13,7 @@ namespace RtCs.OpenGL
         Point = PolygonMode.Point
     }
 
-    public class GLRenderObject
+    public class GLRenderObject : GLObject
     {
         public void Render(GLRenderingStatus inRenderingStatus)
         {

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace RtCs.OpenGL
 {
-    public abstract class GLMatrixStack
+    public abstract class GLMatrixStack : GLObject
     {
         public GLMatrixStack()
         {

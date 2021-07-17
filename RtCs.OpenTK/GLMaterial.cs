@@ -2,7 +2,7 @@
 
 namespace RtCs.OpenGL
 {
-    public class GLMaterial
+    public class GLMaterial : GLObject
     {
         public GLMaterial()
         {

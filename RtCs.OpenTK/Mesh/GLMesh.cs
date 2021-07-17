@@ -31,7 +31,7 @@ namespace RtCs.OpenGL
         }
     }
 
-    public class GLMesh
+    public class GLMesh : GLObject
     {        
         public Vector3[] Positions
         {
@@ -162,6 +162,17 @@ namespace RtCs.OpenGL
                 GL.BindBuffer(BufferTarget.ElementArrayBuffer, m_IndexBuffer);
                 GL.BufferData(BufferTarget.ElementArrayBuffer, m_Indices.Length * sizeof(int), m_Indices, BufferUsageHint.StaticDraw);
                 m_IndexBufferChanged = false;
+            }
+            return;
+        }
+
+        protected override void Dispose(bool inDisposing)
+        {
+            base.Dispose(inDisposing);
+
+            if (!Disposed) {
+                m_VertexBuffer?.Dispose();
+                m_IndexBuffer?.Dispose();
             }
             return;
         }

@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Axis.cs" />
     <Compile Include="Controls\GLControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -51,6 +50,7 @@
       <DependentUpon>GLControl.cs</DependentUpon>
     </Compile>
     <Compile Include="GLMaterial.cs" />
+    <Compile Include="GLObject.cs" />
     <Compile Include="GLRenderingStatus.cs" />
     <Compile Include="GLRenderObject.cs" />
     <Compile Include="Mesh\GLSphereMesh.cs" />

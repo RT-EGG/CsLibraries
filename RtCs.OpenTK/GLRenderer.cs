@@ -2,7 +2,7 @@
 
 namespace RtCs.OpenGL
 {
-    public class GLRenderer
+    public class GLRenderer : GLObject
     {
         public void Render(GLRenderingStatus inStatus)
         {

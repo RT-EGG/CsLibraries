@@ -1,6 +1,6 @@
 ﻿namespace RtCs.OpenGL
 {
-    public class GLRenderingStatus
+    public class GLRenderingStatus : GLObject
     {
         public GLViewport Viewport
         { get; } = new GLViewport();

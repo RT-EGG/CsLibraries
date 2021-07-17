@@ -6,7 +6,7 @@ namespace RtCs.OpenGL
     public delegate void GLResourceObjectNotifyCallback(GLResourceObject inObject);
     public delegate void GLResourceObjectNotifyEventHandler(GLResourceObject inObject);
 
-    public abstract class GLResourceObject : IDisposable
+    public abstract class GLResourceObject : GLObject
     {
         public GLResourceObject()
         {
@@ -17,6 +17,9 @@ namespace RtCs.OpenGL
             }
             return;
         }
+
+        ~GLResourceObject()
+            => Dispose(false);
         
         public void CreateResource()
         {
@@ -35,6 +38,20 @@ namespace RtCs.OpenGL
         protected virtual void InternalCreateResource() { }
         protected virtual void InternalDestroyResource() { }
         protected abstract bool IsResourceCreated { get; }
+
+        protected override void Dispose(bool inDisposing)
+        {
+            base.Dispose(inDisposing);
+
+            if (!Disposed) {
+                if (CanResourceProcess) {
+                    DestroyResource();
+                } else {
+                    DestroyQueue.Enqueue(this);
+                }
+            }
+            return;
+        }
 
         public event GLResourceObjectNotifyEventHandler OnAfterCreateResource
         {
@@ -70,30 +87,5 @@ namespace RtCs.OpenGL
         private static Queue<GLResourceObject> CreationQueue { get; } = new Queue<GLResourceObject>();
         private static Queue<GLResourceObject> DestroyQueue { get; } = new Queue<GLResourceObject>();
         private bool CanResourceProcess => Controls.GLControl.PaintingControl != null;
-
-        protected virtual void Dispose(bool inDisposing)
-        {
-            if (!m_Disposed) {
-                if (inDisposing) {
-                    if (CanResourceProcess) {
-                        DestroyResource();
-                    } else {
-                        DestroyQueue.Enqueue(this);
-                    }
-                }
-
-                m_Disposed = true;
-            }
-            return;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-            return;
-        }
-
-        private bool m_Disposed;
     }
 }
