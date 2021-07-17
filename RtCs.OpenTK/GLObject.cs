@@ -13,15 +13,19 @@ namespace RtCs.OpenGL
             return;
         }
 
-        protected virtual void Dispose(bool inDisposing)
+        protected virtual void DisposeObject(bool inDisposing)
+        { }
+
+        private void Dispose(bool inDisposing)
         {
             if (!m_Disposed) {
+                DisposeObject(inDisposing);
                 m_Disposed = true;
             }
             return;
         }
 
-        protected bool Disposed => m_Disposed;
+        
         private bool m_Disposed = false;
     }
 }

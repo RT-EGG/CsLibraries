@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RtCs.OpenGL
 {
@@ -17,9 +16,6 @@ namespace RtCs.OpenGL
             }
             return;
         }
-
-        ~GLResourceObject()
-            => Dispose(false);
         
         public void CreateResource()
         {
@@ -39,16 +35,14 @@ namespace RtCs.OpenGL
         protected virtual void InternalDestroyResource() { }
         protected abstract bool IsResourceCreated { get; }
 
-        protected override void Dispose(bool inDisposing)
+        protected override void DisposeObject(bool inDisposing)
         {
-            base.Dispose(inDisposing);
+            base.DisposeObject(inDisposing);
 
-            if (!Disposed) {
-                if (CanResourceProcess) {
-                    DestroyResource();
-                } else {
-                    DestroyQueue.Enqueue(this);
-                }
+            if (CanResourceProcess) {
+                DestroyResource();
+            } else {
+                DestroyQueue.Enqueue(this);
             }
             return;
         }

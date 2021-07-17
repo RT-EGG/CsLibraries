@@ -166,14 +166,12 @@ namespace RtCs.OpenGL
             return;
         }
 
-        protected override void Dispose(bool inDisposing)
+        protected override void DisposeObject(bool inDisposing)
         {
-            base.Dispose(inDisposing);
+            base.DisposeObject(inDisposing);
 
-            if (!Disposed) {
-                m_VertexBuffer?.Dispose();
-                m_IndexBuffer?.Dispose();
-            }
+            m_VertexBuffer?.Dispose();
+            m_IndexBuffer?.Dispose();
             return;
         }
 
