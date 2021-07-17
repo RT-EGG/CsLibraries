@@ -45,6 +45,7 @@ namespace GLTestVisualizer
             if (m_CurrentViewer != null) {
                 m_CurrentViewer.Exit();
                 m_CurrentViewer.Parent = null;
+                m_CurrentViewer = null;
             }
 
             if (ComboTestContent.SelectedItem == null) {

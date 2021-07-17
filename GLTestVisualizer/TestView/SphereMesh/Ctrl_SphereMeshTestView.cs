@@ -37,6 +37,16 @@ namespace GLTestVisualizer.TestView.SphereMesh
             return;
         }
 
+        public override void Exit()
+        {
+            base.Exit();
+
+            m_UvSphere.Renderer.Mesh.Dispose();
+            m_IcoSphere.Renderer.Mesh.Dispose();
+            m_RcSphere.Renderer.Mesh.Dispose();
+            return;
+        }
+
         private void GLViewer_OnRenderScene(RtCs.OpenGL.Controls.GLControl inControl, GLRenderingStatus inStatus)
         {
             inStatus.ProjectionMatrix.PushMatrix();

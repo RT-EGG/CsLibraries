@@ -55,6 +55,21 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
+        public override void Exit()
+        {
+            base.Exit();
+
+            timer1.Enabled = false;
+
+            m_MatrixInputAxisView.Dispose();
+            m_MatrixOutputAxisView.Dispose();
+            m_MatrixInputView.Dispose();
+            m_MatrixOutputView.Dispose();
+            m_Material.Dispose();
+            m_Cube.Dispose();
+            return;
+        }
+
         private void UpdateDecomposited()
         {
             Ctrl_MatrixOutput.Translation = m_DummyTransform.LocalPosition;
@@ -142,7 +157,6 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         private GLRenderObject m_MatrixInputView = new GLRenderObject();
         private GLAxisRenderObject m_MatrixInputAxisView = new GLAxisRenderObject();
         private GLRenderObject m_MatrixOutputView = new GLRenderObject();
-
         private GLAxisRenderObject m_MatrixOutputAxisView = new GLAxisRenderObject();
         private Transform m_DummyTransform = new Transform();
     }
