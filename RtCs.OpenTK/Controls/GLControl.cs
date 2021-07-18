@@ -59,7 +59,6 @@ namespace RtCs.OpenGL.Controls
         private void RuntimePaint(PaintEventArgs e)
         {
             MakeCurrent();
-            PaintingControl = this;
 
             GLResourceObject.CreateResourcesInQueue();
             GLResourceObject.DestroyResourcesInQueue();
@@ -73,7 +72,6 @@ namespace RtCs.OpenGL.Controls
 
             OnRenderScene?.Invoke(this, m_RenderingStatus);
 
-            PaintingControl = null;
             SwapBuffers();
             return;
         }
@@ -91,8 +89,6 @@ namespace RtCs.OpenGL.Controls
 
         private GLRenderingStatus m_RenderingStatus = null;
 
-        internal static GLControl PaintingControl
-        { get; private set; } = null;
         private static IGraphicsContext GraphicsContext
         { get; set; } = null;
     }

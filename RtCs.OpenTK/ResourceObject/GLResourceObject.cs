@@ -80,6 +80,6 @@ namespace RtCs.OpenGL
         }
         private static Queue<GLResourceObject> CreationQueue { get; } = new Queue<GLResourceObject>();
         private static Queue<GLResourceObject> DestroyQueue { get; } = new Queue<GLResourceObject>();
-        private bool CanResourceProcess => Controls.GLControl.PaintingControl != null;
+        private bool CanResourceProcess => OpenTK.Graphics.GraphicsContext.CurrentContext != null;
     }
 }
