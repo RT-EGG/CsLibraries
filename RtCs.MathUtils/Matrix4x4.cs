@@ -534,8 +534,8 @@ namespace RtCs.MathUtils
             }
 
             Vector3 z = (inCenter - inTargetPoint).Normalized;
-            Vector3 x = Vector3.Cross(inUpDirection, z);
-            Vector3 y = Vector3.Cross(z, x);
+            Vector3 x = Vector3.Cross(inUpDirection, z).Normalized;
+            Vector3 y = Vector3.Cross(z, x).Normalized;
 
             Vector3 t = new Vector3(
                     -Vector3.Dot(x, inCenter),
