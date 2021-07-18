@@ -46,6 +46,9 @@ namespace RtCs.MathUtils
             return hashCode;
         }
 
+        public override string ToString()
+            => $"a: {AzimuthAngleDeg} deg; e: {ElevationAngleDeg} deg; r: {Radius};";
+
         public static bool operator ==(SphericalCoordinate left, SphericalCoordinate right)
             => left.Equals(right);
         public static bool operator !=(SphericalCoordinate left, SphericalCoordinate right)
