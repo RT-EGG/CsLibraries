@@ -43,12 +43,12 @@ namespace RtCs.MathUtils
                     case 0: return m00;
                     case 1: return m01;
                     case 2: return m02;
-                    case 3: return m00;
-                    case 4: return m01;
-                    case 5: return m02;
-                    case 6: return m00;
-                    case 7: return m01;
-                    case 8: return m02;
+                    case 3: return m10;
+                    case 4: return m11;
+                    case 5: return m12;
+                    case 6: return m20;
+                    case 7: return m21;
+                    case 8: return m22;
                     default: throw new IndexOutOfRangeException();
                 }
             }
@@ -63,8 +63,8 @@ namespace RtCs.MathUtils
                     case 6: m20 = value; break;
                     case 7: m21 = value; break;
                     case 8: m22 = value; break;
+                    default: throw new IndexOutOfRangeException();
                 }
-                throw new IndexOutOfRangeException();
             }
         }
 

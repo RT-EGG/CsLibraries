@@ -91,8 +91,8 @@ namespace RtCs.MathUtils
                     case 13: m31 = value; break;
                     case 14: m32 = value; break;
                     case 15: m33 = value; break;
+                    default: throw new IndexOutOfRangeException();
                 }
-                throw new IndexOutOfRangeException();
             }
         }
 
@@ -334,7 +334,7 @@ namespace RtCs.MathUtils
                 return false;
             }
 
-            Matrix4x4 tmp = new Matrix4x4();
+            Matrix4x4 tmp = this;
             for (int row = 0; row < 4; ++row) {
                 for (int col = 0; col < 4; ++col) {
                     if (((row + col) % 2) == 0) {
