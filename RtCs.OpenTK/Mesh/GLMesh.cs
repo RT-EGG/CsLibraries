@@ -1,4 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
 using System;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace RtCs.OpenGL
     }
 
     public class GLMesh : GLObject
-    {        
+    {
         public Vector3[] Positions
         {
             get => m_Positions;
@@ -77,6 +77,9 @@ namespace RtCs.OpenGL
             }
         }
 
+        public BufferUsageHint BufferUsageHint
+        { get; set; } = BufferUsageHint.StaticDraw;
+
         public int TopologyCount
         {
             get {
@@ -111,7 +114,7 @@ namespace RtCs.OpenGL
             BoundingBox = default;
             return;
         }
-        
+
         public void CalculateBoundingBox()
         {
             if (Positions.IsNullOrEmpty()) {
@@ -153,7 +156,7 @@ namespace RtCs.OpenGL
                 }
 
                 GL.BindBuffer(BufferTarget.ArrayBuffer, m_VertexBuffer);
-                GL.BufferData(BufferTarget.ArrayBuffer, buffer.Length * sizeof(float), buffer, BufferUsageHint.StaticDraw);
+                GL.BufferData(BufferTarget.ArrayBuffer, buffer.Length * sizeof(float), buffer, BufferUsageHint);
 
                 m_VertexBufferChanged = false;
             }
@@ -186,9 +189,7 @@ namespace RtCs.OpenGL
         internal GLBufferObject VertexBuffer
         {
             get {
-                if (m_VertexBufferChanged) {
-                    UpdateBuffers();
-                }
+                UpdateBuffers();
                 return m_VertexBuffer;
             }
         }
@@ -198,9 +199,7 @@ namespace RtCs.OpenGL
         internal GLBufferObject IndexBuffer
         {
             get {
-                if (m_IndexBufferChanged) {
-                    UpdateBuffers();
-                }
+                UpdateBuffers();
                 return m_IndexBuffer;
             }
         }

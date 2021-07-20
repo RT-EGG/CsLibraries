@@ -22,7 +22,10 @@ namespace RtCs.OpenGL
             inRenderingStatus.ModelViewMatrix.Model.PushMatrix();
             try {
                 inRenderingStatus.ModelViewMatrix.Model.MultiMatrix(Transform.WorldMatrix);
+
+                PreRender(inRenderingStatus);
                 Renderer.Render(inRenderingStatus);
+                PostRender(inRenderingStatus);
 
             } finally {
                 inRenderingStatus.ModelViewMatrix.Model.PopMatrix();
@@ -42,6 +45,11 @@ namespace RtCs.OpenGL
             BoundingBox = AABB3D.InclusionBoundary(vertices.Select(v => new Vector3(matrix * new Vector4(v, 1.0))));
             return;
         }
+
+        protected virtual void PreRender(GLRenderingStatus inStatus)
+        { }
+        protected virtual void PostRender(GLRenderingStatus inStatus)
+        { }
 
         public AABB3D BoundingBox
         { get; set; } = new AABB3D();
