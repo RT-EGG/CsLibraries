@@ -2,7 +2,12 @@
 
 namespace RtCs.MathUtils
 {
-    public class Transform
+    public interface ITransform
+    {
+        Matrix4x4 LocalMatrix { get; }
+    }
+
+    public class Transform : ITransform
     {
         public Transform Parent
         {
@@ -18,6 +23,11 @@ namespace RtCs.MathUtils
             }
             get => m_Parent;
         }
+
+        public IReadOnlyList<Transform> Children => m_Children;
+
+        public void LookAt(Vector3 inCenter, Vector3 inTarget, Vector3 inUp)
+            => m_PosRotMatrix = Matrix4x4.MakeLookAt(inCenter, inTarget, inUp);
 
         public Matrix4x4 LocalMatrix
             => m_PosRotMatrix * m_ScaleMatrix;
