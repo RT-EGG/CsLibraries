@@ -12,6 +12,6 @@ namespace GLTestVisualizer
         public Transform Transform
         { get; } = new Transform();
 
-        public virtual Matrix4x4 ViewMatrix => Transform.WorldMatrix;
+        public virtual Matrix4x4 ViewMatrix => Transform.WorldMatrix.Inversed;
     }
 }

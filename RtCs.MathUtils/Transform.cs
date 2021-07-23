@@ -27,7 +27,7 @@ namespace RtCs.MathUtils
         public IReadOnlyList<Transform> Children => m_Children;
 
         public void LookAt(Vector3 inCenter, Vector3 inTarget, Vector3 inUp)
-            => m_PosRotMatrix = Matrix4x4.MakeLookAt(inCenter, inTarget, inUp);
+            => m_PosRotMatrix = Matrix4x4.MakeLookAt(inCenter, inTarget, inUp).Inversed;
 
         public Matrix4x4 LocalMatrix
             => m_PosRotMatrix * m_ScaleMatrix;
