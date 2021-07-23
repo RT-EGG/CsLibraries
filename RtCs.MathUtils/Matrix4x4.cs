@@ -348,6 +348,18 @@ namespace RtCs.MathUtils
             return true;
         }
 
+        public Matrix4x4 Inversed
+        {
+            get {
+                Matrix4x4 result = this;
+                result.Inverse();
+                if (!result.Inverse()) {
+                    return Matrix4x4.Identity;
+                }
+                return result;
+            }
+        }
+
         public double Deternimant
             => (this[0, 0] * GetSubDeterminant(0, 0))
              - (this[1, 0] * GetSubDeterminant(1, 0))
