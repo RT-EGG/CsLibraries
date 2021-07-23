@@ -100,8 +100,8 @@ namespace GLTestVisualizer
 
             } else {
                 if (m_MouseButtonDown[MouseButtons.Left]) {
-                    coord.AzimuthAngle -= transfer.X * RotationPerPixel;
-                    coord.ElevationAngle += transfer.Y * RotationPerPixel;
+                    coord.AzimuthAngle += transfer.X * RotationPerPixel;
+                    coord.ElevationAngle -= transfer.Y * RotationPerPixel;
                 } else if (m_MouseButtonDown[MouseButtons.Right]) {
                     coord.Radius += transfer.X * TranslatePerPixel;
                     center.y += transfer.Y * TranslatePerPixel;
