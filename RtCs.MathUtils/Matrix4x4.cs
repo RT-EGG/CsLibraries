@@ -352,7 +352,6 @@ namespace RtCs.MathUtils
         {
             get {
                 Matrix4x4 result = this;
-                result.Inverse();
                 if (!result.Inverse()) {
                     return Matrix4x4.Identity;
                 }
