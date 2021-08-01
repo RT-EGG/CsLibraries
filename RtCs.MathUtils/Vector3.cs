@@ -68,6 +68,9 @@ namespace RtCs.MathUtils
                 if (len.AlmostZero()) {
                     return new Vector3(0.0f);
                 }
+                if (len.AlmostEquals(1.0)) {
+                    return this;
+                }
                 return this / Math.Sqrt(len);
             }
         }

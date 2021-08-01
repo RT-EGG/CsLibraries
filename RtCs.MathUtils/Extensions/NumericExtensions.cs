@@ -24,6 +24,10 @@ namespace RtCs.MathUtils
 
         public static bool InRange(this int inValue, int inMin, int inMax)
             => (inMin <= inValue) && (inValue <= inMax);
+        public static bool InRange(this float inValue, float inMin, float inMax)
+            => (inMin <= inValue) && (inValue <= inMax);
+        public static bool InRange(this double inValue, double inMin, double inMax)
+            => (inMin <= inValue) && (inValue <= inMax);
 
         public const double Rad2Deg = 180.0 / Math.PI;
         public const double Deg2Rad = Math.PI / 180.0;

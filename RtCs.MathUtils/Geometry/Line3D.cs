@@ -1,4 +1,6 @@
-﻿namespace RtCs.MathUtils.Geometry
+﻿using System.Collections.Generic;
+
+namespace RtCs.MathUtils.Geometry
 {
     public struct Line3D
     {
@@ -39,5 +41,29 @@
             Project(inPoint, out double t);
             return (inPoint - Along(t.Clamp(0.0, 1.0))).Length;
         }
+    }
+
+    //public enum ELineIntersectionQueryDetails
+    //{
+    //    OnlyHitting = 0,
+    //    Position = 0x0001,
+    //    LinePara
+    //}
+
+    public class LineIntersectionInfo3D
+    {
+        public ILineIntersectable3D HitObject
+        { get; set; } = null;
+        public Vector3 Position
+        { get; set; } = new Vector3();
+        public double LineParameter
+        { get; set; } = double.NaN;
+        public Vector3? Normal
+        { get; set; } = null;
+    }
+
+    public interface ILineIntersectable3D
+    {
+        IEnumerable<LineIntersectionInfo3D> IsIntersectWith(Line3D inLine);
     }
 }
