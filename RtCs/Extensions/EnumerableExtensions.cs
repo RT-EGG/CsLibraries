@@ -64,5 +64,8 @@ namespace RtCs
             }
             return;
         }
+
+        public static void DisposeItems<T>(this IEnumerable<T> inItems) where T : IDisposable
+            => inItems.ForEach(item => item.Dispose());
     }
 }

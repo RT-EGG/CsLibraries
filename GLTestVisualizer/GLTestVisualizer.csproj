@@ -63,12 +63,40 @@
     <Compile Include="Model\CameraModel.cs" />
     <Compile Include="Model\OrbitCameraMouseController.cs" />
     <Compile Include="Model\OrbitCameraModel.cs" />
+    <Compile Include="Model\RotationCameraModel.cs" />
+    <Compile Include="Model\RotationCameraMouseController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestView\Ctrl_TestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TestView\Ctrl_TestView.Designer.cs" />
+    <Compile Include="TestView\FrustumTest\Ctrl_FrustumTestTestView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\FrustumTest\Ctrl_FrustumTestTestView.Designer.cs">
+      <DependentUpon>Ctrl_FrustumTestTestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\FrustumTest\Ctrl_ProjectionOrthoParameterView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\FrustumTest\Ctrl_ProjectionOrthoParameterView.Designer.cs">
+      <DependentUpon>Ctrl_ProjectionOrthoParameterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\FrustumTest\Ctrl_ProjectionParameterView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\FrustumTest\Ctrl_ProjectionParameterView.Designer.cs">
+      <DependentUpon>Ctrl_ProjectionParameterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\FrustumTest\Ctrl_ProjectionFrustumParameterView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\FrustumTest\Ctrl_ProjectionFrustumParameterView.Designer.cs">
+      <DependentUpon>Ctrl_ProjectionFrustumParameterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\FrustumTest\GLSphereMaterial.cs" />
+    <Compile Include="TestView\FrustumTest\GLViewFrustumRendererObject.cs" />
     <Compile Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +134,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestView\FrustumTest\Ctrl_FrustumTestTestView.resx">
+      <DependentUpon>Ctrl_FrustumTestTestView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestView\FrustumTest\Ctrl_ProjectionOrthoParameterView.resx">
+      <DependentUpon>Ctrl_ProjectionOrthoParameterView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestView\FrustumTest\Ctrl_ProjectionFrustumParameterView.resx">
+      <DependentUpon>Ctrl_ProjectionFrustumParameterView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.resx">
       <DependentUpon>Ctrl_SphereMeshTestView.cs</DependentUpon>
     </EmbeddedResource>

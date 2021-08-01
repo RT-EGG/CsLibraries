@@ -1,4 +1,5 @@
 ﻿using GLTestVisualizer.TestView;
+using GLTestVisualizer.TestView.FrustumTest;
 using GLTestVisualizer.TestView.SphereMesh;
 using GLTestVisualizer.TestView.TransformMatrixDexomposition;
 using System;
@@ -10,7 +11,8 @@ namespace GLTestVisualizer
     enum TestContentType
     {
         TransformMatrixDecomposition,
-        SphereMesh
+        SphereMesh,
+        FrustumTest
     }
 
     public partial class FormMain : Form
@@ -33,7 +35,12 @@ namespace GLTestVisualizer
                 Type = TestContentType.SphereMesh,
                 Text = "Sphere Mesh",
                 ViewGenerator = () => new Ctrl_SphereMeshTestView()
-            }); ;
+            });
+            ComboTestContent.Items.Add(new TestContentItem {
+                Type = TestContentType.FrustumTest,
+                Text = "Frustum Test",
+                ViewGenerator = () => new Ctrl_FrustumTestTestView()
+            });
 
             ComboTestContent.SelectedIndex = 0;
             ComboTestContent_SelectionChangeCommitted(ComboTestContent, EventArgs.Empty);

@@ -125,5 +125,8 @@ namespace RtCs.MathUtils
 
         public static double Dot(Vector4 inLeft, Vector4 inRight)
             => Vector.Dot(inLeft, inRight);
+
+        public override string ToString()
+            => $"{x}, {y}, {z}. {w}";
     }
 }
