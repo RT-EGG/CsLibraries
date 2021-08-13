@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RtCs.MathUtils
+namespace RtCs.MathUtils.Geometry
 {
     public struct AABB3D : IEquatable<AABB3D>
     {
@@ -122,6 +122,26 @@ namespace RtCs.MathUtils
             }
         }
 
+        public Vector3 Min
+        {
+            get => new Vector3(MinX, MinY, MinZ);
+            set {
+                MinX = value.x;
+                MinY = value.y;
+                MinZ = value.z;
+            }
+        }
+
+        public Vector3 Max
+        {
+            get => new Vector3(MaxX, MaxY, MaxZ);
+            set {
+                MaxX = value.x;
+                MaxY = value.y;
+                MaxZ = value.z;
+            }
+        }
+
         public double MinX
         {
             get => m_BoundaryX.Min;
@@ -203,14 +223,14 @@ namespace RtCs.MathUtils
             result.MinZ = Math.Max(MinZ, inOther.MinZ);
             result.MaxZ = Math.Max(MaxZ, inOther.MaxZ);
 
-            if (!IsValid) {
+            if (!result.IsValid) {
                 result = default;
             }
             return result;
         }
 
         public bool IsValid
-            => (MinX > MaxX) && (MinY > MaxY) && (MinZ > MaxZ);
+            => (MinX < MaxX) && (MinY < MaxY) && (MinZ < MaxZ);
 
         public override bool Equals(object obj)
             => obj is AABB3D d && Equals(d);

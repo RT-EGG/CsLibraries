@@ -90,6 +90,25 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 newSphere.Renderer.Material = m_OutFrustumMaterial;
                 m_SphereObjects.Add(newSphere);
             }
+
+            count = (randomizer.Next() % 30) + 1;
+            for (int i = 0; i < count; ++i) {
+                GLRenderObject newCube = new GLRenderObject();
+                newCube.Transform.LocalPosition = new SphericalCoordinate {
+                    AzimuthAngleDeg = randomizer.NextDouble() * 360.0,
+                    ElevationAngleDeg = (randomizer.NextDouble() * 360.0) - 180.0,
+                    Radius = (randomizer.NextDouble() * 35.0) + 5.0
+                }.GetRectangularCoordinate();
+                newCube.Transform.LocalScale = new Vector3(
+                    1.0 + (randomizer.NextDouble() * 0.5),
+                    1.0 + (randomizer.NextDouble() * 0.5),
+                    1.0 + (randomizer.NextDouble() * 0.5)
+                );
+                newCube.Renderer.Mesh = m_CubeMesh;
+                newCube.Renderer.Material = m_OutFrustumMaterial;
+                newCube.CalculateBoundingBox();
+                m_SphereObjects.Add(newCube);
+            }
             return;
         }
 
@@ -102,10 +121,17 @@ namespace GLTestVisualizer.TestView.FrustumTest
             GLViewFrustum frustum = new GLViewFrustum(m_FPSCamera.Transform.WorldMatrix, m_CurrentParameterView.ProjectionMatrix);
             foreach (var sphere in m_SphereObjects) {
                 Vector3 p = new Vector3(sphere.Transform.WorldMatrix.Multiply(new Vector4(0.0, 0.0, 0.0, 1.0)));
-                if (frustum.CalcDistanceTo(p) <= 1.0) {
+                if (frustum.IsIntersectSphere(p, 1.0)) {
                     sphere.Renderer.Material = m_InFrustumMaterial;
                 } else {
                     sphere.Renderer.Material = m_OutFrustumMaterial;
+                }
+            }
+            foreach (var cube in m_CubeObjects) {
+                if (frustum.IsIntersectAABB(cube.BoundingBox)) {
+                    cube.Renderer.Material = m_InFrustumMaterial;
+                } else {
+                    cube.Renderer.Material = m_OutFrustumMaterial;
                 }
             }
             return;
@@ -222,9 +248,11 @@ namespace GLTestVisualizer.TestView.FrustumTest
         private OrbitCameraModel m_TPSCamera = new OrbitCameraModel();
         private OrbitCameraMouseController m_TPSCameraController = null;
 
+        private GLMesh m_CubeMesh = GLPrimitiveMesh.CreateBox();
         private GLMesh m_SphereMesh = GLPrimitiveMesh.CreateSphereICO(3);
         private GLSphereMaterial m_InFrustumMaterial = new GLSphereMaterial{ IsInFrustum = true };
         private GLSphereMaterial m_OutFrustumMaterial = new GLSphereMaterial{ IsInFrustum = false };
+        private List<GLRenderObject> m_CubeObjects = new List<GLRenderObject>();
         private List<GLRenderObject> m_SphereObjects = new List<GLRenderObject>();        
     }
 }

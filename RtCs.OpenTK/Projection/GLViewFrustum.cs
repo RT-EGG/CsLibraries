@@ -73,16 +73,42 @@ namespace RtCs.OpenGL
             return;
         }
 
+        public bool IsIntersectAABB(AABB3D inAABB)
+        {
+            // check AABB contains frustum's vertices
+            foreach (var vertex in m_Vertices.Values) {
+                if (inAABB.Contains(vertex)) {
+                    return true;
+                }
+            }
+
+            // check frustum contains AABB's vertices
+            foreach (var vertex in AABBVertices(inAABB).Select(v => WorldToClipCoordinate(v))) {
+                if (vertex.x.InRange(-1.0, 1.0)
+                 && vertex.y.InRange(-1.0, 1.0)
+                 && vertex.z.InRange(-1.0, 1.0)) {
+                    return true;
+                }
+            }
+
+            // check AABB intersects frutsum's edge
+            foreach (EEdge edge in Enum.GetValues(typeof(EEdge))) {
+                if (GetEdge(edge).IsIntersect(inAABB)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool IsIntersectSphere(Vector3 inWorldCenter, double inRadius)
+            => CalcDistanceTo(inWorldCenter) <= inRadius;
+
         public double CalcDistanceTo(Vector3 inWorldPoint)
             => (CalcClosestPoint(inWorldPoint) - inWorldPoint).Length;
 
         public Vector3 CalcClosestPoint(Vector3 inWorldPoint)
         {
-            // world to view coordinate
-            Vector4 point = InvViewMatrix.Multiply(inWorldPoint, 1.0);
-            // view to clip coordinate
-            point = ProjectionMatrix.Multiply(point);
-            point /= point.w;
+            var point = WorldToClipCoordinate(inWorldPoint);
 
             const double r = 1.0;
             int Place(double inValue)
@@ -224,6 +250,31 @@ namespace RtCs.OpenGL
                     ((IEnumerable<Vector3>)inVertices).Average(),
                     Vector3.Cross((inVertices[1] - inVertices[0]).Normalized, (inVertices[2] - inVertices[0]).Normalized).Normalized
                 );
+
+        private Vector3 WorldToClipCoordinate(Vector3 inWorldPoint)
+        {
+            // world to view coordinate
+            Vector4 point = InvViewMatrix.Multiply(inWorldPoint, 1.0);
+            // view to clip coordinate
+            point = ProjectionMatrix.Multiply(point);
+            point /= point.w;
+            return new Vector3(point);
+        }
+
+        private IEnumerable<Vector3> AABBVertices(AABB3D inAABB)
+        {
+            var min = inAABB.Min;
+            var max = inAABB.Max;
+
+            yield return min;
+            yield return new Vector3(min.x, min.y, max.z);
+            yield return new Vector3(min.x, max.y, min.z);
+            yield return new Vector3(min.x, max.y, max.z);
+            yield return new Vector3(max.x, min.y, min.z);
+            yield return new Vector3(max.x, min.y, max.z);
+            yield return new Vector3(max.x, max.y, min.z);
+            yield return max;
+        }
 
         public readonly Matrix4x4 ViewMatrix;
         private readonly Matrix4x4 InvViewMatrix;

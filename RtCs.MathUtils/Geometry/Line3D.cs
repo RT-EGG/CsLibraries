@@ -41,6 +41,55 @@ namespace RtCs.MathUtils.Geometry
             Project(inPoint, out double t);
             return (inPoint - Along(t.Clamp(0.0, 1.0))).Length;
         }
+
+        public bool IsIntersect(AABB3D inAABB)
+            => IsIntersect(inAABB, out double _, out double _);
+
+        public bool IsIntersect(AABB3D inAABB, out double outParamNear, out double outParamFar)
+        {
+            // refer http://marupeke296.com/COL_3D_No18_LineAndAABB.html
+
+            outParamNear = double.NaN;
+            outParamFar = double.NaN;
+
+            Vector3 p = Point0;
+            Vector3 d = Direction;
+            Vector3 min = inAABB.Min;
+            Vector3 max = inAABB.Max;
+
+            double near = double.MinValue;
+            double far = double.MaxValue;
+            for (int i = 0; i < 3; ++i) {
+                if (!d[i].AlmostZero()) {
+                    if ((p[i] < min[i]) || (max[i] < p[i])) {
+                        return false;
+                    }
+
+                    double odd = 1.0 / d[i];
+                    double t0 = (min[i] - p[i]) * odd;
+                    double t1 = (max[i] - p[i]) * odd;
+                    if (t0 > t1) {
+                        double tmp = t0;
+                        t0 = t1;
+                        t1 = tmp;
+                    }
+
+                    if (t0 > near) {
+                        near = t0;
+                    }
+                    if (t1 < far) {
+                        far = t1;
+                    }
+                    if (near >= far) {
+                        return false;
+                    }
+                }
+            }
+
+            outParamNear = near;
+            outParamFar = far;
+            return true;
+        }
     }
 
     //public enum ELineIntersectionQueryDetails
