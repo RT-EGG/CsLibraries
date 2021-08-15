@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RtCs.MathUtils.Geometry
 {
@@ -40,6 +41,48 @@ namespace RtCs.MathUtils.Geometry
         {
             Project(inPoint, out double t);
             return (inPoint - Along(t.Clamp(0.0, 1.0))).Length;
+        }
+
+        public bool IsIntersect(Plane inPlane, out double outT, out Vector3 outPosition)
+        {
+            // refer http://www.sousakuba.com/Programming/gs_plane_line_intersect.html
+
+            if (Vector3.Dot(Vector, inPlane.Normal).AlmostZero()) {
+                outT = default;
+                outPosition = default;
+                return false;
+            }
+
+            double n_c0 = Vector3.Dot(inPlane.Normal, Point0 - inPlane.Point);
+            double n_c1 = Vector3.Dot(inPlane.Normal, Point1 - inPlane.Point);
+            double abs_n_c0 = Math.Abs(n_c0);
+            double abs_n_c1 = Math.Abs(n_c1);
+
+            if (abs_n_c0.AlmostZero()) {
+                // Point0 on plane
+                outT = 0.0;
+                outPosition = Point0;
+                return true;
+            }
+            if (abs_n_c1.AlmostZero()) {
+                // Point1 on Plane
+                outT = 1.0;
+                outPosition = Point1;
+                return true;
+            }
+
+            if ((n_c0 * n_c1) < 0.0) {
+                // each of Point0 and Point1 is both side of plane.
+                // 1 : t = abs_n_c0 + abs_n_c1 : abs_n_c0
+                outT = abs_n_c0 / (abs_n_c1 + abs_n_c0);
+            } else {
+                // Point0 and Point1 is one side of plane
+                // 1 : t = abs_n_c0 - abs_n_c1 : abs_n_c0
+                outT = abs_n_c0 / (abs_n_c1 - abs_n_c0);
+            }
+
+            outPosition = Point0 + (Vector * outT);
+            return outT.InRange(0.0, 1.0);
         }
 
         public bool IsIntersect(AABB3D inAABB)
