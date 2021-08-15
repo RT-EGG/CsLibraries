@@ -3,7 +3,12 @@ using System.Collections.Generic;
 
 namespace RtCs.OpenGL
 {
-    public class GLDisplayList : IEnumerable<GLRenderObject>
+    public interface IGLDisplayList
+    {
+        void Render(GLRenderingStatus inStatus);
+    }
+
+    public class GLDisplayList : IGLDisplayList, IEnumerable<GLRenderObject>
     {
         public void Render(GLRenderingStatus inStatus)
             => this.ForEach(item => item.Render(inStatus));

@@ -25,7 +25,6 @@ namespace RtCs.OpenGL
                 m_UniformPropertySockets.Clear();
                 m_LinkError.AddRange(GL.GetProgramInfoLog(ID).Split('\n'));
             }
-
             OnAfterLinked?.Invoke(this);
             return Linked;
         }

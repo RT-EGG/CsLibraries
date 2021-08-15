@@ -49,11 +49,13 @@
     <Compile Include="Controls\GLControl.Designer.cs">
       <DependentUpon>GLControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GLCamera.cs" />
     <Compile Include="GLDisplayList.cs" />
     <Compile Include="GLMaterial.cs" />
     <Compile Include="GLObject.cs" />
     <Compile Include="GLRenderingStatus.cs" />
     <Compile Include="GLRenderObject.cs" />
+    <Compile Include="GLScene.cs" />
     <Compile Include="Mesh\GLSphereMesh.cs" />
     <Compile Include="Projection\GLViewFrustum.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -74,6 +76,7 @@
     <Compile Include="Mesh\GLMesh.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GLRenderer.cs" />
+    <Compile Include="ResourceObject\Shader\GLBlendParameters.cs" />
     <Compile Include="ResourceObject\Shader\GLComputeShaderProgram.cs" />
     <Compile Include="ResourceObject\Shader\GLRenderShaderProgram.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderBinarySource.cs" />

@@ -617,7 +617,7 @@ namespace RtCs.MathUtils
             return MakeFrustum(-fovX_2, fovX_2, -fovY_2, fovY_2, inNear, inFar);
         }
 
-        public void MakePerspective(double aFovY, double aWidth, double aHeight, double aNear, double aFar)
+        public static Matrix4x4 MakePerspective(double aFovY, double aWidth, double aHeight, double aNear, double aFar)
             => MakePerspective(aFovY, aWidth / aHeight, aNear, aFar);
 
         public override string ToString()

@@ -2,6 +2,13 @@
 
 namespace RtCs.OpenGL
 {
+    public enum EGLRenderLevel
+    {
+        Opaque = 0,
+        Transparent,
+        Overlay
+    }
+
     public class GLMaterial : GLObject
     {
         public GLMaterial()
@@ -49,6 +56,12 @@ namespace RtCs.OpenGL
                 return;
             }
         }
+
+        public IGLBlendParameters BlendParameters
+        { get; set; } = GLBlendParameters.Default;
+
+        public EGLRenderLevel RenderLevel
+        { get; set; } = EGLRenderLevel.Opaque;
 
         private void OnShaderLinked(GLShaderProgram inProgram)
             => ResetupProperties();
