@@ -26,7 +26,7 @@ namespace RtCs.OpenGL
                 List<(GLRenderObject @object, double distance)> transparents = new List<(GLRenderObject, double)>(list.Count);
                 List<GLRenderObject> overlays = new List<GLRenderObject>(list.Count);
 
-                Vector3 viewPosition = inStatus.ModelViewMatrix.View.CurrentMatrix.Translation;
+                Vector3 viewPosition = inStatus.ModelViewMatrix.View.CurrentMatrix.Inversed.Translation;
                 var viewFrustum = new GLViewFrustum(inStatus.ModelViewMatrix.View.CurrentMatrix, inStatus.ProjectionMatrix.CurrentMatrix);
 
                 list.ForEach(obj => {
