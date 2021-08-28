@@ -1,4 +1,5 @@
 ﻿using RtCs.MathUtils;
+using RtCs.MathUtils.Geometry;
 
 namespace RtCs.OpenGL
 {
