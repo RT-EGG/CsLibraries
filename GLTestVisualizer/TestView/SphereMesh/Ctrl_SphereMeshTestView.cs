@@ -57,7 +57,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
                 inStatus.ModelViewMatrix.View.PushMatrix();
                 inStatus.ModelViewMatrix.Model.PushMatrix();
                 try {
-                    inStatus.ModelViewMatrix.View.LoadMatrix(Matrix4x4.MakeLookAt(new Vector3(0.0, 1.0, 4.0), new Vector3(0.0), new Vector3(0.0, 1.0, 0.0)));
+                    inStatus.ModelViewMatrix.View.LookAt(new Vector3(0.0, 1.0, 4.0), new Vector3(0.0), new Vector3(0.0, 1.0, 0.0));
                     inStatus.ModelViewMatrix.Model.LoadIdentity();
 
                     GL.Enable(EnableCap.DepthTest);

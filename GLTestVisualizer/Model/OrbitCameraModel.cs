@@ -17,7 +17,8 @@ namespace GLTestVisualizer
         {
             get {
                 if (m_Changed) {
-                    Transform.LookAt(Center + Coordinate.GetRectangularCoordinate(), Center, new Vector3(0.0, 1.0, 0.0));
+                    Transform.LocalPosition = Center + Coordinate.GetRectangularCoordinate();
+                    Transform.LocalRotation = Quaternion.FromEuler(m_Coordinate.ElevationAngle, m_Coordinate.AzimuthAngle, 0.0, EEulerRotationOrder.YXZ);
                     m_Changed = false;
                 }
                 return base.ViewMatrix;

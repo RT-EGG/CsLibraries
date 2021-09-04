@@ -42,6 +42,8 @@ namespace RtCs.MathUtils
             => EulerAngles.QuaternionToEuler(this, inOrder);
         public static Quaternion FromEuler(Vector3 inEuler, EEulerRotationOrder inOrder)
             => EulerAngles.EulerToQuaternion(inEuler, inOrder);
+        public static Quaternion FromEuler(double inEulerX, double inEulerY, double inEulerZ, EEulerRotationOrder inOrder)
+            => EulerAngles.EulerToQuaternion(new Vector3(inEulerX, inEulerY, inEulerZ), inOrder);
 
         public double Norm => Real.Sqr() + Imaginary.Length2;
         public double Abs => Math.Sqrt(Norm);

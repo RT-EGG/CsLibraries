@@ -538,30 +538,6 @@ namespace RtCs.MathUtils
         public static Matrix4x4 MakeScale(Vector3 inValue)
             => MakeScale(inValue.x, inValue.y, inValue.z);
 
-        public static Matrix4x4 MakeLookAt(Vector3 inCenter, Vector3 inTargetPoint, Vector3 inUpDirection)
-        {
-            if ((inCenter == inTargetPoint) || inUpDirection.IsZero) {
-                return Identity;
-            }
-
-            Vector3 z = (inCenter - inTargetPoint).Normalized;
-            Vector3 x = Vector3.Cross(inUpDirection, z).Normalized;
-            Vector3 y = Vector3.Cross(z, x).Normalized;
-
-            Vector3 t = new Vector3(
-                    -Vector3.Dot(x, inCenter),
-                    -Vector3.Dot(y, inCenter),
-                    -Vector3.Dot(z, inCenter)
-                );
-
-            return new Matrix4x4(
-                    x.x, x.y, x.z, t.x,
-                    y.x, y.y, y.z, t.y,
-                    z.x, z.y, z.z, t.z,
-                    0.0, 0.0, 0.0, 1.0
-                );
-        }
-
         public static Matrix4x4 MakeOrtho(double inLeft, double inRight, double inBottom, double inTop, double inNear, double inFar)
         {
             if (inLeft.AlmostEquals(inRight)) {
