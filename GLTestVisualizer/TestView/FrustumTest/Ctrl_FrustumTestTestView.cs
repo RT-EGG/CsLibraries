@@ -118,7 +118,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 return;
             }
 
-            GLViewFrustum frustum = new GLViewFrustum(m_FPSCamera.Transform.WorldMatrix, m_CurrentParameterView.ProjectionMatrix);
+            GLViewFrustum frustum = new GLViewFrustum(m_FPSCamera.Transform.WorldMatrix.Inversed, m_CurrentParameterView.ProjectionMatrix);
             foreach (var sphere in m_SphereObjects) {
                 Vector3 p = new Vector3(sphere.Transform.WorldMatrix.Multiply(new Vector4(0.0, 0.0, 0.0, 1.0)));
                 if (frustum.IsIntersectSphere(p, 1.0)) {

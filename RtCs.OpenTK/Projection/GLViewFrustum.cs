@@ -66,7 +66,7 @@ namespace RtCs.OpenGL
                 Vector4 v = InvProjectionMatrix.Multiply(m_Vertices[vertex], 1.0);
                 v = v / v.w;
 
-                v = ViewMatrix.Multiply(new Vector3(v), 1.0);
+                v = InvViewMatrix.Multiply(new Vector3(v), 1.0);
 
                 m_Vertices[vertex] = new Vector3(v);
             }
@@ -254,7 +254,7 @@ namespace RtCs.OpenGL
         private Vector3 WorldToClipCoordinate(Vector3 inWorldPoint)
         {
             // world to view coordinate
-            Vector4 point = InvViewMatrix.Multiply(inWorldPoint, 1.0);
+            Vector4 point = ViewMatrix.Multiply(inWorldPoint, 1.0);
             // view to clip coordinate
             point = ProjectionMatrix.Multiply(point);
             point /= point.w;
