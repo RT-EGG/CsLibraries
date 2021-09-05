@@ -7,10 +7,19 @@ namespace RtCs.MathUtils.Geometry
     {
         public static AABB3D InclusionBoundary(IEnumerable<Vector3> inPoints)
         {
-            AABB3D result = default;
+            Vector3 min = new Vector3(double.MaxValue);
+            Vector3 max = new Vector3(double.MinValue);
             foreach (var point in inPoints) {
-                result.Include(point);
+                min.x = Math.Min(min.x, point.x);
+                min.y = Math.Min(min.y, point.y);
+                min.z = Math.Min(min.z, point.z);
+                max.x = Math.Max(max.x, point.x);
+                max.y = Math.Max(max.y, point.y);
+                max.z = Math.Max(max.z, point.z);
             }
+            AABB3D result = default;
+            result.Min = min;
+            result.Max = max;
             return result;
         }
 
