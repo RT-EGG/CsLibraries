@@ -29,10 +29,7 @@ namespace RtCs.OpenGL
                 Vector3 viewPosition = inStatus.ModelViewMatrix.View.CurrentMatrix.Inversed.Translation;
                 var viewFrustum = new GLViewFrustum(inStatus.ModelViewMatrix.View.CurrentMatrix, inStatus.ProjectionMatrix.CurrentMatrix);
 
-                list.ForEach(obj => {
-                    if (!obj.Visible) {
-                        return;
-                    }
+                list.Where(o => CanRender(o)).ForEach(obj => {
                     switch (obj.FrustumCullingMode) {
                         case EGLFrustumCullingMode.BoundingBox:
                             if (!viewFrustum.IsIntersectAABB(obj.BoundingBox)) {
@@ -77,6 +74,11 @@ namespace RtCs.OpenGL
 
         public virtual double EvaluateObjectDistance(Vector3 inViewPosition, GLRenderObject inObject)
             => (inObject.BoundingBox.Center - inViewPosition).Length2;
+
+        private bool CanRender(GLRenderObject inObject)
+            => inObject.Visible
+            && (inObject.Renderer.Material != null)
+            && (inObject.Renderer.Mesh != null);
 
         public IEnumerable<GLRenderObject> DisplayList
         { get; set; } = null;

@@ -104,6 +104,16 @@
     </Compile>
     <Compile Include="TestView\FrustumTest\GLSphereMaterial.cs" />
     <Compile Include="TestView\FrustumTest\GLViewFrustumRendererObject.cs" />
+    <Compile Include="TestView\Octree\Ctrl_OctreeTestView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\Octree\Ctrl_OctreeTestView.Designer.cs">
+      <DependentUpon>Ctrl_OctreeTestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\Octree\GLOctreeCellMaterial.cs" />
+    <Compile Include="TestView\Octree\GLSolidColorMaterial.cs" />
+    <Compile Include="TestView\Octree\OctreeRegistableRenderObject.cs" />
+    <Compile Include="TestView\Octree\OctreeRenderObject.cs" />
     <Compile Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +163,9 @@
     <EmbeddedResource Include="TestView\FrustumTest\Ctrl_ProjectionFrustumParameterView.resx">
       <DependentUpon>Ctrl_ProjectionFrustumParameterView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TestView\Octree\Ctrl_OctreeTestView.resx">
+      <DependentUpon>Ctrl_OctreeTestView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.resx">
       <DependentUpon>Ctrl_SphereMeshTestView.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,5 +207,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -212,6 +212,13 @@ namespace RtCs.MathUtils.Geometry
         public bool Contains(Vector3 inPoint)
             => Contains(inPoint.x, inPoint.y, inPoint.z);
 
+        public Vector3 Clamp(Vector3 inValue)
+            => new Vector3(
+                    inValue.x.Clamp(MinX, MaxX),
+                    inValue.y.Clamp(MinY, MaxY),
+                    inValue.z.Clamp(MinZ, MaxZ)
+                );
+
         public AABB3D Union(AABB3D inOther)
             => new AABB3D {
                 MinX = Math.Min(MinX, inOther.MinX),

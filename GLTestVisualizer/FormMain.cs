@@ -1,6 +1,7 @@
 ﻿using GLTestVisualizer.TestView;
 using GLTestVisualizer.TestView.AlphaBlending;
 using GLTestVisualizer.TestView.FrustumTest;
+using GLTestVisualizer.TestView.Octree;
 using GLTestVisualizer.TestView.SphereMesh;
 using GLTestVisualizer.TestView.TransformMatrixDexomposition;
 using System;
@@ -14,7 +15,8 @@ namespace GLTestVisualizer
         TransformMatrixDecomposition,
         SphereMesh,
         FrustumTest,
-        AlphaBlending
+        AlphaBlending,
+        Octree
     }
 
     public partial class FormMain : Form
@@ -47,6 +49,11 @@ namespace GLTestVisualizer
                 Type = TestContentType.AlphaBlending,
                 Text = "Alpha Blending",
                 ViewGenerator = () => new Ctrl_AlphaBlendingTestView()
+            });
+            ComboTestContent.Items.Add(new TestContentItem {
+                Type = TestContentType.Octree,
+                Text = "Octree",
+                ViewGenerator = () => new Ctrl_OctreeTestView()
             });
 
             ComboTestContent.SelectedIndex = 0;

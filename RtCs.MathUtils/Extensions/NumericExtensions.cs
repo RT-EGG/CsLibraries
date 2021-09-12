@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace RtCs.MathUtils
 {
@@ -21,6 +22,13 @@ namespace RtCs.MathUtils
         public static double Sqr(this double inValue) => inValue * inValue;
         public static float Clamp(this float inValue, float inMin, float inMax)=> Math.Min(inMax, Math.Max(inMin, inValue));
         public static double Clamp(this double inValue, double inMin, double inMax) => Math.Min(inMax, Math.Max(inMin, inValue));
+
+        public static int Pow(this int inValue, int inExp)
+            => Enumerable.Repeat(inValue, inExp).Aggregate(1, (a, b) => a * b);
+        public static float Pow(this float inValue, int inExp)
+            => Enumerable.Repeat(inValue, inExp).Aggregate(1.0f, (a, b) => a * b);
+        public static double Pow(this double inValue, int inExp)
+            => Enumerable.Repeat(inValue, inExp).Aggregate(1.0, (a, b) => a * b);
 
         public static bool InRange(this int inValue, int inMin, int inMax)
             => (inMin <= inValue) && (inValue <= inMax);

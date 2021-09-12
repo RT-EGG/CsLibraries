@@ -56,6 +56,7 @@
     <Compile Include="GLRenderingStatus.cs" />
     <Compile Include="GLRenderObject.cs" />
     <Compile Include="GLScene.cs" />
+    <Compile Include="Mesh\GLGridMesh.cs" />
     <Compile Include="Mesh\GLSphereMesh.cs" />
     <Compile Include="Projection\GLViewFrustum.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
