@@ -64,14 +64,14 @@ namespace RtCs.OpenGL
 
         public event GLResourceObjectNotifyEventHandler OnBeforeDestroyResource;
 
-        internal static void CreateResourcesInQueue()
+        public static void CreateResourcesInQueue()
         {
             while (!CreationQueue.IsEmpty()) {
                 CreationQueue.Dequeue().CreateResource();
             }
             return;
         }
-        internal static void DestroyResourcesInQueue()
+        public static void DestroyResourcesInQueue()
         {
             while (!DestroyQueue.IsEmpty()) {
                 DestroyQueue.Dequeue().DestroyResource();

@@ -57,7 +57,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
             return;
         }
 
-        private void glView_OnRenderScene(RtCs.OpenGL.Controls.GLControl inControl, RtCs.OpenGL.GLRenderingStatus inStatus)
+        private void glView_OnRenderScene(RtCs.OpenGL.GLControl inControl, RtCs.OpenGL.GLRenderingStatus inStatus)
         {
             m_Camera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0, inControl.Width, inControl.Height, 0.01, 100.0);
             m_Camera.Render(inStatus, m_Scene);

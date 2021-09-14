@@ -1,7 +1,6 @@
 ﻿using RtCs;
 using RtCs.MathUtils;
 using RtCs.OpenGL;
-using RtCs.OpenGL.Controls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

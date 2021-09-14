@@ -29,7 +29,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.glView = new RtCs.OpenGL.Controls.GLControl();
+            this.glView = new RtCs.OpenGL.GLControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
@@ -42,7 +42,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
             this.glView.Size = new System.Drawing.Size(349, 263);
             this.glView.TabIndex = 0;
             this.glView.VSync = false;
-            this.glView.OnRenderScene += new RtCs.OpenGL.Controls.GLRenderSceneEventHandler(this.glView_OnRenderScene);
+            this.glView.OnRenderScene += new RtCs.OpenGL.GLRenderSceneEventHandler(this.glView_OnRenderScene);
             // 
             // timer1
             // 
@@ -62,7 +62,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
 
         #endregion
 
-        private RtCs.OpenGL.Controls.GLControl glView;
+        private RtCs.OpenGL.GLControl glView;
         private System.Windows.Forms.Timer timer1;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using OpenTK.Graphics.OpenGL;
-using System.Drawing;
 
 namespace RtCs.OpenGL
 {
@@ -15,12 +14,6 @@ namespace RtCs.OpenGL
             Y = inY;
             Width = inWidth;
             Height = inHeight;
-            return;
-        }
-
-        public GLViewport(Rectangle inRect)
-        {
-            Rect = inRect;
             return;
         }
 
@@ -40,16 +33,6 @@ namespace RtCs.OpenGL
         { get; set; } = 1;
         public double AspectRatio
             => Width / (double)Height;
-        public Rectangle Rect
-        {
-            get => new Rectangle(X, Y, Width, Height);
-            set {
-                X = value.X;
-                Y = value.Y;
-                Width = value.Width;
-                Height = value.Height;
-            }
-        }
 
         public int[] ToArray() => new int[4] {
             X, Y, Width, Height

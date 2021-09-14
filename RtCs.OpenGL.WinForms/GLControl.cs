@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace RtCs.OpenGL.Controls
+namespace RtCs.OpenGL
 {
     public delegate void GLRenderSceneEventHandler(GLControl inControl, GLRenderingStatus inStatus);
 
@@ -63,7 +63,7 @@ namespace RtCs.OpenGL.Controls
             GLResourceObject.CreateResourcesInQueue();
             GLResourceObject.DestroyResourcesInQueue();
 
-            m_RenderingStatus.Viewport.Rect = e.ClipRectangle;
+            m_RenderingStatus.Viewport.SetRect(e.ClipRectangle);
             m_RenderingStatus.Viewport.Adapt();
 
             GL.ClearColor(BackColor);

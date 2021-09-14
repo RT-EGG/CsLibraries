@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.OpenGL", "RtCs.OpenTK\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLShaderCompiler", "GLShaderCompiler\GLShaderCompiler.csproj", "{07716FF3-028B-40DC-B23B-AD7B59EF9D42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.OpenGL.WinForms", "RtCs.OpenGL.WinForms\RtCs.OpenGL.WinForms.csproj", "{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{07716FF3-028B-40DC-B23B-AD7B59EF9D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07716FF3-028B-40DC-B23B-AD7B59EF9D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07716FF3-028B-40DC-B23B-AD7B59EF9D42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

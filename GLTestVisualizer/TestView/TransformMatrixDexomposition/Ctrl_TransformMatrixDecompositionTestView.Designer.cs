@@ -35,7 +35,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             this.PanelProperties = new System.Windows.Forms.TableLayoutPanel();
             this.LabelRotationOrder = new System.Windows.Forms.Label();
             this.ComboRotationOrder = new System.Windows.Forms.ComboBox();
-            this.GLViewer = new RtCs.OpenGL.Controls.GLControl();
+            this.GLViewer = new RtCs.OpenGL.GLControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.PanelBaseLayout.SuspendLayout();
             this.PanelProperties.SuspendLayout();
@@ -130,7 +130,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             this.GLViewer.Size = new System.Drawing.Size(605, 283);
             this.GLViewer.TabIndex = 4;
             this.GLViewer.VSync = false;
-            this.GLViewer.OnRenderScene += new RtCs.OpenGL.Controls.GLRenderSceneEventHandler(this.GLViewr_OnRenderScene);
+            this.GLViewer.OnRenderScene += new RtCs.OpenGL.GLRenderSceneEventHandler(this.GLViewr_OnRenderScene);
             // 
             // timer1
             // 
@@ -159,6 +159,6 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         private System.Windows.Forms.Label LabelRotationOrder;
         private System.Windows.Forms.ComboBox ComboRotationOrder;
         private System.Windows.Forms.Timer timer1;
-        private RtCs.OpenGL.Controls.GLControl GLViewer;
+        private RtCs.OpenGL.GLControl GLViewer;
     }
 }

@@ -29,7 +29,7 @@ namespace GLTestVisualizer.TestView.Octree
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.glView = new RtCs.OpenGL.Controls.GLControl();
+            this.glView = new RtCs.OpenGL.GLControl();
             this.ValidationTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TrackBarTime = new System.Windows.Forms.TrackBar();
@@ -48,7 +48,7 @@ namespace GLTestVisualizer.TestView.Octree
             this.glView.Size = new System.Drawing.Size(455, 390);
             this.glView.TabIndex = 0;
             this.glView.VSync = false;
-            this.glView.OnRenderScene += new RtCs.OpenGL.Controls.GLRenderSceneEventHandler(this.glView_OnRenderScene);
+            this.glView.OnRenderScene += new RtCs.OpenGL.GLRenderSceneEventHandler(this.glView_OnRenderScene);
             // 
             // ValidationTimer
             // 
@@ -114,7 +114,7 @@ namespace GLTestVisualizer.TestView.Octree
 
         #endregion
 
-        private RtCs.OpenGL.Controls.GLControl glView;
+        private RtCs.OpenGL.GLControl glView;
         private System.Windows.Forms.Timer ValidationTimer;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TrackBar TrackBarTime;

@@ -195,6 +195,10 @@
       <Project>{47a7c945-e8a1-413b-96d0-41d1d669b4aa}</Project>
       <Name>RtCs.MathUtils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RtCs.OpenGL.WinForms\RtCs.OpenGL.WinForms.csproj">
+      <Project>{86b1aadf-03cc-420b-a654-f1c9b46ecfa1}</Project>
+      <Name>RtCs.OpenGL.WinForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RtCs.OpenTK\RtCs.OpenGL.csproj">
       <Project>{d601c9f1-17d8-413e-9bc7-4fff732479f4}</Project>
       <Name>RtCs.OpenGL</Name>

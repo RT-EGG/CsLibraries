@@ -47,7 +47,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             return;
         }
 
-        private void GLViewer_OnRenderScene(RtCs.OpenGL.Controls.GLControl inControl, GLRenderingStatus inStatus)
+        private void GLViewer_OnRenderScene(RtCs.OpenGL.GLControl inControl, GLRenderingStatus inStatus)
         {
             inStatus.ProjectionMatrix.PushMatrix();
             try {
