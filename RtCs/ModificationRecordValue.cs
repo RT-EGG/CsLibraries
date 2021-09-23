@@ -20,7 +20,7 @@ namespace RtCs
         {
             get => m_Value;
             set {
-                if (!m_Value.Equals(value)) {
+                if (!object.Equals(m_Value, value)) {
                     Changed = true;
                 }
                 m_Value = value;
