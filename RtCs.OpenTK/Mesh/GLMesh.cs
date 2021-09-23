@@ -2,6 +2,7 @@
 using RtCs.MathUtils;
 using RtCs.MathUtils.Geometry;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RtCs.OpenGL
@@ -32,7 +33,7 @@ namespace RtCs.OpenGL
         }
     }
 
-    public class GLMesh : GLObject
+    public class GLMesh : GLObject, ILineIntersectable3D
     {
         public Vector3[] Positions
         {
@@ -177,6 +178,34 @@ namespace RtCs.OpenGL
             m_VertexBuffer?.Dispose();
             m_IndexBuffer?.Dispose();
             return;
+        }
+
+        public virtual IEnumerable<LineIntersectionInfo3D> IsIntersectWith(Line3D inLine)
+        {
+            switch (Topology) {
+                case EGLMeshTopology.Triangles:
+                    foreach (var triangle in GetTriangles()) {
+                        if (triangle.IsIntersectWith(inLine, out var info)) {
+                            yield return info;
+                        }
+                    }
+                    break;
+            }
+            yield break;
+        }
+
+        public IEnumerable<Triangle3D> GetTriangles()
+        {
+            if (Topology != EGLMeshTopology.Triangles) {
+                throw new InvalidOperationException($"Mesh topology is not {EGLMeshTopology.Triangles}, but {Topology}.");
+            }
+            for (int i = 0; i < m_Indices.Length; i += 3) {
+                yield return new Triangle3D(
+                        m_Positions[i + 0],
+                        m_Positions[i + 1],
+                        m_Positions[i + 2]
+                    );
+            }
         }
 
         private Vector3[] m_Positions = null;
