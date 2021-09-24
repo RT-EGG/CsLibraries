@@ -59,9 +59,7 @@ namespace RtCs.OpenGL
         private void RuntimePaint(PaintEventArgs e)
         {
             MakeCurrent();
-
-            GLResourceObject.CreateResourcesInQueue();
-            GLResourceObject.DestroyResourcesInQueue();
+            GLMainThreadTaskQueue.Process();
 
             m_RenderingStatus.Viewport.SetRect(e.ClipRectangle);
             m_RenderingStatus.Viewport.Adapt();
