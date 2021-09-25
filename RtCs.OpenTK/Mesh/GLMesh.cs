@@ -174,6 +174,13 @@ namespace RtCs.OpenGL
                         }
                     }
                     break;
+                case EGLMeshTopology.Quads:
+                    foreach (var triangle in GetDividedQuads()) {
+                        if (triangle.IsIntersectWith(inLine, out var info)) {
+                            yield return info;
+                        }
+                    }
+                    break;
             }
             yield break;
         }
@@ -187,9 +194,30 @@ namespace RtCs.OpenGL
             var indices = m_Indices.Value;
             for (int i = 0; i < indices.Length; i += 3) {
                 yield return new Triangle3D(
-                        positions[i + 0],
-                        positions[i + 1],
-                        positions[i + 2]
+                        positions[indices[i + 0]],
+                        positions[indices[i + 1]],
+                        positions[indices[i + 2]]
+                    );
+            }
+        }
+
+        public IEnumerable<Triangle3D> GetDividedQuads()
+        {
+            if (Topology != EGLMeshTopology.Quads) {
+                throw new InvalidOperationException($"Mesh topology is not {EGLMeshTopology.Quads}, but {Topology}.");
+            }
+            var positions = m_Positions.Value;
+            var indices = m_Indices.Value;
+            for (int i = 0; i < indices.Length; i += 4) {
+                yield return new Triangle3D(
+                        positions[indices[i + 0]],
+                        positions[indices[i + 1]],
+                        positions[indices[i + 2]]
+                    );
+                yield return new Triangle3D(
+                        positions[indices[i + 0]],
+                        positions[indices[i + 2]],
+                        positions[indices[i + 3]]
                     );
             }
         }
