@@ -128,5 +128,8 @@ namespace RtCs.MathUtils
 
         public override string ToString()
             => $"{x}, {y}, {z}. {w}";
+
+        public static implicit operator Vector3(Vector4 inValue)
+            => new Vector3(inValue);
     }
 }

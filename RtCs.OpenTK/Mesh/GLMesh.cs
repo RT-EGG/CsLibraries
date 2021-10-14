@@ -2,7 +2,9 @@
 using RtCs.MathUtils;
 using RtCs.MathUtils.Geometry;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 
 namespace RtCs.OpenGL
 {
@@ -32,51 +34,31 @@ namespace RtCs.OpenGL
         }
     }
 
-    public class GLMesh : GLObject
+    public class GLMesh : GLObject, ILineIntersectable3D
     {
+        public GLMesh()
+        {
+            m_Positions.Skip(1).Subscribe(_ => OnVertexBufferChanged());
+            m_Normals.Skip(1).Subscribe(_ => OnVertexBufferChanged());
+            m_TexCoords.Skip(1).Subscribe(_ => OnVertexBufferChanged());
+            m_Colors.Skip(1).Subscribe(_ => OnVertexBufferChanged());
+            m_Indices.Skip(1).Subscribe(_ => OnIndexBufferChanged());
+            return;
+        }
+
         public Vector3[] Positions
-        {
-            get => m_Positions;
-            set {
-                m_Positions = value;
-                m_VertexBufferChanged = true;
-            }
-        }
+        { get => m_Positions.Value; set => m_Positions.Value = value; }
         public Vector3[] Normals
-        {
-            get => m_Normals;
-            set {
-                m_Normals = value;
-                m_VertexBufferChanged = true;
-            }
-        }
+        { get => m_Normals.Value; set => m_Normals.Value = value; }
         public Vector2[] TexCoords
-        {
-            get => m_TexCoords;
-            set {
-                m_TexCoords = value;
-                m_VertexBufferChanged = true;
-            }
-        }
+        { get => m_TexCoords.Value; set => m_TexCoords.Value = value; }
         public Vector4[] Colors
-        {
-            get => m_Colors;
-            set {
-                m_Colors = value;
-                m_VertexBufferChanged = true;
-            }
-        }
+        { get => m_Colors.Value; set => m_Colors.Value = value; }
 
         public EGLMeshTopology Topology
         { get; set; } = EGLMeshTopology.Triangles;
         public int[] Indices
-        {
-            get => m_Indices;
-            set {
-                m_Indices = value;
-                m_IndexBufferChanged = true;
-            }
-        }
+        { get => m_Indices.Value; set => m_Indices.Value = value; }
 
         public BufferUsageHint BufferUsageHint
         { get; set; } = BufferUsageHint.StaticDraw;
@@ -84,19 +66,19 @@ namespace RtCs.OpenGL
         public int TopologyCount
         {
             get {
-                if (m_Indices.IsNullOrEmpty()) {
+                if (Indices.IsNullOrEmpty()) {
                     return 0;
                 }
 
                 switch (Topology) {
                     case EGLMeshTopology.Triangles:
-                        return m_Indices.Length / 3;
+                        return Indices.Length / 3;
                     case EGLMeshTopology.Quads:
-                        return m_Indices.Length / 4;
+                        return Indices.Length / 4;
                     case EGLMeshTopology.Lines:
-                        return m_Indices.Length / 2;
+                        return Indices.Length / 2;
                     case EGLMeshTopology.Points:
-                        return m_Indices.Length;
+                        return Indices.Length;
                 }
                 throw new InvalidEnumValueException<EGLMeshTopology>(Topology);
             }
@@ -127,46 +109,49 @@ namespace RtCs.OpenGL
             return;
         }
 
-        internal void UpdateBuffers()
+        private void UpdateVertexBuffer()
         {
-            if (m_VertexBufferChanged) {
-                int offset = 0;
-                void AddAttribute(EGLVertexAttributeType inType, GLVertexAttribute inAtt)
-                {
-                    VertexAttributes[inType] = inAtt;
-                    offset += inAtt.Data.Length;
-                }
-
-                VertexAttributes.Clear();
-                if (!m_Positions.IsNullOrEmpty()) {
-                    AddAttribute(EGLVertexAttributeType.Position, new GLVertexAttribute.Position { DataOffset = offset, Data = m_Positions.ToFloatArray() });
-                }
-                if (!m_Normals.IsNullOrEmpty()) {
-                    AddAttribute(EGLVertexAttributeType.Normal, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_Normals.ToFloatArray() });
-                }
-                if (!m_TexCoords.IsNullOrEmpty()) {
-                    AddAttribute(EGLVertexAttributeType.TexCoord, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_TexCoords.ToFloatArray() });
-                }
-                if (!m_Colors.IsNullOrEmpty()) {
-                    AddAttribute(EGLVertexAttributeType.Color, new GLVertexAttribute.Color { DataOffset = offset, Data = m_Colors.ToFloatArray() });
-                }
-
-                float[] buffer = new float[offset];
-                foreach (var attrib in VertexAttributes.Cast<GLVertexAttribute>()) {
-                    Array.Copy(attrib.Data, 0, buffer, attrib.DataOffset, attrib.Data.Length);
-                }
-
-                GL.BindBuffer(BufferTarget.ArrayBuffer, m_VertexBuffer);
-                GL.BufferData(BufferTarget.ArrayBuffer, buffer.Length * sizeof(float), buffer, BufferUsageHint);
-
-                m_VertexBufferChanged = false;
+            int offset = 0;
+            void AddAttribute(EGLVertexAttributeType inType, GLVertexAttribute inAtt)
+            {
+                VertexAttributes[inType] = inAtt;
+                offset += inAtt.Data.Length;
             }
 
-            if (m_IndexBufferChanged) {
-                GL.BindBuffer(BufferTarget.ElementArrayBuffer, m_IndexBuffer);
-                GL.BufferData(BufferTarget.ElementArrayBuffer, m_Indices.Length * sizeof(int), m_Indices, BufferUsageHint.StaticDraw);
-                m_IndexBufferChanged = false;
+            VertexAttributes.Clear();
+            if (!m_Positions.Value.IsNullOrEmpty()) {
+                AddAttribute(EGLVertexAttributeType.Position, new GLVertexAttribute.Position { DataOffset = offset, Data = m_Positions.Value.ToFloatArray() });
             }
+            if (!m_Normals.Value.IsNullOrEmpty()) {
+                AddAttribute(EGLVertexAttributeType.Normal, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_Normals.Value.ToFloatArray() });
+            }
+            if (!m_TexCoords.Value.IsNullOrEmpty()) {
+                AddAttribute(EGLVertexAttributeType.TexCoord, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_TexCoords.Value.ToFloatArray() });
+            }
+            if (!m_Colors.Value.IsNullOrEmpty()) {
+                AddAttribute(EGLVertexAttributeType.Color, new GLVertexAttribute.Color { DataOffset = offset, Data = m_Colors.Value.ToFloatArray() });
+            }
+
+            float[] buffer = new float[offset];
+            foreach (var attrib in VertexAttributes.Cast<GLVertexAttribute>()) {
+                Array.Copy(attrib.Data, 0, buffer, attrib.DataOffset, attrib.Data.Length);
+            }
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBuffer);
+            GL.BufferData(BufferTarget.ArrayBuffer, buffer.Length * sizeof(float), buffer, BufferUsageHint);
+
+            m_VertexBufferChanged = false;
+            return;
+        }
+
+        private void UpdateIndexBuffer()
+        {
+            var indices = m_Indices.Value;
+            if (!indices.IsNullOrEmpty()) {
+                GL.BindBuffer(BufferTarget.ElementArrayBuffer, IndexBuffer);
+                GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(int), indices, BufferUsageHint.StaticDraw);
+            }
+            m_IndexBufferChanged = false;
             return;
         }
 
@@ -174,35 +159,103 @@ namespace RtCs.OpenGL
         {
             base.DisposeObject(inDisposing);
 
-            m_VertexBuffer?.Dispose();
-            m_IndexBuffer?.Dispose();
+            VertexBuffer?.Dispose();
+            IndexBuffer?.Dispose();
             return;
         }
 
-        private Vector3[] m_Positions = null;
-        private Vector3[] m_Normals = null;
-        private Vector2[] m_TexCoords = null;
-        private Vector4[] m_Colors = null;
-        private int[] m_Indices = null;
-
-        private bool m_VertexBufferChanged = true;
-        private GLBufferObject m_VertexBuffer = new GLBufferObject();
-        internal GLBufferObject VertexBuffer
+        public virtual IEnumerable<LineIntersectionInfo3D> IsIntersectWith(Line3D inLine)
         {
-            get {
-                UpdateBuffers();
-                return m_VertexBuffer;
+            switch (Topology) {
+                case EGLMeshTopology.Triangles:
+                    foreach (var triangle in GetTriangles()) {
+                        if (triangle.IsIntersectWith(inLine, out var info)) {
+                            yield return info;
+                        }
+                    }
+                    break;
+                case EGLMeshTopology.Quads:
+                    foreach (var triangle in GetDividedQuads()) {
+                        if (triangle.IsIntersectWith(inLine, out var info)) {
+                            yield return info;
+                        }
+                    }
+                    break;
+            }
+            yield break;
+        }
+
+        public IEnumerable<Triangle3D> GetTriangles()
+        {
+            if (Topology != EGLMeshTopology.Triangles) {
+                throw new InvalidOperationException($"Mesh topology is not {EGLMeshTopology.Triangles}, but {Topology}.");
+            }
+            var positions = m_Positions.Value;
+            var indices = m_Indices.Value;
+            for (int i = 0; i < indices.Length; i += 3) {
+                yield return new Triangle3D(
+                        positions[indices[i + 0]],
+                        positions[indices[i + 1]],
+                        positions[indices[i + 2]]
+                    );
             }
         }
 
-        private bool m_IndexBufferChanged = true;
-        private GLBufferObject m_IndexBuffer = new GLBufferObject();
-        internal GLBufferObject IndexBuffer
+        public IEnumerable<Triangle3D> GetDividedQuads()
         {
-            get {
-                UpdateBuffers();
-                return m_IndexBuffer;
+            if (Topology != EGLMeshTopology.Quads) {
+                throw new InvalidOperationException($"Mesh topology is not {EGLMeshTopology.Quads}, but {Topology}.");
             }
+            var positions = m_Positions.Value;
+            var indices = m_Indices.Value;
+            for (int i = 0; i < indices.Length; i += 4) {
+                yield return new Triangle3D(
+                        positions[indices[i + 0]],
+                        positions[indices[i + 1]],
+                        positions[indices[i + 2]]
+                    );
+                yield return new Triangle3D(
+                        positions[indices[i + 0]],
+                        positions[indices[i + 2]],
+                        positions[indices[i + 3]]
+                    );
+            }
+        }
+
+        private ModificationRecordValue<Vector3[]> m_Positions = new ModificationRecordValue<Vector3[]>();
+        private ModificationRecordValue<Vector3[]> m_Normals = new ModificationRecordValue<Vector3[]>();
+        private ModificationRecordValue<Vector2[]> m_TexCoords = new ModificationRecordValue<Vector2[]>();
+        private ModificationRecordValue<Vector4[]> m_Colors = new ModificationRecordValue<Vector4[]>();
+        private ModificationRecordValue<int[]> m_Indices = new ModificationRecordValue<int[]>();
+
+        internal GLBufferObject VertexBuffer
+        { get; } = new GLBufferObject();
+        private bool m_VertexBufferChanged = false;
+
+        internal GLBufferObject IndexBuffer
+        { get; } = new GLBufferObject();
+        private bool m_IndexBufferChanged = false;
+
+        private void OnVertexBufferChanged()
+        {
+            if (!m_VertexBufferChanged) {
+                new GLMainThreadTask(_ => UpdateVertexBuffer()) {
+                    DoSoonIfCan = false
+                }.Enqueue();
+            }
+            m_VertexBufferChanged = true;
+            return;
+        }
+
+        private void OnIndexBufferChanged()
+        {
+            if (!m_IndexBufferChanged) {
+                new GLMainThreadTask(_ => UpdateIndexBuffer()) {
+                    DoSoonIfCan = false
+                }.Enqueue();
+            }
+            m_IndexBufferChanged = true;
+            return;
         }
 
         public GLVertexAttributeList VertexAttributes

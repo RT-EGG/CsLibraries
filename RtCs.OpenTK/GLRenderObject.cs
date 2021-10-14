@@ -2,6 +2,7 @@
 using RtCs.MathUtils;
 using RtCs.MathUtils.Geometry;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RtCs.OpenGL
@@ -29,7 +30,7 @@ namespace RtCs.OpenGL
         FrontAndBack = Front | Back
     }
 
-    public class GLRenderObject : GLObject
+    public class GLRenderObject : GLObject, ILineIntersectable3D
     {
         public void Render(GLRenderingStatus inRenderingStatus)
         {
@@ -96,6 +97,26 @@ namespace RtCs.OpenGL
                 case EGLRenderFaceMode.FrontAndBack:
                     GL.Disable(EnableCap.CullFace);
                     break;
+            }
+        }
+
+        public IEnumerable<LineIntersectionInfo3D> IsIntersectWith(Line3D inLine)
+        {
+            if (Renderer.Mesh == null) {
+                yield break;
+            }
+
+            Matrix4x4 local2world = Transform.WorldMatrix;
+            Matrix4x4 world2local = local2world.Inversed;
+            inLine.Point0 = new Vector3(world2local.Multiply(inLine.Point0, 1.0));
+            inLine.Point1 = new Vector3(world2local.Multiply(inLine.Point1, 1.0));
+            foreach (var info in Renderer.Mesh.IsIntersectWith(inLine)) {
+                info.HitObject = this;
+                info.Position = local2world.Multiply(info.Position, 1.0);
+                if (info.Normal.HasValue) {
+                    info.Normal = local2world.Multiply(info.Normal.Value, 0.0);
+                }
+                yield return info;
             }
         }
 

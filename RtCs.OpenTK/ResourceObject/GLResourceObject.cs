@@ -9,11 +9,7 @@ namespace RtCs.OpenGL
     {
         public GLResourceObject()
         {
-            if (CanResourceProcess) {
-                CreateResource();
-            } else {
-                CreationQueue.Enqueue(this);
-            }
+            new GLMainThreadTask(_ => CreateResource()).Enqueue();
             return;
         }
         
@@ -39,11 +35,7 @@ namespace RtCs.OpenGL
         {
             base.DisposeObject(inDisposing);
 
-            if (CanResourceProcess) {
-                DestroyResource();
-            } else {
-                DestroyQueue.Enqueue(this);
-            }
+            new GLMainThreadTask(_ => DestroyResource()).Enqueue();
             return;
         }
 
@@ -63,23 +55,5 @@ namespace RtCs.OpenGL
         private event GLResourceObjectNotifyEventHandler m_OnAfterCreateResource;
 
         public event GLResourceObjectNotifyEventHandler OnBeforeDestroyResource;
-
-        public static void CreateResourcesInQueue()
-        {
-            while (!CreationQueue.IsEmpty()) {
-                CreationQueue.Dequeue().CreateResource();
-            }
-            return;
-        }
-        public static void DestroyResourcesInQueue()
-        {
-            while (!DestroyQueue.IsEmpty()) {
-                DestroyQueue.Dequeue().DestroyResource();
-            }
-            return;
-        }
-        private static Queue<GLResourceObject> CreationQueue { get; } = new Queue<GLResourceObject>();
-        private static Queue<GLResourceObject> DestroyQueue { get; } = new Queue<GLResourceObject>();
-        private bool CanResourceProcess => OpenTK.Graphics.GraphicsContext.CurrentContext != null;
     }
 }
