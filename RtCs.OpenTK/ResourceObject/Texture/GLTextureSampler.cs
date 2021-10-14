@@ -1,6 +1,9 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 
 namespace RtCs.OpenGL
 {
@@ -38,7 +41,7 @@ namespace RtCs.OpenGL
     public class GLTextureSampler : GLResourceIdObject
     {
         public GLTextureSampler()
-        {
+        {            
             m_MinFilter.Subscribe(_ => DoChanged());
             m_MagFilter.Subscribe(_ => DoChanged());
             m_MinLod.Subscribe(_ => DoChanged());
@@ -49,6 +52,17 @@ namespace RtCs.OpenGL
             m_BorderColor.Subscribe(_ => DoChanged());
             m_CompareMode.Subscribe(_ => DoChanged());
             m_CompareFunc.Subscribe(_ => DoChanged());
+
+            m_AdaptationList.Add((m_MinFilter, () => GL.SamplerParameter(ID, SamplerParameterName.TextureMinFilter, (int)MinFilter)));
+            m_AdaptationList.Add((m_MagFilter, () => GL.SamplerParameter(ID, SamplerParameterName.TextureMagFilter, (int)MagFilter)));
+            m_AdaptationList.Add((m_MinLod, () => GL.SamplerParameter(ID, SamplerParameterName.TextureMinLod, MinLod)));
+            m_AdaptationList.Add((m_MaxLod, () => GL.SamplerParameter(ID, SamplerParameterName.TextureMaxLod, MaxLod)));
+            m_AdaptationList.Add((m_WrapT, () => GL.SamplerParameter(ID, SamplerParameterName.TextureWrapT, (int)WrapT)));
+            m_AdaptationList.Add((m_WrapS, () => GL.SamplerParameter(ID, SamplerParameterName.TextureWrapS, (int)WrapS)));
+            m_AdaptationList.Add((m_WrapR, () => GL.SamplerParameter(ID, SamplerParameterName.TextureWrapR, (int)WrapR)));
+            m_AdaptationList.Add((m_BorderColor, () => GL.SamplerParameter(ID, SamplerParameterName.TextureBorderColor, BorderColor.Cast<float>().ToArray())));
+            m_AdaptationList.Add((m_CompareMode, () => GL.SamplerParameter(ID, SamplerParameterName.TextureCompareMode, (int)CompareMode)));
+            m_AdaptationList.Add((m_CompareFunc, () => GL.SamplerParameter(ID, SamplerParameterName.TextureCompareFunc, (int)CompareFunc)));
             return;
         }
 
@@ -75,36 +89,11 @@ namespace RtCs.OpenGL
 
         public void Apply()
         {
-            if (m_MinFilter.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureMinFilter, (int)MinFilter);
-            }
-            if (m_MagFilter.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureMagFilter, (int)MagFilter);
-            }
-            if (m_MinLod.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureMinLod, MinLod);
-            }
-            if (m_MaxLod.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureMaxLod, MaxLod);
-            }
-            if (m_WrapT.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureWrapT, (int)WrapT);
-            }
-            if (m_WrapS.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureWrapS, (int)WrapS);
-            }
-            if (m_WrapR.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureWrapR, (int)WrapR);
-            }
-            if (m_BorderColor.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureBorderColor, BorderColor.Cast<float>().ToArray());
-            }
-            if (m_CompareMode.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureCompareMode, (int)CompareMode);
-            }
-            if (m_CompareFunc.CheckAndTurnOff()) {
-                GL.SamplerParameter(ID, SamplerParameterName.TextureCompareFunc, (int)CompareFunc);
-            }
+            foreach (var (value, adaptation) in m_AdaptationList) {
+                if (value.CheckAndTurnOff()) {
+                    adaptation();
+                }
+            }            
             m_ValueChanged = false;
             return;
         }
@@ -144,5 +133,7 @@ namespace RtCs.OpenGL
         private ModificationRecordValue<EGLTextureCompareMode> m_CompareMode = new ModificationRecordValue<EGLTextureCompareMode>(EGLTextureCompareMode.None);
         private ModificationRecordValue<EGLCompareFunc> m_CompareFunc = new ModificationRecordValue<EGLCompareFunc>(EGLCompareFunc.Always);
         private bool m_ValueChanged = false;
+
+        private List<(IModificationRecordValue Value, Action Adaptation)> m_AdaptationList = new List<(IModificationRecordValue Value, Action Adaptation)>();
     }
 }

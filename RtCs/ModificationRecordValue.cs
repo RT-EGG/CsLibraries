@@ -2,8 +2,17 @@
 
 namespace RtCs
 {
-    public class ModificationRecordValue<T> : ReactiveProperty<T>
+    public interface IModificationRecordValue : IReactiveProperty
     {
+        bool CheckAndTurnOff();
+    }
+
+    public class ModificationRecordValue<T> : ReactiveProperty<T>, IModificationRecordValue
+    {
+        public ModificationRecordValue(T inInitializeValue)
+            : base(initialValue: inInitializeValue)
+        { }
+
         public void MarkUnchanged()
             => Changed = false;
         public bool CheckAndTurnOff()
