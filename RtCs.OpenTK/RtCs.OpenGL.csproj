@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="GLCamera.cs" />
     <Compile Include="GLDisplayList.cs" />
+    <Compile Include="GLMainThreadTask.cs" />
     <Compile Include="GLMaterial.cs" />
     <Compile Include="GLObject.cs" />
     <Compile Include="GLRenderingStatus.cs" />
@@ -84,8 +85,11 @@
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Color.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Preset.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.VertexColor.cs" />
+    <Compile Include="ResourceObject\Texture\GLTexture.cs" />
+    <Compile Include="ResourceObject\Texture\GLTextureSampler.cs" />
     <Compile Include="Utils\Extensions\MatrixExtensions.cs" />
     <Compile Include="Utils\Extensions\VectorExtensions.cs" />
+    <Compile Include="Utils\GLCompareFunc.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="OpenTK">
