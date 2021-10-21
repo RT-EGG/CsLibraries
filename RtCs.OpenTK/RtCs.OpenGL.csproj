@@ -86,6 +86,7 @@
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Preset.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.VertexColor.cs" />
     <Compile Include="ResourceObject\Texture\GLTexture.cs" />
+    <Compile Include="ResourceObject\Texture\GLTextureReference.cs" />
     <Compile Include="ResourceObject\Texture\GLTextureSampler.cs" />
     <Compile Include="Utils\Extensions\MatrixExtensions.cs" />
     <Compile Include="Utils\Extensions\VectorExtensions.cs" />
@@ -124,6 +125,15 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\VertexColor.fragment.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Texture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Texture.vertex.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Texture.fragment.glsl.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

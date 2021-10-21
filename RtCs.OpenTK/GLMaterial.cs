@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OpenTK.Graphics.OpenGL4;
+using System.Collections.Generic;
 
 namespace RtCs.OpenGL
 {
@@ -23,8 +24,11 @@ namespace RtCs.OpenGL
                 return;
             }
 
+            GLShaderUniformProperty.CommitStatus commitState = new GLShaderUniformProperty.CommitStatus {
+                CurrentAvailableTextureUnit = TextureUnit.Texture0
+            };
             foreach (var property in m_Properties.Values) {
-                property.CommitProperty(Shader);
+                property.CommitProperty(Shader, commitState);
             }
             return;
         }

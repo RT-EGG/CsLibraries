@@ -15,39 +15,60 @@ namespace RtCs.OpenGL
         public string Name => Socket.Name;
         public int Location => Socket.Location;
 
-        public void CommitProperty(GLShaderProgram inShader)
-            => DoCommitProperty(inShader.ID, Location);
+        public void CommitProperty(GLShaderProgram inShader, CommitStatus inCommitState)
+            => DoCommitProperty(inShader.ID, Location, inCommitState);
 
-        protected abstract void DoCommitProperty(int inProgramID, int inLocation);
+        protected abstract void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState);
 
         public readonly GLShaderUniformPropertySocket Socket;
+
+        public class CommitStatus
+        {
+            public TextureUnit CurrentAvailableTextureUnit
+            { get; set; } = TextureUnit.Texture0;
+        }
 
         public class Int : GLShaderUniformProperty<int>
         {
             public Int(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
-            protected override void DoCommitProperty(int inProgramID, int inLocation)
+            protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
                 => GL.ProgramUniform1(inProgramID, inLocation, Value);
         }
 
         public class Double : GLShaderUniformProperty<double>
         {
             public Double(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
-            protected override void DoCommitProperty(int inProgramID, int inLocation)
+            protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
                 => GL.ProgramUniform1(inProgramID, inLocation, Value);
         }
 
         public class Vec4 : GLShaderUniformProperty<Vector4>
         {
             public Vec4(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
-            protected override void DoCommitProperty(int inProgramID, int inLocation)
+            protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
                 => GL.ProgramUniform4(inProgramID, inLocation, 1, Value.Select(v => (float)v).ToArray());
         }
 
         public class Mat4 : GLShaderUniformProperty<Matrix4x4>
         {
             public Mat4(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
-            protected override void DoCommitProperty(int inProgramID, int inLocation)
+            protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
                 => GL.ProgramUniformMatrix4(inProgramID, inLocation, 1, false, Value.ToGLArrayF());
+        }
+
+        public class Texture : GLShaderUniformProperty<GLTextureReference>
+        {
+            public Texture(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
+            protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
+            {
+                int unit = (int)inCommitState.CurrentAvailableTextureUnit;
+                GL.BindTextureUnit(unit, Value.Texture);
+                GL.BindSampler(unit, Value.Sampler);
+                GL.ProgramUniform1(inProgramID, inLocation, unit);
+
+                inCommitState.CurrentAvailableTextureUnit = (TextureUnit)(unit + 1);
+                return;
+            }
         }
     }
 

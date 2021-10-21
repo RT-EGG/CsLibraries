@@ -105,7 +105,65 @@ namespace RtCs.OpenGL.Properties {
         }
         
         /// <summary>
-        ///    に類似しているローカライズされた文字列を検索します。
+        ///   #version 460
+        ///
+        ///out vec4 outColor;
+        ///
+        ///layout (location = 0) in vec2 inTexCoord;
+        ///layout (location = 2) uniform sampler2D inTexture;
+        ///
+        ///void main()
+        ///{
+        ///    outColor = texture2D(texture, inTexCoord);
+        ///    return;
+        ///} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Texture_fragment_glsl {
+            get {
+                return ResourceManager.GetString("Texture.fragment.glsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   #version 460
+        ///
+        ///layout (location = 0) uniform mat4 inProjectionMatrix;
+        ///layout (location = 1) uniform mat4 inModelviewMatrix;
+        ///
+        ///layout (location = 0) in vec3 inPosition;
+        ///layout (location = 1) in vec2 inTexCoord;
+        ///
+        ///out gl_PerVertex
+        ///{
+        ///	vec4 gl_Position;
+        ///};
+        ///layout (location = 0) out vec2 outTexCoord;
+        ///
+        ///void main()
+        ///{
+        ///    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);	
+        ///    outTexCoord = inTexCoord;
+        ///    return;
+        ///} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Texture_vertex_glsl {
+            get {
+                return ResourceManager.GetString("Texture.vertex.glsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   #version 460
+        ///
+        ///out vec4 outColor;
+        ///
+        ///layout (location = 0) in vec4 inColor;
+        ///
+        ///void main()
+        ///{
+        ///    outColor = inColor;
+        ///    return;
+        ///} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string VertexColor_fragment_glsl {
             get {

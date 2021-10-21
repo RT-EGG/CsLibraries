@@ -14,12 +14,15 @@
             {
                 Color = new Color();
                 VertexColor = new VertexColor();
+                Texture = new Texture();
                 return;
             }
 
             public static Color Color
             { get; private set; }
             public static VertexColor VertexColor
+            { get; private set; }
+            public static Texture Texture
             { get; private set; }
         }
 

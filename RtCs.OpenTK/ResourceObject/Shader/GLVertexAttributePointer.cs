@@ -1,6 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL4;
-
-namespace RtCs.OpenGL
+﻿namespace RtCs.OpenGL
 {
     public abstract class GLVertexAttributePointer
     {
@@ -29,6 +27,12 @@ namespace RtCs.OpenGL
         {
             public Color(int inIndex) : base(inIndex) { }
             public override EGLVertexAttributeType AttributeType => EGLVertexAttributeType.Color;
+        }
+
+        public class TexCoord : GLVertexAttributePointer
+        {
+            public TexCoord(int inIndex) : base(inIndex) { }
+            public override EGLVertexAttributeType AttributeType => EGLVertexAttributeType.TexCoord;
         }
     }
 }
