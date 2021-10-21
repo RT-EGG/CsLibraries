@@ -9,6 +9,10 @@ namespace RtCs
 
     public class ModificationRecordValue<T> : ReactiveProperty<T>, IModificationRecordValue
     {
+        public ModificationRecordValue()
+            : this(default)
+        { }
+
         public ModificationRecordValue(T inInitializeValue)
             : base(initialValue: inInitializeValue)
         { }
