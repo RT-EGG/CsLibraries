@@ -61,12 +61,12 @@ namespace RtCs.OpenGL
             public Texture(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
             protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
             {
-                int unit = (int)inCommitState.CurrentAvailableTextureUnit;
+                int unit = inCommitState.CurrentAvailableTextureUnit - TextureUnit.Texture0;
                 GL.BindTextureUnit(unit, Value.Texture);
                 GL.BindSampler(unit, Value.Sampler);
                 GL.ProgramUniform1(inProgramID, inLocation, unit);
 
-                inCommitState.CurrentAvailableTextureUnit = (TextureUnit)(unit + 1);
+                inCommitState.CurrentAvailableTextureUnit++;
                 return;
             }
         }
