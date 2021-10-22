@@ -41,7 +41,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             this.UdICOSubdivision = new System.Windows.Forms.NumericUpDown();
             this.LabelICOSphere = new System.Windows.Forms.Label();
             this.RenderTimer = new System.Windows.Forms.Timer(this.components);
-            this.GLViewer = new RtCs.OpenGL.GLControl();
+            this.GLViewer = new RtCs.OpenGL.WinForms.GLControl();
             this.LabelRoundedCubeSphere = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.LabelRoundedCubeSubdivision = new System.Windows.Forms.Label();
@@ -238,7 +238,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             this.GLViewer.Size = new System.Drawing.Size(509, 442);
             this.GLViewer.TabIndex = 2;
             this.GLViewer.VSync = false;
-            this.GLViewer.OnRenderScene += new RtCs.OpenGL.GLRenderSceneEventHandler(this.GLViewer_OnRenderScene);
+            this.GLViewer.OnRenderScene += new RtCs.OpenGL.WinForms.GLRenderSceneEventHandler(this.GLViewer_OnRenderScene);
             // 
             // LabelRoundedCubeSphere
             // 
@@ -323,7 +323,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
         private System.Windows.Forms.Label LabelICOSubdivision;
         private System.Windows.Forms.NumericUpDown UdICOSubdivision;
         private System.Windows.Forms.Label LabelICOSphere;
-        private RtCs.OpenGL.GLControl GLViewer;
+        private RtCs.OpenGL.WinForms.GLControl GLViewer;
         private System.Windows.Forms.Timer RenderTimer;
         private System.Windows.Forms.TableLayoutPanel PanelUVSphereEditor;
         private System.Windows.Forms.NumericUpDown UdUVStacks;

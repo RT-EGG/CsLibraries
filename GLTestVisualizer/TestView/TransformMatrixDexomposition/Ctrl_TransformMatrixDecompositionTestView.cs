@@ -108,7 +108,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
-        private void GLViewr_OnRenderScene(RtCs.OpenGL.GLControl inControl, RtCs.OpenGL.GLRenderingStatus inStatus)
+        private void GLViewr_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderingStatus inStatus)
         {
             inStatus.ProjectionMatrix.PushMatrix();
             try {

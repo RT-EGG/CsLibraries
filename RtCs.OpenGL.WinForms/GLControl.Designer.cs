@@ -1,5 +1,5 @@
 ﻿
-namespace RtCs.OpenGL
+namespace RtCs.OpenGL.WinForms
 {
     partial class GLControl
     {

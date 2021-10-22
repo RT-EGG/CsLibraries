@@ -58,7 +58,7 @@ namespace GLTestVisualizer.TestView.Octree
             return;
         }
 
-        private void glView_OnRenderScene(RtCs.OpenGL.GLControl inControl, GLRenderingStatus inStatus)
+        private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderingStatus inStatus)
         {
             m_Camera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0, (double)glView.Width / (double)glView.Height, 0.01, 100.0);
             m_Camera.Render(inStatus, m_Scene);

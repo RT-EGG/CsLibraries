@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace RtCs.OpenGL
+namespace RtCs.OpenGL.WinForms
 {
     public delegate void GLRenderSceneEventHandler(GLControl inControl, GLRenderingStatus inStatus);
 
@@ -22,7 +22,7 @@ namespace RtCs.OpenGL
         public new void MakeCurrent()
         {
             if (GraphicsContext == null) {
-                GraphicsContext = this.Context; 
+                GraphicsContext = this.Context;
             }
             base.MakeCurrent();
             if (GraphicsContext != this.Context) {

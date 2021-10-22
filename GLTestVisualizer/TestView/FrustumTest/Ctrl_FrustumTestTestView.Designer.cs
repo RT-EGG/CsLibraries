@@ -34,9 +34,9 @@ namespace GLTestVisualizer.TestView.FrustumTest
             this.ComboProjectionType = new System.Windows.Forms.ComboBox();
             this.CheckBoxAutoAspect = new System.Windows.Forms.CheckBox();
             this.PanelParameterView = new System.Windows.Forms.Panel();
-            this.GLThrirdPersonView = new RtCs.OpenGL.GLControl();
+            this.GLThrirdPersonView = new RtCs.OpenGL.WinForms.GLControl();
             this.PanelViews = new System.Windows.Forms.TableLayoutPanel();
-            this.GLFirstPersonView = new RtCs.OpenGL.GLControl();
+            this.GLFirstPersonView = new RtCs.OpenGL.WinForms.GLControl();
             this.ButtonRandomizer = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.PanelViews.SuspendLayout();
@@ -102,7 +102,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             this.GLThrirdPersonView.Size = new System.Drawing.Size(304, 319);
             this.GLThrirdPersonView.TabIndex = 0;
             this.GLThrirdPersonView.VSync = false;
-            this.GLThrirdPersonView.OnRenderScene += new RtCs.OpenGL.GLRenderSceneEventHandler(this.GLThridPersonView_OnRenderScene);
+            this.GLThrirdPersonView.OnRenderScene += new RtCs.OpenGL.WinForms.GLRenderSceneEventHandler(this.GLThridPersonView_OnRenderScene);
             // 
             // PanelViews
             // 
@@ -129,7 +129,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             this.GLFirstPersonView.Size = new System.Drawing.Size(303, 319);
             this.GLFirstPersonView.TabIndex = 1;
             this.GLFirstPersonView.VSync = false;
-            this.GLFirstPersonView.OnRenderScene += new RtCs.OpenGL.GLRenderSceneEventHandler(this.GLFirstPersonView_OnRenderScene);
+            this.GLFirstPersonView.OnRenderScene += new RtCs.OpenGL.WinForms.GLRenderSceneEventHandler(this.GLFirstPersonView_OnRenderScene);
             // 
             // ButtonRandomizer
             // 
@@ -160,14 +160,14 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
         #endregion
 
-        private RtCs.OpenGL.GLControl GLThrirdPersonView;
+        private RtCs.OpenGL.WinForms.GLControl GLThrirdPersonView;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox ComboProjectionType;
         private System.Windows.Forms.CheckBox CheckBoxAutoAspect;
         private System.Windows.Forms.Panel PanelParameterView;
         private System.Windows.Forms.TableLayoutPanel PanelViews;
-        private RtCs.OpenGL.GLControl GLFirstPersonView;
+        private RtCs.OpenGL.WinForms.GLControl GLFirstPersonView;
         private System.Windows.Forms.Button ButtonRandomizer;
     }
 }
