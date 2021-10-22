@@ -61,7 +61,8 @@ namespace RtCs.OpenGL
         public override void Apply()
         {
             base.Apply();
-            LoadPixels(Pixels);
+            new GLMainThreadTask(args => LoadPixels(Pixels));
+            return;
         }
 
         public ColorRGBA[] Pixels
