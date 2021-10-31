@@ -1,7 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 
@@ -66,7 +64,10 @@ namespace RtCs.OpenGL
 
         public void Apply()
         {
-            new GLMainThreadTask(_ => ApplyChanged()).Enqueue();
+            if (!m_ApplyRegistered) {
+                m_ApplyRegistered = true;
+                new GLMainThreadTask(_ => ApplyChanged()).Enqueue();
+            }
             return;
         }
 
@@ -97,7 +98,10 @@ namespace RtCs.OpenGL
             GL.SamplerParameter(ID, SamplerParameterName.TextureBorderColor, BorderColor.Select<double, float>(d => (float)d).ToArray());
             GL.SamplerParameter(ID, SamplerParameterName.TextureCompareMode, (int)CompareMode);
             GL.SamplerParameter(ID, SamplerParameterName.TextureCompareFunc, (int)CompareFunc);
+            m_ApplyRegistered = false;
             return;
         }
+
+        private bool m_ApplyRegistered = false;
     }
 }
