@@ -41,7 +41,7 @@ namespace RtCs.OpenGL
     public class GLTextureSampler : GLResourceIdObject
     {
         public GLTextureSampler()
-            => Apply();;
+            => Apply();
 
         public EGLTextureMinFilter MinFilter
         { get; set; } = EGLTextureMinFilter.NearestMipmapLinear;
