@@ -126,7 +126,7 @@ namespace RtCs.OpenGL
                 AddAttribute(EGLVertexAttributeType.Normal, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_Normals.Value.ToFloatArray() });
             }
             if (!m_TexCoords.Value.IsNullOrEmpty()) {
-                AddAttribute(EGLVertexAttributeType.TexCoord, new GLVertexAttribute.Normal { DataOffset = offset, Data = m_TexCoords.Value.ToFloatArray() });
+                AddAttribute(EGLVertexAttributeType.TexCoord, new GLVertexAttribute.TexCoord { DataOffset = offset, Data = m_TexCoords.Value.ToFloatArray() });
             }
             if (!m_Colors.Value.IsNullOrEmpty()) {
                 AddAttribute(EGLVertexAttributeType.Color, new GLVertexAttribute.Color { DataOffset = offset, Data = m_Colors.Value.ToFloatArray() });
