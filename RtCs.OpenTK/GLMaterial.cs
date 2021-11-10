@@ -41,7 +41,21 @@ namespace RtCs.OpenGL
             => m_Properties.Clear();
 
         public GLShaderUniformProperty<T> GetProperty<T>(string inName)
-            => m_Properties[inName] as GLShaderUniformProperty<T>;
+        {
+            if (m_Properties.TryGetValue(inName, out var property)) {
+                return property as GLShaderUniformProperty<T>;
+            }
+            return null;
+        }
+
+        public void SetPropertyValue<T>(string inName, T inValue)
+        {
+            var property = GetProperty<T>(inName);
+            if (property != null) {
+                property.Value = inValue;
+            }
+            return;
+        }
 
         public GLRenderShaderProgram Shader
         {

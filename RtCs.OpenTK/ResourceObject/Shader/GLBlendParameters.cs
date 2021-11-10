@@ -9,6 +9,17 @@ namespace RtCs.OpenGL
 
     public class GLBlendParameters : IGLBlendParameters
     {
+        public GLBlendParameters()
+            : this (BlendingFactor.One, BlendingFactor.Zero)
+        { }
+
+        public GLBlendParameters(BlendingFactor inSourceFactor, BlendingFactor inDestinationFactor)
+        {
+            SourceFactor = inSourceFactor;
+            DestinationFactor = inDestinationFactor;
+            return;
+        }
+
         public void Apply()
             => GL.BlendFunc(SourceFactor, DestinationFactor);
 
@@ -17,9 +28,6 @@ namespace RtCs.OpenGL
         public BlendingFactor DestinationFactor
         { get; set; } = BlendingFactor.Zero;
 
-        public static GLBlendParameters Default = new GLBlendParameters {
-            SourceFactor = BlendingFactor.One,
-            DestinationFactor = BlendingFactor.Zero
-        };
+        public static GLBlendParameters Default = new GLBlendParameters();
     }
 }

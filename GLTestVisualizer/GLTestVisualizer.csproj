@@ -121,6 +121,13 @@
       <DependentUpon>Ctrl_SphereMeshTestView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\SphereMesh\GLSphereMaterial.cs" />
+    <Compile Include="TestView\Texture\Ctrl_TextureTestView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\Texture\Ctrl_TextureTestView.Designer.cs">
+      <DependentUpon>Ctrl_TextureTestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\Texture\GLTextureMaterial.cs" />
     <Compile Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -169,6 +176,9 @@
     <EmbeddedResource Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.resx">
       <DependentUpon>Ctrl_SphereMeshTestView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TestView\Texture\Ctrl_TextureTestView.resx">
+      <DependentUpon>Ctrl_TextureTestView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.resx">
       <DependentUpon>Ctrl_DecompositeTransformMatrixView.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +212,10 @@
     <ProjectReference Include="..\RtCs.OpenTK\RtCs.OpenGL.csproj">
       <Project>{d601c9f1-17d8-413e-9bc7-4fff732479f4}</Project>
       <Name>RtCs.OpenGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RtCs.WinForms\RtCs.WinForms.csproj">
+      <Project>{b57252fd-c829-4a56-af1f-687171e31b2c}</Project>
+      <Name>RtCs.WinForms</Name>
     </ProjectReference>
     <ProjectReference Include="..\RtCs\RtCs.csproj">
       <Project>{3631604b-1a60-422f-9932-d18ed0fc9458}</Project>

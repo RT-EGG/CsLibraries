@@ -55,8 +55,8 @@ namespace RtCs.OpenGL
         { get; set; } = EGLTextureWrapMode.Repeat;
         public EGLTextureWrapMode WrapR
         { get; set; } = EGLTextureWrapMode.Repeat;
-        public Vector4 BorderColor
-        { get; set; } = new Vector4(0.0f);
+        public ColorRGBA BorderColor
+        { get; set; } = new ColorRGBA(0, 0, 0, 0);
         public EGLTextureCompareMode CompareMode
         { get; set; } = EGLTextureCompareMode.None;
         public EGLCompareFunc CompareFunc
@@ -95,7 +95,7 @@ namespace RtCs.OpenGL
             GL.SamplerParameter(ID, SamplerParameterName.TextureWrapS, (int)WrapS);
             GL.SamplerParameter(ID, SamplerParameterName.TextureWrapT, (int)WrapT);
             GL.SamplerParameter(ID, SamplerParameterName.TextureWrapR, (int)WrapR);
-            GL.SamplerParameter(ID, SamplerParameterName.TextureBorderColor, BorderColor.Select<double, float>(d => (float)d).ToArray());
+            GL.SamplerParameter(ID, SamplerParameterName.TextureBorderColor, BorderColor.Select<byte, float>(b => (float)b / 255.0f).ToArray());
             GL.SamplerParameter(ID, SamplerParameterName.TextureCompareMode, (int)CompareMode);
             GL.SamplerParameter(ID, SamplerParameterName.TextureCompareFunc, (int)CompareFunc);
             m_ApplyRegistered = false;

@@ -14,7 +14,7 @@ layout (location = 0) out vec2 outTexCoord;
 
 void main()
 {
-    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);	
+    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);
     outTexCoord = inTexCoord;
     return;
 }

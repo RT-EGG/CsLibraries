@@ -1,4 +1,6 @@
 ﻿using Reactive.Bindings;
+using System;
+using System.Reactive.Linq;
 
 namespace RtCs
 {
@@ -13,9 +15,13 @@ namespace RtCs
             : this(default)
         { }
 
-        public ModificationRecordValue(T inInitializeValue)
+        public ModificationRecordValue(T inInitializeValue, bool inInitChanged = false)
             : base(initialValue: inInitializeValue)
-        { }
+        {
+            Changed = inInitChanged;
+            (this as IReactiveProperty<T>).Skip(1).Subscribe(_ => Changed = true);
+            return;
+        }
 
         public void MarkUnchanged()
             => Changed = false;

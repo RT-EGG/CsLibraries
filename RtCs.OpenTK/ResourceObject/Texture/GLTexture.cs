@@ -1,34 +1,32 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using RtCs.MathUtils;
 
 namespace RtCs.OpenGL
 {
-    public interface ITexture
+    public interface IGLTexture
     {
         PixelInternalFormat PixelInternalFormat { get; }
     }
 
-    public interface IColorTexture : ITexture
+    public interface IGLColorTexture : IGLTexture
     {
         ColorRGBA[] Pixels { get; }
     }
 
-    public interface ITexture2D : ITexture
+    public interface IGLTexture2D : IGLTexture
     {
         int Width { get; }
         int Height { get; }
+        Vector2 Size { get; }
     }
 
-    public abstract class GLTexture : GLResourceIdObject, ITexture
+    public abstract class GLTexture : GLResourceIdObject, IGLTexture
     {
         public GLTexture(PixelInternalFormat inPixelInternalFormat)
         {
             PixelInternalFormat = inPixelInternalFormat;
             return;
         }
-
-        // sampler is not here
-        //public GLTextureSampler Samlper
-        //{ get; } = new GLTextureSampler();
 
         public virtual void Apply()
         { }
@@ -52,7 +50,7 @@ namespace RtCs.OpenGL
         }
     }
 
-    public abstract class GLColorTexture : GLTexture, IColorTexture
+    public abstract class GLColorTexture : GLTexture, IGLColorTexture
     {
         public GLColorTexture()
             : base(PixelInternalFormat.Rgba)
@@ -61,7 +59,7 @@ namespace RtCs.OpenGL
         public override void Apply()
         {
             base.Apply();
-            new GLMainThreadTask(args => LoadPixels(Pixels));
+            new GLMainThreadTask(args => LoadPixels(Pixels)).Enqueue();
             return;
         }
 
@@ -71,7 +69,7 @@ namespace RtCs.OpenGL
         protected abstract void LoadPixels(ColorRGBA[] inPixels);
     }
 
-    public class GLColorTexture2D : GLColorTexture, ITexture2D
+    public class GLColorTexture2D : GLColorTexture, IGLTexture2D
     {
         public GLColorTexture2D(int inWidth, int inHeight)
             : base()
@@ -81,16 +79,37 @@ namespace RtCs.OpenGL
             return;
         }
 
+        public void ResizeBuffer(int inWidth, int inHeight)
+        {
+            Width = inWidth;
+            Height = inHeight;
+            Pixels = null;
+            return;
+        }
+
         public int Width
         { get; private set; } = 0;
         public int Height
         { get; private set; } = 0;
+        public Vector2 Size
+            => new Vector2(Width, Height);
 
         protected override void LoadPixels(ColorRGBA[] inPixels)
         {
+            byte[] bytes = new byte[inPixels.Length * 4];
+            for (int i = 0; i < inPixels.Length; ++i) {
+                bytes[(i * 4) + 0] = inPixels[i].R;
+                bytes[(i * 4) + 1] = inPixels[i].G;
+                bytes[(i * 4) + 2] = inPixels[i].B;
+                bytes[(i * 4) + 3] = inPixels[i].A;
+            }
+
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, ID);
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat, Width, Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, inPixels);
+            GL.PixelStore(PixelStoreParameter.UnpackAlignment, 1);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat, Width, Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, bytes);
+
+            GL.GetTextureImage(ID, 0, PixelFormat.Rgba, PixelType.UnsignedByte, bytes.Length, bytes);
             return;
         }
     }
