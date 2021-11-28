@@ -128,6 +128,14 @@
       <DependentUpon>Ctrl_TextureTestView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\Texture\GLTextureMaterial.cs" />
+    <Compile Include="TestView\Text\Ctrl_TextTestView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\Text\Ctrl_TextTestView.Designer.cs">
+      <DependentUpon>Ctrl_TextTestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\Text\FontInitializer.cs" />
+    <Compile Include="TestView\Text\GLTextMaterial.cs" />
     <Compile Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\Texture\Ctrl_TextureTestView.resx">
       <DependentUpon>Ctrl_TextureTestView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestView\Text\Ctrl_TextTestView.resx">
+      <DependentUpon>Ctrl_TextTestView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.resx">
       <DependentUpon>Ctrl_DecompositeTransformMatrixView.cs</DependentUpon>

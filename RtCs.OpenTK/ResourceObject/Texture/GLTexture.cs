@@ -5,6 +5,7 @@ namespace RtCs.OpenGL
 {
     public interface IGLTexture
     {
+        int ID { get; }
         PixelInternalFormat PixelInternalFormat { get; }
     }
 

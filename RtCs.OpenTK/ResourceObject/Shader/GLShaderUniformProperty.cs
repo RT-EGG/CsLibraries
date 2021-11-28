@@ -62,7 +62,7 @@ namespace RtCs.OpenGL
             protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
             {
                 int unit = inCommitState.CurrentAvailableTextureUnit - TextureUnit.Texture0;
-                GL.BindTextureUnit(unit, Value.Texture);
+                GL.BindTextureUnit(unit, Value.Texture.ID);
                 GL.BindSampler(unit, Value.Sampler);
                 GL.ProgramUniform1(inProgramID, inLocation, unit);
 
