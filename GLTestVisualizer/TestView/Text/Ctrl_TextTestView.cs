@@ -193,7 +193,7 @@ namespace GLTestVisualizer.TestView.Text
 
         private GLRenderObject m_AtlasTextureObject = new GLRenderObject();
         private GLMesh m_AtlasMesh = new GLMesh();
-        private IGLTexture2D m_AtlasTexture = null;
+        private IGLColorTexture2D m_AtlasTexture = null;
         private GLTextMaterial m_AtlasTextureMaterial = new GLTextMaterial();
         private GLTextureSampler m_TextureSampler = new GLTextureSampler();
 

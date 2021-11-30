@@ -9,7 +9,7 @@ namespace RtCs.OpenGL.WinForms.Texture.Text
 {
     public interface ICharacterImageAtlas
     {
-        IGLTexture2D Texture { get; }
+        IGLColorTexture2D Texture { get; }
         IReadOnlyDictionary<char, RectangleF> AssignedRectangles { get; }
         IReadOnlyDictionary<char, CharacterMetrics> CharacterMetrics { get; }
     }
@@ -122,7 +122,7 @@ namespace RtCs.OpenGL.WinForms.Texture.Text
                     (float)inSize.Height / (float)m_AtlasImage.Height
                 );
 
-        public IGLTexture2D Texture
+        public IGLColorTexture2D Texture
             => m_Texture;
         public IReadOnlyDictionary<char, RectangleF> AssignedRectangles
             => m_AssignedRectangle;

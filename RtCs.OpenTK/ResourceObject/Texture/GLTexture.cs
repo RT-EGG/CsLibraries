@@ -21,6 +21,9 @@ namespace RtCs.OpenGL
         Vector2 Size { get; }
     }
 
+    public interface IGLColorTexture2D : IGLColorTexture, IGLTexture2D
+    { }
+
     public abstract class GLTexture : GLResourceIdObject, IGLTexture
     {
         public GLTexture(PixelInternalFormat inPixelInternalFormat)
@@ -70,7 +73,7 @@ namespace RtCs.OpenGL
         protected abstract void LoadPixels(ColorRGBA[] inPixels);
     }
 
-    public class GLColorTexture2D : GLColorTexture, IGLTexture2D
+    public class GLColorTexture2D : GLColorTexture, IGLColorTexture2D
     {
         public GLColorTexture2D(int inWidth, int inHeight)
             : base()

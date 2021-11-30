@@ -52,6 +52,7 @@
       <DependentUpon>GLControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Texture\GLTextureImageExporter.cs" />
     <Compile Include="Texture\Text\CharacterImageAtlas.cs" />
     <Compile Include="Texture\Text\CharacterImageAtlasses.cs" />
     <Compile Include="Texture\GLTextureImageImporter.cs" />
