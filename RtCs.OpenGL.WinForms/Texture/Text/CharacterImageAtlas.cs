@@ -11,6 +11,7 @@ namespace RtCs.OpenGL.WinForms.Texture.Text
     {
         IGLTexture2D Texture { get; }
         IReadOnlyDictionary<char, RectangleF> AssignedRectangles { get; }
+        IReadOnlyDictionary<char, CharacterMetrics> CharacterMetrics { get; }
     }
 
     public class CharacterImageAtlas : ICharacterImageAtlas, IDisposable
@@ -32,11 +33,7 @@ namespace RtCs.OpenGL.WinForms.Texture.Text
         {
             Color background = Color.FromArgb(0, 0, 0, 0);
 
-            using (Graphics atlasCanvas = Graphics.FromImage(m_AtlasImage))
-            using (StringFormat format = new StringFormat(StringFormat.GenericTypographic))
-            using (TextMeasure textMeasure = new TextMeasure(atlasCanvas, Font, format)) {
-                Size proposedSize = new Size(10000, 10000);
-
+            using (Graphics atlasCanvas = Graphics.FromImage(m_AtlasImage)) {
                 for (int index = 0; index < inCharacters.Length; ++index) {
                     if (m_AssignedRectangle.ContainsKey(inCharacters[index])) {
                         continue;
@@ -44,45 +41,57 @@ namespace RtCs.OpenGL.WinForms.Texture.Text
 
                     string character = new string(new char[] { inCharacters[index] });
 
-                    Rectangle roughRegion = default;
+                    // the region returns windows api.
+                    // has character feed width.
+                    Rectangle renderRegion = default;
+                    // the region that TextMeasure should search bounds.
+                    // should be bigger than renderRegion, because renderRegion may fail to contain all pixles completely.
+                    Rectangle measureRegion = default;
+                    // the region the minimum bounds of pixels of a character on bitmap.
+                    Rectangle pixelRegion = default;
+
+                    int feedWidth = 0;
                     using (Graphics tmpCanvas = Graphics.FromImage(m_TemporaryCanvas)) {
                         tmpCanvas.Clear(background);
 
+                        TextFormatFlags textFormatFlags = TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
                         // get rough size
-                        SizeF roughSize = TextRenderer.MeasureText(tmpCanvas, character, Font, m_TemporaryCanvas.Size, TextFormatFlags.NoPadding);
-                        if (Font.Italic) {
-                            // MeasureText often fails to contain all of italic font.
-                            roughSize.Width *= 2.0f;
-                        }
-                        roughRegion = new Rectangle(new Point(), roughSize.ToSize());
+                        SizeF renderSize = TextRenderer.MeasureText(tmpCanvas, character, Font, m_TemporaryCanvas.Size, textFormatFlags);
+                        Point renderPoint = new Point((int)renderSize.Width, 0);
+
+                        // offset as left padding
+                        renderRegion = new Rectangle((int)renderSize.Width, 0, (int)renderSize.Width, (int)renderSize.Height);
+                        // add padding to width
+                        measureRegion = new Rectangle(0, 0, (int)renderSize.Width * 3, (int)renderSize.Height);
+
+                        feedWidth = (int)renderSize.Width;
 
                         // render to measure strict size
-                        TextRenderer.DrawText(tmpCanvas, character, Font, new Point(), Color.White, TextFormatFlags.NoPadding);
+                        TextRenderer.DrawText(tmpCanvas, character, Font, renderRegion.Location, Color.White, textFormatFlags);
                     }
 
-                    Rectangle region;
                     try {
-                        (int offset, int width) = TextMeasure.MeasureWidth(m_TemporaryCanvas, roughRegion, background);
-                        region = new Rectangle(offset, 0, width, roughRegion.Height);
+                        (int offset, int width) = TextMeasure.MeasureWidth(m_TemporaryCanvas, measureRegion, background);
+                        pixelRegion = new Rectangle(offset, 0, width, renderRegion.Height);
 
                     } catch (ArgumentException) {
                         // the case of no pixels rendered, space and so on.
-                        region = roughRegion;
+                        pixelRegion = renderRegion;
                     }
 
-                    if ((m_NextDrawPoint.X + (Margin * 2) + region.Width) > m_AtlasImage.Width) {
+                    if ((m_NextDrawPoint.X + (Margin * 2) + pixelRegion.Width) > m_AtlasImage.Width) {
                         m_NextDrawPoint.X = 0;
                         m_NextDrawPoint.Y += m_CurrentLineMaxHeight + (Margin * 2);
 
-                        if ((m_NextDrawPoint.X + (Margin * 2) + region.Width) > m_AtlasImage.Width) {
+                        if ((m_NextDrawPoint.X + (Margin * 2) + pixelRegion.Width) > m_AtlasImage.Width) {
                             return index;
                         }
                     }
-                    if ((m_NextDrawPoint.Y + (Margin * 2) + region.Height) > m_AtlasImage.Height) {
+                    if ((m_NextDrawPoint.Y + (Margin * 2) + pixelRegion.Height) > m_AtlasImage.Height) {
                         return index;
                     }
 
-                    m_CurrentLineMaxHeight = Math.Max(m_CurrentLineMaxHeight, region.Height);
+                    m_CurrentLineMaxHeight = Math.Max(m_CurrentLineMaxHeight, pixelRegion.Height);
 
                     var point = new Point(
                         (int)Math.Round(m_NextDrawPoint.X),
@@ -91,11 +100,13 @@ namespace RtCs.OpenGL.WinForms.Texture.Text
                     point.X += Margin;
                     point.Y += Margin;
 
-                    //TextRenderer.DrawText(atlasCanvas, character, Font, point, Color.White, TextFormatFlags.NoPadding);
-                    atlasCanvas.DrawImage(m_TemporaryCanvas, point.X, point.Y, region, GraphicsUnit.Pixel);
-                    m_AssignedRectangle.Add(inCharacters[index], AssignRectangle(point, region.Size));
+                    atlasCanvas.DrawImage(m_TemporaryCanvas, point.X, point.Y, pixelRegion, GraphicsUnit.Pixel);
+                    m_AssignedRectangle.Add(inCharacters[index], AssignRectangle(point, pixelRegion.Size));
+                    m_CharacterMetrics.Add(inCharacters[index], new CharacterMetrics(
+                            pixelRegion.X - (renderRegion.Left - measureRegion.Left), pixelRegion.Width, feedWidth
+                        ));
 
-                    m_NextDrawPoint.X += region.Width + Margin;
+                    m_NextDrawPoint.X += pixelRegion.Width + Margin;
                 }
             }
 
@@ -115,6 +126,8 @@ namespace RtCs.OpenGL.WinForms.Texture.Text
             => m_Texture;
         public IReadOnlyDictionary<char, RectangleF> AssignedRectangles
             => m_AssignedRectangle;
+        public IReadOnlyDictionary<char, CharacterMetrics> CharacterMetrics
+            => m_CharacterMetrics;
 
         public void Dispose()
         {
@@ -140,5 +153,6 @@ namespace RtCs.OpenGL.WinForms.Texture.Text
         private Bitmap m_AtlasImage = null;
         private GLColorTexture2D m_Texture = null;
         private Dictionary<char, RectangleF> m_AssignedRectangle = new Dictionary<char, RectangleF>();
+        private Dictionary<char, CharacterMetrics> m_CharacterMetrics = new Dictionary<char, CharacterMetrics>();
     }
 }

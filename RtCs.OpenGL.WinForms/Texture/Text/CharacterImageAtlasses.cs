@@ -1,10 +1,7 @@
-﻿using RtCs.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace RtCs.OpenGL.WinForms.Texture.Text
 {

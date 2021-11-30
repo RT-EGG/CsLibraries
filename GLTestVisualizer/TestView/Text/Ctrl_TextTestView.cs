@@ -126,15 +126,18 @@ namespace GLTestVisualizer.TestView.Text
                 if (!atlas.AssignedRectangles.TryGetValue(character, out var texcoord)) {
                     throw new InvalidProgramException($"Coordinate for character must be assigned in {typeof(CharacterImageAtlasses).Name}.AddCharacters().");
                 }
+                if (!atlas.CharacterMetrics.TryGetValue(character, out var metrics)) {
+                    throw new InvalidProgramException($"Metrics for character must be assigned in {typeof(CharacterImageAtlasses).Name}.AddCharacters().");
+                }
 
                 Vector2 size = new Vector2(
                         AtlasSize * texcoord.Width,
                         AtlasSize * texcoord.Height
                     );
-                newObject.Setup(atlas.Texture, texcoord, position, size);
+                newObject.Setup(atlas.Texture, texcoord, position + new Vector2(metrics.PixelOffsetX, 0.0), size);
                 newObject.Transform.Parent = m_TextOrigin;
 
-                position.x += size.x;
+                position.x += metrics.FeedWidth;
             }
 
             GLView.Invalidate();
