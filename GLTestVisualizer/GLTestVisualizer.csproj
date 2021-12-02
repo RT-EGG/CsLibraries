@@ -60,11 +60,13 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\CameraModel.cs" />
-    <Compile Include="Model\OrbitCameraMouseController.cs" />
-    <Compile Include="Model\OrbitCameraModel.cs" />
-    <Compile Include="Model\RotationCameraModel.cs" />
-    <Compile Include="Model\RotationCameraMouseController.cs" />
+    <Compile Include="Camera\CameraModel.cs" />
+    <Compile Include="Camera\FreeFlyCameraKeyMouseController.cs" />
+    <Compile Include="Camera\FreeFlyCameraModel.cs" />
+    <Compile Include="Camera\OrbitCameraMouseController.cs" />
+    <Compile Include="Camera\OrbitCameraModel.cs" />
+    <Compile Include="Camera\RotationCameraModel.cs" />
+    <Compile Include="Camera\RotationCameraMouseController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestView\AlphaBlending\Ctrl_AlphaBlendingTestView.cs">
