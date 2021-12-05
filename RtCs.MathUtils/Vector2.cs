@@ -49,6 +49,7 @@ namespace RtCs.MathUtils
         }
 
         public int Dimension => 2;
+        int IReadOnlyCollection<double>.Count => Dimension;
 
         public double Length => Vector.Length(this);
         public double Length2 => Vector.Length2(this);

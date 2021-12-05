@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace RtCs.MathUtils
 {
-    public interface IVector : IEnumerable<double>
+    public interface IVector : IReadOnlyList<double>, IEnumerable<double>
     {
-        double this[int inIndex] { get; set; }
+        new double this[int inIndex] { get; set; }
         int Dimension { get; }
     }
 

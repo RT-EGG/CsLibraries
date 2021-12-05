@@ -10,6 +10,10 @@ namespace RtCs
         public static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> inItems)
         {
             foreach (var items in inItems) {
+                if (items == null) {
+                    continue;
+                }
+
                 foreach (var item in items) {
                     yield return item;
                 }
@@ -67,5 +71,49 @@ namespace RtCs
 
         public static void DisposeItems<T>(this IEnumerable<T> inItems) where T : IDisposable
             => inItems.ForEach(item => item.Dispose());
+
+        public static int MinIndex<T, U>(this IReadOnlyList<T> inItems, Func<T, U> inSelector) where U : IComparable<U>
+        {
+            if (inItems.IsEmpty()) {
+                return -1;
+            }
+
+            int result = 0;
+            U minValue = inSelector(inItems[0]);
+
+            foreach (var (i, item) in inItems.Enumerate()) {
+                U value = inSelector(item);
+                if (minValue.CompareTo(value) > 0) {
+                    result = i;
+                    minValue = value;
+                }
+            }
+            return result;
+        }
+
+        public static int MinIndex<T>(this IReadOnlyList<T> inItems) where T : IComparable<T>
+            => inItems.MinIndex(t => t);
+
+        public static int MaxIndex<T, U>(this IReadOnlyList<T> inItems, Func<T, U> inSelector) where U : IComparable<U>
+        {
+            if (inItems.IsEmpty()) {
+                return -1;
+            }
+
+            int result = 0;
+            U minValue = inSelector(inItems[0]);
+
+            foreach (var (i, item) in inItems.Enumerate()) {
+                U value = inSelector(item);
+                if (minValue.CompareTo(value) < 0) {
+                    result = i;
+                    minValue = value;
+                }
+            }
+            return result;
+        }
+
+        public static int MaxIndex<T>(this IReadOnlyList<T> inItems) where T : IComparable<T>
+            => inItems.MaxIndex(t => t);
     }
 }

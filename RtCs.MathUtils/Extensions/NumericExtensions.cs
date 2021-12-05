@@ -47,5 +47,18 @@ namespace RtCs.MathUtils
             => Math.Asin(inValue.Clamp(-1.0, 1.0));
         public static double Acos(double inValue)
             => Math.Acos(inValue.Clamp(-1.0, 1.0));
+
+        public static int TruncateToInt(this float inValue)
+            => (int)Math.Truncate(inValue);
+        public static int TruncateToInt(this double inValue)
+            => (int)Math.Truncate(inValue);
+    }
+
+    public static class Numerics
+    {
+        public static T Min<T>(params T[] inItems) where T : IComparable<T>
+            => inItems.Min();
+        public static T Max<T>(params T[] inItems) where T : IComparable<T>
+            => inItems.Max();
     }
 }

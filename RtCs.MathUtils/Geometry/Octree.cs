@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RtCs.MathUtils.Algorithm;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +15,7 @@ namespace RtCs.MathUtils.Geometry
         IOctreeCell AffiliationCell { get; set; }
     }
 
-    public partial class Octree
+    public partial class Octree : IEnumerable<IOctreeCell>
     {
         public Octree(int inMaxLevel, double inDimensions)
             : this(inMaxLevel, inDimensions, new Vector3())
@@ -117,82 +119,16 @@ namespace RtCs.MathUtils.Geometry
         }
 
         public IEnumerable<IOctreeCell> TraverseOnRay(Line3D inRay)
-        //public IEnumerable<IOctreeCell> TraverseOnRay(Vector3 inRayStart, Vector3 inRayEnd)
         {
-            // I refered
-            // https://flipcode.com/archives/Raytracing_Topics_Techniques-Part_4_Spatial_Subdivisions.shtml
-            // https://github.com/francisengelmann/fast_voxel_traversal/blob/master/main.cpp
+            VoxelTraverse traverser = new VoxelTraverse() {
+                BoundsMin = Offset,
+                CellCount = AxisCellsAtEndLayer,
+                CellDimension = CellDimensions.Last()
+            };
 
-            double dimension = CellDimensions.Last();
-
-            Vector3 ray = inRay.Vector;
-            double rayLength = inRay.Length;
-
-            Container3<int> currentCell = new Container3<int>(
-                (int)(inRay.Point0.x / dimension),
-                (int)(inRay.Point0.y / dimension),
-                (int)(inRay.Point0.z / dimension)
-            );
-            //(int x, int y, int z) lastCell = (
-            //    (int)(inRayEnd.x / dimension),
-            //    (int)(inRayEnd.y / dimension),
-            //    (int)(inRayEnd.z / dimension)
-            //);
-
-            if (rayLength <= 1.0e-5) {
-                if (IndexInRangeOfEndLayer(currentCell[0], currentCell[1], currentCell[2])) {
-                    yield return GetCellAt(MaxLevel, currentCell);
-                }
-                yield break;
-            }
-
-            // In which direction the voxel ids are incremented.
-            (int x, int y, int z) step = (
-                Math.Sign(ray.x),
-                Math.Sign(ray.y),
-                Math.Sign(ray.z)
-            );
-
-            // Distance along the ray to the next voxel border from the current position tMax.
-            //(double x, double y, double z)  nextBoundary = (
-            //    (currentCell.x + step.x) * dimension,
-            //    (currentCell.y + step.y) * dimension,
-            //    (currentCell.z + step.z) * dimension
-            //);
-
-            // tDelta -- 
-            // how far along the ray we must move for the horizontal component to equal the width of a voxel
-            // the direction in which we traverse the grid
-            // can only be FLT_MAX if we never go in that direction
-            (double x, double y, double z)  tDelta = (
-            (step.x != 0) ? dimension / ray.x * step.x : double.MaxValue,
-            (step.y != 0) ? dimension / ray.y * step.y : double.MaxValue,
-            (step.z != 0) ? dimension / ray.z * step.z : double.MaxValue
-        );
-
-            // tMax -- distance until next intersection with voxel-border
-            // the value of t at which the ray crosses the first vertical voxel boundary
-            var tMax = tDelta;
-
-            Func<bool> IsStepOver = () => ((step.x != 0) && (tMax.x > rayLength)) || ((step.y != 0) && (tMax.y > rayLength)) || ((step.z != 0) && (tMax.z > rayLength));
-            while (!IsStepOver()) {
-                if (IndexInRangeOfEndLayer(currentCell[0], currentCell[1], currentCell[2])) {
-                    yield return GetCellAt(MaxLevel, currentCell);
-                }
-
-                switch (MinIndex(tMax)) {
-                    case 0:
-                        currentCell[0] += step.x;
-                        tMax.x += tDelta.x;
-                        break;
-                    case 1:
-                        currentCell[1] += step.y;
-                        tMax.y += tDelta.y;
-                        break;
-                    case 2:
-                        currentCell[2] += step.z;
-                        tMax.z += tDelta.z;
-                        break;
+            foreach (var index in traverser.Traverse(inRay)) {
+                if (IndexInRangeOfEndLayer(index[0], index[1], index[2])) {
+                    yield return GetCellAt(MaxLevel, index);
                 }
             }
             yield break;
@@ -280,6 +216,11 @@ namespace RtCs.MathUtils.Geometry
             => (0 <= inIndexX) && (inIndexX < AxisCellsAtEndLayer)
             && (0 <= inIndexY) && (inIndexY < AxisCellsAtEndLayer)
             && (0 <= inIndexZ) && (inIndexZ < AxisCellsAtEndLayer);
+
+        IEnumerator<IOctreeCell> IEnumerable<IOctreeCell>.GetEnumerator()
+            => LinearCells.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+            => LinearCells.GetEnumerator();
 
         public int MaxLevel
         { get; }
