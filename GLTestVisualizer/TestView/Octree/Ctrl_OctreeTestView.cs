@@ -1,4 +1,5 @@
-﻿using RtCs.OpenGL;
+﻿using RtCs;
+using RtCs.OpenGL;
 using RtCs.MathUtils;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,9 @@ namespace GLTestVisualizer.TestView.Octree
 
             m_Octree.Clear();
             m_Octree.Register(m_SphereObject);
-            m_OctreeObject.UpdateVisibility();
+            foreach (var cell in m_Octree) {
+                m_OctreeObject.SetCellVisibility(cell, !cell.Objects.IsNullOrEmpty());
+            }
 
             glView.Invalidate();
             return;

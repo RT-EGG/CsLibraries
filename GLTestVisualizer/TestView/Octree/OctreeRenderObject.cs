@@ -53,13 +53,8 @@ namespace GLTestVisualizer.TestView.Octree
             return;
         }
 
-        public void UpdateVisibility()
-        {
-            foreach (var (cell, obj) in m_CellRenderers) {
-                obj.Visible = !cell.Objects.IsEmpty();
-            }
-            return;
-        }
+        public void SetCellVisibility(IOctreeCell inCell, bool inVisible)
+            => m_CellRenderers[inCell].Visible = inVisible;
 
         IEnumerator<GLRenderObject> IEnumerable<GLRenderObject>.GetEnumerator()
             => m_CellRenderers.Values.Concat(m_GridRenderer).GetEnumerator();
