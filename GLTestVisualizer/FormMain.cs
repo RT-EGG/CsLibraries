@@ -2,9 +2,11 @@
 using GLTestVisualizer.TestView.AlphaBlending;
 using GLTestVisualizer.TestView.FrustumTest;
 using GLTestVisualizer.TestView.Octree;
+using GLTestVisualizer.TestView.Raycast;
 using GLTestVisualizer.TestView.SphereMesh;
 using GLTestVisualizer.TestView.Texture;
 using GLTestVisualizer.TestView.TransformMatrixDexomposition;
+using RtCs;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -18,6 +20,7 @@ namespace GLTestVisualizer
         FrustumTest,
         AlphaBlending,
         Octree,
+        RayCast,
         Texture
     }
 
@@ -56,6 +59,11 @@ namespace GLTestVisualizer
                 Type = TestContentType.Octree,
                 Text = "Octree",
                 ViewGenerator = () => new Ctrl_OctreeTestView()
+            });
+            ComboTestContent.Items.Add(new TestContentItem {
+                Type = TestContentType.RayCast,
+                Text = "RayCast",
+                ViewGenerator = () => new Ctrl_RaycastTestView()
             });
             ComboTestContent.Items.Add(new TestContentItem {
                 Type = TestContentType.Texture,

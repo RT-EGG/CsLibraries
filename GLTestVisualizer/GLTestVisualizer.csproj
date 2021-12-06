@@ -116,6 +116,13 @@
     <Compile Include="TestView\Octree\GLSolidColorMaterial.cs" />
     <Compile Include="TestView\Octree\OctreeRegistableRenderObject.cs" />
     <Compile Include="TestView\Octree\OctreeRenderObject.cs" />
+    <Compile Include="TestView\Raycast\Ctrl_RaycastTestView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\Raycast\Ctrl_RaycastTestView.Designer.cs">
+      <DependentUpon>Ctrl_RaycastTestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\Raycast\GLColorMaterial.cs" />
     <Compile Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\Octree\Ctrl_OctreeTestView.resx">
       <DependentUpon>Ctrl_OctreeTestView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestView\Raycast\Ctrl_RaycastTestView.resx">
+      <DependentUpon>Ctrl_RaycastTestView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.resx">
       <DependentUpon>Ctrl_SphereMeshTestView.cs</DependentUpon>
