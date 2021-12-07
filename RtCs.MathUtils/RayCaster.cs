@@ -10,6 +10,10 @@ namespace RtCs.MathUtils
         public IEnumerable<LineIntersectionInfo3D> Test(Line3D inRay, IEnumerable<ILineIntersectable3D> inTestObjects)
         {
             var result = inTestObjects.Select(o => o.IsIntersectWith(inRay)).Flatten();
+            if (ClampToRayRange) {
+                result = result.Where(o => o.LineParameter.InRange(0.0, 1.0));
+            }
+
             if (CullBackFace) {
                 Vector3 rayDirection = inRay.Direction;
                 bool FaceToRay(Vector3 inNormal)
@@ -36,5 +40,7 @@ namespace RtCs.MathUtils
         { get; set; } = false;
         public bool CullBackFace
         { get; set; } = false;
+        public bool ClampToRayRange
+        { get; set; } = true;
     }
 }
