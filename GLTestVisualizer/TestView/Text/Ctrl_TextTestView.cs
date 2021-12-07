@@ -29,16 +29,16 @@ namespace GLTestVisualizer.TestView.Text
             TextBoxInput.Text = "Input text...";
 
             m_AtlasMesh.Positions = new Vector3[] {
-                new Vector3(-0.5, 0.5, 0.0),
-                new Vector3(-0.5, -0.5, 0.0),
-                new Vector3(0.5, -0.5, 0.0),
-                new Vector3(0.5, 0.5, 0.0)
+                new Vector3(-0.5f, 0.5f, 0.0f),
+                new Vector3(-0.5f, -0.5f, 0.0f),
+                new Vector3(0.5f, -0.5f, 0.0f),
+                new Vector3(0.5f, 0.5f, 0.0f)
             };
             m_AtlasMesh.TexCoords = new Vector2[] {
-                new Vector2(0.0, 0.0),
-                new Vector2(0.0, 1.0),
-                new Vector2(1.0, 1.0),
-                new Vector2(1.0, 0.0)
+                new Vector2(0.0f, 0.0f),
+                new Vector2(0.0f, 1.0f),
+                new Vector2(1.0f, 1.0f),
+                new Vector2(1.0f, 0.0f)
             };
             m_AtlasMesh.Topology = EGLMeshTopology.Triangles;
             m_AtlasMesh.Indices = new int[] {
@@ -102,7 +102,7 @@ namespace GLTestVisualizer.TestView.Text
                 if ((index + Environment.NewLine.Length - 1) < inText.Length) {
                     if (inText.Substring(index, Environment.NewLine.Length) == Environment.NewLine)
                     {
-                        position.x = 0.0;
+                        position.x = 0.0f;
                         position.y -= LineHeight;
                         inText.Remove(index, Environment.NewLine.Length);
 
@@ -134,7 +134,7 @@ namespace GLTestVisualizer.TestView.Text
                         AtlasSize * texcoord.Width,
                         AtlasSize * texcoord.Height
                     );
-                newObject.Setup(atlas.Texture, texcoord, position + new Vector2(metrics.PixelOffsetX, 0.0), size);
+                newObject.Setup(atlas.Texture, texcoord, position + new Vector2(metrics.PixelOffsetX, 0.0f), size);
                 newObject.Transform.Parent = m_TextOrigin;
 
                 position.x += metrics.FeedWidth;
@@ -161,7 +161,7 @@ namespace GLTestVisualizer.TestView.Text
         {
             GLRenderingStatus status = new GLRenderingStatus();
             status.Viewport.SetRect(inControl.ClientRectangle);
-            status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(0.0, inControl.Width, -inControl.Height, 0.0, -10.0, 10.0));
+            status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(0.0f, inControl.Width, -inControl.Height, 0.0f, -10.0f, 10.0f));
             status.ModelViewMatrix.View.LoadIdentity();
 
             m_Scene.DisplayList = DisplayList;
@@ -212,16 +212,16 @@ namespace GLTestVisualizer.TestView.Text
 
             public void Setup(IGLTexture2D inReferenceTexture, RectangleF inTexCoord, Vector2 inPosition, Vector2 inQuadSize)
             {
-                Transform.LocalPosition = new Vector3(inPosition.Concat(0.0));
+                Transform.LocalPosition = new Vector3(inPosition.Concat(0.0f));
 
                 Renderer.Mesh = m_Mesh;
                 Renderer.Material = m_Material;
 
                 m_Mesh.Positions = new Vector3[] {
-                    new Vector3(0.0, 0.0, 0.0),
-                    new Vector3(0.0, -inQuadSize.y, 0.0),
-                    new Vector3(inQuadSize.x, -inQuadSize.y, 0.0),
-                    new Vector3(inQuadSize.x, 0.0, 0.0)
+                    new Vector3(0.0f, 0.0f, 0.0f),
+                    new Vector3(0.0f, -inQuadSize.y, 0.0f),
+                    new Vector3(inQuadSize.x, -inQuadSize.y, 0.0f),
+                    new Vector3(inQuadSize.x, 0.0f, 0.0f)
                 };
                 m_Mesh.TexCoords = new Vector2[] {
                     new Vector2(inTexCoord.Left, inTexCoord.Top),
