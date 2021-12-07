@@ -128,7 +128,6 @@ namespace GLTestVisualizer.TestView.Raycast
 
         private void InvalidateTimer_Tick(object sender, EventArgs e)
         {
-            //TimeStep(InvalidateTimer.Interval * 0.001);
             GLFPSView.Invalidate();
             GLTPSView.Invalidate();
             return;
@@ -141,26 +140,6 @@ namespace GLTestVisualizer.TestView.Raycast
         {
             m_FPSCamera.Transform.LocalPosition = new Vector3(0.0f);
             m_FPSCamera.Transform.LocalRotation = Quaternion.Identity;
-            return;
-        }
-
-        private void TimeStep(float inTimeInSec)
-        {
-            m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0f, 1.0f, (float)UdRayLength.Value);
-            Vector3 rayPoint0 = m_FPSCameraRayVisualizer.Transform.WorldPosition;
-            Vector3 rayPoint1 = rayPoint0 + (m_FPSCameraRayVisualizer.Transform.WorldRotation * new Vector3(0.0f, 0.0f, -1.0f) * (float)UdRayLength.Value);
-
-
-            m_HitPointMarkerObjects.ForEach(o => m_RenderObjectPool.Enqueue(o));
-            m_HitPointMarkerObjects.Clear();
-            foreach (var intersect in RayCast(new Line3D(rayPoint0, rayPoint1))) {
-                var marker = RequestHitPointMarkerObject();
-                marker.Transform.LocalPosition = intersect.Position;
-                marker.Transform.LocalScale = new Vector3(0.1f);
-                marker.CalculateBoundingBox();
-
-                m_HitPointMarkerObjects.Add(marker);
-            }
             return;
         }
 
