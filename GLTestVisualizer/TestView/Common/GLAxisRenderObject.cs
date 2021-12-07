@@ -10,14 +10,14 @@ namespace GLTestVisualizer.TestView
         {
             GLMesh mesh = new GLMesh();
             mesh.Positions = new Vector3[] {
-                new Vector3(), new Vector3(1.0, 0.0, 0.0),
-                new Vector3(), new Vector3(0.0, 1.0, 0.0),
-                new Vector3(), new Vector3(0.0, 0.0, 1.0)
+                new Vector3(), new Vector3(1.0f, 0.0f, 0.0f),
+                new Vector3(), new Vector3(0.0f, 1.0f, 0.0f),
+                new Vector3(), new Vector3(0.0f, 0.0f, 1.0f)
             };
             mesh.Colors = new Vector4[] {
-                new Vector4(1.0, 0.0, 0.0, 1.0), new Vector4(1.0, 0.0, 0.0, 1.0),
-                new Vector4(0.0, 1.0, 0.0, 1.0), new Vector4(0.0, 1.0, 0.0, 1.0),
-                new Vector4(0.0, 0.0, 1.0, 1.0), new Vector4(0.0, 0.0, 1.0, 1.0)
+                new Vector4(1.0f, 0.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f),
+                new Vector4(0.0f, 1.0f, 0.0f, 1.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f),
+                new Vector4(0.0f, 0.0f, 1.0f, 1.0f), new Vector4(0.0f, 0.0f, 1.0f, 1.0f)
             };
             mesh.Topology = EGLMeshTopology.Lines;
             mesh.Indices = Enumerable.Range(0, 6).ToArray();

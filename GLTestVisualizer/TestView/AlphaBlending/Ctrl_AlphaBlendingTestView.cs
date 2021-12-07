@@ -18,11 +18,11 @@ namespace GLTestVisualizer.TestView.AlphaBlending
 
             m_CameraController = new OrbitCameraMouseController(glView);
             m_CameraController.Camera = m_Camera;
-            m_Camera.Center = new Vector3(1.0, 1.0, 1.0);
+            m_Camera.Center = new Vector3(1.0f, 1.0f, 1.0f);
             m_Camera.Coordinate = new SphericalCoordinate {
-                AzimuthAngleDeg = 0.0,
-                ElevationAngleDeg = -15.0,
-                Radius = 5.0
+                AzimuthAngleDeg = 0.0f,
+                ElevationAngleDeg = -15.0f,
+                Radius = 5.0f
             };
 
             void CreateNewCube(Vector3 inCenter, Vector3 inRGB)
@@ -30,20 +30,20 @@ namespace GLTestVisualizer.TestView.AlphaBlending
                 GLRenderObject newObject = new GLRenderObject();
                 newObject.Transform.LocalPosition = inCenter;
                 newObject.Renderer.Mesh = m_CubeMesh;
-                newObject.Renderer.Material = new GLCubeMaterial(new Vector4(inRGB, 0.3));
+                newObject.Renderer.Material = new GLCubeMaterial(new Vector4(inRGB, 0.3f));
                 newObject.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
                 newObject.RenderFaceMode = EGLRenderFaceMode.FrontAndBack;
 
                 m_CubeObjects.Add(newObject);
             }
-            CreateNewCube(new Vector3(0.4, 0.4, 0.4), new Vector3(0.4, 0.4, 0.4));
-            CreateNewCube(new Vector3(1.6, 0.4, 0.4), new Vector3(0.9, 0.0, 0.0));
-            CreateNewCube(new Vector3(0.4, 1.6, 0.4), new Vector3(0.0, 0.9, 0.0));
-            CreateNewCube(new Vector3(0.4, 0.4, 1.6), new Vector3(0.0, 0.0, 0.9));
-            CreateNewCube(new Vector3(1.6, 1.6, 0.4), new Vector3(0.9, 0.9, 0.0));
-            CreateNewCube(new Vector3(0.4, 1.6, 1.6), new Vector3(0.0, 0.9, 0.9));
-            CreateNewCube(new Vector3(1.6, 0.4, 1.6), new Vector3(0.9, 0.0, 0.9));
-            CreateNewCube(new Vector3(1.6, 1.6, 1.6), new Vector3(0.9, 0.9, 0.9));
+            CreateNewCube(new Vector3(0.4f, 0.4f, 0.4f), new Vector3(0.4f, 0.4f, 0.4f));
+            CreateNewCube(new Vector3(1.6f, 0.4f, 0.4f), new Vector3(0.9f, 0.0f, 0.0f));
+            CreateNewCube(new Vector3(0.4f, 1.6f, 0.4f), new Vector3(0.0f, 0.9f, 0.0f));
+            CreateNewCube(new Vector3(0.4f, 0.4f, 1.6f), new Vector3(0.0f, 0.0f, 0.9f));
+            CreateNewCube(new Vector3(1.6f, 1.6f, 0.4f), new Vector3(0.9f, 0.9f, 0.0f));
+            CreateNewCube(new Vector3(0.4f, 1.6f, 1.6f), new Vector3(0.0f, 0.9f, 0.9f));
+            CreateNewCube(new Vector3(1.6f, 0.4f, 1.6f), new Vector3(0.9f, 0.0f, 0.9f));
+            CreateNewCube(new Vector3(1.6f, 1.6f, 1.6f), new Vector3(0.9f, 0.9f, 0.9f));
 
             m_Scene.DisplayList = m_CubeObjects;
             return;
@@ -59,7 +59,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
 
         private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderingStatus inStatus)
         {
-            m_Camera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0, inControl.Width, inControl.Height, 0.01, 100.0);
+            m_Camera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, inControl.Width, inControl.Height, 0.01f, 100.0f);
             m_Camera.Render(inStatus, m_Scene);
             return;
         }

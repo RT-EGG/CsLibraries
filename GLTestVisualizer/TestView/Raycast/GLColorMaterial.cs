@@ -13,7 +13,7 @@ namespace GLTestVisualizer.TestView.Raycast
 
         public override void CommitProperties(GLRenderingStatus inRenderingStatus)
         {
-            GetProperty<Vector4>("inColor").Value = new Vector4(Color, 1.0);
+            GetProperty<Vector4>("inColor").Value = new Vector4(Color, 1.0f);
             GetProperty<Matrix4x4>("inProjectionMatrix").Value = inRenderingStatus.ProjectionMatrix.CurrentMatrix;
             GetProperty<Matrix4x4>("inModelviewMatrix").Value = inRenderingStatus.ModelViewMatrix.CurrentMatrix;
 
@@ -22,7 +22,7 @@ namespace GLTestVisualizer.TestView.Raycast
         }
 
         public Vector3 Color
-        { get; set; } = new Vector3(1.0);
+        { get; set; } = new Vector3(1.0f);
         private new GLRenderShaderProgram Shader => base.Shader;
     }
 }

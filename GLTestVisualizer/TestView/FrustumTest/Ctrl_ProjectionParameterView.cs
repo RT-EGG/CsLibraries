@@ -32,11 +32,11 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
         protected Control AutoAspectReference
         { get; private set; } = null;
-        protected double AspectRatio
+        protected float AspectRatio
         {
             get {
                 if (AutoAspectReference != null) {
-                    return (double)AutoAspectReference.Width / (double)AutoAspectReference.Height;
+                    return (float)AutoAspectReference.Width / (float)AutoAspectReference.Height;
                 }
                 throw new NullReferenceException($"AspectRatio is refered when AutoAspectReference is null.");
             }

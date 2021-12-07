@@ -4,17 +4,17 @@ namespace GLTestVisualizer
 {
     class RotationCameraModel : CameraModel
     {
-        public double ElevationAnbleTopLimitDeg
-        { get; set; } = 89.0;
-        public double ElevationAnbleBottomLimitDeg
-        { get; set; } = -89.0;
+        public float ElevationAnbleTopLimitDeg
+        { get; set; } = 89.0f;
+        public float ElevationAnbleBottomLimitDeg
+        { get; set; } = -89.0f;
 
         public override Matrix4x4 ViewMatrix
         {
             get {
                 if (m_Changed) {
-                    Transform.LocalRotation = Quaternion.MakeRotation(m_AzimuthAngle, new Vector3(0.0, 1.0, 0.0))
-                                            * Quaternion.MakeRotation(m_ElevationAngle, new Vector3(1.0, 0.0, 0.0));
+                    Transform.LocalRotation = Quaternion.MakeRotation(m_AzimuthAngle, new Vector3(0.0f, 1.0f, 0.0f))
+                                            * Quaternion.MakeRotation(m_ElevationAngle, new Vector3(1.0f, 0.0f, 0.0f));
                     m_Changed = false;
                 }
 
@@ -22,7 +22,7 @@ namespace GLTestVisualizer
             }
         }
 
-        public double AzimuthAngleDeg
+        public float AzimuthAngleDeg
         {
             get => m_AzimuthAngle.RadToDeg();
             set {
@@ -31,7 +31,7 @@ namespace GLTestVisualizer
             }
         }
 
-        public double ElevationAngleDeg
+        public float ElevationAngleDeg
         {
             get => m_ElevationAngle.RadToDeg();
             set {
@@ -40,8 +40,8 @@ namespace GLTestVisualizer
             }
         }
 
-        private double m_AzimuthAngle;
-        private double m_ElevationAngle;
+        private float m_AzimuthAngle;
+        private float m_ElevationAngle;
         private bool m_Changed = true;
     }
 }

@@ -32,7 +32,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
         }
 
         public Vector4 Color
-        { get; set; } = new Vector4(1.0, 1.0, 1.0, 1.0);
+        { get; set; } = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
         private new GLRenderShaderProgram Shader => base.Shader;
     }

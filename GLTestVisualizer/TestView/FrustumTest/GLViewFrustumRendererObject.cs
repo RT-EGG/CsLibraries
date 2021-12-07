@@ -42,7 +42,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
             public override void CommitProperties(GLRenderingStatus inRenderingStatus)
             {
-                GetProperty<Vector4>("inColor").Value = new Vector4(1.0, 1.0, 1.0, 1.0);
+                GetProperty<Vector4>("inColor").Value = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
                 GetProperty<Matrix4x4>("inProjectionMatrix").Value = inRenderingStatus.ProjectionMatrix.CurrentMatrix;
                 GetProperty<Matrix4x4>("inModelviewMatrix").Value = inRenderingStatus.ModelViewMatrix.CurrentMatrix;
 
@@ -56,14 +56,14 @@ namespace GLTestVisualizer.TestView.FrustumTest
             public Mesh()
             {
                 Positions = new Vector3[8] {
-                    new Vector3(-1.0, -1.0, -1.0),
-                    new Vector3(-1.0, -1.0,  1.0),
-                    new Vector3(-1.0,  1.0, -1.0),
-                    new Vector3(-1.0,  1.0,  1.0),
-                    new Vector3( 1.0, -1.0, -1.0),
-                    new Vector3( 1.0, -1.0,  1.0),
-                    new Vector3( 1.0,  1.0, -1.0),
-                    new Vector3( 1.0,  1.0,  1.0)
+                    new Vector3(-1.0f, -1.0f, -1.0f),
+                    new Vector3(-1.0f, -1.0f,  1.0f),
+                    new Vector3(-1.0f,  1.0f, -1.0f),
+                    new Vector3(-1.0f,  1.0f,  1.0f),
+                    new Vector3( 1.0f, -1.0f, -1.0f),
+                    new Vector3( 1.0f, -1.0f,  1.0f),
+                    new Vector3( 1.0f,  1.0f, -1.0f),
+                    new Vector3( 1.0f,  1.0f,  1.0f)
                 };
                 Indices = new int[] {
                     0, 1, 1, 3, 3, 2, 2, 0, // -x
@@ -80,17 +80,17 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 inProjectionMatrix.Inverse();
 
                 Vector3[] positions = new Vector3[8] {
-                    new Vector3(-1.0, -1.0, -1.0),
-                    new Vector3(-1.0, -1.0,  1.0),
-                    new Vector3(-1.0,  1.0, -1.0),
-                    new Vector3(-1.0,  1.0,  1.0),
-                    new Vector3( 1.0, -1.0, -1.0),
-                    new Vector3( 1.0, -1.0,  1.0),
-                    new Vector3( 1.0,  1.0, -1.0),
-                    new Vector3( 1.0,  1.0,  1.0)
+                    new Vector3(-1.0f, -1.0f, -1.0f),
+                    new Vector3(-1.0f, -1.0f,  1.0f),
+                    new Vector3(-1.0f,  1.0f, -1.0f),
+                    new Vector3(-1.0f,  1.0f,  1.0f),
+                    new Vector3( 1.0f, -1.0f, -1.0f),
+                    new Vector3( 1.0f, -1.0f,  1.0f),
+                    new Vector3( 1.0f,  1.0f, -1.0f),
+                    new Vector3( 1.0f,  1.0f,  1.0f)
                 };
                 for (int i = 0; i < positions.Length; ++i) {
-                    Vector4 v = inProjectionMatrix.Multiply(positions[i], 1.0);
+                    Vector4 v = inProjectionMatrix.Multiply(positions[i], 1.0f);
                     v = v / v.w;
 
                     positions[i] = new Vector3(v);

@@ -22,12 +22,12 @@ namespace GLTestVisualizer
         public OrbitCameraModel Camera
         { get; set; } = null;
 
-        public double TranslatePerPixel
-        { get; set; } = 0.01;
-        public double TranslatePerWheel
-        { get; set; } = 0.1;
-        public double RotationPerPixel
-        { get; set; } = (1.0).DegToRad();
+        public float TranslatePerPixel
+        { get; set; } = 0.01f;
+        public float TranslatePerWheel
+        { get; set; } = 0.1f;
+        public float RotationPerPixel
+        { get; set; } = (1.0f).DegToRad();
 
         protected virtual void Dispose(bool inDisposing)
         {
@@ -92,10 +92,10 @@ namespace GLTestVisualizer
 
             if ((m_MouseButtonDown[MouseButtons.Left] && m_MouseButtonDown[MouseButtons.Right]) || m_MouseButtonDown[MouseButtons.Middle]) {
                 // move center x-z plane
-                Vector3 z = new Vector3(Matrix4x4.MakeRotateY(coord.AzimuthAngle) * (new Vector4(0.0, 0.0, -1.0, 0.0)));
-                z.y = 0.0;
+                Vector3 z = new Vector3(Matrix4x4.MakeRotateY(coord.AzimuthAngle) * (new Vector4(0.0f, 0.0f, -1.0f, 0.0f)));
+                z.y = 0.0f;
                 z.Normalize();
-                Vector3 x = Vector3.Cross(z, new Vector3(0.0, 1.0, 0.0));
+                Vector3 x = Vector3.Cross(z, new Vector3(0.0f, 1.0f, 0.0f));
 
                 center += (x * transfer.X * TranslatePerPixel) + (z * -transfer.Y * TranslatePerPixel);
 

@@ -14,27 +14,27 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             Vector4[] vertColors = new Vector4[m_Cube.Positions.Length];
             for (int i = 0; i < m_Cube.Positions.Length; ++i) {
                 if ((0 <= i) && (i <= 3)) {
-                    vertColors[i] = new Vector4(1.0, 0.0, 0.0, 1.0); // -x
+                    vertColors[i] = new Vector4(1.0f, 0.0f, 0.0f, 1.0f); // -x
                 } else if ((4 <= i) && (i <= 7)) {
-                    vertColors[i] = new Vector4(0.0, 1.0, 1.0, 1.0); // +x
+                    vertColors[i] = new Vector4(0.0f, 1.0f, 1.0f, 1.0f); // +x
                 } else if ((8 <= i) && (i <= 11)) {
-                    vertColors[i] = new Vector4(0.0, 1.0, 0.0, 1.0); // -y
+                    vertColors[i] = new Vector4(0.0f, 1.0f, 0.0f, 1.0f); // -y
                 } else if ((12 <= i) && (i <= 15)) {
-                    vertColors[i] = new Vector4(1.0, 0.0, 1.0, 1.0); // +y
+                    vertColors[i] = new Vector4(1.0f, 0.0f, 1.0f, 1.0f); // +y
                 } else if ((16 <= i) && (i <= 19)) {
-                    vertColors[i] = new Vector4(0.0, 0.0, 1.0, 1.0); // -z
+                    vertColors[i] = new Vector4(0.0f, 0.0f, 1.0f, 1.0f); // -z
                 } else if ((20 <= i) && (i <= 23)) {
-                    vertColors[i] = new Vector4(1.0, 1.0, 0.0, 1.0); // +z
+                    vertColors[i] = new Vector4(1.0f, 1.0f, 0.0f, 1.0f); // +z
                 }
             }
             m_Cube.Colors = vertColors;
 
             m_MatrixInputView.Renderer.Mesh = m_Cube;
             m_MatrixInputView.Renderer.Material = m_Material;
-            m_MatrixInputView.Transform.LocalPosition = new Vector3(-1.0, 0.0, 0.0);
+            m_MatrixInputView.Transform.LocalPosition = new Vector3(-1.0f, 0.0f, 0.0f);
             m_MatrixOutputView.Renderer.Mesh = m_Cube;
             m_MatrixOutputView.Renderer.Material = m_Material;
-            m_MatrixOutputView.Transform.LocalPosition = new Vector3(1.0, 0.0, 0.0);
+            m_MatrixOutputView.Transform.LocalPosition = new Vector3(1.0f, 0.0f, 0.0f);
 
             m_MatrixInputAxisView.Transform.Parent = m_MatrixInputView.Transform;
             m_MatrixOutputAxisView.Transform.Parent = m_MatrixOutputView.Transform;
@@ -112,12 +112,12 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         {
             inStatus.ProjectionMatrix.PushMatrix();
             try {
-                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0, (double)GLViewer.Width / (double)GLViewer.Height, 0.01, 100.0));
+                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
 
                 inStatus.ModelViewMatrix.View.PushMatrix();
                 inStatus.ModelViewMatrix.Model.PushMatrix();
                 try {
-                    inStatus.ModelViewMatrix.View.LookAt(new Vector3(0.0, 2.0, 2.0), new Vector3(0.0), new Vector3(0.0, 1.0, 0.0));
+                    inStatus.ModelViewMatrix.View.LookAt(new Vector3(0.0f, 2.0f, 2.0f), new Vector3(0.0f), new Vector3(0.0f, 1.0f, 0.0f));
                     inStatus.ModelViewMatrix.Model.LoadIdentity();
 
                     GL.Enable(EnableCap.DepthTest);
@@ -153,7 +153,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         }
 
         private GLMaterial m_Material = new GLBoxMaterial();
-        private GLMesh m_Cube = GLPrimitiveMesh.CreateBox(1.0, 1.0, 1.0);
+        private GLMesh m_Cube = GLPrimitiveMesh.CreateBox(1.0f, 1.0f, 1.0f);
         private GLRenderObject m_MatrixInputView = new GLRenderObject();
         private GLAxisRenderObject m_MatrixInputAxisView = new GLAxisRenderObject();
         private GLRenderObject m_MatrixOutputView = new GLRenderObject();

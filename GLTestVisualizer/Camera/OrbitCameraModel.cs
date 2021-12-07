@@ -4,21 +4,21 @@ namespace GLTestVisualizer
 {
     class OrbitCameraModel : CameraModel
     {
-        public double ElevationAnbleTopLimitDeg
-        { get; set; } = 89.0;
-        public double ElevationAnbleBottomLimitDeg
-        { get; set; } = -89.0;
-        public double DistanceLimitMin
-        { get; set; } = 0.1;
-        public double DistanceLimitMax
-        { get; set; } = 100.0;
+        public float ElevationAnbleTopLimitDeg
+        { get; set; } = 89.0f;
+        public float ElevationAnbleBottomLimitDeg
+        { get; set; } = -89.0f;
+        public float DistanceLimitMin
+        { get; set; } = 0.1f;
+        public float DistanceLimitMax
+        { get; set; } = 100.0f;
 
         public override Matrix4x4 ViewMatrix
         {
             get {
                 if (m_Changed) {
                     Transform.LocalPosition = Center + Coordinate.GetRectangularCoordinate();
-                    Transform.LocalRotation = Quaternion.FromEuler(m_Coordinate.ElevationAngle, m_Coordinate.AzimuthAngle, 0.0, EEulerRotationOrder.YXZ);
+                    Transform.LocalRotation = Quaternion.FromEuler(m_Coordinate.ElevationAngle, m_Coordinate.AzimuthAngle, 0.0f, EEulerRotationOrder.YXZ);
                     m_Changed = false;
                 }
                 return base.ViewMatrix;

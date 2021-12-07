@@ -24,24 +24,24 @@ namespace GLTestVisualizer.TestView.Raycast
             m_TPSCameraController = new OrbitCameraMouseController(GLTPSView);
             m_TPSCameraController.Camera = m_TPSCamera;
             m_TPSCamera.Coordinate = new SphericalCoordinate {
-                AzimuthAngleDeg = 0.0,
-                ElevationAngleDeg = -15.0,
-                Radius = 50.0
+                AzimuthAngleDeg = 0.0f,
+                ElevationAngleDeg = -15.0f,
+                Radius = 50.0f
             };
 
             m_FPSCameraController = new FreeFlyCameraKeyMouseController(GLFPSView);
             m_FPSCameraController.Camera = m_FPSCamera;
-            m_FPSCameraController.TransferPerFrame = 3.0 * (InvalidateTimer.Interval * 0.001);
+            m_FPSCameraController.TransferPerFrame = 3.0f * (InvalidateTimer.Interval * 0.001f);
             m_FPSCameraVisualizer.Transform.Parent = m_FPSCamera.Transform;
             m_FPSCameraVisualizer.Renderer.Mesh = m_SphereMesh;
             m_FPSCameraVisualizer.Renderer.Material = new GLColorMaterial {
-                Color = new Vector3(0.2, 0.2, 0.2)
+                Color = new Vector3(0.2f, 0.2f, 0.2f)
             };
             m_FPSCameraRayVisualizer.Transform.Parent = m_FPSCameraVisualizer.Transform;
-            m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(0.0, 0.0, 10.0);
+            m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(0.0f, 0.0f, 10.0f);
             m_FPSCameraRayVisualizer.Renderer.Mesh = m_FPSCameraRayMesh;
             m_FPSCameraRayVisualizer.Renderer.Material = new GLColorMaterial {
-                Color = new Vector3(1.0, 1.0, 1.0)
+                Color = new Vector3(1.0f, 1.0f, 1.0f)
             };
             return;
         }
@@ -73,9 +73,9 @@ namespace GLTestVisualizer.TestView.Raycast
             for (int i = 0; i < 20; ++i) {
                 OctreeRegistableRenderObject newObject = new OctreeRegistableRenderObject();
                 newObject.Transform.LocalPosition = new SphericalCoordinate {
-                    AzimuthAngleDeg = randomizer.NextDouble() * 360.0,
-                    ElevationAngleDeg = (randomizer.NextDouble() * 360.0) - 180.0,
-                    Radius = (randomizer.NextDouble() * ((m_Octree.Dimensions * 0.5) - 1.0)) + 1.0
+                    AzimuthAngleDeg = (float)(randomizer.NextDouble() * 360.0),
+                    ElevationAngleDeg = (float)((randomizer.NextDouble() * 360.0) - 180.0),
+                    Radius = (float)((randomizer.NextDouble() * ((m_Octree.Dimensions * 0.5) - 1.0)) + 1.0)
                 }.GetRectangularCoordinate();
 
                 newObject.Renderer.Mesh = ((randomizer.Next() % 2) == 0) ? m_SphereMesh : m_CubeMesh;
@@ -92,14 +92,14 @@ namespace GLTestVisualizer.TestView.Raycast
         private void GLFPSView_OnRenderScene(GLControl inControl, GLRenderingStatus inStatus)
         {
             Vector3 rayPoint0 = m_FPSCameraRayVisualizer.Transform.WorldPosition;
-            Vector3 rayPoint1 = rayPoint0 + (m_FPSCameraRayVisualizer.Transform.WorldRotation * new Vector3(0.0, 0.0, -1.0) * (double)UdRayLength.Value);
+            Vector3 rayPoint1 = rayPoint0 + (m_FPSCameraRayVisualizer.Transform.WorldRotation * new Vector3(0.0f, 0.0f, -1.0f) * (float)UdRayLength.Value);
 
             m_HitPointMarkerObjects.ForEach(o => m_RenderObjectPool.Enqueue(o));
             m_HitPointMarkerObjects.Clear();
             foreach (var intersect in RayCast(new Line3D(rayPoint0, rayPoint1))) {
                 var marker = RequestHitPointMarkerObject();
                 marker.Transform.LocalPosition = intersect.Position;
-                marker.Transform.LocalScale = new Vector3(0.1);
+                marker.Transform.LocalScale = new Vector3(0.1f);
                 marker.CalculateBoundingBox();
 
                 m_HitPointMarkerObjects.Add(marker);
@@ -107,13 +107,13 @@ namespace GLTestVisualizer.TestView.Raycast
 
             m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_HitPointMarkerObjects);
 
-            m_FPSCamera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0, (double)GLTPSView.Width / (double)GLTPSView.Height, 0.01, 1000.0);
+            m_FPSCamera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
             m_FPSCamera.Render(inStatus, m_Scene);
         }
 
         private void GLTPSView_OnRenderScene(GLControl inControl, GLRenderingStatus inStatus)
         {
-            m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0, 1.0, (double)UdRayLength.Value);
+            m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0f, 1.0f, (float)UdRayLength.Value);
 
             if (CheckShowOctreeGrid.Checked) {
                 m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_OctreeRenderObject).Concat(m_FPSCameraVisualizer, m_FPSCameraRayVisualizer).Concat(m_HitPointMarkerObjects); ;
@@ -121,7 +121,7 @@ namespace GLTestVisualizer.TestView.Raycast
                 m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_FPSCameraVisualizer, m_FPSCameraRayVisualizer).Concat(m_HitPointMarkerObjects); ;
             }
 
-            m_TPSCamera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0, (double)GLTPSView.Width / (double)GLTPSView.Height, 0.01, 1000.0);
+            m_TPSCamera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
             m_TPSCamera.Render(inStatus, m_Scene);
             return;
         }
@@ -139,16 +139,16 @@ namespace GLTestVisualizer.TestView.Raycast
 
         private void ResetFPScamera()
         {
-            m_FPSCamera.Transform.LocalPosition = new Vector3(0.0);
+            m_FPSCamera.Transform.LocalPosition = new Vector3(0.0f);
             m_FPSCamera.Transform.LocalRotation = Quaternion.Identity;
             return;
         }
 
-        private void TimeStep(double inTimeInSec)
+        private void TimeStep(float inTimeInSec)
         {
-            m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0, 1.0, (double)UdRayLength.Value);
+            m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0f, 1.0f, (float)UdRayLength.Value);
             Vector3 rayPoint0 = m_FPSCameraRayVisualizer.Transform.WorldPosition;
-            Vector3 rayPoint1 = rayPoint0 + (m_FPSCameraRayVisualizer.Transform.WorldRotation * new Vector3(0.0, 0.0, -1.0) * (double)UdRayLength.Value);
+            Vector3 rayPoint1 = rayPoint0 + (m_FPSCameraRayVisualizer.Transform.WorldRotation * new Vector3(0.0f, 0.0f, -1.0f) * (float)UdRayLength.Value);
 
 
             m_HitPointMarkerObjects.ForEach(o => m_RenderObjectPool.Enqueue(o));
@@ -156,7 +156,7 @@ namespace GLTestVisualizer.TestView.Raycast
             foreach (var intersect in RayCast(new Line3D(rayPoint0, rayPoint1))) {
                 var marker = RequestHitPointMarkerObject();
                 marker.Transform.LocalPosition = intersect.Position;
-                marker.Transform.LocalScale = new Vector3(0.1);
+                marker.Transform.LocalScale = new Vector3(0.1f);
                 marker.CalculateBoundingBox();
 
                 m_HitPointMarkerObjects.Add(marker);
@@ -206,12 +206,12 @@ namespace GLTestVisualizer.TestView.Raycast
             }
             GLRenderObject newObject = new GLRenderObject();
             newObject.Renderer.Mesh = m_SphereMesh;
-            newObject.Renderer.Material = new GLColorMaterial() { Color = new Vector3(1.0, 1.0, 1.0) };
+            newObject.Renderer.Material = new GLColorMaterial() { Color = new Vector3(1.0f, 1.0f, 1.0f) };
             return newObject;
         }
 
-        private const double OctreeSize = 20.0;
-        private RtCs.MathUtils.Geometry.Octree m_Octree = new RtCs.MathUtils.Geometry.Octree(2, OctreeSize, new Vector3(-OctreeSize * 0.5));
+        private const float OctreeSize = 20.0f;
+        private RtCs.MathUtils.Geometry.Octree m_Octree = new RtCs.MathUtils.Geometry.Octree(2, OctreeSize, new Vector3(-OctreeSize * 0.5f));
         private OctreeRenderObject m_OctreeRenderObject = new OctreeRenderObject();
 
         private List<OctreeRegistableRenderObject> m_RaycastableObjects = new List<OctreeRegistableRenderObject>();
@@ -228,15 +228,15 @@ namespace GLTestVisualizer.TestView.Raycast
         private FreeFlyCameraKeyMouseController m_FPSCameraController = null;
         private GLRenderObject m_FPSCameraVisualizer = new GLRenderObject();
         private GLRenderObject m_FPSCameraRayVisualizer = new GLRenderObject();
-        private GLMesh m_FPSCameraRayMesh = GLPrimitiveMesh.CreateLines((new Vector3(0.0), new Vector3(0.0, 0.0, -1.0)));
+        private GLMesh m_FPSCameraRayMesh = GLPrimitiveMesh.CreateLines((new Vector3(0.0f), new Vector3(0.0f, 0.0f, -1.0f)));
 
         private readonly Vector3[] RenderColors = new Vector3[] {
-            new Vector3(1.0, 0.0, 0.0),
-            new Vector3(0.0, 1.0, 0.0),
-            new Vector3(0.0, 0.0, 1.0),
-            new Vector3(1.0, 1.0, 0.0),
-            new Vector3(0.0, 1.0, 1.0),
-            new Vector3(1.0, 0.0, 1.0),
+            new Vector3(1.0f, 0.0f, 0.0f),
+            new Vector3(0.0f, 1.0f, 0.0f),
+            new Vector3(0.0f, 0.0f, 1.0f),
+            new Vector3(1.0f, 1.0f, 0.0f),
+            new Vector3(0.0f, 1.0f, 1.0f),
+            new Vector3(1.0f, 0.0f, 1.0f),
         };
     }
 }

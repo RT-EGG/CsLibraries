@@ -29,7 +29,7 @@ namespace GLTestVisualizer.TestView.Octree
         }
 
         public Vector4 Color
-        { get; set; } = new Vector4(1.0);
+        { get; set; } = new Vector4(1.0f);
         private new GLRenderShaderProgram Shader => base.Shader;
     }
 }

@@ -21,8 +21,8 @@ namespace GLTestVisualizer
         public RotationCameraModel Camera
         { get; set; } = null;
 
-        public double RotationPerPixel
-        { get; set; } = (1.0).DegToRad();
+        public float RotationPerPixel
+        { get; set; } = (1.0f).DegToRad();
 
         protected virtual void Dispose(bool inDisposing)
         {

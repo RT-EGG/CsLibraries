@@ -11,8 +11,8 @@ namespace GLTestVisualizer.TestView.FrustumTest
             InitializeComponent();
         }
 
-        private double ProjectionTop => (double)(UdOffsetY.Value + (UdSizeY.Value * 0.5m));
-        private double ProjectionBottom => (double)(UdOffsetY.Value - (UdSizeY.Value * 0.5m));
+        private float ProjectionTop => (float)(UdOffsetY.Value + (UdSizeY.Value * 0.5m));
+        private float ProjectionBottom => (float)(UdOffsetY.Value - (UdSizeY.Value * 0.5m));
 
         public override void SetAutoAspectReference(Control inControl)
         {
@@ -44,12 +44,12 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
         public override Matrix4x4 ProjectionMatrix
             => Matrix4x4.MakeFrustum(
-                (double)(UdOffsetX.Value - (UdSizeX.Value * 0.5m)),
-                (double)(UdOffsetX.Value + (UdSizeX.Value * 0.5m)),
-                (double)(UdOffsetY.Value - (UdSizeY.Value * 0.5m)),
-                (double)(UdOffsetY.Value + (UdSizeY.Value * 0.5m)),
-                (double)UdDepthMin.Value,
-                (double)(UdDepthMin.Value + UdDepthLength.Value)
+                (float)(UdOffsetX.Value - (UdSizeX.Value * 0.5m)),
+                (float)(UdOffsetX.Value + (UdSizeX.Value * 0.5m)),
+                (float)(UdOffsetY.Value - (UdSizeY.Value * 0.5m)),
+                (float)(UdOffsetY.Value + (UdSizeY.Value * 0.5m)),
+                (float)UdDepthMin.Value,
+                (float)(UdDepthMin.Value + UdDepthLength.Value)
             );
     }
 }

@@ -28,11 +28,11 @@ namespace GLTestVisualizer.TestView.Octree
             m_OctreeObject.LocalPosition = m_Octree.Offset;
             m_OctreeObject.SetupForOctree(m_Octree);
 
-            m_SphereObject.Transform.LocalScale = new Vector3(0.5);
+            m_SphereObject.Transform.LocalScale = new Vector3(0.5f);
             m_SphereObject.Renderer.Mesh = m_SphereMesh;
             m_SphereObject.Renderer.Material = m_SphereMaterial;
             m_SphereBoundsObject.Transform.Parent = m_SphereObject.Transform;
-            m_SphereBoundsObject.Transform.LocalScale = new Vector3(2.0);
+            m_SphereBoundsObject.Transform.LocalScale = new Vector3(2.0f);
             m_SphereBoundsObject.Renderer.Mesh = m_SphereBoundsMesh;
             m_SphereBoundsObject.Renderer.Material = m_SphereMaterial;
             m_SphereBoundsObject.PolygonMode = EGLRenderPolygonMode.Line;
@@ -40,9 +40,9 @@ namespace GLTestVisualizer.TestView.Octree
             m_CameraController = new OrbitCameraMouseController(glView);
             m_CameraController.Camera = m_Camera;
             m_Camera.Coordinate = new SphericalCoordinate {
-                AzimuthAngleDeg = 0.0,
-                ElevationAngleDeg = 0.0,
-                Radius = 20.0
+                AzimuthAngleDeg = 0.0f,
+                ElevationAngleDeg = 0.0f,
+                Radius = 20.0f
             };
 
             ValidationTimer.Enabled = true;
@@ -61,18 +61,18 @@ namespace GLTestVisualizer.TestView.Octree
 
         private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderingStatus inStatus)
         {
-            m_Camera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0, (double)glView.Width / (double)glView.Height, 0.01, 100.0);
+            m_Camera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, (float)glView.Width / (float)glView.Height, 0.01f, 100.0f);
             m_Camera.Render(inStatus, m_Scene);
             return;
         }
 
         private void ValidationTimer_Tick(object sender, EventArgs e)
         {
-            double t = (double)TrackBarTime.Value / (double)(TrackBarTime.Maximum - TrackBarTime.Minimum) * Math.PI * 2.0;
+            float t = (float)TrackBarTime.Value / (float)(TrackBarTime.Maximum - TrackBarTime.Minimum) * (float)Math.PI * 2.0f;
             m_SphereObject.Transform.LocalPosition = new Vector3(
-                    Math.Sin(t * 1.0) * OctreeSize * 0.5 * 0.8,
-                    Math.Cos(t * 3.0) * OctreeSize * 0.5 * 0.5,
-                    Math.Sin(t * 2.0 + Math.PI) * OctreeSize * 0.5 * 0.6
+                    (float)(Math.Sin(t * 1.0) * OctreeSize * 0.5 * 0.8),
+                    (float)(Math.Cos(t * 3.0) * OctreeSize * 0.5 * 0.5),
+                    (float)(Math.Sin(t * 2.0 + Math.PI) * OctreeSize * 0.5 * 0.6)
                 );
             m_SphereObject.CalculateBoundingBox();
 
@@ -111,8 +111,8 @@ namespace GLTestVisualizer.TestView.Octree
             }
         }
 
-        private const double OctreeSize = 8.0;
-        private RtCs.MathUtils.Geometry.Octree m_Octree = new RtCs.MathUtils.Geometry.Octree(3, OctreeSize, new Vector3(-OctreeSize * 0.5));
+        private const float OctreeSize = 8.0f;
+        private RtCs.MathUtils.Geometry.Octree m_Octree = new RtCs.MathUtils.Geometry.Octree(3, OctreeSize, new Vector3(-OctreeSize * 0.5f));
         private OctreeRenderObject m_OctreeObject = new OctreeRenderObject();
         private OctreeRegistableRenderObject m_SphereObject = new OctreeRegistableRenderObject();
         private GLMesh m_SphereMesh = GLPrimitiveMesh.CreateSphereUV(8, 5);

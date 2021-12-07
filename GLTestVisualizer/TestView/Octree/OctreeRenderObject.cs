@@ -20,16 +20,16 @@ namespace GLTestVisualizer.TestView.Octree
                     Color = CellColors[i]
                 };
 
-                double size = inOctree.CellDimensions[i];
+                float size = inOctree.CellDimensions[i];
                 int i2 = 2.Pow(i);
                 int step = div / i2;
                 for (int x = 0; x < i2; ++x) {
                     for (int y = 0; y < i2; ++y) {
                         for (int z = 0; z < i2; ++z) {
                             Vector3 position = new Vector3 (
-                                (x * size) + (size * 0.5),
-                                (y * size) + (size * 0.5),
-                                (z * size) + (size * 0.5)
+                                (x * size) + (size * 0.5f),
+                                (y * size) + (size * 0.5f),
+                                (z * size) + (size * 0.5f)
                             );
 
                             GLRenderObject cellRenderer = new GLRenderObject();
@@ -72,20 +72,20 @@ namespace GLTestVisualizer.TestView.Octree
             return;
         }
 
-        private GLMesh m_CellMesh = GLPrimitiveMesh.CreateBox(1.0, 1.0, 1.0);
+        private GLMesh m_CellMesh = GLPrimitiveMesh.CreateBox(1.0f, 1.0f, 1.0f);
         private GLMesh m_GridMesh = new GLMesh();
         private GLSolidColorMaterial m_GridMaterial = new GLSolidColorMaterial();
         private Dictionary<IOctreeCell, GLRenderObject> m_CellRenderers = new Dictionary<IOctreeCell, GLRenderObject>();
         private GLRenderObject m_GridRenderer = new GLRenderObject();
         private readonly Vector4[] CellColors = new Vector4[] {
-            new Vector4(0.8, 0.8, 0.8, 0.5),
-            new Vector4(0.8, 0.0, 0.0, 0.5),
-            new Vector4(0.0, 0.8, 0.0, 0.5),
-            new Vector4(0.0, 0.0, 0.8, 0.5),
-            new Vector4(0.8, 0.8, 0.0, 0.5),
-            new Vector4(0.0, 0.8, 0.8, 0.5),
-            new Vector4(0.8, 0.0, 0.8, 0.5),
-            new Vector4(1.0, 1.0, 1.0, 0.5),
+            new Vector4(0.8f, 0.8f, 0.8f, 0.5f),
+            new Vector4(0.8f, 0.0f, 0.0f, 0.5f),
+            new Vector4(0.0f, 0.8f, 0.0f, 0.5f),
+            new Vector4(0.0f, 0.0f, 0.8f, 0.5f),
+            new Vector4(0.8f, 0.8f, 0.0f, 0.5f),
+            new Vector4(0.0f, 0.8f, 0.8f, 0.5f),
+            new Vector4(0.8f, 0.0f, 0.8f, 0.5f),
+            new Vector4(1.0f, 1.0f, 1.0f, 0.5f),
         };
         private GLOctreeCellMaterial[] m_Materials = null;
     }

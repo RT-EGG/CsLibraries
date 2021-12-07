@@ -28,16 +28,16 @@ namespace GLTestVisualizer.TestView.Texture
             base.Start();
 
             m_TextureMesh.Positions = new Vector3[] {
-                new Vector3(-1.0,  1.0, 0.0),
-                new Vector3(-1.0, -1.0, 0.0),
-                new Vector3( 1.0, -1.0, 0.0),
-                new Vector3( 1.0,  1.0, 0.0),
+                new Vector3(-1.0f,  1.0f, 0.0f),
+                new Vector3(-1.0f, -1.0f, 0.0f),
+                new Vector3( 1.0f, -1.0f, 0.0f),
+                new Vector3( 1.0f,  1.0f, 0.0f),
             };
             m_TextureMesh.TexCoords = new Vector2[] {
-                new Vector2(0.0, 0.0),
-                new Vector2(0.0, 1.0),
-                new Vector2(1.0, 1.0),
-                new Vector2(1.0, 0.0),
+                new Vector2(0.0f, 0.0f),
+                new Vector2(0.0f, 1.0f),
+                new Vector2(1.0f, 1.0f),
+                new Vector2(1.0f, 0.0f),
             };
             m_TextureMesh.Topology = EGLMeshTopology.Triangles;
             m_TextureMesh.Indices = new int[] {
@@ -77,7 +77,7 @@ namespace GLTestVisualizer.TestView.Texture
         {
             GLRenderingStatus status = new GLRenderingStatus();
             status.Viewport.SetRect(inControl.ClientRectangle);
-            status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(inControl.Width, inControl.Height, -10.0, 10.0));
+            status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(inControl.Width, inControl.Height, -10.0f, 10.0f));
             status.ModelViewMatrix.View.LoadIdentity();
 
             m_Scene.DisplayList = DisplayList;
@@ -146,24 +146,24 @@ namespace GLTestVisualizer.TestView.Texture
         private void CalcTextureDimensions(Size inClientSize)
         {
             // fill vertex positions to client
-            Vector2 fitSizeHalf = inClientSize.ToVector() * 0.5;
+            Vector2 fitSizeHalf = inClientSize.ToVector() * 0.5f;
             m_TextureMesh.Positions = new Vector3[] {
-                new Vector3(-fitSizeHalf.x,  fitSizeHalf.y, 0.0),
-                new Vector3(-fitSizeHalf.x, -fitSizeHalf.y, 0.0),
-                new Vector3( fitSizeHalf.x, -fitSizeHalf.y, 0.0),
-                new Vector3( fitSizeHalf.x,  fitSizeHalf.y, 0.0),
+                new Vector3(-fitSizeHalf.x,  fitSizeHalf.y, 0.0f),
+                new Vector3(-fitSizeHalf.x, -fitSizeHalf.y, 0.0f),
+                new Vector3( fitSizeHalf.x, -fitSizeHalf.y, 0.0f),
+                new Vector3( fitSizeHalf.x,  fitSizeHalf.y, 0.0f),
             };
 
             // fit texture coordinates
             fitSizeHalf = (new AspectRatioFitter2D()).CalcFitRectSizeWrapParent(inClientSize.ToVector(), m_Texture.Size);
             fitSizeHalf.x /= m_Texture.Width;
             fitSizeHalf.y /= m_Texture.Height;
-            fitSizeHalf *= 0.5;
+            fitSizeHalf *= 0.5f;
             m_TextureMesh.TexCoords = new Vector2[] {
-                new Vector2(0.5 - fitSizeHalf.x, 0.5 - fitSizeHalf.y),
-                new Vector2(0.5 - fitSizeHalf.x, 0.5 + fitSizeHalf.y),
-                new Vector2(0.5 + fitSizeHalf.x, 0.5 + fitSizeHalf.y),
-                new Vector2(0.5 + fitSizeHalf.x, 0.5 - fitSizeHalf.y),
+                new Vector2(0.5f - fitSizeHalf.x, 0.5f - fitSizeHalf.y),
+                new Vector2(0.5f - fitSizeHalf.x, 0.5f + fitSizeHalf.y),
+                new Vector2(0.5f + fitSizeHalf.x, 0.5f + fitSizeHalf.y),
+                new Vector2(0.5f + fitSizeHalf.x, 0.5f - fitSizeHalf.y),
             };
 
             GLView.Invalidate();

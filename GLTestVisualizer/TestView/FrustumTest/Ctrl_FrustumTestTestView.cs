@@ -51,9 +51,9 @@ namespace GLTestVisualizer.TestView.FrustumTest
             m_TPSCameraController = new OrbitCameraMouseController(GLThrirdPersonView);
             m_TPSCameraController.Camera = m_TPSCamera;
             m_TPSCamera.Coordinate = new SphericalCoordinate {
-                AzimuthAngleDeg = 0.0,
-                ElevationAngleDeg = -15.0,
-                Radius = 50.0
+                AzimuthAngleDeg = 0.0f,
+                ElevationAngleDeg = -15.0f,
+                Radius = 50.0f
             };
 
             timer1.Enabled = true;
@@ -82,9 +82,9 @@ namespace GLTestVisualizer.TestView.FrustumTest
             for (int i = 0; i < count; ++i) {
                 GLRenderObject newSphere = new GLRenderObject();
                 newSphere.Transform.LocalPosition = new SphericalCoordinate {
-                    AzimuthAngleDeg = randomizer.NextDouble() * 360.0,
-                    ElevationAngleDeg = (randomizer.NextDouble() * 360.0) - 180.0,
-                    Radius = (randomizer.NextDouble() * 35.0) + 5.0
+                    AzimuthAngleDeg = (float)(randomizer.NextDouble() * 360.0),
+                    ElevationAngleDeg = (float)((randomizer.NextDouble() * 360.0) - 180.0),
+                    Radius = (float)((randomizer.NextDouble() * 35.0) + 5.0)
                 }.GetRectangularCoordinate();
                 newSphere.Renderer.Mesh = m_SphereMesh;
                 newSphere.Renderer.Material = m_OutFrustumMaterial;
@@ -95,14 +95,14 @@ namespace GLTestVisualizer.TestView.FrustumTest
             for (int i = 0; i < count; ++i) {
                 GLRenderObject newCube = new GLRenderObject();
                 newCube.Transform.LocalPosition = new SphericalCoordinate {
-                    AzimuthAngleDeg = randomizer.NextDouble() * 360.0,
-                    ElevationAngleDeg = (randomizer.NextDouble() * 360.0) - 180.0,
-                    Radius = (randomizer.NextDouble() * 35.0) + 5.0
+                    AzimuthAngleDeg = (float)(randomizer.NextDouble() * 360.0),
+                    ElevationAngleDeg = (float)((randomizer.NextDouble() * 360.0) - 180.0),
+                    Radius = (float)((randomizer.NextDouble() * 35.0) + 5.0)
                 }.GetRectangularCoordinate();
                 newCube.Transform.LocalScale = new Vector3(
-                    1.0 + (randomizer.NextDouble() * 0.5),
-                    1.0 + (randomizer.NextDouble() * 0.5),
-                    1.0 + (randomizer.NextDouble() * 0.5)
+                    (float)(1.0 + (randomizer.NextDouble() * 0.5)),
+                    (float)(1.0 + (randomizer.NextDouble() * 0.5)),
+                    (float)(1.0 + (randomizer.NextDouble() * 0.5))
                 );
                 newCube.Renderer.Mesh = m_CubeMesh;
                 newCube.Renderer.Material = m_OutFrustumMaterial;
@@ -120,8 +120,8 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
             GLViewFrustum frustum = new GLViewFrustum(m_FPSCamera.Transform.WorldMatrix.Inversed, m_CurrentParameterView.ProjectionMatrix);
             foreach (var sphere in m_SphereObjects) {
-                Vector3 p = new Vector3(sphere.Transform.WorldMatrix.Multiply(new Vector4(0.0, 0.0, 0.0, 1.0)));
-                if (frustum.IsIntersectSphere(p, 1.0)) {
+                Vector3 p = new Vector3(sphere.Transform.WorldMatrix.Multiply(new Vector4(0.0f, 0.0f, 0.0f, 1.0f)));
+                if (frustum.IsIntersectSphere(p, 1.0f)) {
                     sphere.Renderer.Material = m_InFrustumMaterial;
                 } else {
                     sphere.Renderer.Material = m_OutFrustumMaterial;
@@ -169,7 +169,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
         {
             inStatus.ProjectionMatrix.PushMatrix();
             try {
-                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0, (double)GLThrirdPersonView.Width / (double)GLThrirdPersonView.Height, 0.01, 1000.0));
+                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLThrirdPersonView.Width / (float)GLThrirdPersonView.Height, 0.01f, 1000.0f));
 
                 inStatus.ModelViewMatrix.View.PushMatrix();
                 try {

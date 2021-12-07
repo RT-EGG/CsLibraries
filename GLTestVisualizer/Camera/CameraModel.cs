@@ -9,7 +9,7 @@ namespace GLTestVisualizer
         { get; } = new Transform();
 
         public virtual Matrix4x4 ProjectionMatrix
-        { get; set; } = Matrix4x4.MakePerspective(45.0, 1.0, 0.01, 100.0);
+        { get; set; } = Matrix4x4.MakePerspective(45.0f, 1.0f, 0.01f, 100.0f);
         public virtual Matrix4x4 ViewMatrix => Transform.WorldMatrix.Inversed;
     }
 }

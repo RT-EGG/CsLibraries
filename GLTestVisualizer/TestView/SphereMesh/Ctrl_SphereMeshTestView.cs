@@ -17,19 +17,19 @@ namespace GLTestVisualizer.TestView.SphereMesh
 
         public override void Start()
         {
-            m_UvSphere.Transform.LocalPosition = new Vector3(-2.5, 0.0, 0.0);
+            m_UvSphere.Transform.LocalPosition = new Vector3(-2.5f, 0.0f, 0.0f);
             m_UvSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_UvSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereUV(5, 5);
             m_UvSphere.Renderer.Material = new GLSphereMaterial();
             m_UvAxix.Transform.Parent = m_UvSphere.Transform;
 
-            m_IcoSphere.Transform.LocalPosition = new Vector3(0.0, 0.0, 0.0);
+            m_IcoSphere.Transform.LocalPosition = new Vector3(0.0f, 0.0f, 0.0f);
             m_IcoSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_IcoSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereICO(0);
             m_IcoSphere.Renderer.Material = new GLSphereMaterial();
             m_IcoAxis.Transform.Parent = m_IcoSphere.Transform;
 
-            m_RcSphere.Transform.LocalPosition = new Vector3(2.5, 0.0, 0.0);
+            m_RcSphere.Transform.LocalPosition = new Vector3(2.5f, 0.0f, 0.0f);
             m_RcSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_RcSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereRoundedCube(2);
             m_RcSphere.Renderer.Material = new GLSphereMaterial();
@@ -51,13 +51,12 @@ namespace GLTestVisualizer.TestView.SphereMesh
         {
             inStatus.ProjectionMatrix.PushMatrix();
             try {
-                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0, (double)GLViewer.Width / (double)GLViewer.Height, 0.01, 100.0));
-                //inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(3.0, inControl.Width, inControl.Height, 0.01, 100.0));
+                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
 
                 inStatus.ModelViewMatrix.View.PushMatrix();
                 inStatus.ModelViewMatrix.Model.PushMatrix();
                 try {
-                    inStatus.ModelViewMatrix.View.LookAt(new Vector3(0.0, 1.0, 4.0), new Vector3(0.0), new Vector3(0.0, 1.0, 0.0));
+                    inStatus.ModelViewMatrix.View.LookAt(new Vector3(0.0f, 1.0f, 4.0f), new Vector3(0.0f), new Vector3(0.0f, 1.0f, 0.0f));
                     inStatus.ModelViewMatrix.Model.LoadIdentity();
 
                     GL.Enable(EnableCap.DepthTest);
@@ -96,8 +95,8 @@ namespace GLTestVisualizer.TestView.SphereMesh
         {
             GLViewer.Invalidate();
 
-            var a = (90.0 * (RenderTimer.Interval / 1000.0));
-            var rot = Quaternion.FromEuler(new Vector3(0.0, a, 0.0).DegToRad(), EEulerRotationOrder.YXZ);
+            var a = (90.0f * (RenderTimer.Interval / 1000.0f));
+            var rot = Quaternion.FromEuler(new Vector3(0.0f, a, 0.0f).DegToRad(), EEulerRotationOrder.YXZ);
 
             m_UvSphere.Transform.LocalRotation *= rot;
             m_IcoSphere.Transform.LocalRotation *= rot;

@@ -13,7 +13,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
         public override void CommitProperties(GLRenderingStatus inRenderingStatus)
         {
-            GetProperty<Vector4>("inColor").Value = IsInFrustum ? new Vector4(1.0, 0.0, 0.0, 1.0) : new Vector4(0.0, 0.0, 1.0, 1.0);
+            GetProperty<Vector4>("inColor").Value = IsInFrustum ? new Vector4(1.0f, 0.0f, 0.0f, 1.0f) : new Vector4(0.0f, 0.0f, 1.0f, 1.0f);
             GetProperty<Matrix4x4>("inProjectionMatrix").Value = inRenderingStatus.ProjectionMatrix.CurrentMatrix;
             GetProperty<Matrix4x4>("inModelviewMatrix").Value = inRenderingStatus.ModelViewMatrix.CurrentMatrix;
 

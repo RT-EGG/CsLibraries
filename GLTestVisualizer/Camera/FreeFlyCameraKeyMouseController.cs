@@ -25,10 +25,10 @@ namespace GLTestVisualizer
         public FreeFlyCameraModel Camera
         { get; set; } = null;
 
-        public double RotationPerPixelDeg
-        { get; set; } = 1.0;
-        public double TransferPerFrame
-        { get; set; } = 0.5 * (1.0 / 60.0);
+        public float RotationPerPixelDeg
+        { get; set; } = 1.0f;
+        public float TransferPerFrame
+        { get; set; } = 0.5f * (1.0f / 60.0f);
 
         protected virtual void Dispose(bool inDisposing)
         {
@@ -120,7 +120,7 @@ namespace GLTestVisualizer
 
         private void Control_Invalidated(object sender, InvalidateEventArgs e)
         {
-            Vector3 transfer = new Vector3(0.0);
+            Vector3 transfer = new Vector3(0.0f);
             foreach (var control in m_ControlKeyState.Where(item => item.Value).Select(item => item.Key)) {
                 if (m_KeyControlTransfer.TryGetValue(control, out var t)) {
                     transfer += t;
@@ -129,7 +129,7 @@ namespace GLTestVisualizer
             if (!transfer.IsZero) {
                 transfer = transfer.Normalized * TransferPerFrame;
                 if (m_ControlKeyState[EKeyControls.Boost]) {
-                    transfer *= 3.0;
+                    transfer *= 3.0f;
                 }
                 Camera.LocalMove(transfer);
             }
@@ -182,12 +182,12 @@ namespace GLTestVisualizer
             { EKeyControls.Boost, false }
         };
         private Dictionary<EKeyControls, Vector3> m_KeyControlTransfer = new Dictionary<EKeyControls, Vector3>() {
-            { EKeyControls.MoveForward, new Vector3(0.0, 0.0, -1.0) },
-            { EKeyControls.MoveBack, new Vector3(0.0, 0.0, 1.0) },
-            { EKeyControls.MoveLeft, new Vector3(-1.0, 0.0, 0.0) },
-            { EKeyControls.MoveRight, new Vector3(1.0, 0.0, 0.0) },
-            { EKeyControls.MoveUp, new Vector3(0.0, 1.0, 0.0) },
-            { EKeyControls.MoveDown, new Vector3(0.0, -1.0, 0.0)},
+            { EKeyControls.MoveForward, new Vector3(0.0f, 0.0f, -1.0f) },
+            { EKeyControls.MoveBack, new Vector3(0.0f, 0.0f, 1.0f) },
+            { EKeyControls.MoveLeft, new Vector3(-1.0f, 0.0f, 0.0f) },
+            { EKeyControls.MoveRight, new Vector3(1.0f, 0.0f, 0.0f) },
+            { EKeyControls.MoveUp, new Vector3(0.0f, 1.0f, 0.0f) },
+            { EKeyControls.MoveDown, new Vector3(0.0f, -1.0f, 0.0f)},
         };
     }
 }

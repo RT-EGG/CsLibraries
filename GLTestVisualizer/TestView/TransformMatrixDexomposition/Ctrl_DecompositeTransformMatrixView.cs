@@ -20,9 +20,9 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         public Vector3 Translation
         {
             get => new Vector3(
-                    (double)UdTranslationX.Value,
-                    (double)UdTranslationY.Value,
-                    (double)UdTranslationZ.Value
+                    (float)UdTranslationX.Value,
+                    (float)UdTranslationY.Value,
+                    (float)UdTranslationZ.Value
                 );
 
             set => WithLockingControlEvent(() => {
@@ -35,9 +35,9 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         public Vector3 Rotation
         {
             get => new Vector3(
-                    (double)UdRotationX.Value,
-                    (double)UdRotationY.Value,
-                    (double)UdRotationZ.Value
+                    (float)UdRotationX.Value,
+                    (float)UdRotationY.Value,
+                    (float)UdRotationZ.Value
                 );
 
             set => WithLockingControlEvent(() => {
@@ -50,9 +50,9 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         public new Vector3 Scale
         {
             get => new Vector3(
-                    (double)UdScaleX.Value,
-                    (double)UdScaleY.Value,
-                    (double)UdScaleZ.Value
+                    (float)UdScaleX.Value,
+                    (float)UdScaleY.Value,
+                    (float)UdScaleZ.Value
                 );
 
             set => WithLockingControlEvent(() => {

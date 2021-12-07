@@ -7,13 +7,13 @@ namespace GLTestVisualizer
         public void LocalMove(Vector3 inTransfer)
             => Transform.LocalPosition += Transform.LocalRotation * inTransfer;
 
-        public void TurnLeft(double inDegree)
+        public void TurnLeft(float inDegree)
             => SetLocalRotation(YawRad - inDegree.DegToRad(), PitchRad);
-        public void TurnRight(double inDegree)
+        public void TurnRight(float inDegree)
             => TurnLeft(-inDegree);
-        public void TurnUp(double inDegree)
+        public void TurnUp(float inDegree)
             => SetLocalRotation(YawRad, PitchRad - inDegree.DegToRad());
-        public void TurnDown(double inDegree)
+        public void TurnDown(float inDegree)
             => TurnUp(-inDegree);
         public Quaternion LocalRotation
         {
@@ -21,18 +21,18 @@ namespace GLTestVisualizer
             set => Transform.LocalRotation = value;
         }
 
-        private void SetLocalRotation(double inYawRad, double inPitchRad)
+        private void SetLocalRotation(float inYawRad, float inPitchRad)
         {
             YawRad = inYawRad;
             PitchRad = inPitchRad;
 
-            LocalRotation = Quaternion.FromEuler(PitchRad, YawRad, 0.0, EEulerRotationOrder.YXZ);
+            LocalRotation = Quaternion.FromEuler(PitchRad, YawRad, 0.0f, EEulerRotationOrder.YXZ);
             return;
         }
 
-        private double YawRad
-        { get; set; } = 0.0;
-        private double PitchRad
-        { get; set; } = 0.0;
+        private float YawRad
+        { get; set; } = 0.0f;
+        private float PitchRad
+        { get; set; } = 0.0f;
     }
 }
