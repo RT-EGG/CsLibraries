@@ -6,11 +6,11 @@ namespace RtCs.MathUtils
 {
     public struct Matrix3x3 : IMatrix, IEquatable<Matrix3x3>
     {
-        public Matrix3x3(params double[] inValues)
-            : this((IEnumerable<double>)inValues)
+        public Matrix3x3(params float[] inValues)
+            : this((IEnumerable<float>)inValues)
         { }
 
-        public Matrix3x3(IEnumerable<double> inValues)
+        public Matrix3x3(IEnumerable<float> inValues)
         {
             var e = inValues.GetEnumerator();
             e.MoveNext();
@@ -26,17 +26,17 @@ namespace RtCs.MathUtils
             return;
         }
 
-        public double m00;
-        public double m01;
-        public double m02;
-        public double m10;
-        public double m11;
-        public double m12;
-        public double m20;
-        public double m21;
-        public double m22;
+        public float m00;
+        public float m01;
+        public float m02;
+        public float m10;
+        public float m11;
+        public float m12;
+        public float m20;
+        public float m21;
+        public float m22;
 
-        public double this[int inIndex]
+        public float this[int inIndex]
         {
             get {
                 switch (inIndex) {
@@ -68,16 +68,16 @@ namespace RtCs.MathUtils
             }
         }
 
-        public double this[int inRow, int inCol]
+        public float this[int inRow, int inCol]
         {
             get => this[this.RowColToIndex(inRow, inCol)];
             set => this[this.RowColToIndex(inRow, inCol)] = value;
         }
 
-        public Matrix3x3 SetElements(params (int row, int col, double value)[] inCommands)
-            => SetElements((IEnumerable<(int row, int col, double value)>)inCommands);
+        public Matrix3x3 SetElements(params (int row, int col, float value)[] inCommands)
+            => SetElements((IEnumerable<(int row, int col, float value)>)inCommands);
 
-        public Matrix3x3 SetElements(IEnumerable<(int row, int col, double value)> inCommands)
+        public Matrix3x3 SetElements(IEnumerable<(int row, int col, float value)> inCommands)
         {
             foreach (var command in inCommands) {
                 this[command.row, command.col] = command.value;
@@ -85,14 +85,14 @@ namespace RtCs.MathUtils
             return this;
         }
 
-        public void SetRow(int inRowIndex, double in0, double in1, double in2)
+        public void SetRow(int inRowIndex, float in0, float in1, float in2)
             => SetElements(
                 (inRowIndex, 0, in0),
                 (inRowIndex, 1, in1),
                 (inRowIndex, 2, in2)
             );
 
-        public void SetRow(int inRowIndex, IEnumerable<double> inValues)
+        public void SetRow(int inRowIndex, IEnumerable<float> inValues)
         {
             var enumerator = inValues.GetEnumerator();
             this[inRowIndex, 0] = enumerator.Current; enumerator.MoveNext();
@@ -101,14 +101,14 @@ namespace RtCs.MathUtils
             return;
         }
 
-        public void SetColumn(int inColIndex, double in0, double in1, double in2)
+        public void SetColumn(int inColIndex, float in0, float in1, float in2)
             => SetElements(
                 (0, inColIndex, in0),
                 (1, inColIndex, in1),
                 (2, inColIndex, in2)
             );
 
-        public void SetColumn(int inColIndex, IEnumerable<double> inValues)
+        public void SetColumn(int inColIndex, IEnumerable<float> inValues)
         {
             var enumerator = inValues.GetEnumerator();
             this[0, inColIndex] = enumerator.Current; enumerator.MoveNext();
@@ -141,7 +141,7 @@ namespace RtCs.MathUtils
 
         public bool Equals(Matrix3x3 inOther)
         {
-            bool Equals(double left, double right) => left.AlmostEquals(right, NumericExtensions.DoubleThreshold);
+            bool Equals(float left, float right) => left.AlmostEquals(right, NumericExtensions.FloatThreshold);
             return Equals(m00, inOther.m00) &&
                    Equals(m01, inOther.m01) &&
                    Equals(m02, inOther.m02) &&
@@ -168,12 +168,12 @@ namespace RtCs.MathUtils
             return hashCode;
         }
 
-        public IEnumerator<double> GetEnumerator()
+        public IEnumerator<float> GetEnumerator()
             => this.Enumerate().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
-        public double Determinant =>
+        public float Determinant =>
                          (this[0, 0] * this[1, 1] * this[2, 2])
                        + (this[0, 1] * this[1, 2] * this[2, 0])
                        + (this[0, 2] * this[1, 0] * this[2, 1])
@@ -183,7 +183,7 @@ namespace RtCs.MathUtils
 
         public bool Inverse()
         {
-            double det = Determinant;
+            float det = Determinant;
             if (det.AlmostZero()) {
                 return false;
             }
@@ -201,13 +201,13 @@ namespace RtCs.MathUtils
             return true;
         }
 
-        public Vector3 Multiply(Vector2 inRight, double inRightH)
+        public Vector3 Multiply(Vector2 inRight, float inRightH)
             => Multiply(new Vector3(inRight.x, inRight.y, inRightH));
         public Vector3 Multiply(Vector3 inRight)
             => Multiply(this, inRight);
 
         public static readonly Matrix3x3 Identity = new Matrix3x3(Matrix.Identity(RowCount));
-        public static readonly Matrix3x3 Zero = new Matrix3x3(ElemCount.Enumerate(_ => 0.0));
+        public static readonly Matrix3x3 Zero = new Matrix3x3(ElemCount.Enumerate(_ => 0.0f));
 
         public static bool operator ==(Matrix3x3 left, Matrix3x3 right)
             => left.Equals(right);
@@ -219,21 +219,21 @@ namespace RtCs.MathUtils
             => new Matrix3x3(Matrix.Add(left, right));
         public static Matrix3x3 operator -(Matrix3x3 left, Matrix3x3 right)
             => new Matrix3x3(Matrix.Subtract(left, right));
-        public static Matrix3x3 operator *(Matrix3x3 left, double right)
+        public static Matrix3x3 operator *(Matrix3x3 left, float right)
             => new Matrix3x3(Matrix.Multiply(left, right));
-        public static Matrix3x3 operator *(double left, Matrix3x3 right)
+        public static Matrix3x3 operator *(float left, Matrix3x3 right)
             => new Matrix3x3(Matrix.Multiply(left, right));
-        public static Matrix3x3 operator /(Matrix3x3 left, double right)
+        public static Matrix3x3 operator /(Matrix3x3 left, float right)
             => new Matrix3x3(Matrix.Divide(left, right));
         public static Matrix3x3 operator *(Matrix3x3 left, Matrix3x3 right)
             => new Matrix3x3(Matrix.Multiply(left, right));
 
-        public static Vector3 Multiply(Matrix3x3 inLeft, Vector2 inRight, double inRightH)
+        public static Vector3 Multiply(Matrix3x3 inLeft, Vector2 inRight, float inRightH)
             => Multiply(inLeft, new Vector3(inRight.x, inRight.y, inRightH));
         public static Vector3 Multiply(Matrix3x3 inLeft, Vector3 inRight)
             => new Vector3(Matrix.Multiply(inLeft, inRight));
 
-        public static Matrix3x3 MakeTranslate(double inX, double inY)
+        public static Matrix3x3 MakeTranslate(float inX, float inY)
             => new Matrix3x3(
                     1.0f, 0.0f, inX,
                     0.0f, 1.0f, inY,
@@ -242,21 +242,21 @@ namespace RtCs.MathUtils
         public static Matrix3x3 MakeTranslate(Vector2 inValue)
             => MakeTranslate(inValue.x, inValue.y);
 
-        public static Matrix3x3 MakeRotate(double inRadian)
+        public static Matrix3x3 MakeRotate(float inRadian)
         {
-            double s = Math.Sin(inRadian);
-            double c = Math.Cos(inRadian);
+            float s = (float)Math.Sin(inRadian);
+            float c = (float)Math.Cos(inRadian);
             return new Matrix3x3(
-                      c,  -s, 0.0,
-                      s,   c, 0.0,
-                    0.0, 0.0, 1.0
+                       c,   -s, 0.0f,
+                       s,    c, 0.0f,
+                    0.0f, 0.0f, 1.0f
                 );
         }
 
-        public static Matrix3x3 MakeScale(double inX, double inY)
+        public static Matrix3x3 MakeScale(float inX, float inY)
             => new Matrix3x3(
                      inX, 0.0f, 0.0f,
-                    0.0f, inY, 0.0f,
+                    0.0f,  inY, 0.0f,
                     0.0f, 0.0f, 1.0f
                 );
         public static Matrix3x3 MakeScale(Vector2 inValue)

@@ -4,19 +4,19 @@ namespace RtCs.MathUtils
 {
     public struct SphericalCoordinate : IEquatable<SphericalCoordinate>
     {
-        public double AzimuthAngle
+        public float AzimuthAngle
         { get; set; }
-        public double ElevationAngle
+        public float ElevationAngle
         { get; set; }
-        public double Radius
+        public float Radius
         { get; set; }
 
-        public double AzimuthAngleDeg
+        public float AzimuthAngleDeg
         {
             get => AzimuthAngle.RadToDeg();
             set => AzimuthAngle = value.DegToRad();
         }
-        public double ElevationAngleDeg
+        public float ElevationAngleDeg
         {
             get => ElevationAngle.RadToDeg();
             set => ElevationAngle = value.DegToRad();

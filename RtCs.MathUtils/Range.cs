@@ -4,17 +4,24 @@ namespace RtCs.MathUtils
 {
     public struct Range1D : IEquatable<Range1D>
     {
-        public double Min
+        public Range1D(float inMin, float inMax)
+        {
+            Min = inMin;
+            Max = inMax;
+            return;
+        }
+
+        public float Min
         { get; set; }
-        public double Max
+        public float Max
         { get; set; }
 
-        public double Length => Math.Abs(Max - Min);
+        public float Length => Math.Abs(Max - Min);
 
-        public bool Contains(double inValue)
+        public bool Contains(float inValue)
             => (Min.CompareTo(inValue) >= 0) && (Max.CompareTo(inValue) <= 0);
 
-        public void Include(double inValue)
+        public void Include(float inValue)
         {
             Min = Math.Min(inValue, Min);
             Max = Math.Max(inValue, Max);

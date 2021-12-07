@@ -6,11 +6,11 @@ namespace RtCs.MathUtils
 {
     public struct Matrix4x4 : IMatrix, IEquatable<Matrix4x4>
     {
-        public Matrix4x4(params double[] inValues)
-            : this((IEnumerable<double>) inValues)
+        public Matrix4x4(params float[] inValues)
+            : this((IEnumerable<float>) inValues)
         { }
 
-        public Matrix4x4(IEnumerable<double> inValues)
+        public Matrix4x4(IEnumerable<float> inValues)
         {
             var e = inValues.GetEnumerator();
             e.MoveNext();
@@ -33,24 +33,24 @@ namespace RtCs.MathUtils
             return;
         }
 
-        public double m00;
-        public double m01;
-        public double m02;
-        public double m03;
-        public double m10;
-        public double m11;
-        public double m12;
-        public double m13;
-        public double m20;
-        public double m21;
-        public double m22;
-        public double m23;
-        public double m30;
-        public double m31;
-        public double m32;
-        public double m33;
+        public float m00;
+        public float m01;
+        public float m02;
+        public float m03;
+        public float m10;
+        public float m11;
+        public float m12;
+        public float m13;
+        public float m20;
+        public float m21;
+        public float m22;
+        public float m23;
+        public float m30;
+        public float m31;
+        public float m32;
+        public float m33;
 
-        public double this[int inIndex]
+        public float this[int inIndex]
         {
             get {
                 switch (inIndex) {
@@ -96,13 +96,13 @@ namespace RtCs.MathUtils
             }
         }
 
-        public double this[int inRow, int inCol]
+        public float this[int inRow, int inCol]
         {
             get => this[this.RowColToIndex(inRow, inCol)];
             set => this[this.RowColToIndex(inRow, inCol)] = value;
         }
 
-        public Matrix4x4 SetElements(params (int row, int col, double value)[] inCommands)
+        public Matrix4x4 SetElements(params (int row, int col, float value)[] inCommands)
         {
             foreach (var command in inCommands) {
                 this[command.row, command.col] = command.value;
@@ -140,7 +140,7 @@ namespace RtCs.MathUtils
             return result;
         }
 
-        public void SetRow(int inRowIndex, double in0, double in1, double in2, double in3)
+        public void SetRow(int inRowIndex, float in0, float in1, float in2, float in3)
             => SetElements(
                 (inRowIndex, 0, in0),
                 (inRowIndex, 1, in1),
@@ -148,7 +148,7 @@ namespace RtCs.MathUtils
                 (inRowIndex, 3, in3)
             );
 
-        public void SetRow(int inRowIndex, IEnumerable<double> inValues)
+        public void SetRow(int inRowIndex, IEnumerable<float> inValues)
         {
             var enumerator = inValues.GetEnumerator();
             this[inRowIndex, 0] = enumerator.Current; enumerator.MoveNext();
@@ -158,7 +158,7 @@ namespace RtCs.MathUtils
             return;
         }
 
-        public void SetColumn(int inColIndex, double in0, double in1, double in2, double in3)
+        public void SetColumn(int inColIndex, float in0, float in1, float in2, float in3)
             => SetElements(
                 (0, inColIndex, in0),
                 (1, inColIndex, in1),
@@ -166,7 +166,7 @@ namespace RtCs.MathUtils
                 (3, inColIndex, in3)
             );
 
-        public void SetColumn(int inColIndex, IEnumerable<double> inValues)
+        public void SetColumn(int inColIndex, IEnumerable<float> inValues)
         {
             var enumerator = inValues.GetEnumerator();
             this[0, inColIndex] = enumerator.Current; enumerator.MoveNext();
@@ -197,31 +197,31 @@ namespace RtCs.MathUtils
                 // refered https://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/
                 // refered https://qiita.com/aa_debdeb/items/abe90a9bd0b4809813da
 
-                double px =  this[0, 0] - this[1, 1] - this[2, 2] + 1.0;
-                double py = -this[0, 0] + this[1, 1] - this[2, 2] + 1.0;
-                double pz = -this[0, 0] - this[1, 1] + this[2, 2] + 1.0;
-                double pw =  this[0, 0] + this[1, 1] + this[2, 2] + 1.0;
+                float px =  this[0, 0] - this[1, 1] - this[2, 2] + 1.0f;
+                float py = -this[0, 0] + this[1, 1] - this[2, 2] + 1.0f;
+                float pz = -this[0, 0] - this[1, 1] + this[2, 2] + 1.0f;
+                float pw =  this[0, 0] + this[1, 1] + this[2, 2] + 1.0f;
 
                 int s = 0;
-                double max = px;
-                double v = Math.Sqrt(px) * 0.5;
+                float max = px;
+                float v = (float)Math.Sqrt(px) * 0.5f;
                 if (max < py) {
                     s = 1;
-                    v = Math.Sqrt(py) * 0.5;
+                    v = (float)Math.Sqrt(py) * 0.5f;
                     max = py;
                 }
                 if (max < pz) {
                     s = 2;
-                    v = Math.Sqrt(pz) * 0.5;
+                    v = (float)Math.Sqrt(pz) * 0.5f;
                     max = pz;
                 }
                 if (max < pw) {
                     s = 3;
-                    v = Math.Sqrt(pw) * 0.5;
+                    v = (float)Math.Sqrt(pw) * 0.5f;
                     max = pw;
                 }
 
-                double d = 0.25 / v;
+                float d = 0.25f / v;
                 switch (s) {
                     case 0:
                         return new Quaternion(
@@ -277,7 +277,7 @@ namespace RtCs.MathUtils
 
         public bool Equals(Matrix4x4 other)
         {
-            bool Equals(double left, double right) => left.AlmostEquals(right, NumericExtensions.DoubleThreshold);
+            bool Equals(float left, float right) => left.AlmostEquals(right, NumericExtensions.FloatThreshold);
             return Equals(m00, other.m00) &&
                    Equals(m01, other.m01) &&
                    Equals(m02, other.m02) &&
@@ -318,7 +318,7 @@ namespace RtCs.MathUtils
             return hashCode;
         }
 
-        public IEnumerator<double> GetEnumerator()
+        public IEnumerator<float> GetEnumerator()
             => this.Enumerate().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
@@ -329,7 +329,7 @@ namespace RtCs.MathUtils
             // http://www.iwata-system-support.com/CAE_HomePage/vector/vector18/vector18.html
             // http://physmath.main.jp/src/inverse-cofactor-ex4.html
 
-            double det = Deternimant;
+            float det = Deternimant;
             if (det.AlmostZero()) {
                 return false;
             }
@@ -359,13 +359,13 @@ namespace RtCs.MathUtils
             }
         }
 
-        public double Deternimant
+        public float Deternimant
             => (this[0, 0] * GetSubDeterminant(0, 0))
              - (this[1, 0] * GetSubDeterminant(1, 0))
              + (this[2, 0] * GetSubDeterminant(2, 0))
              - (this[3, 0] * GetSubDeterminant(3, 0));
 
-        private double GetSubDeterminant(int inRow, int inCol)
+        private float GetSubDeterminant(int inRow, int inCol)
         {
             Matrix3x3 subMatrix = new Matrix3x3();
             int srcRow, srcCol;
@@ -389,110 +389,110 @@ namespace RtCs.MathUtils
             return subMatrix.Determinant;
         }
 
-        public Vector4 Multiply(Vector3 inRight, double inRightW)
+        public Vector4 Multiply(Vector3 inRight, float inRightW)
             => Multiply(new Vector4(inRight.x, inRight.y, inRight.z, inRightW));
         public Vector4 Multiply(Vector4 inRight)
             => Multiply(this, inRight);
 
         public static readonly Matrix4x4 Identity = new Matrix4x4(Matrix.Identity(RowCount));
-        public static readonly Matrix4x4 Zero = new Matrix4x4(ElemCount.Enumerate(_ => 0.0));
+        public static readonly Matrix4x4 Zero = new Matrix4x4(ElemCount.Enumerate(_ => 0.0f));
 
         public static bool operator ==(Matrix4x4 left, Matrix4x4 right)
             => left.Equals(right);
         public static bool operator !=(Matrix4x4 left, Matrix4x4 right)
             => !(left == right);
         public static Matrix4x4 operator -(Matrix4x4 matrix)
-            => matrix * -1.0;
+            => matrix * -1.0f;
         public static Matrix4x4 operator +(Matrix4x4 left, Matrix4x4 right)
             => new Matrix4x4(Matrix.Add(left, right));
         public static Matrix4x4 operator -(Matrix4x4 left, Matrix4x4 right)
             => new Matrix4x4(Matrix.Subtract(left, right));
-        public static Matrix4x4 operator *(Matrix4x4 left, double right)
+        public static Matrix4x4 operator *(Matrix4x4 left, float right)
             => new Matrix4x4(Matrix.Multiply(left, right));
-        public static Matrix4x4 operator *(double left, Matrix4x4 right)
+        public static Matrix4x4 operator *(float left, Matrix4x4 right)
             => new Matrix4x4(Matrix.Multiply(left, right));
-        public static Matrix4x4 operator /(Matrix4x4 left, double right)
+        public static Matrix4x4 operator /(Matrix4x4 left, float right)
             => new Matrix4x4(Matrix.Divide(left, right));
         public static Matrix4x4 operator *(Matrix4x4 left, Matrix4x4 right)
             => new Matrix4x4(Matrix.Multiply(left, right));
         public static Vector4 operator *(Matrix4x4 left, Vector4 right)
             => Multiply(left, right);
 
-        public static Vector4 Multiply(Matrix4x4 inLeft, Vector3 inRight, double inRightW)
+        public static Vector4 Multiply(Matrix4x4 inLeft, Vector3 inRight, float inRightW)
             => Multiply(inLeft, new Vector4(inRight.x, inRight.y, inRight.z, inRightW));
         public static Vector4 Multiply(Matrix4x4 inLeft, Vector4 inRight)
             => new Vector4(Matrix.Multiply(inLeft, inRight));
 
-        public static Matrix4x4 MakeTranslate(double inX, double inY, double inZ)
+        public static Matrix4x4 MakeTranslate(float inX, float inY, float inZ)
             => new Matrix4x4(
-                    1.0, 0.0, 0.0, inX,
-                    0.0, 1.0, 0.0, inY,
-                    0.0, 0.0, 1.0, inZ,
-                    0.0, 0.0, 0.0, 1.0
+                    1.0f, 0.0f, 0.0f, inX,
+                    0.0f, 1.0f, 0.0f, inY,
+                    0.0f, 0.0f, 1.0f, inZ,
+                    0.0f, 0.0f, 0.0f, 1.0f
                 );
 
         public static Matrix4x4 MakeTranslate(Vector3 inXYZ)
             => MakeTranslate(inXYZ.x, inXYZ.y, inXYZ.z);
 
-        public static Matrix4x4 MakeRotateX(double inRadian)
+        public static Matrix4x4 MakeRotateX(float inRadian)
         {
-            double c = Math.Cos(inRadian);
-            double s = Math.Sin(inRadian);
+            float c = (float)Math.Cos(inRadian);
+            float s = (float)Math.Sin(inRadian);
             return new Matrix4x4(
-                    1.0, 0.0, 0.0, 0.0,
-                    0.0, c, -s, 0.0,
-                    0.0, s, c, 0.0,
-                    0.0, 0.0, 0.0, 1.0
+                    1.0f, 0.0f, 0.0f, 0.0f,
+                    0.0f,    c,   -s, 0.0f,
+                    0.0f,    s,    c, 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f
                 );
         }
 
-        public static Matrix4x4 MakeRotateY(double inRadian)
+        public static Matrix4x4 MakeRotateY(float inRadian)
         {
-            double c = Math.Cos(inRadian);
-            double s = Math.Sin(inRadian);
+            float c = (float)Math.Cos(inRadian);
+            float s = (float)Math.Sin(inRadian);
             return new Matrix4x4(
-                       c, 0.0, s, 0.0,
-                    0.0, 1.0, 0.0, 0.0,
-                      -s, 0.0, c, 0.0,
-                    0.0, 0.0, 0.0, 1.0
+                       c, 0.0f,    s, 0.0f,
+                    0.0f, 1.0f, 0.0f, 0.0f,
+                      -s, 0.0f,    c, 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f
                 );
         }
 
-        public static Matrix4x4 MakeRotateZ(double inRadian)
+        public static Matrix4x4 MakeRotateZ(float inRadian)
         {
-            double c = Math.Cos(inRadian);
-            double s = Math.Sin(inRadian);
+            float c = (float)Math.Cos(inRadian);
+            float s = (float)Math.Sin(inRadian);
             return new Matrix4x4(
-                       c, -s, 0.0, 0.0,
-                       s, c, 0.0, 0.0,
-                    0.0, 0.0, 1.0, 0.0,
-                    0.0, 0.0, 0.0, 1.0
+                       c,   -s, 0.0f, 0.0f,
+                       s,    c, 0.0f, 0.0f,
+                    0.0f, 0.0f, 1.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f
                 );
         }
 
-        public static Matrix4x4 MakeRotate(double inRadian, double inAxisX, double inAxisY, double inAxisZ)
+        public static Matrix4x4 MakeRotate(float inRadian, float inAxisX, float inAxisY, float inAxisZ)
         {
             if (inAxisX.AlmostZero() && inAxisY.AlmostZero() && inAxisZ.AlmostZero()) {
                 return Identity;
             }
 
-            double c = Math.Cos(inRadian);
-            double s = Math.Sin(inRadian);
+            float c = (float)Math.Cos(inRadian);
+            float s = (float)Math.Sin(inRadian);
 
             return new Matrix4x4(
-                    (inAxisX * inAxisX * (1.0 - c)) + c,
-                    (inAxisX * inAxisY * (1.0 - c)) - (inAxisZ * s),
-                    (inAxisX * inAxisZ * (1.0 - c)) + (inAxisY * s),
-                    0.0,
-                    (inAxisY * inAxisX * (1.0 - c)) + (inAxisZ * s),
-                    (inAxisY * inAxisY * (1.0 - c)) + c,
-                    (inAxisY * inAxisZ * (1.0 - c)) - (inAxisX * s),
-                    0.0,
-                    (inAxisZ * inAxisX * (1.0 - c)) - (inAxisY * s),
-                    (inAxisZ * inAxisY * (1.0 - c)) + (inAxisX * s),
-                    (inAxisZ * inAxisZ * (1.0 - c)) + c,
-                    0.0,
-                    0.0, 0.0, 0.0, 1.0
+                    (inAxisX * inAxisX * (1.0f - c)) + c,
+                    (inAxisX * inAxisY * (1.0f - c)) - (inAxisZ * s),
+                    (inAxisX * inAxisZ * (1.0f - c)) + (inAxisY * s),
+                    0.0f,
+                    (inAxisY * inAxisX * (1.0f - c)) + (inAxisZ * s),
+                    (inAxisY * inAxisY * (1.0f - c)) + c,
+                    (inAxisY * inAxisZ * (1.0f - c)) - (inAxisX * s),
+                    0.0f,
+                    (inAxisZ * inAxisX * (1.0f - c)) - (inAxisY * s),
+                    (inAxisZ * inAxisY * (1.0f - c)) + (inAxisX * s),
+                    (inAxisZ * inAxisZ * (1.0f - c)) + c,
+                    0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f
                 );
         }
 
@@ -500,45 +500,39 @@ namespace RtCs.MathUtils
         {
             // refered http://marupeke296.sakura.ne.jp/DXG_No58_RotQuaternionTrans.html
             ref Quaternion q = ref inValue;
-            double xx2 = q.x * q.x * 2.0;
-            double xy2 = q.x * q.y * 2.0;
-            double xz2 = q.x * q.z * 2.0;
-            double xw2 = q.x * q.w * 2.0;
-            double yy2 = q.y * q.y * 2.0;
-            double yz2 = q.y * q.z * 2.0;
-            double yw2 = q.y * q.w * 2.0;
-            double zz2 = q.z * q.z * 2.0;
-            double zw2 = q.z * q.w * 2.0;
-            double ww2 = q.w * q.w * 2.0;
-            //return new Matrix4x4(
-            //        ww2 + xx2 - 1.0,       xy2 - zw2,       xz2 + yw2, 0.0,
-            //              xy2 + zw2, ww2 + yy2 - 1.0,       yz2 - xw2, 0.0,
-            //              xz2 - yw2,       yz2 + xw2, ww2 + zz2 - 1.0, 0.0,
-            //                    0.0,             0.0,             0.0, 1.0
-            //    );
+            float xx2 = q.x * q.x * 2.0f;
+            float xy2 = q.x * q.y * 2.0f;
+            float xz2 = q.x * q.z * 2.0f;
+            float xw2 = q.x * q.w * 2.0f;
+            float yy2 = q.y * q.y * 2.0f;
+            float yz2 = q.y * q.z * 2.0f;
+            float yw2 = q.y * q.w * 2.0f;
+            float zz2 = q.z * q.z * 2.0f;
+            float zw2 = q.z * q.w * 2.0f;
+            float ww2 = q.w * q.w * 2.0f;
             return new Matrix4x4(
-                    1.0 - yy2 - zz2,       xy2 - zw2,       xz2 + yw2, 0.0,
-                          xy2 + zw2, 1.0 - xx2 - zz2,       yz2 - xw2, 0.0,
-                          xz2 - yw2,       yz2 + xw2, 1.0 - xx2 - yy2, 0.0,
-                                0.0,             0.0,             0.0, 1.0
+                    1.0f - yy2 - zz2,        xy2 - zw2,        xz2 + yw2, 0.0f,
+                           xy2 + zw2, 1.0f - xx2 - zz2,        yz2 - xw2, 0.0f,
+                           xz2 - yw2,        yz2 + xw2, 1.0f - xx2 - yy2, 0.0f,
+                                0.0f,             0.0f,             0.0f, 1.0f
                 );
         }
 
         public static Matrix4x4 MakeRotateEuelr(Vector3 inEuler, EEulerRotationOrder inOrder)
             => EulerAngles.EulerToMatrix(inEuler, inOrder);
 
-        public static Matrix4x4 MakeScale(double inX, double inY, double inZ)
+        public static Matrix4x4 MakeScale(float inX, float inY, float inZ)
             => new Matrix4x4(
-                    inX, 0.0, 0.0, 0.0,
-                    0.0, inY, 0.0, 0.0,
-                    0.0, 0.0, inZ, 0.0,
-                    0.0, 0.0, 0.0, 1.0
+                     inX, 0.0f, 0.0f, 0.0f,
+                    0.0f,  inY, 0.0f, 0.0f,
+                    0.0f, 0.0f,  inZ, 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f
                 );
 
         public static Matrix4x4 MakeScale(Vector3 inValue)
             => MakeScale(inValue.x, inValue.y, inValue.z);
 
-        public static Matrix4x4 MakeOrtho(double inLeft, double inRight, double inBottom, double inTop, double inNear, double inFar)
+        public static Matrix4x4 MakeOrtho(float inLeft, float inRight, float inBottom, float inTop, float inNear, float inFar)
         {
             if (inLeft.AlmostEquals(inRight)) {
                 throw new DivideByZeroException($"Argument \"{nameof(inLeft)}\" and \"{nameof(inRight)}\" must be different value.");
@@ -551,18 +545,18 @@ namespace RtCs.MathUtils
             }
 
             return new Matrix4x4(
-                    2.0 / (inRight - inLeft),                      0.0,                     0.0, -(inRight + inLeft) / (inRight - inLeft),
-                                         0.0, 2.0 / (inTop - inBottom),                     0.0, -(inTop + inBottom) / (inTop - inBottom),
-                                         0.0,                      0.0, -2.0 / (inFar - inNear),     -(inFar + inNear) / (inFar - inNear),
-                                         0.0,                      0.0,                     0.0,                                      1.0
+                    2.0f / (inRight - inLeft),                      0.0f,                     0.0f, -(inRight + inLeft) / (inRight - inLeft),
+                                         0.0f, 2.0f / (inTop - inBottom),                     0.0f, -(inTop + inBottom) / (inTop - inBottom),
+                                         0.0f,                      0.0f, -2.0f / (inFar - inNear),     -(inFar + inNear) / (inFar - inNear),
+                                         0.0f,                      0.0f,                     0.0f,                                     1.0f
                 );
         }
-        public static Matrix4x4 MakeOrtho(double aWidth, double aHeight, double aNear, double aFar)
+        public static Matrix4x4 MakeOrtho(float aWidth, float aHeight, float aNear, float aFar)
             => MakeOrtho(-aWidth * 0.5f, aWidth * 0.5f, -aHeight * 0.5f, aHeight * 0.5f, aNear, aFar);
-        public static Matrix4x4 MakeOrtho(double aFovY, double aWidth, double aHeight, double aNear, double aFar)
+        public static Matrix4x4 MakeOrtho(float aFovY, float aWidth, float aHeight, float aNear, float aFar)
             => MakeOrtho(aFovY * (aWidth / aHeight), aFovY, aNear, aFar);
 
-        public static Matrix4x4 MakeFrustum(double inLeft, double inRight, double inBottom, double inTop, double inNear, double inFar)
+        public static Matrix4x4 MakeFrustum(float inLeft, float inRight, float inBottom, float inTop, float inNear, float inFar)
         {
             if (inLeft.AlmostEquals(inRight)) {
                 throw new DivideByZeroException($"Argument \"{nameof(inLeft)}\" and \"{nameof(inRight)}\" must be different value.");
@@ -575,25 +569,25 @@ namespace RtCs.MathUtils
             }
 
             return new Matrix4x4(
-                    (2.0 * inNear) / (inRight - inLeft),                                 0.0, (inRight + inLeft) / (inRight - inLeft),                                        0.0,
-                                                    0.0, (2.0 * inNear) / (inTop - inBottom), (inTop + inBottom) / (inTop - inBottom),                                        0.0,
-                                                    0.0,                                 0.0,    -(inFar + inNear) / (inFar - inNear), -(2.0 * inFar * inNear) / (inFar - inNear),
-                                                    0.0,                                 0.0,                                    -1.0,                                        0.0
+                    (2.0f * inNear) / (inRight - inLeft),                                 0.0f, (inRight + inLeft) / (inRight - inLeft),                                        0.0f,
+                                                    0.0f, (2.0f * inNear) / (inTop - inBottom), (inTop + inBottom) / (inTop - inBottom),                                        0.0f,
+                                                    0.0f,                                 0.0f,    -(inFar + inNear) / (inFar - inNear), -(2.0f * inFar * inNear) / (inFar - inNear),
+                                                    0.0f,                                 0.0f,                                   -1.0f,                                        0.0f
                 );
         }
 
-        public static Matrix4x4 MakeFrustum(double inWidth, double inHeight, double inNear, double inFar)
+        public static Matrix4x4 MakeFrustum(float inWidth, float inHeight, float inNear, float inFar)
             => MakeFrustum(-inWidth * 0.5f, inWidth * 0.5f, -inHeight * 0.5f, inHeight * 0.5f, inNear, inFar);
 
-        public static Matrix4x4 MakePerspective(double inFovYinDeg, double inAspect, double inNear, double inFar)
+        public static Matrix4x4 MakePerspective(float inFovYinDeg, float inAspect, float inNear, float inFar)
         {
-            double fovY_2 = Math.Tan(inFovYinDeg.DegToRad() * 0.5f) * inNear;
-            double fovX_2 = fovY_2 * inAspect;
+            float fovY_2 = (float)Math.Tan(inFovYinDeg.DegToRad() * 0.5f) * inNear;
+            float fovX_2 = fovY_2 * inAspect;
 
             return MakeFrustum(-fovX_2, fovX_2, -fovY_2, fovY_2, inNear, inFar);
         }
 
-        public static Matrix4x4 MakePerspective(double aFovY, double aWidth, double aHeight, double aNear, double aFar)
+        public static Matrix4x4 MakePerspective(float aFovY, float aWidth, float aHeight, float aNear, float aFar)
             => MakePerspective(aFovY, aWidth / aHeight, aNear, aFar);
 
         public override string ToString()

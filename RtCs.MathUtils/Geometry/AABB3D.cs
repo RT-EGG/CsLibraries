@@ -7,8 +7,8 @@ namespace RtCs.MathUtils.Geometry
     {
         public static AABB3D InclusionBoundary(IEnumerable<Vector3> inPoints)
         {
-            Vector3 min = new Vector3(double.MaxValue);
-            Vector3 max = new Vector3(double.MinValue);
+            Vector3 min = new Vector3(float.MaxValue);
+            Vector3 max = new Vector3(float.MinValue);
             foreach (var point in inPoints) {
                 min.x = Math.Min(min.x, point.x);
                 min.y = Math.Min(min.y, point.y);
@@ -53,79 +53,79 @@ namespace RtCs.MathUtils.Geometry
             }
         }
 
-        public double CenterX
+        public float CenterX
         {
-            get => (MinX + MaxX) * 0.5;
+            get => (MinX + MaxX) * 0.5f;
             set {
-                double e = ExtentX;
+                float e = ExtentX;
                 MinX = value - e;
                 MaxX = value + e;
             }
         }
 
-        public double CenterY
+        public float CenterY
         {
-            get => (MinY + MaxY) * 0.5;
+            get => (MinY + MaxY) * 0.5f;
             set {
-                double e = ExtentY;
+                float e = ExtentY;
                 MinY = value - e;
                 MaxY = value + e;
             }
         }
 
-        public double CenterZ
+        public float CenterZ
         {
-            get => (MinZ + MaxZ) * 0.5;
+            get => (MinZ + MaxZ) * 0.5f;
             set {
-                double e = ExtentZ;
+                float e = ExtentZ;
                 MinZ = value - e;
                 MaxZ = value + e;
             }
         }
 
-        public double SizeX
+        public float SizeX
         {
             get => MaxX - MinX;
-            set => ExtentX = value * 0.5;
+            set => ExtentX = value * 0.5f;
         }
 
-        public double SizeY
+        public float SizeY
         {
             get => MaxY - MinY;
-            set => ExtentY = value * 0.5;
+            set => ExtentY = value * 0.5f;
         }
 
-        public double SizeZ
+        public float SizeZ
         {
             get => MaxZ - MinZ;
-            set => ExtentZ = value * 0.5;
+            set => ExtentZ = value * 0.5f;
         }
 
-        public double ExtentX
+        public float ExtentX
         {
-            get => SizeX * 0.5;
+            get => SizeX * 0.5f;
             set {
-                double c = CenterX;
+                float c = CenterX;
                 MinX = c - value;
                 MaxX = c + value;
             }
         }
 
-        public double ExtentY
+        public float ExtentY
         {
-            get => SizeY * 0.5;
+            get => SizeY * 0.5f;
             set {
-                double c = CenterY;
+                float c = CenterY;
                 MinY = c - value;
                 MaxY = c + value;
             }
         }
 
-        public double ExtentZ
+        public float ExtentZ
         {
-            get => SizeZ * 0.5;
+            get => SizeZ * 0.5f;
             set {
-                double c = CenterZ;
+                float c = CenterZ;
                 MinZ = c - value;
                 MaxZ = c + value;
             }
@@ -151,46 +151,46 @@ namespace RtCs.MathUtils.Geometry
             }
         }
 
-        public double MinX
+        public float MinX
         {
             get => m_BoundaryX.Min;
             set => m_BoundaryX.Min = value;
         }
-        public double MaxX
+        public float MaxX
         {
             get => m_BoundaryX.Max;
             set => m_BoundaryX.Max = value;
         }
-        public double MinY
+        public float MinY
         {
             get => m_BoundaryY.Min;
             set => m_BoundaryY.Min = value;
         }
-        public double MaxY
+        public float MaxY
         {
             get => m_BoundaryY.Max;
             set => m_BoundaryY.Max = value;
         }
-        public double MinZ
+        public float MinZ
         {
             get => m_BoundaryZ.Min;
             set => m_BoundaryZ.Min = value;
         }
-        public double MaxZ
+        public float MaxZ
         {
             get => m_BoundaryZ.Max;
             set => m_BoundaryZ.Max = value;
         }
 
-        public double Volume
+        public float Volume
             => SizeX * SizeY * SizeZ;
 
-        public double InnerRadius
-            => 0.5 * Math.Min(SizeX, Math.Min(SizeY, SizeZ));
-        public double OuterRadius
-            => 0.5 * Math.Sqrt(SizeX.Sqr() + SizeY.Sqr() + SizeZ.Sqr());
+        public float InnerRadius
+            => (float)(0.5 * Math.Min(SizeX, Math.Min(SizeY, SizeZ)));
+        public float OuterRadius
+            => (float)(0.5 * Math.Sqrt(SizeX.Sqr() + SizeY.Sqr() + SizeZ.Sqr()));
 
-        public void Include(double inX, double inY, double inZ)
+        public void Include(float inX, float inY, float inZ)
         {
             MinX = Math.Min(MinX, inX);
             MaxX = Math.Max(MaxX, inX);
@@ -204,7 +204,7 @@ namespace RtCs.MathUtils.Geometry
         public void Include(Vector3 inPoint)
             => Include(inPoint.x, inPoint.y, inPoint.z);
 
-        public bool Contains(double inX, double inY, double inZ)
+        public bool Contains(float inX, float inY, float inZ)
             => m_BoundaryX.Contains(inX)
             && m_BoundaryY.Contains(inY)
             && m_BoundaryZ.Contains(inZ);

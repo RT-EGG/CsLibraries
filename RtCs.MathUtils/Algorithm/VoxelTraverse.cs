@@ -49,7 +49,7 @@ namespace RtCs.MathUtils.Algorithm
             for (int i = 0; i < 3; ++i) {
                 switch (step[i]) {
                     case 0:
-                        max[i] = double.PositiveInfinity;
+                        max[i] = float.PositiveInfinity;
                         break;
                     case 1:
                         max[i] = (CellDimension - ((point0[i] - BoundsMin[i]) % CellDimension)) / Math.Abs(direction[i]);
@@ -61,7 +61,7 @@ namespace RtCs.MathUtils.Algorithm
             }
 
             yield return currentCellIndex;
-            while ((currentCellIndex != endCellIndex) && max.Any(v => v.InRange(0.0, 1.0))) {
+            while ((currentCellIndex != endCellIndex) && max.Any(v => v.InRange(0.0f, 1.0f))) {
                 int minIndex = max.MinIndex(t => Math.Abs(t));
                 currentCellIndex[minIndex] += step[minIndex];
                 max[minIndex] += delta[minIndex];
@@ -71,15 +71,15 @@ namespace RtCs.MathUtils.Algorithm
             yield break;
         }
 
-        private bool IsCrossedRayToBounds(Line3D inRay, out double outT0, out double outT1)
+        private bool IsCrossedRayToBounds(Line3D inRay, out float outT0, out float outT1)
         {
             // refered
             // https://github.com/cgyurgyik/fast-voxel-traversal-algorithm/blob/master/Ray.h
             // http://marupeke296.com/COL_3D_No18_LineAndAABB.html
             // http://marupeke296.com/COL_3D_No4_LineToPlanePolygon.html
 
-            outT0 = 0.0;
-            outT1 = 1.0;
+            outT0 = 0.0f;
+            outT1 = 1.0f;
 
             if (!(CalcLineParametersForBounds(inRay.Point0.x, inRay.Point1.x, BoundsMin.x, BoundsMax.x, out var x0, out var x1)
                && CalcLineParametersForBounds(inRay.Point0.y, inRay.Point1.y, BoundsMin.y, BoundsMax.y, out var y0, out var y1)
@@ -92,12 +92,12 @@ namespace RtCs.MathUtils.Algorithm
             return true;
         }
 
-        private bool CalcLineParametersForBounds(double inPoint0, double inPoint1, double inBoundsMin, double inBoundsMax, out double outT0, out double outT1)
+        private bool CalcLineParametersForBounds(float inPoint0, float inPoint1, float inBoundsMin, float inBoundsMax, out float outT0, out float outT1)
         {
-            outT0 = 0.0;
-            outT1 = 1.0;
+            outT0 = 0.0f;
+            outT1 = 1.0f;
 
-            double direction = inPoint1 - inPoint0;
+            float direction = inPoint1 - inPoint0;
             if (direction.AlmostZero()) {
                 if (inPoint0.InRange(inBoundsMin, inBoundsMax)) {
                     return true;
@@ -124,15 +124,15 @@ namespace RtCs.MathUtils.Algorithm
                     }
                 }
             }
-            return outT0.InRange(0.0, 1.0) && outT1.InRange(0.0, 1.0);
+            return outT0.InRange(0.0f, 1.0f) && outT1.InRange(0.0f, 1.0f);
         }
 
         public Vector3 BoundsMin
-        { get; set; } = new Vector3(0.0, 0.0, 0.0);
+        { get; set; } = new Vector3(0.0f);
         public Vector3 BoundsMax
             => BoundsMin + (new Vector3(CellDimension * CellCount));
-        public double CellDimension
-        { get; set; } = 1.0;
+        public float CellDimension
+        { get; set; } = 1.0f;
         public int CellCount
         { get; set; } = 5;
     }

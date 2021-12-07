@@ -4,36 +4,36 @@ using System.Linq;
 
 namespace RtCs.MathUtils
 {
-    public interface IVector : IReadOnlyList<double>, IEnumerable<double>
+    public interface IVector : IReadOnlyList<float>, IEnumerable<float>
     {
-        new double this[int inIndex] { get; set; }
+        new float this[int inIndex] { get; set; }
         int Dimension { get; }
     }
 
     internal static class Vector
     {
-        internal static IEnumerable<double> Enumerate(this IVector inVector)
+        internal static IEnumerable<float> Enumerate(this IVector inVector)
             => Enumerable.Range(0, inVector.Dimension).Select(i => inVector[i]);
 
-        public static double Length2(IVector inVector)
+        public static float Length2(IVector inVector)
             => Enumerable.Range(0, inVector.Dimension).Sum(i => inVector[i].Sqr());
-        public static double Length(IVector inVector)
+        public static float Length(IVector inVector)
             => Math.Sqrt(Length2(inVector));
         public static bool IsZero(IVector inVector)
             => Enumerable.Range(0, inVector.Dimension).All(i => inVector[i].AlmostZero());
 
-        public static IEnumerable<double> Add(IVector inLeft, IVector inRight)
+        public static IEnumerable<float> Add(IVector inLeft, IVector inRight)
             => inLeft.Dimension.Range().Select(i => inLeft[i] + inRight[i]);
-        public static IEnumerable<double> Subtract(IVector inLeft, IVector inRight)
+        public static IEnumerable<float> Subtract(IVector inLeft, IVector inRight)
             => inLeft.Dimension.Range().Select(i => inLeft[i] - inRight[i]);
-        public static IEnumerable<double> Multiply(IVector inLeft, double inRight)
+        public static IEnumerable<float> Multiply(IVector inLeft, float inRight)
             => inLeft.Dimension.Range().Select(i => inLeft[i] * inRight);
-        public static IEnumerable<double> Multiply(double inLeft, IVector inRight)
+        public static IEnumerable<float> Multiply(float inLeft, IVector inRight)
             => inRight.Dimension.Range().Select(i => inLeft * inRight[i]);
-        public static IEnumerable<double> Divide(IVector inLeft, double inRight)
+        public static IEnumerable<float> Divide(IVector inLeft, float inRight)
             => inLeft.Dimension.Range().Select(i => inLeft[i] / inRight);
 
-        public static double Dot(IVector inLeft, IVector inRight)
+        public static float Dot(IVector inLeft, IVector inRight)
             => inLeft.Dimension.Range().Sum(i => inLeft[i] * inRight[i]);
     }
 }

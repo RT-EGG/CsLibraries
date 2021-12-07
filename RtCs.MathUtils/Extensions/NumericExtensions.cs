@@ -38,20 +38,17 @@ namespace RtCs.MathUtils
             => (inMin <= inValue) && (inValue <= inMax);
 
         public const double Rad2Deg = 180.0 / Math.PI;
+        public const float Rad2DegF = 180.0f / (float)Math.PI;
         public const double Deg2Rad = Math.PI / 180.0;
+        public const float Deg2RadF = (float)Math.PI / 180.0f;
 
         public static double RadToDeg(this double inRadians) => inRadians * Rad2Deg;
+        public static float RadToDeg(this float inRadians) => inRadians * Rad2DegF;
         public static double DegToRad(this double inDegrees) => inDegrees * Deg2Rad;
+        public static float DegToRad(this float inDegrees) => inDegrees * Deg2RadF;
 
-        public static double Asin(double inValue)
-            => Math.Asin(inValue.Clamp(-1.0, 1.0));
-        public static double Acos(double inValue)
-            => Math.Acos(inValue.Clamp(-1.0, 1.0));
-
-        public static int TruncateToInt(this float inValue)
-            => (int)Math.Truncate(inValue);
-        public static int TruncateToInt(this double inValue)
-            => (int)Math.Truncate(inValue);
+        public static int TruncateToInt(this float inValue) => (int)Math.Truncate(inValue);
+        public static int TruncateToInt(this double inValue) => (int)Math.Truncate(inValue);
     }
 
     public static class Numerics
@@ -60,5 +57,10 @@ namespace RtCs.MathUtils
             => inItems.Min();
         public static T Max<T>(params T[] inItems) where T : IComparable<T>
             => inItems.Max();
+
+        public static double Asin(double inValue) => Math.Asin(inValue.Clamp(-1.0, 1.0));
+        public static float Asin(float inValue) => (float)Math.Asin(inValue.Clamp(-1.0f, 1.0f));
+        public static double Acos(double inValue) => Math.Acos(inValue.Clamp(-1.0, 1.0));
+        public static float Acos(float inValue) => (float)Math.Acos(inValue.Clamp(-1.0f, 1.0f));
     }
 }

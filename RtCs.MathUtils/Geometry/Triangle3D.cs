@@ -37,7 +37,7 @@ namespace RtCs.MathUtils.Geometry
             // refered https://qiita.com/edo_m18/items/2bd885b13bd74803a368
             outResult = default;
 
-            double Det(Vector3 v1, Vector3 v2, Vector3 v3)
+            float Det(Vector3 v1, Vector3 v2, Vector3 v3)
                 => new Matrix3x3(
                     v1.x, v1.y, v1.z,
                     v2.x, v2.y, v2.z,
@@ -57,9 +57,9 @@ namespace RtCs.MathUtils.Geometry
 
             var d = inLine.Point0 - Vertex0;
             var u = Det(d, edge2, invRay) / det;
-            if (u.InRange(0.0, 1.0)) {
+            if (u.InRange(0.0f, 1.0f)) {
                 var v = Det(edge1, d, invRay) / det;
-                if (v.InRange(0.0, 1.0) && ((u + v) <= 1.0)) {
+                if (v.InRange(0.0f, 1.0f) && ((u + v) <= 1.0f)) {
                     var t = Det(edge1, edge2, d) / det;
 
                     outResult = new LineIntersectionInfo3D {

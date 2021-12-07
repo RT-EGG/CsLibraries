@@ -7,7 +7,7 @@ namespace RtCs.MathUtils
 {
     public struct Vector3 : IVector, IEquatable<Vector3>
     {
-        public Vector3(IEnumerable<double> inValues)
+        public Vector3(IEnumerable<float> inValues)
         {
             var e = inValues.GetEnumerator();
             e.MoveNext();
@@ -17,11 +17,11 @@ namespace RtCs.MathUtils
             return;
         }
 
-        public Vector3(double inValue)
+        public Vector3(float inValue)
             : this(inValue, inValue, inValue)
         { }
 
-        public Vector3(double inX, double inY, double inZ)
+        public Vector3(float inX, float inY, float inZ)
         {
             x = inX;
             y = inY;
@@ -29,11 +29,11 @@ namespace RtCs.MathUtils
             return;
         }
 
-        public double x;
-        public double y;
-        public double z;
+        public float x;
+        public float y;
+        public float z;
 
-        public double this[int inIndex]
+        public float this[int inIndex]
         {
             get {
                 switch (inIndex) {
@@ -54,10 +54,10 @@ namespace RtCs.MathUtils
         }
 
         public int Dimension => 3;
-        int IReadOnlyCollection<double>.Count => Dimension;
+        int IReadOnlyCollection<float>.Count => Dimension;
 
-        public double Length => Vector.Length(this);
-        public double Length2 => Vector.Length2(this);
+        public float Length => Vector.Length(this);
+        public float Length2 => Vector.Length2(this);
         public bool IsZero => Vector.IsZero(this);
 
         public void Normalize()
@@ -65,14 +65,14 @@ namespace RtCs.MathUtils
         public Vector3 Normalized
         {
             get {
-                double len = Length2;
+                float len = Length2;
                 if (len.AlmostZero()) {
                     return new Vector3(0.0f);
                 }
-                if (len.AlmostEquals(1.0)) {
+                if (len.AlmostEquals(1.0f)) {
                     return this;
                 }
-                return this / Math.Sqrt(len);
+                return this / (float)Math.Sqrt(len);
             }
         }
 
@@ -93,7 +93,7 @@ namespace RtCs.MathUtils
             return hashCode;
         }
 
-        public IEnumerator<double> GetEnumerator()
+        public IEnumerator<float> GetEnumerator()
             => this.Enumerate().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
@@ -108,14 +108,14 @@ namespace RtCs.MathUtils
             => new Vector3(Vector.Add(inLeft, inRight));
         public static Vector3 operator -(Vector3 inLeft, Vector3 inRight)
             => new Vector3(Vector.Subtract(inLeft, inRight));
-        public static Vector3 operator *(Vector3 inLeft, double inRight)
+        public static Vector3 operator *(Vector3 inLeft, float inRight)
             => new Vector3(Vector.Multiply(inLeft, inRight));
-        public static Vector3 operator *(double inLeft, Vector3 inRight)
+        public static Vector3 operator *(float inLeft, Vector3 inRight)
             => new Vector3(Vector.Multiply(inLeft, inRight));
-        public static Vector3 operator /(Vector3 inLeft, double inRight)
+        public static Vector3 operator /(Vector3 inLeft, float inRight)
             => new Vector3(Vector.Divide(inLeft, inRight));
 
-        public static double Dot(Vector3 inLeft, Vector3 inRight)
+        public static float Dot(Vector3 inLeft, Vector3 inRight)
             => Vector.Dot(inLeft, inRight);
         public static Vector3 Cross(Vector3 inLeft, Vector3 inRight)
             => new Vector3(

@@ -17,11 +17,11 @@ namespace RtCs.MathUtils.Geometry
 
     public partial class Octree : IEnumerable<IOctreeCell>
     {
-        public Octree(int inMaxLevel, double inDimensions)
+        public Octree(int inMaxLevel, float inDimensions)
             : this(inMaxLevel, inDimensions, new Vector3())
         { }
 
-        public Octree(int inMaxLevel, double inDimensions, Vector3 inOffset)
+        public Octree(int inMaxLevel, float inDimensions, Vector3 inOffset)
         {
             if ((inMaxLevel <= 0) || (8 < inMaxLevel)) {
                 throw new ArgumentOutOfRangeException($"Octree.constructor: Argument \"{nameof(inMaxLevel)}\" must be in range of 1 to 8.");
@@ -29,9 +29,9 @@ namespace RtCs.MathUtils.Geometry
 
             MaxLevel = inMaxLevel;
             Dimensions = inDimensions;
-            CellDimensions = new double[MaxLevel + 1];
+            CellDimensions = new float[MaxLevel + 1];
             for (int i = 0; i <= MaxLevel; ++i) {
-                var f = (double)Math.Pow(2.0f, i);
+                var f = (float)Math.Pow(2.0f, i);
                 CellDimensions[i] = Dimensions / f;
             }
 
@@ -48,9 +48,9 @@ namespace RtCs.MathUtils.Geometry
         {
             Vector3 Clamp(Vector3 value)
                 => new Vector3(
-                        value.x.Clamp(0.0, Dimensions),
-                        value.y.Clamp(0.0, Dimensions),
-                        value.z.Clamp(0.0, Dimensions)
+                        value.x.Clamp(0.0f, Dimensions),
+                        value.y.Clamp(0.0f, Dimensions),
+                        value.z.Clamp(0.0f, Dimensions)
                     );
 
             var min = GetMortonOrder(Clamp(inValue.BoundsMin - Offset));
@@ -194,7 +194,7 @@ namespace RtCs.MathUtils.Geometry
 
         private int Clamp(int inValue, int inMin, int inMax) => Math.Max(inMin, Math.Min(inMax, inValue));
 
-        private int MinIndex((double x, double y, double z) inValue)
+        private int MinIndex((float x, float y, float z) inValue)
         {
             if (inValue.x < inValue.y) {
                 if (inValue.x < inValue.z) {
@@ -224,7 +224,7 @@ namespace RtCs.MathUtils.Geometry
 
         public int MaxLevel
         { get; }
-        public double Dimensions
+        public float Dimensions
         { get; }
         private RootCell Root
         { get; }
@@ -235,7 +235,7 @@ namespace RtCs.MathUtils.Geometry
 
         public readonly Vector3 Offset;
 
-        public readonly double[] CellDimensions;
+        public readonly float[] CellDimensions;
         private static readonly uint[] Exp8 = {
             1, 8, 64, 512, 4096, 32768, 262144, 2097152, 16777216
         };

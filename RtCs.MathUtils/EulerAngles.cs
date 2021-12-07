@@ -30,50 +30,50 @@ namespace RtCs.MathUtils
             switch (inOrder) {
                 case EEulerRotationOrder.XYZ:
                     return new Quaternion(
-                             (cx * sy * sz) + (sx * cy * cz),
-                            -(sx * cy * sz) + (cx * sy * cz),
-                             (cx * cy * sz) + (sx * sy * cz),
-                            -(sx * sy * sz) + (cx * cy * cz)
+                            (float)( (cx * sy * sz) + (sx * cy * cz)),
+                            (float)(-(sx * cy * sz) + (cx * sy * cz)),
+                            (float)( (cx * cy * sz) + (sx * sy * cz)),
+                            (float)(-(sx * sy * sz) + (cx * cy * cz))
                         );
 
                 case EEulerRotationOrder.XZY:
                     return new Quaternion(
-                            -(cx * sy * sz) + (sx * cy * cz),
-                             (cx * sy * cz) - (sx * cy * sz),
-                             (sx * sy * cz) + (cx * cy * sz),
-                             (sx * sy * sz) + (cx * cy * cz)
+                            (float)(-(cx * sy * sz) + (sx * cy * cz)),
+                            (float)( (cx * sy * cz) - (sx * cy * sz)),
+                            (float)( (sx * sy * cz) + (cx * cy * sz)),
+                            (float)( (sx * sy * sz) + (cx * cy * cz))
                         );
 
                 case EEulerRotationOrder.YXZ:
                     return new Quaternion(
-                             (cx * sy * sz) + (sx * cy * cz),
-                            -(sx * cy * sz) + (cx * sy * cz),
-                             (cx * cy * sz) - (sx * sy * cz),
-                             (sx * sy * sz) + (cx * cy * cz)
+                            (float)( (cx * sy * sz) + (sx * cy * cz)),
+                            (float)(-(sx * cy * sz) + (cx * sy * cz)),
+                            (float)( (cx * cy * sz) - (sx * sy * cz)),
+                            (float)( (sx * sy * sz) + (cx * cy * cz))
                         );
 
                 case EEulerRotationOrder.YZX:
                     return new Quaternion(
-                             (sx * cy * cz) + (cx * sy * sz),
-                             (sx * cy * sz) + (cx * sy * cz),
-                            -(sx * sy * cz) + (cx * cy * sz),
-                            -(sx * sy * sz) + (cx * cy * cz)
+                            (float)( (sx * cy * cz) + (cx * sy * sz)),
+                            (float)( (sx * cy * sz) + (cx * sy * cz)),
+                            (float)(-(sx * sy * cz) + (cx * cy * sz)),
+                            (float)(-(sx * sy * sz) + (cx * cy * cz))
                         );
 
                 case EEulerRotationOrder.ZXY:
                     return new Quaternion(
-                            -(cx * sy * sz) + (sx * cy * cz),
-                             (cx * sy * cz) + (sx * cy * sz),
-                             (sx * sy * cz) + (cx * cy * sz),
-                            -(sx * sy * sz) + (cx * cy * cz)
+                            (float)(-(cx * sy * sz) + (sx * cy * cz)),
+                            (float)( (cx * sy * cz) + (sx * cy * sz)),
+                            (float)( (sx * sy * cz) + (cx * cy * sz)),
+                            (float)(-(sx * sy * sz) + (cx * cy * cz))
                         );
 
                 case EEulerRotationOrder.ZYX:
                     return new Quaternion(
-                             (sx * cy * cz) - (cx * sy * sz),
-                             (sx * cy * sz) + (cx * sy * cz),
-                            -(sx * sy * cz) + (cx * cy * sz),
-                             (sx * sy * sz) + (cx * cy * cz)
+                            (float)( (sx * cy * cz) - (cx * sy * sz)),
+                            (float)( (sx * cy * sz) + (cx * sy * cz)),
+                            (float)(-(sx * sy * cz) + (cx * cy * sz)),
+                            (float)( (sx * sy * sz) + (cx * cy * cz))
                         );
             }
             throw new InvalidEnumValueException<EEulerRotationOrder>(inOrder);
@@ -90,60 +90,60 @@ namespace RtCs.MathUtils
                     sy = (2.0 * q.x * q.z) + (2.0 * q.y * q.w);
                     unlocked = Math.Abs(sy) < n;
                     return new Vector3(
-                            unlocked ? Math.Atan2(-((2.0 * q.y * q.z) - (2.0 * q.x * q.w)), (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0)
-                                     : Math.Atan2(  (2.0 * q.y * q.z) + (2.0 * q.x * q.w),  (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0),
-                            NumericExtensions.Asin(sy),
-                            unlocked ? Math.Atan2(-((2.0 * q.x * q.y) - (2.0 * q.z * q.w)), (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0) : 0.0
+                            (float)(unlocked ? Math.Atan2(-((2.0 * q.y * q.z) - (2.0 * q.x * q.w)), (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0)
+                                             : Math.Atan2(  (2.0 * q.y * q.z) + (2.0 * q.x * q.w),  (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0)),
+                            (float)Numerics.Asin(sy),
+                            (float)(unlocked ? Math.Atan2(-((2.0 * q.x * q.y) - (2.0 * q.z * q.w)), (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0) : 0.0)
                         );
 
                 case EEulerRotationOrder.XZY:
                     sz = -((2.0 * q.x * q.y) - (2.0 * q.z * q.w));
                     unlocked = Math.Abs(sz) < n;
                     return new Vector3(
-                            unlocked ? Math.Atan2(  (2.0 * q.y * q.z) + (2.0 * q.x * q.w),  (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0)
-                                     : Math.Atan2(-((2.0 * q.y * q.z) - (2.0 * q.x * q.w)), (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0),
-                            unlocked ? Math.Atan2(  (2.0 * q.x * q.z) + (2.0 * q.y * q.w),  (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0) : 0.0,
-                            NumericExtensions.Asin(sz)
+                            (float)(unlocked ? Math.Atan2(  (2.0 * q.y * q.z) + (2.0 * q.x * q.w),  (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0)
+                                             : Math.Atan2(-((2.0 * q.y * q.z) - (2.0 * q.x * q.w)), (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0)),
+                            (float)(unlocked ? Math.Atan2(  (2.0 * q.x * q.z) + (2.0 * q.y * q.w),  (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0) : 0.0),
+                            (float)Numerics.Asin(sz)
                         );
 
                 case EEulerRotationOrder.YXZ:
                     sx = -((2.0 * q.y * q.z) - (2.0 * q.x * q.w));
                     unlocked = Math.Abs(sx) < n;
                     return new Vector3(
-                        NumericExtensions.Asin(sx),
-                             unlocked ? Math.Atan2(  (2.0 * q.x * q.z) + (2.0 * q.y * q.w),  (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0)
-                                      : Math.Atan2(-((2.0 * q.x * q.z) - (2.0 * q.y * q.w)), (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0),
-                             unlocked ? Math.Atan2(  (2.0 * q.x * q.y) + (2.0 * q.z * q.w),  (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0) : 0.0
+                            (float)Numerics.Asin(sx),
+                            (float)(unlocked ? Math.Atan2(  (2.0 * q.x * q.z) + (2.0 * q.y * q.w),  (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0)
+                                             : Math.Atan2(-((2.0 * q.x * q.z) - (2.0 * q.y * q.w)), (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0)),
+                            (float)(unlocked ? Math.Atan2(  (2.0 * q.x * q.y) + (2.0 * q.z * q.w),  (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0) : 0.0)
                         );
 
                 case EEulerRotationOrder.YZX:
                     sz = (2.0 * q.x * q.y) + (2.0 * q.z * q.w);
                     unlocked = Math.Abs(sz) < n;
-                    return new Vector3(                            
-                             unlocked ? Math.Atan2(-((2.0 * q.y * q.z) - (2.0 * q.x * q.w)), (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0) : 0.0,
-                             unlocked ? Math.Atan2(-((2.0 * q.x * q.z) - (2.0 * q.y * q.w)), (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0)
-                                      : Math.Atan2(  (2.0 * q.x * q.z) + (2.0 * q.y * q.w),  (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0),
-                             NumericExtensions.Asin(sz)
+                    return new Vector3(
+                            (float)(unlocked ? Math.Atan2(-((2.0 * q.y * q.z) - (2.0 * q.x * q.w)), (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0) : 0.0),
+                            (float)(unlocked ? Math.Atan2(-((2.0 * q.x * q.z) - (2.0 * q.y * q.w)), (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0)
+                                             : Math.Atan2(  (2.0 * q.x * q.z) + (2.0 * q.y * q.w),  (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0)),
+                            (float)Numerics.Asin(sz)
                         );
 
                 case EEulerRotationOrder.ZXY:
                     sx = (2.0 * q.y * q.z) + (2.0 * q.x * q.w);
                     unlocked = Math.Abs(sx) < n;
                     return new Vector3(
-                             NumericExtensions.Asin(sx),
-                             unlocked ? Math.Atan2(-((2.0 * q.x * q.z) - (2.0 * q.y * q.w)), (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0) : 0.0,
-                             unlocked ? Math.Atan2(-((2.0 * q.x * q.y) - (2.0 * q.z * q.w)), (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0)
-                                      : Math.Atan2(  (2.0 * q.x * q.y) + (2.0 * q.z * q.w),  (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0)
+                            (float)Numerics.Asin(sx),
+                            (float)(unlocked ? Math.Atan2(-((2.0 * q.x * q.z) - (2.0 * q.y * q.w)), (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0) : 0.0),
+                            (float)(unlocked ? Math.Atan2(-((2.0 * q.x * q.y) - (2.0 * q.z * q.w)), (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0)
+                                             : Math.Atan2(  (2.0 * q.x * q.y) + (2.0 * q.z * q.w),  (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0))
                         );
 
                 case EEulerRotationOrder.ZYX:
                     sy = -((2.0 * q.x * q.z) - (2.0 * q.y * q.w));
                     unlocked = Math.Abs(sy) < n;
                     return new Vector3(
-                             unlocked ? Math.Atan2((2.0 * q.y * q.z) + (2.0 * q.x * q.w), (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0) : 0.0,
-                             NumericExtensions.Asin(sy),
-                             unlocked ? Math.Atan2(  (2.0 * q.x * q.y) + (2.0 * q.z * q.w),  (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0)
-                                      : Math.Atan2(-((2.0 * q.x * q.y) - (2.0 * q.z * q.w)), (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0)
+                            (float)(unlocked ? Math.Atan2((2.0 * q.y * q.z) + (2.0 * q.x * q.w), (2.0 * q.w * q.w) + (2.0 * q.z * q.z) - 1.0) : 0.0),
+                            (float)Numerics.Asin(sy),
+                            (float)(unlocked ? Math.Atan2(  (2.0 * q.x * q.y) + (2.0 * q.z * q.w),  (2.0 * q.w * q.w) + (2.0 * q.x * q.x) - 1.0)
+                                             : Math.Atan2(-((2.0 * q.x * q.y) - (2.0 * q.z * q.w)), (2.0 * q.w * q.w) + (2.0 * q.y * q.y) - 1.0))
                         );
             }
             throw new InvalidEnumValueException<EEulerRotationOrder>(inOrder);
@@ -151,9 +151,9 @@ namespace RtCs.MathUtils
 
         public static Matrix4x4 EulerToMatrix(Vector3 inEuler, EEulerRotationOrder inOrder)
         {
-            double cx = Math.Cos(inEuler.x); double sx = Math.Sin(inEuler.x);
-            double cy = Math.Cos(inEuler.y); double sy = Math.Sin(inEuler.y);
-            double cz = Math.Cos(inEuler.z); double sz = Math.Sin(inEuler.z);
+            float cx = (float)Math.Cos(inEuler.x); float sx = (float)Math.Sin(inEuler.x);
+            float cy = (float)Math.Cos(inEuler.y); float sy = (float)Math.Sin(inEuler.y);
+            float cz = (float)Math.Cos(inEuler.z); float sz = (float)Math.Sin(inEuler.z);
 
             switch (inOrder) {
                 case EEulerRotationOrder.XYZ:
@@ -211,54 +211,54 @@ namespace RtCs.MathUtils
                     sy = inRotation[2, 0];
                     unlocked = Math.Abs(sy) < n;
                     return new Vector3(
-                            unlocked ? Math.Atan2(-inRotation[2, 1], inRotation[2, 2]) : Math.Atan2(inRotation[1, 2], inRotation[1, 1]),
-                            NumericExtensions.Asin(sy),
-                            unlocked ? Math.Atan2(-inRotation[1, 0], inRotation[0, 0]) : 0.0
+                            (float)(unlocked ? Math.Atan2(-inRotation[2, 1], inRotation[2, 2]) : Math.Atan2(inRotation[1, 2], inRotation[1, 1])),
+                            (float)Numerics.Asin(sy),
+                            (float)(unlocked ? Math.Atan2(-inRotation[1, 0], inRotation[0, 0]) : 0.0)
                         );
 
                 case EEulerRotationOrder.XZY:
                     sz = -inRotation[1, 0];
                     unlocked = Math.Abs(sz) < n;
                     return new Vector3(
-                            unlocked ? Math.Atan2(inRotation[1, 2], inRotation[1, 1]) : Math.Atan2(inRotation[2, 1], inRotation[2, 2]),
-                            unlocked ? Math.Atan2(inRotation[2, 0], inRotation[0, 0]) : 0.0,
-                            NumericExtensions.Asin(sz)
+                            (float)(unlocked ? Math.Atan2(inRotation[1, 2], inRotation[1, 1]) : Math.Atan2(inRotation[2, 1], inRotation[2, 2])),
+                            (float)(unlocked ? Math.Atan2(inRotation[2, 0], inRotation[0, 0]) : 0.0),
+                            (float)Numerics.Asin(sz)
                         );
 
                 case EEulerRotationOrder.YXZ:
                     sx = -inRotation[2, 1];
                     unlocked = Math.Abs(sx) < n;
                     return new Vector3(
-                            NumericExtensions.Asin(sx),
-                            unlocked ? Math.Atan2(inRotation[2, 0], inRotation[2, 2]) : Math.Atan2(-inRotation[0, 2], inRotation[0, 0]),
-                            unlocked ? Math.Atan2(inRotation[0, 1], inRotation[1, 1]) : 0.0
+                            (float)Numerics.Asin(sx),
+                            (float)(unlocked ? Math.Atan2(inRotation[2, 0], inRotation[2, 2]) : Math.Atan2(-inRotation[0, 2], inRotation[0, 0])),
+                            (float)(unlocked ? Math.Atan2(inRotation[0, 1], inRotation[1, 1]) : 0.0)
                         );
 
                 case EEulerRotationOrder.YZX:
                     sz = inRotation[0, 1];
                     unlocked = Math.Abs(sz) < n;
                     return new Vector3(
-                            unlocked ? Math.Atan2(-inRotation[2, 1], inRotation[1, 1]) : 0.0,
-                            unlocked ? Math.Atan2(-inRotation[0, 2], inRotation[0, 0]) : Math.Atan2(inRotation[2, 0], inRotation[2, 2]),
-                            NumericExtensions.Asin(sz)
+                            (float)(unlocked ? Math.Atan2(-inRotation[2, 1], inRotation[1, 1]) : 0.0),
+                            (float)(unlocked ? Math.Atan2(-inRotation[0, 2], inRotation[0, 0]) : Math.Atan2(inRotation[2, 0], inRotation[2, 2])),
+                            (float)Numerics.Asin(sz)
                         );
 
                 case EEulerRotationOrder.ZXY:
                     sx = inRotation[1, 2];
                     unlocked = Math.Abs(sx) < n;
                     return new Vector3(
-                            NumericExtensions.Asin(sx),
-                            unlocked ? Math.Atan2(-inRotation[0, 2], inRotation[2, 2]) : 0.0,
-                            unlocked ? Math.Atan2(-inRotation[1, 0], inRotation[1, 1]) : Math.Atan2(inRotation[0, 1], inRotation[0, 0])
+                            (float)Numerics.Asin(sx),
+                            (float)(unlocked ? Math.Atan2(-inRotation[0, 2], inRotation[2, 2]) : 0.0),
+                            (float)(unlocked ? Math.Atan2(-inRotation[1, 0], inRotation[1, 1]) : Math.Atan2(inRotation[0, 1], inRotation[0, 0]))
                         );
 
                 case EEulerRotationOrder.ZYX:
                     sy = -inRotation[0, 2];
                     unlocked = Math.Abs(sy) < n;
                     return new Vector3(
-                            unlocked ? Math.Atan2(inRotation[1, 2], inRotation[2, 2]) : 0.0,
-                            NumericExtensions.Asin(sy),
-                            unlocked ? Math.Atan2(inRotation[0, 1], inRotation[0, 0]) : Math.Atan2(-inRotation[1, 0], inRotation[1, 1])
+                            (float)(unlocked ? Math.Atan2(inRotation[1, 2], inRotation[2, 2]) : 0.0),
+                            (float)Numerics.Asin(sy),
+                            (float)(unlocked ? Math.Atan2(inRotation[0, 1], inRotation[0, 0]) : Math.Atan2(-inRotation[1, 0], inRotation[1, 1]))
                         );
             }
             throw new InvalidEnumValueException<EEulerRotationOrder>(inOrder);

@@ -2,7 +2,7 @@
 {
     public struct Sphere
     {
-        public Sphere(Vector3 inCenter, double inRadius)
+        public Sphere(Vector3 inCenter, float inRadius)
         {
             Center = inCenter;
             Radius = inRadius;
@@ -11,7 +11,7 @@
 
         public Vector3 Center
         { get; set; }
-        public double Radius
+        public float Radius
         { get; set; }
     }
 }
