@@ -33,7 +33,7 @@ namespace RtCs.MathUtils
 
         private Matrix4x4 WorldRotateMatrix
             => ((Parent == null) ? m_PosRotMatrix : Parent.WorldRotateMatrix * m_PosRotMatrix)
-                .SetElements((0, 3, 0.0), (1, 3, 0.0), (2, 3, 0.0));
+                .SetElements((0, 3, 0.0f), (1, 3, 0.0f), (2, 3, 0.0f));
 
         public Vector3 WorldPosition => WorldMatrix.Translation;
         public Quaternion WorldRotation => WorldRotateMatrix.Rotation;

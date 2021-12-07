@@ -11,7 +11,7 @@ namespace RtCs.MathUtils
         {
             var result = inTestObjects.Select(o => o.IsIntersectWith(inRay)).Flatten();
             if (ClampToRayRange) {
-                result = result.Where(o => o.LineParameter.InRange(0.0, 1.0));
+                result = result.Where(o => o.LineParameter.InRange(0.0f, 1.0f));
             }
 
             if (CullBackFace) {

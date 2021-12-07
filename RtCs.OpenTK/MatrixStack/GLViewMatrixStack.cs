@@ -25,10 +25,10 @@ namespace RtCs.OpenGL
 
             // ViewMatrix to ModelMatrix
             return new Matrix4x4(
-                    x.x, x.y, x.z, t.x,
-                    y.x, y.y, y.z, t.y,
-                    z.x, z.y, z.z, t.z,
-                    0.0, 0.0, 0.0, 1.0
+                     x.x,  x.y,  x.z,  t.x,
+                     y.x,  y.y,  y.z,  t.y,
+                     z.x,  z.y,  z.z,  t.z,
+                    0.0f, 0.0f, 0.0f, 1.0f
                 );
         }
     }

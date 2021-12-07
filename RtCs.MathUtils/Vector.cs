@@ -18,7 +18,7 @@ namespace RtCs.MathUtils
         public static float Length2(IVector inVector)
             => Enumerable.Range(0, inVector.Dimension).Sum(i => inVector[i].Sqr());
         public static float Length(IVector inVector)
-            => Math.Sqrt(Length2(inVector));
+            => (float)Math.Sqrt(Length2(inVector));
         public static bool IsZero(IVector inVector)
             => Enumerable.Range(0, inVector.Dimension).All(i => inVector[i].AlmostZero());
 

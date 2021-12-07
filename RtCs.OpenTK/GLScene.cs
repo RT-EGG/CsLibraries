@@ -23,7 +23,7 @@ namespace RtCs.OpenGL
 
                 //
                 var list = DisplayList.ToList();
-                List<(GLRenderObject @object, double distance)> transparents = new List<(GLRenderObject, double)>(list.Count);
+                List<(GLRenderObject @object, float distance)> transparents = new List<(GLRenderObject, float)>(list.Count);
                 List<GLRenderObject> overlays = new List<GLRenderObject>(list.Count);
 
                 Vector3 viewPosition = inStatus.ModelViewMatrix.View.CurrentMatrix.Inversed.Translation;
@@ -72,7 +72,7 @@ namespace RtCs.OpenGL
             return;
         }
 
-        public virtual double EvaluateObjectDistance(Vector3 inViewPosition, GLRenderObject inObject)
+        public virtual float EvaluateObjectDistance(Vector3 inViewPosition, GLRenderObject inObject)
             => (inObject.BoundingBox.Center - inViewPosition).Length2;
 
         private bool CanRender(GLRenderObject inObject)

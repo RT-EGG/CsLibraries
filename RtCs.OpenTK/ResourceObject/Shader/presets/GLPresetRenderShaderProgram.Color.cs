@@ -32,7 +32,7 @@ namespace RtCs.OpenGL
                 foreach (var @base in base.CreateDefaultProperties()) {
                     yield return @base;
                 }
-                yield return new GLShaderUniformProperty.Vec4(GetPropertySocket("inColor")) { Value = new Vector4(1.0, 1.0, 1.0, 1.0) };
+                yield return new GLShaderUniformProperty.Vec4(GetPropertySocket("inColor")) { Value = new Vector4(1.0f, 1.0f, 1.0f, 1.0f) };
                 yield return new GLShaderUniformProperty.Mat4(GetPropertySocket("inProjectionMatrix")) { Value = Matrix4x4.Identity };
                 yield return new GLShaderUniformProperty.Mat4(GetPropertySocket("inModelviewMatrix")) { Value = Matrix4x4.Identity };
                 yield break;
