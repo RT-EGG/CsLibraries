@@ -16,25 +16,25 @@ namespace RtCs.OpenGL
             List<Vector3> positions = new List<Vector3>((inSlices * (inStacks - 2)) + 2);
             List<int> indices = new List<int>();
 
-            double uStep = (Math.PI * 2.0) / inSlices;
-            double vStep = (Math.PI) / (inStacks - 1);
+            float uStep = (float)((Math.PI * 2.0) / inSlices);
+            float vStep = (float)((Math.PI) / (inStacks - 1));
 
-            List<double> latRadius = new List<double>();
+            List<float> latRadius = new List<float>();
             for (int i = 0; i <= inSlices; ++i) {
-                latRadius.Add(Math.Sin(vStep * i));
+                latRadius.Add((float)Math.Sin(vStep * i));
             }
 
-            positions.Add(new Vector3(0.0, 1.0, 0.0)); // top
+            positions.Add(new Vector3(0.0f, 1.0f, 0.0f)); // top
             for (int v = 1; v < (inStacks - 1); ++v) {
-                double vThete = vStep * v;
-                double y = Math.Cos(vThete);
+                float vThete = vStep * v;
+                float y = (float)Math.Cos(vThete);
                 for (int u = 0; u < inSlices; ++u) {
-                    double uThete = uStep * u;
+                    float uThete = uStep * u;
 
-                    positions.Add(new Vector3(latRadius[v] * Math.Sin(uThete), y, latRadius[v] * Math.Cos(uThete)));
+                    positions.Add(new Vector3(latRadius[v] * (float)Math.Sin(uThete), y, latRadius[v] * (float)Math.Cos(uThete)));
                 }
             }
-            positions.Add(new Vector3(0.0, -1.0, 0.0)); // bottom
+            positions.Add(new Vector3(0.0f, -1.0f, 0.0f)); // bottom
 
             int startIndex = 1;
             // top
@@ -73,21 +73,21 @@ namespace RtCs.OpenGL
             List<int> indices = new List<int>();
 
             // create 12 vertices of a icosahedron
-            double t = (1.0 + Math.Sqrt(5.0)) / 2.0;
-            positions.Add(new Vector3(-1.0, t, 0.0));
-            positions.Add(new Vector3(1.0, t, 0.0));
-            positions.Add(new Vector3(-1.0, -t, 0.0));
-            positions.Add(new Vector3(1.0, -t, 0.0));
+            float t = (1.0f + (float)Math.Sqrt(5.0f)) / 2.0f;
+            positions.Add(new Vector3(-1.0f, t, 0.0f));
+            positions.Add(new Vector3(1.0f, t, 0.0f));
+            positions.Add(new Vector3(-1.0f, -t, 0.0f));
+            positions.Add(new Vector3(1.0f, -t, 0.0f));
 
-            positions.Add(new Vector3(0.0, -1.0, t));
-            positions.Add(new Vector3(0.0, 1.0, t));
-            positions.Add(new Vector3(0.0, -1.0, -t));
-            positions.Add(new Vector3(0.0, 1.0, -t));
+            positions.Add(new Vector3(0.0f, -1.0f, t));
+            positions.Add(new Vector3(0.0f, 1.0f, t));
+            positions.Add(new Vector3(0.0f, -1.0f, -t));
+            positions.Add(new Vector3(0.0f, 1.0f, -t));
 
-            positions.Add(new Vector3(t, 0.0, -1.0));
-            positions.Add(new Vector3(t, 0.0, 1.0));
-            positions.Add(new Vector3(-t, 0.0, -1.0));
-            positions.Add(new Vector3(-t, 0.0, 1.0));
+            positions.Add(new Vector3(t, 0.0f, -1.0f));
+            positions.Add(new Vector3(t, 0.0f, 1.0f));
+            positions.Add(new Vector3(-t, 0.0f, -1.0f));
+            positions.Add(new Vector3(-t, 0.0f, 1.0f));
 
             Dictionary<(int, int), int> midPointIndexCache = new Dictionary<(int, int), int>();
 
@@ -95,7 +95,7 @@ namespace RtCs.OpenGL
             {
                 if (!midPointIndexCache.TryGetValue((inIndex0, inIndex1), out var result)) {
                     result = positions.Count;
-                    var newPosition = (positions[inIndex0] + positions[inIndex1]) * 0.5;
+                    var newPosition = (positions[inIndex0] + positions[inIndex1]) * 0.5f;
                     positions.Add(newPosition);
 
                     midPointIndexCache.Add((inIndex0, inIndex1), result);
@@ -161,14 +161,14 @@ namespace RtCs.OpenGL
             List<Vector3> positions = new List<Vector3>();
             List<int> indices = new List<int>();
 
-            positions.Add(new Vector3(-1.0, -1.0, -1.0)); // -x, -y, -z
-            positions.Add(new Vector3(-1.0, -1.0,  1.0)); // -x, -y, +z
-            positions.Add(new Vector3(-1.0,  1.0, -1.0)); // -x, +y, -z
-            positions.Add(new Vector3(-1.0,  1.0,  1.0)); // -x, +y, +z
-            positions.Add(new Vector3( 1.0, -1.0, -1.0)); // +x, -y, -z
-            positions.Add(new Vector3( 1.0, -1.0,  1.0)); // +x, -y, +z
-            positions.Add(new Vector3( 1.0,  1.0, -1.0)); // +x, +y, -z
-            positions.Add(new Vector3( 1.0,  1.0,  1.0)); // +x, +y, +z
+            positions.Add(new Vector3(-1.0f, -1.0f, -1.0f)); // -x, -y, -z
+            positions.Add(new Vector3(-1.0f, -1.0f,  1.0f)); // -x, -y, +z
+            positions.Add(new Vector3(-1.0f,  1.0f, -1.0f)); // -x, +y, -z
+            positions.Add(new Vector3(-1.0f,  1.0f,  1.0f)); // -x, +y, +z
+            positions.Add(new Vector3( 1.0f, -1.0f, -1.0f)); // +x, -y, -z
+            positions.Add(new Vector3( 1.0f, -1.0f,  1.0f)); // +x, -y, +z
+            positions.Add(new Vector3( 1.0f,  1.0f, -1.0f)); // +x, +y, -z
+            positions.Add(new Vector3( 1.0f,  1.0f,  1.0f)); // +x, +y, +z
 
             Dictionary<(int, int, int), int> divPointIndexCache = new Dictionary<(int, int, int), int>();
             void RegisterInitPair(int inIndex0, int inIndex1)
@@ -200,8 +200,8 @@ namespace RtCs.OpenGL
                     divPointIndexCache.Add((inIndex0, inIndex1, t), result);
                     divPointIndexCache.Add((inIndex1, inIndex0, inSubdivision - t - 1), result);
 
-                    double delta = t / ((double)inSubdivision - 1.0);
-                    positions.Add((positions[inIndex0] * (1.0 - delta)) + (positions[inIndex1] * delta));
+                    float delta = t / ((float)inSubdivision - 1.0f);
+                    positions.Add((positions[inIndex0] * (1.0f - delta)) + (positions[inIndex1] * delta));
                 }
                 return result;
             }

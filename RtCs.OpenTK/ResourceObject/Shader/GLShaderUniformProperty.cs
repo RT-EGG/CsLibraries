@@ -35,6 +35,13 @@ namespace RtCs.OpenGL
                 => GL.ProgramUniform1(inProgramID, inLocation, Value);
         }
 
+        public class Float : GLShaderUniformProperty<float>
+        {
+            public Float(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
+            protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
+                => GL.ProgramUniform1(inProgramID, inLocation, Value);
+        }
+
         public class Double : GLShaderUniformProperty<double>
         {
             public Double(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }

@@ -60,7 +60,7 @@ namespace RtCs.OpenGL
             }
 
             var matrix = Transform.WorldMatrix;
-            BoundingBox = AABB3D.InclusionBoundary(vertices.Select(v => new Vector3(matrix * new Vector4(v, 1.0))));
+            BoundingBox = AABB3D.InclusionBoundary(vertices.Select(v => new Vector3(matrix * new Vector4(v, 1.0f))));
             return;
         }
 
@@ -108,13 +108,13 @@ namespace RtCs.OpenGL
 
             Matrix4x4 local2world = Transform.WorldMatrix;
             Matrix4x4 world2local = local2world.Inversed;
-            inLine.Point0 = new Vector3(world2local.Multiply(inLine.Point0, 1.0));
-            inLine.Point1 = new Vector3(world2local.Multiply(inLine.Point1, 1.0));
+            inLine.Point0 = new Vector3(world2local.Multiply(inLine.Point0, 1.0f));
+            inLine.Point1 = new Vector3(world2local.Multiply(inLine.Point1, 1.0f));
             foreach (var info in Renderer.Mesh.IsIntersectWith(inLine)) {
                 info.HitObject = this;
-                info.Position = local2world.Multiply(info.Position, 1.0);
+                info.Position = local2world.Multiply(info.Position, 1.0f);
                 if (info.Normal.HasValue) {
-                    info.Normal = local2world.Multiply(info.Normal.Value, 0.0);
+                    info.Normal = local2world.Multiply(info.Normal.Value, 0.0f);
                 }
                 yield return info;
             }

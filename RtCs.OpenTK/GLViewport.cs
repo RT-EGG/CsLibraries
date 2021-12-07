@@ -31,8 +31,8 @@ namespace RtCs.OpenGL
         { get; set; } = 1;
         public int Height
         { get; set; } = 1;
-        public double AspectRatio
-            => Width / (double)Height;
+        public float AspectRatio
+            => Width / (float)Height;
 
         public int[] ToArray() => new int[4] {
             X, Y, Width, Height

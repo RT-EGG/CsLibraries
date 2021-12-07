@@ -6,16 +6,16 @@ namespace RtCs.OpenGL
     public partial class GLPrimitiveMesh
     {
         public static GLMesh CreateBox()
-            => CreateBox(1.0, 1.0, 1.0);
+            => CreateBox(1.0f, 1.0f, 1.0f);
 
-        public static GLMesh CreateBox(double inSizeX, double inSizeY, double inSizeZ)
+        public static GLMesh CreateBox(float inSizeX, float inSizeY, float inSizeZ)
         {
             GLMesh mesh = new GLMesh();
             mesh.Clear();
 
-            double hx = inSizeX * 0.5;
-            double hy = inSizeY * 0.5;
-            double hz = inSizeZ * 0.5;
+            float hx = inSizeX * 0.5f;
+            float hy = inSizeY * 0.5f;
+            float hz = inSizeZ * 0.5f;
 
             mesh.Positions = new Vector3[24] {
                 // -x
@@ -52,35 +52,35 @@ namespace RtCs.OpenGL
 
             mesh.Normals = new Vector3[24] {
                 // -x
-                new Vector3(-1.0, 0.0, 0.0),
-                new Vector3(-1.0, 0.0, 0.0),
-                new Vector3(-1.0, 0.0, 0.0),
-                new Vector3(-1.0, 0.0, 0.0),
+                new Vector3(-1.0f, 0.0f, 0.0f),
+                new Vector3(-1.0f, 0.0f, 0.0f),
+                new Vector3(-1.0f, 0.0f, 0.0f),
+                new Vector3(-1.0f, 0.0f, 0.0f),
                 // +x
-                new Vector3(1.0, 0.0, 0.0),
-                new Vector3(1.0, 0.0, 0.0),
-                new Vector3(1.0, 0.0, 0.0),
-                new Vector3(1.0, 0.0, 0.0),
+                new Vector3(1.0f, 0.0f, 0.0f),
+                new Vector3(1.0f, 0.0f, 0.0f),
+                new Vector3(1.0f, 0.0f, 0.0f),
+                new Vector3(1.0f, 0.0f, 0.0f),
                 // -y
-                new Vector3(0.0, -1.0, 0.0),
-                new Vector3(0.0, -1.0, 0.0),
-                new Vector3(0.0, -1.0, 0.0),
-                new Vector3(0.0, -1.0, 0.0),
+                new Vector3(0.0f, -1.0f, 0.0f),
+                new Vector3(0.0f, -1.0f, 0.0f),
+                new Vector3(0.0f, -1.0f, 0.0f),
+                new Vector3(0.0f, -1.0f, 0.0f),
                 // +y
-                new Vector3(0.0, 1.0, 0.0),
-                new Vector3(0.0, 1.0, 0.0),
-                new Vector3(0.0, 1.0, 0.0),
-                new Vector3(0.0, 1.0, 0.0),
+                new Vector3(0.0f, 1.0f, 0.0f),
+                new Vector3(0.0f, 1.0f, 0.0f),
+                new Vector3(0.0f, 1.0f, 0.0f),
+                new Vector3(0.0f, 1.0f, 0.0f),
                 // -z
-                new Vector3(0.0, 0.0, -1.0),
-                new Vector3(0.0, 0.0, -1.0),
-                new Vector3(0.0, 0.0, -1.0),
-                new Vector3(0.0, 0.0, -1.0),
+                new Vector3(0.0f, 0.0f, -1.0f),
+                new Vector3(0.0f, 0.0f, -1.0f),
+                new Vector3(0.0f, 0.0f, -1.0f),
+                new Vector3(0.0f, 0.0f, -1.0f),
                 // +z
-                new Vector3(0.0, 0.0, 1.0),
-                new Vector3(0.0, 0.0, 1.0),
-                new Vector3(0.0, 0.0, 1.0),
-                new Vector3(0.0, 0.0, 1.0)
+                new Vector3(0.0f, 0.0f, 1.0f),
+                new Vector3(0.0f, 0.0f, 1.0f),
+                new Vector3(0.0f, 0.0f, 1.0f),
+                new Vector3(0.0f, 0.0f, 1.0f)
             };
 
             mesh.Topology = EGLMeshTopology.Quads;

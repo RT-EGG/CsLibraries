@@ -53,20 +53,20 @@ namespace RtCs.OpenGL
             ProjectionMatrix = inProjectionMatrix;
             InvProjectionMatrix = ProjectionMatrix.Inversed;
 
-            m_Vertices[EVertex.LeftBottomNear]  = new Vector3(-1.0, -1.0, -1.0);
-            m_Vertices[EVertex.LeftBottomFar]   = new Vector3(-1.0, -1.0,  1.0);
-            m_Vertices[EVertex.LeftTopNear]     = new Vector3(-1.0,  1.0, -1.0);
-            m_Vertices[EVertex.LeftTopFar]      = new Vector3(-1.0,  1.0,  1.0);
-            m_Vertices[EVertex.RightBottomNear] = new Vector3( 1.0, -1.0, -1.0);
-            m_Vertices[EVertex.RightBottomFar]  = new Vector3( 1.0, -1.0,  1.0);
-            m_Vertices[EVertex.RightTopNear]    = new Vector3( 1.0,  1.0, -1.0);
-            m_Vertices[EVertex.RightTopFar]     = new Vector3( 1.0,  1.0,  1.0);
+            m_Vertices[EVertex.LeftBottomNear]  = new Vector3(-1.0f, -1.0f, -1.0f);
+            m_Vertices[EVertex.LeftBottomFar]   = new Vector3(-1.0f, -1.0f,  1.0f);
+            m_Vertices[EVertex.LeftTopNear]     = new Vector3(-1.0f,  1.0f, -1.0f);
+            m_Vertices[EVertex.LeftTopFar]      = new Vector3(-1.0f,  1.0f,  1.0f);
+            m_Vertices[EVertex.RightBottomNear] = new Vector3( 1.0f, -1.0f, -1.0f);
+            m_Vertices[EVertex.RightBottomFar]  = new Vector3( 1.0f, -1.0f,  1.0f);
+            m_Vertices[EVertex.RightTopNear]    = new Vector3( 1.0f,  1.0f, -1.0f);
+            m_Vertices[EVertex.RightTopFar]     = new Vector3( 1.0f,  1.0f,  1.0f);
 
             foreach (EVertex vertex in m_Vertices.Keys) {
-                Vector4 v = InvProjectionMatrix.Multiply(m_Vertices[vertex], 1.0);
+                Vector4 v = InvProjectionMatrix.Multiply(m_Vertices[vertex], 1.0f);
                 v = v / v.w;
 
-                v = InvViewMatrix.Multiply(new Vector3(v), 1.0);
+                v = InvViewMatrix.Multiply(new Vector3(v), 1.0f);
 
                 m_Vertices[vertex] = new Vector3(v);
             }
@@ -84,9 +84,9 @@ namespace RtCs.OpenGL
 
             // check frustum contains AABB's vertices
             foreach (var vertex in AABBVertices(inAABB).Select(v => WorldToClipCoordinate(v))) {
-                if (vertex.x.InRange(-1.0, 1.0)
-                 && vertex.y.InRange(-1.0, 1.0)
-                 && vertex.z.InRange(-1.0, 1.0)) {
+                if (vertex.x.InRange(-1.0f, 1.0f)
+                 && vertex.y.InRange(-1.0f, 1.0f)
+                 && vertex.z.InRange(-1.0f, 1.0f)) {
                     return true;
                 }
             }
@@ -100,18 +100,18 @@ namespace RtCs.OpenGL
             return false;
         }
 
-        public bool IsIntersectSphere(Vector3 inWorldCenter, double inRadius)
+        public bool IsIntersectSphere(Vector3 inWorldCenter, float inRadius)
             => CalcDistanceTo(inWorldCenter) <= inRadius;
 
-        public double CalcDistanceTo(Vector3 inWorldPoint)
+        public float CalcDistanceTo(Vector3 inWorldPoint)
             => (CalcClosestPoint(inWorldPoint) - inWorldPoint).Length;
 
         public Vector3 CalcClosestPoint(Vector3 inWorldPoint)
         {
             var point = WorldToClipCoordinate(inWorldPoint);
 
-            const double r = 1.0;
-            int Place(double inValue)
+            const float r = 1.0f;
+            int Place(float inValue)
             {
                 if (inValue <= -r) {
                     return 0x00;
@@ -254,7 +254,7 @@ namespace RtCs.OpenGL
         private Vector3 WorldToClipCoordinate(Vector3 inWorldPoint)
         {
             // world to view coordinate
-            Vector4 point = ViewMatrix.Multiply(inWorldPoint, 1.0);
+            Vector4 point = ViewMatrix.Multiply(inWorldPoint, 1.0f);
             // view to clip coordinate
             point = ProjectionMatrix.Multiply(point);
             point /= point.w;

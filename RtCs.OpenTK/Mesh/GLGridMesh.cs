@@ -1,23 +1,20 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RtCs.OpenGL
 {
     public partial class GLPrimitiveMesh
     {
         public static GLMesh CreateGrid(Vector3 inDimensions, int inDivisionX, int inDivisionY, int inDivisionZ)
-            => CreateGrid(new Vector3(0.0), inDimensions, inDivisionX, inDivisionY, inDivisionZ);
+            => CreateGrid(new Vector3(0.0f), inDimensions, inDivisionX, inDivisionY, inDivisionZ);
 
         public static GLMesh CreateGrid(Vector3 inOffset, Vector3 inDimensions, int inDivisionX, int inDivisionY, int inDivisionZ)
         {
-            double xStep = inDimensions.x / inDivisionX;
-            double yStep = inDimensions.y / inDivisionY;
-            double zStep = inDimensions.z / inDivisionZ;
+            float xStep = inDimensions.x / inDivisionX;
+            float yStep = inDimensions.y / inDivisionY;
+            float zStep = inDimensions.z / inDivisionZ;
 
             GLMesh result = new GLMesh();
             List<Vector3> vertices = new List<Vector3>(
@@ -32,7 +29,7 @@ namespace RtCs.OpenGL
                     Vector3 p0 = new Vector3(
                         x * xStep,
                         y * yStep,
-                        0.0
+                        0.0f
                     ) + inOffset;
                     Vector3 p1 = new Vector3(
                         x * xStep,
@@ -47,7 +44,7 @@ namespace RtCs.OpenGL
                 for (int z = 0; z <= inDivisionZ; ++z) {
                     Vector3 p0 = new Vector3(
                         x * xStep,
-                        0.0,
+                        0.0f,
                         z * zStep
                     ) + inOffset;
                     Vector3 p1 = new Vector3(
@@ -62,7 +59,7 @@ namespace RtCs.OpenGL
             for (int y = 0; y <= inDivisionY; ++y) {
                 for (int z = 0; z <= inDivisionZ; ++z) {
                     Vector3 p0 = new Vector3(
-                        0.0,
+                        0.0f,
                         y * yStep,
                         z * zStep
                     ) + inOffset;
