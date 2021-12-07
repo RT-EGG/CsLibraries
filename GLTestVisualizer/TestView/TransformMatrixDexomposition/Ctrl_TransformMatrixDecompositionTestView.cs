@@ -11,8 +11,8 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         {
             InitializeComponent();
 
-            Vector4[] vertColors = new Vector4[m_Cube.Positions.Length];
-            for (int i = 0; i < m_Cube.Positions.Length; ++i) {
+            Vector4[] vertColors = new Vector4[m_Cube.Vertices.Length];
+            for (int i = 0; i < m_Cube.Vertices.Length; ++i) {
                 if ((0 <= i) && (i <= 3)) {
                     vertColors[i] = new Vector4(1.0f, 0.0f, 0.0f, 1.0f); // -x
                 } else if ((4 <= i) && (i <= 7)) {

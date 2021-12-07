@@ -28,7 +28,7 @@ namespace GLTestVisualizer.TestView.Text
             ChangeFont(new Font(SystemFonts.DefaultFont.Name, 72.0f, FontStyle.Regular, GraphicsUnit.Pixel));
             TextBoxInput.Text = "Input text...";
 
-            m_AtlasMesh.Positions = new Vector3[] {
+            m_AtlasMesh.Vertices = new Vector3[] {
                 new Vector3(-0.5f, 0.5f, 0.0f),
                 new Vector3(-0.5f, -0.5f, 0.0f),
                 new Vector3(0.5f, -0.5f, 0.0f),
@@ -218,7 +218,7 @@ namespace GLTestVisualizer.TestView.Text
                 Renderer.Mesh = m_Mesh;
                 Renderer.Material = m_Material;
 
-                m_Mesh.Positions = new Vector3[] {
+                m_Mesh.Vertices = new Vector3[] {
                     new Vector3(0.0f, 0.0f, 0.0f),
                     new Vector3(0.0f, -inQuadSize.y, 0.0f),
                     new Vector3(inQuadSize.x, -inQuadSize.y, 0.0f),

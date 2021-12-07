@@ -53,7 +53,7 @@ namespace RtCs.OpenGL
 
         public void CalculateBoundingBox()
         {
-            var vertices = Renderer?.Mesh?.Positions;
+            var vertices = Renderer?.Mesh?.Vertices;
             if (vertices.IsNullOrEmpty()) {
                 BoundingBox = new AABB3D();
                 return;

@@ -41,7 +41,7 @@ namespace RtCs.OpenGL
                 DoSoonIfCan = false
             }.Enqueue();
 
-        public Vector3[] Positions
+        public Vector3[] Vertices
         { get; set; } = default;
         public Vector3[] Normals
         { get; set; } = default;
@@ -84,7 +84,7 @@ namespace RtCs.OpenGL
 
         public void Clear()
         {
-            Positions = null;
+            Vertices = null;
             Normals = null;
             TexCoords = null;
             Colors = null;
@@ -95,12 +95,12 @@ namespace RtCs.OpenGL
 
         public void CalculateBoundingBox()
         {
-            if (Positions.IsNullOrEmpty()) {
+            if (Vertices.IsNullOrEmpty()) {
                 BoundingBox = default;
                 return;
             }
 
-            BoundingBox = AABB3D.InclusionBoundary(Positions);
+            BoundingBox = AABB3D.InclusionBoundary(Vertices);
             return;
         }
 
@@ -114,8 +114,8 @@ namespace RtCs.OpenGL
             }
 
             VertexAttributes.Clear();
-            if (!Positions.IsNullOrEmpty()) {
-                AddAttribute(EGLVertexAttributeType.Position, new GLVertexAttribute.Position { DataOffset = offset, Data = Positions.ToFloatArray() });
+            if (!Vertices.IsNullOrEmpty()) {
+                AddAttribute(EGLVertexAttributeType.Position, new GLVertexAttribute.Position { DataOffset = offset, Data = Vertices.ToFloatArray() });
             }
             if (!Normals.IsNullOrEmpty()) {
                 AddAttribute(EGLVertexAttributeType.Normal, new GLVertexAttribute.Normal { DataOffset = offset, Data = Normals.ToFloatArray() });
@@ -181,9 +181,9 @@ namespace RtCs.OpenGL
 
             for (int i = 0; i < Indices.Length; i += 3) {
                 yield return new Triangle3D(
-                        Positions[Indices[i + 0]],
-                        Positions[Indices[i + 1]],
-                        Positions[Indices[i + 2]]
+                        Vertices[Indices[i + 0]],
+                        Vertices[Indices[i + 1]],
+                        Vertices[Indices[i + 2]]
                     );
             }
         }
@@ -196,14 +196,14 @@ namespace RtCs.OpenGL
 
             for (int i = 0; i < Indices.Length; i += 4) {
                 yield return new Triangle3D(
-                        Positions[Indices[i + 0]],
-                        Positions[Indices[i + 1]],
-                        Positions[Indices[i + 2]]
+                        Vertices[Indices[i + 0]],
+                        Vertices[Indices[i + 1]],
+                        Vertices[Indices[i + 2]]
                     );
                 yield return new Triangle3D(
-                        Positions[Indices[i + 0]],
-                        Positions[Indices[i + 2]],
-                        Positions[Indices[i + 3]]
+                        Vertices[Indices[i + 0]],
+                        Vertices[Indices[i + 2]],
+                        Vertices[Indices[i + 3]]
                     );
             }
         }

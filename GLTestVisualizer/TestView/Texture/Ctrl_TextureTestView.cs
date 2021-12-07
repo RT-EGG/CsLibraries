@@ -23,7 +23,7 @@ namespace GLTestVisualizer.TestView.Texture
         {
             base.Start();
 
-            m_TextureMesh.Positions = new Vector3[] {
+            m_TextureMesh.Vertices = new Vector3[] {
                 new Vector3(-1.0f,  1.0f, 0.0f),
                 new Vector3(-1.0f, -1.0f, 0.0f),
                 new Vector3( 1.0f, -1.0f, 0.0f),
@@ -144,7 +144,7 @@ namespace GLTestVisualizer.TestView.Texture
         {
             // fill vertex positions to client
             Vector2 fitSizeHalf = inClientSize.ToVector() * 0.5f;
-            m_TextureMesh.Positions = new Vector3[] {
+            m_TextureMesh.Vertices = new Vector3[] {
                 new Vector3(-fitSizeHalf.x,  fitSizeHalf.y, 0.0f),
                 new Vector3(-fitSizeHalf.x, -fitSizeHalf.y, 0.0f),
                 new Vector3( fitSizeHalf.x, -fitSizeHalf.y, 0.0f),

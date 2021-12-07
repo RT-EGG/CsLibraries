@@ -17,7 +17,7 @@ namespace RtCs.OpenGL
             float hy = inSizeY * 0.5f;
             float hz = inSizeZ * 0.5f;
 
-            mesh.Positions = new Vector3[24] {
+            mesh.Vertices = new Vector3[24] {
                 // -x
                 new Vector3(-hx, -hy, -hz),
                 new Vector3(-hx, -hy,  hz),

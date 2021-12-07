@@ -243,8 +243,8 @@ namespace RtCs.OpenGL
         {
             GLMesh mesh = new GLMesh();
             mesh.Topology = EGLMeshTopology.Triangles;
-            mesh.Positions = inPositions.ToArray();
-            mesh.Normals = SetupSphereNormals(mesh.Positions);
+            mesh.Vertices = inPositions.ToArray();
+            mesh.Normals = SetupSphereNormals(mesh.Vertices);
             mesh.Indices = inIndices.ToArray();
             mesh.Apply();
             return mesh;

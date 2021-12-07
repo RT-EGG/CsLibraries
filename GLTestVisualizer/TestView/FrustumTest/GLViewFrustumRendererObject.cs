@@ -55,7 +55,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
         {
             public Mesh()
             {
-                Positions = new Vector3[8] {
+                Vertices = new Vector3[8] {
                     new Vector3(-1.0f, -1.0f, -1.0f),
                     new Vector3(-1.0f, -1.0f,  1.0f),
                     new Vector3(-1.0f,  1.0f, -1.0f),
@@ -96,7 +96,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
                     positions[i] = new Vector3(v);
                 }
 
-                Positions = positions;
+                Vertices = positions;
                 this.Apply();
                 return;
             }

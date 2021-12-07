@@ -19,9 +19,9 @@ namespace RtCs.OpenGL
                 points.Add(point0);
                 points.Add(point1);
             }
-            mesh.Positions = points.ToArray();
+            mesh.Vertices = points.ToArray();
             mesh.Topology = EGLMeshTopology.Lines;
-            mesh.Indices = Enumerable.Range(0, mesh.Positions.Length).ToArray();
+            mesh.Indices = Enumerable.Range(0, mesh.Vertices.Length).ToArray();
 
             mesh.CalculateBoundingBox();
             mesh.Apply();
