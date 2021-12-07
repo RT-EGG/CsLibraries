@@ -45,6 +45,7 @@ namespace GLTestVisualizer.TestView.Text
                 0, 1, 3,
                 1, 2, 3
             };
+            m_AtlasMesh.Apply();
             m_TextureSampler.MinFilter = EGLTextureMinFilter.Linear;
             m_TextureSampler.MagFilter = EGLTextureMagFilter.Linear;
             m_TextureSampler.WrapS = EGLTextureWrapMode.ClampToEdge;
@@ -233,6 +234,7 @@ namespace GLTestVisualizer.TestView.Text
                 m_Mesh.Indices = new int[] {
                     0, 1, 2, 3
                 };
+                m_Mesh.Apply();
 
                 m_Material.TextureReference.Texture = inReferenceTexture;
                 return;

@@ -24,6 +24,7 @@ namespace RtCs.OpenGL
             mesh.Indices = Enumerable.Range(0, mesh.Positions.Length).ToArray();
 
             mesh.CalculateBoundingBox();
+            mesh.Apply();
             return mesh;
         }
     }

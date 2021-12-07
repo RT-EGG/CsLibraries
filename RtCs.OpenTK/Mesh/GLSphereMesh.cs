@@ -63,7 +63,6 @@ namespace RtCs.OpenGL
                 indices.Add(endIndex, startIndex + ((i + 1) % inSlices), startIndex + i);
             }
 
-
             return CreateSphereMesh(positions, indices);
         }
 
@@ -247,6 +246,7 @@ namespace RtCs.OpenGL
             mesh.Positions = inPositions.ToArray();
             mesh.Normals = SetupSphereNormals(mesh.Positions);
             mesh.Indices = inIndices.ToArray();
+            mesh.Apply();
             return mesh;
         }
 

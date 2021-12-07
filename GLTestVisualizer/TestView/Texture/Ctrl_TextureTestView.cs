@@ -5,11 +5,7 @@ using RtCs.OpenGL.WinForms;
 using RtCs.WinForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GLTestVisualizer.TestView.Texture
@@ -44,6 +40,7 @@ namespace GLTestVisualizer.TestView.Texture
                 0, 1, 3,
                 1, 2, 3
             };
+            m_TextureMesh.Apply();
             m_TextureObject.Renderer.Mesh = m_TextureMesh;
             m_TextureObject.Renderer.Material = m_TextureMaterial;
             m_TextureObject.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
@@ -165,6 +162,7 @@ namespace GLTestVisualizer.TestView.Texture
                 new Vector2(0.5f + fitSizeHalf.x, 0.5f + fitSizeHalf.y),
                 new Vector2(0.5f + fitSizeHalf.x, 0.5f - fitSizeHalf.y),
             };
+            m_TextureMesh.Apply();
 
             GLView.Invalidate();
             return;

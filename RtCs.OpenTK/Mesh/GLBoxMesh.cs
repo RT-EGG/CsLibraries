@@ -107,6 +107,8 @@ namespace RtCs.OpenGL
                 MinZ = -hz,
                 MaxZ =  hz
             };
+
+            mesh.Apply();
             return mesh;
         }
 

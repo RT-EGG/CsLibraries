@@ -97,6 +97,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 }
 
                 Positions = positions;
+                this.Apply();
                 return;
             }
         }

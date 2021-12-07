@@ -78,6 +78,7 @@ namespace RtCs.OpenGL
             result.Positions = vertices.ToArray();
             result.Indices = Enumerable.Range(0, vertices.Count).ToArray();
 
+            result.Apply();
             return result;
         }
     }

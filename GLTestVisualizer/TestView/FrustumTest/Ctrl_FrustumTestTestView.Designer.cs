@@ -77,9 +77,9 @@ namespace GLTestVisualizer.TestView.FrustumTest
             // 
             this.CheckBoxAutoAspect.AutoSize = true;
             this.CheckBoxAutoAspect.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CheckBoxAutoAspect.Location = new System.Drawing.Point(521, 3);
+            this.CheckBoxAutoAspect.Location = new System.Drawing.Point(532, 3);
             this.CheckBoxAutoAspect.Name = "CheckBoxAutoAspect";
-            this.CheckBoxAutoAspect.Size = new System.Drawing.Size(95, 22);
+            this.CheckBoxAutoAspect.Size = new System.Drawing.Size(84, 22);
             this.CheckBoxAutoAspect.TabIndex = 1;
             this.CheckBoxAutoAspect.Text = "AutoAspect";
             this.CheckBoxAutoAspect.UseVisualStyleBackColor = true;
