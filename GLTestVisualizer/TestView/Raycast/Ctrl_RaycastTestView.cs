@@ -91,6 +91,20 @@ namespace GLTestVisualizer.TestView.Raycast
 
         private void GLFPSView_OnRenderScene(GLControl inControl, GLRenderingStatus inStatus)
         {
+            Vector3 rayPoint0 = m_FPSCameraRayVisualizer.Transform.WorldPosition;
+            Vector3 rayPoint1 = rayPoint0 + (m_FPSCameraRayVisualizer.Transform.WorldRotation * new Vector3(0.0, 0.0, -1.0) * (double)UdRayLength.Value);
+
+            m_HitPointMarkerObjects.ForEach(o => m_RenderObjectPool.Enqueue(o));
+            m_HitPointMarkerObjects.Clear();
+            foreach (var intersect in RayCast(new Line3D(rayPoint0, rayPoint1))) {
+                var marker = RequestHitPointMarkerObject();
+                marker.Transform.LocalPosition = intersect.Position;
+                marker.Transform.LocalScale = new Vector3(0.1);
+                marker.CalculateBoundingBox();
+
+                m_HitPointMarkerObjects.Add(marker);
+            }
+
             m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_HitPointMarkerObjects);
 
             m_FPSCamera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0, (double)GLTPSView.Width / (double)GLTPSView.Height, 0.01, 1000.0);
@@ -99,6 +113,8 @@ namespace GLTestVisualizer.TestView.Raycast
 
         private void GLTPSView_OnRenderScene(GLControl inControl, GLRenderingStatus inStatus)
         {
+            m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0, 1.0, (double)UdRayLength.Value);
+
             if (CheckShowOctreeGrid.Checked) {
                 m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_OctreeRenderObject).Concat(m_FPSCameraVisualizer, m_FPSCameraRayVisualizer).Concat(m_HitPointMarkerObjects); ;
             } else {
@@ -112,7 +128,7 @@ namespace GLTestVisualizer.TestView.Raycast
 
         private void InvalidateTimer_Tick(object sender, EventArgs e)
         {
-            TimeStep(InvalidateTimer.Interval * 0.001);
+            //TimeStep(InvalidateTimer.Interval * 0.001);
             GLFPSView.Invalidate();
             GLTPSView.Invalidate();
             return;
