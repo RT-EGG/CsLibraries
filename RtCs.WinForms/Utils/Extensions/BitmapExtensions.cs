@@ -8,18 +8,20 @@ namespace RtCs.WinForms
         public static Rectangle GetFullRect(this Image inImage)
             => new Rectangle(new Point(0, 0), inImage.Size);
 
-        public static Bitmap ExportAs32bppArgb(this Bitmap inBmp)
+        public static Bitmap ExportAs32bppArgb(this Bitmap inBitmap)
         {
-            if (inBmp.PixelFormat == PixelFormat.Format32bppArgb) {
-                return inBmp.Clone(inBmp.GetFullRect(), PixelFormat.Format32bppArgb);
+            if (inBitmap.PixelFormat == PixelFormat.Format32bppArgb) {
+                return inBitmap.Clone(inBitmap.GetFullRect(), PixelFormat.Format32bppArgb);
             }
 
-            var result = new Bitmap(inBmp.Width, inBmp.Height, PixelFormat.Format32bppArgb);
+            var result = new Bitmap(inBitmap.Width, inBitmap.Height, PixelFormat.Format32bppArgb);
             using (var graphics = Graphics.FromImage(result)) {
                 graphics.PageUnit = GraphicsUnit.Pixel;
-                graphics.DrawImageUnscaled(inBmp, 0, 0);
+                graphics.DrawImageUnscaled(inBitmap, 0, 0);
             }
             return result;
         }
+
+        
     }
 }

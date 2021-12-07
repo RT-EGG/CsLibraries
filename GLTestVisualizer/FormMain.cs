@@ -4,9 +4,9 @@ using GLTestVisualizer.TestView.FrustumTest;
 using GLTestVisualizer.TestView.Octree;
 using GLTestVisualizer.TestView.Raycast;
 using GLTestVisualizer.TestView.SphereMesh;
+using GLTestVisualizer.TestView.Text;
 using GLTestVisualizer.TestView.Texture;
 using GLTestVisualizer.TestView.TransformMatrixDexomposition;
-using RtCs;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -21,7 +21,8 @@ namespace GLTestVisualizer
         AlphaBlending,
         Octree,
         RayCast,
-        Texture
+        Texture,
+        Text
     }
 
     public partial class FormMain : Form
@@ -69,6 +70,11 @@ namespace GLTestVisualizer
                 Type = TestContentType.Texture,
                 Text = "Texture",
                 ViewGenerator = () => new Ctrl_TextureTestView()
+            });
+            ComboTestContent.Items.Add(new TestContentItem {
+                Type = TestContentType.Text,
+                Text = "Text",
+                ViewGenerator = () => new Ctrl_TextTestView()
             });
 
             ComboTestContent.SelectedIndex = 0;

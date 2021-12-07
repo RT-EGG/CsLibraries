@@ -2,7 +2,7 @@
 {
     public class GLTextureReference
     {
-        public GLTexture Texture
+        public IGLTexture Texture
         { get; set; } = null;
         public GLTextureSampler Sampler
         { get; set; } = null;
