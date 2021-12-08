@@ -105,7 +105,7 @@ namespace RtCs.MathUtils
             => new Quaternion(inLeft.Real - inRight.Real, inLeft.Imaginary - inRight.Imaginary);
         public static Quaternion operator *(Quaternion inLeft, Quaternion inRight)
             => new Quaternion(
-                (inLeft.Real * inRight.Real) - Vector.Dot(inLeft.Imaginary, inRight.Imaginary),
+                (inLeft.Real * inRight.Real) - Vector3.Dot(inLeft.Imaginary, inRight.Imaginary),
                 (inLeft.Real * inRight.Imaginary) + (inLeft.Imaginary * inRight.Real) + Vector3.Cross(inLeft.Imaginary, inRight.Imaginary));
         public static Quaternion operator *(Quaternion inLeft, float inRight)
             => new Quaternion(inLeft.Real * inRight, inLeft.Imaginary * inRight);

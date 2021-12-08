@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RtCs.MathUtils
 {
@@ -17,6 +16,10 @@ namespace RtCs.MathUtils
             w = e.Current; e.MoveNext();
             return;
         }
+
+        public Vector4(Vector4 inSource)
+            : this(inSource.x, inSource.y, inSource.z, inSource.w)
+        { }
 
         public Vector4(float inValue)
             : this(inValue, inValue, inValue, inValue)
@@ -62,12 +65,13 @@ namespace RtCs.MathUtils
             }
         }
 
-        public int Dimension => 4;
-        int IReadOnlyCollection<float>.Count => Dimension;
+        int IReadOnlyCollection<float>.Count => 4;
 
-        public float Length => Vector.Length(this);
-        public float Length2 => Vector.Length2(this);
-        public bool IsZero => Vector.IsZero(this);
+        public float Length => (float)Math.Sqrt(Length2);
+        public float Length2 => x.Sqr() + y.Sqr() + z.Sqr() + w.Sqr();
+        public bool IsZero => x.AlmostZero() && y.AlmostZero() && z.AlmostZero() && w.AlmostZero();
+
+        public Vector3 XYZ => new Vector3(x, y, z);
 
         public void Normalize()
             => this = Normalized;
@@ -105,6 +109,13 @@ namespace RtCs.MathUtils
             => this.Enumerate().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
+        private IEnumerable<float> Enumerate()
+        {
+            yield return x;
+            yield return y;
+            yield return z;
+            yield return w;
+        }
 
         public static bool operator ==(Vector4 inLeft, Vector4 inRight)
             => inLeft.Equals(inRight);
@@ -112,25 +123,22 @@ namespace RtCs.MathUtils
             => !(inLeft == inRight);
 
         public static Vector4 operator -(Vector4 inValue)
-            => new Vector4(inValue.Select(v => -v));
+            => new Vector4(inValue * -1.0f);
         public static Vector4 operator +(Vector4 inLeft, Vector4 inRight)
-            => new Vector4(Vector.Add(inLeft, inRight));
+            => new Vector4(inLeft.x + inRight.x, inLeft.y + inRight.y, inLeft.z + inRight.z, inLeft.w + inRight.w);
         public static Vector4 operator -(Vector4 inLeft, Vector4 inRight)
-            => new Vector4(Vector.Subtract(inLeft, inRight));
+            => new Vector4(inLeft.x - inRight.x, inLeft.y - inRight.y, inLeft.z - inRight.z, inLeft.w - inRight.w);
         public static Vector4 operator *(Vector4 inLeft, float inRight)
-            => new Vector4(Vector.Multiply(inLeft, inRight));
+            => new Vector4(inLeft.x + inRight, inLeft.y * inRight, inLeft.z * inRight, inLeft.w * inRight);
         public static Vector4 operator *(float inLeft, Vector4 inRight)
-            => new Vector4(Vector.Multiply(inLeft, inRight));
+            => new Vector4(inLeft * inRight.x, inLeft * inRight.y, inLeft * inRight.z, inLeft * inRight.w);
         public static Vector4 operator /(Vector4 inLeft, float inRight)
-            => new Vector4(Vector.Divide(inLeft, inRight));
+            => new Vector4(inLeft.x / inRight, inLeft.y / inRight, inLeft.z / inRight, inLeft.w / inRight);
 
         public static float Dot(Vector4 inLeft, Vector4 inRight)
-            => Vector.Dot(inLeft, inRight);
+            => (inLeft.x * inRight.x) + (inLeft.y * inRight.y) + (inLeft.z * inRight.z) + (inLeft.w * inRight.w);
 
         public override string ToString()
             => $"{x}, {y}, {z}. {w}";
-
-        public static implicit operator Vector3(Vector4 inValue)
-            => new Vector3(inValue);
     }
 }

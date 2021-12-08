@@ -22,7 +22,7 @@ namespace RtCs.MathUtils
                         return false;
                     }
                     inNormal = inNormal.Normalized;
-                    return Vector.Dot(rayDirection, inNormal) < 0.0f;
+                    return Vector3.Dot(rayDirection, inNormal) < 0.0f;
                 }
 
                 result = result.Where(o => o.Normal.HasValue && FaceToRay(o.Normal.Value));

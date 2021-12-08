@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RtCs.MathUtils
 {
@@ -16,6 +15,10 @@ namespace RtCs.MathUtils
             z = e.Current; e.MoveNext();
             return;
         }
+
+        public Vector3(Vector3 inSource)
+            : this(inSource.x, inSource.y, inSource.z)
+        { }
 
         public Vector3(float inValue)
             : this(inValue, inValue, inValue)
@@ -53,12 +56,11 @@ namespace RtCs.MathUtils
             }
         }
 
-        public int Dimension => 3;
-        int IReadOnlyCollection<float>.Count => Dimension;
+        int IReadOnlyCollection<float>.Count => 3;
 
-        public float Length => Vector.Length(this);
-        public float Length2 => Vector.Length2(this);
-        public bool IsZero => Vector.IsZero(this);
+        public float Length => (float)Math.Sqrt(Length2);
+        public float Length2 => x.Sqr() + y.Sqr() + z.Sqr();
+        public bool IsZero => x.AlmostZero() && y.AlmostZero() && z.AlmostZero();
 
         public void Normalize()
             => this = Normalized;
@@ -68,9 +70,6 @@ namespace RtCs.MathUtils
                 float len = Length2;
                 if (len.AlmostZero()) {
                     return new Vector3(0.0f);
-                }
-                if (len.AlmostEquals(1.0f)) {
-                    return this;
                 }
                 return this / (float)Math.Sqrt(len);
             }
@@ -97,26 +96,32 @@ namespace RtCs.MathUtils
             => this.Enumerate().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
+        private IEnumerable<float> Enumerate()
+        {
+            yield return x;
+            yield return y;
+            yield return z;
+        }
 
         public static bool operator ==(Vector3 inLeft, Vector3 inRight)
             => inLeft.Equals(inRight);
         public static bool operator !=(Vector3 inLeft, Vector3 inRight)
             => !(inLeft == inRight);
         public static Vector3 operator -(Vector3 inValue)
-           => new Vector3(inValue.Select(v => -v));
+           => new Vector3(inValue * -1.0f);
         public static Vector3 operator +(Vector3 inLeft, Vector3 inRight)
-            => new Vector3(Vector.Add(inLeft, inRight));
+            => new Vector3(inLeft.x + inRight.x, inLeft.y + inRight.y, inLeft.z + inRight.z);
         public static Vector3 operator -(Vector3 inLeft, Vector3 inRight)
-            => new Vector3(Vector.Subtract(inLeft, inRight));
+            => new Vector3(inLeft.x - inRight.x, inLeft.y - inRight.y, inLeft.z - inRight.z);
         public static Vector3 operator *(Vector3 inLeft, float inRight)
-            => new Vector3(Vector.Multiply(inLeft, inRight));
+            => new Vector3(inLeft.x * inRight, inLeft.y * inRight, inLeft.z * inRight);
         public static Vector3 operator *(float inLeft, Vector3 inRight)
-            => new Vector3(Vector.Multiply(inLeft, inRight));
+            => new Vector3(inLeft * inRight.x, inLeft * inRight.y, inLeft * inRight.z);
         public static Vector3 operator /(Vector3 inLeft, float inRight)
-            => new Vector3(Vector.Divide(inLeft, inRight));
+            => new Vector3(inLeft.x / inRight, inLeft.y / inRight, inLeft.z / inRight);
 
         public static float Dot(Vector3 inLeft, Vector3 inRight)
-            => Vector.Dot(inLeft, inRight);
+            => (inLeft.x * inRight.x) + (inLeft.y * inRight.y) + (inLeft.z * inRight.z);
         public static Vector3 Cross(Vector3 inLeft, Vector3 inRight)
             => new Vector3(
                 (inLeft.y * inRight.z) - (inLeft.z * inRight.y),

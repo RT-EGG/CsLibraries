@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RtCs.MathUtils
 {
@@ -15,6 +14,10 @@ namespace RtCs.MathUtils
             y = e.Current; e.MoveNext();
             return;
         }
+
+        public Vector2(Vector2 inSource)
+            : this(inSource.x, inSource.y)
+        { }
 
         public Vector2(float inValue)
             : this(inValue, inValue)
@@ -48,12 +51,11 @@ namespace RtCs.MathUtils
             }
         }
 
-        public int Dimension => 2;
-        int IReadOnlyCollection<float>.Count => Dimension;
+        int IReadOnlyCollection<float>.Count => 2;
 
-        public float Length => Vector.Length(this);
-        public float Length2 => Vector.Length2(this);
-        public bool IsZero => Vector.IsZero(this);
+        public float Length => (float)Math.Sqrt(Length2);
+        public float Length2 => x.Sqr() + y.Sqr();
+        public bool IsZero => x.AlmostZero() && y.AlmostZero();
 
         public void Normalize()
             => this = Normalized;
@@ -87,26 +89,31 @@ namespace RtCs.MathUtils
             => this.Enumerate().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
+        private IEnumerable<float> Enumerate()
+        {
+            yield return x;
+            yield return y;
+        }
 
         public static bool operator ==(Vector2 inLeft, Vector2 inRight)
             => inLeft.Equals(inRight);
         public static bool operator !=(Vector2 inLeft, Vector2 inRight)
             => !(inLeft == inRight);
         public static Vector2 operator -(Vector2 inValue)
-            => new Vector2(inValue.Select(v => -v));
+            => new Vector2(inValue * -1.0f);
         public static Vector2 operator +(Vector2 inLeft, Vector2 inRight)
-            => new Vector2(Vector.Add(inLeft, inRight));
+            => new Vector2(inLeft.x + inRight.x, inLeft.y + inRight.y);
         public static Vector2 operator -(Vector2 inLeft, Vector2 inRight)
-            => new Vector2(Vector.Subtract(inLeft, inRight));
+            => new Vector2(inLeft.x - inRight.x, inLeft.y - inRight.y);
         public static Vector2 operator *(Vector2 inLeft, float inRight)
-            => new Vector2(Vector.Multiply(inLeft, inRight));
+            => new Vector2(inLeft.x * inRight, inLeft.y * inRight);
         public static Vector2 operator *(float inLeft, Vector2 inRight)
-            => new Vector2(Vector.Multiply(inLeft, inRight));
+            => new Vector2(inLeft * inRight.x, inLeft * inRight.y);
         public static Vector2 operator /(Vector2 inLeft, float inRight)
-            => new Vector2(Vector.Divide(inLeft, inRight));
+            => new Vector2(inLeft.x / inRight, inLeft.y / inRight);
 
         public static float Dot(Vector2 inLeft, Vector2 inRight)
-            => Vector.Dot(inLeft, inRight);
+            => (inLeft.x * inRight.x) + (inLeft.y * inRight.y);
         public static float Cross(Vector2 inLeft, Vector2 inRight)
             => (inLeft.x * inRight.y) - (inLeft.y * inRight.x);
     }

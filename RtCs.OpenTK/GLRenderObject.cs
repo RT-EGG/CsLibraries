@@ -112,9 +112,9 @@ namespace RtCs.OpenGL
             inLine.Point1 = new Vector3(world2local.Multiply(inLine.Point1, 1.0f));
             foreach (var info in Renderer.Mesh.IsIntersectWith(inLine)) {
                 info.HitObject = this;
-                info.Position = local2world.Multiply(info.Position, 1.0f);
+                info.Position = local2world.Multiply(info.Position, 1.0f).XYZ;
                 if (info.Normal.HasValue) {
-                    info.Normal = local2world.Multiply(info.Normal.Value, 0.0f);
+                    info.Normal = local2world.Multiply(info.Normal.Value, 0.0f).XYZ;
                 }
                 yield return info;
             }
