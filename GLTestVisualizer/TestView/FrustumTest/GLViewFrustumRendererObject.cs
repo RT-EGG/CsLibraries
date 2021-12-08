@@ -71,7 +71,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
                     0, 4, 1, 5, 2, 6, 3, 7
                 };
                 this.Topology = EGLMeshTopology.Lines;
-                this.BufferUsageHint = BufferUsageHint.DynamicDraw;
+                this.VertexBufferUsageHint = BufferUsageHint.DynamicDraw;
                 return;
             }
 

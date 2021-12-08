@@ -73,7 +73,7 @@ namespace RtCs.OpenGL
                 }
             }
 
-            result.BufferUsageHint = BufferUsageHint.StaticDraw;
+            result.VertexBufferUsageHint = BufferUsageHint.StaticDraw;
             result.Topology = EGLMeshTopology.Lines;
             result.Vertices = vertices.ToArray();
             result.Indices = Enumerable.Range(0, vertices.Count).ToArray();

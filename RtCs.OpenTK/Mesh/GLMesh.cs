@@ -55,7 +55,9 @@ namespace RtCs.OpenGL
         public int[] Indices
         { get; set; } = default;
 
-        public BufferUsageHint BufferUsageHint
+        public BufferUsageHint VertexBufferUsageHint
+        { get; set; } = BufferUsageHint.StaticDraw;
+        public BufferUsageHint IndexBufferUsageHint
         { get; set; } = BufferUsageHint.StaticDraw;
 
         public int TopologyCount
@@ -133,12 +135,12 @@ namespace RtCs.OpenGL
             }
 
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBuffer);
-            GL.BufferData(BufferTarget.ArrayBuffer, buffer.Length * sizeof(float), buffer, BufferUsageHint);
+            GL.BufferData(BufferTarget.ArrayBuffer, buffer.Length * sizeof(float), buffer, VertexBufferUsageHint);
 
             var indices = Indices;
             if (!indices.IsNullOrEmpty()) {
                 GL.BindBuffer(BufferTarget.ElementArrayBuffer, IndexBuffer);
-                GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(int), indices, BufferUsageHint.StaticDraw);
+                GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(int), indices, IndexBufferUsageHint);
             }
             return;
         }
