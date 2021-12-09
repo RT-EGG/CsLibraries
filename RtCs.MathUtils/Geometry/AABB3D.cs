@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RtCs.MathUtils.Geometry
 {
-    public struct AABB3D : IEquatable<AABB3D>
+    public struct AABB3D : IEquatable<AABB3D>, ILineIntersectable3D
     {
         public static AABB3D InclusionBoundary(IEnumerable<Vector3> inPoints)
         {
@@ -263,6 +263,76 @@ namespace RtCs.MathUtils.Geometry
             hashCode = hashCode * -1521134295 + m_BoundaryY.GetHashCode();
             hashCode = hashCode * -1521134295 + m_BoundaryZ.GetHashCode();
             return hashCode;
+        }
+
+        public IEnumerable<LineIntersectionInfo3D> IsIntersectWith(Line3D inLine)
+        {
+            // refer http://marupeke296.com/COL_3D_No18_LineAndAABB.html
+
+            Vector3 GetNormal(int inIndex)
+            {
+                switch (inIndex) {
+                    case 0: return new Vector3(1.0f, 0.0f, 0.0f);
+                    case 1: return new Vector3(0.0f, 1.0f, 0.0f);
+                    case 2: return new Vector3(0.0f, 0.0f, 1.0f);
+                }
+                throw new ArgumentException(nameof(inIndex));
+            }
+
+            Vector3 p = inLine.Point0;
+            Vector3 d = inLine.Direction;
+            Vector3 min = Min;
+            Vector3 max = Max;
+
+            float near = float.MinValue;
+            float far = float.MaxValue;
+            Vector3 nearNormal = default;
+            Vector3 farNormal = default;
+            for (int i = 0; i < 3; ++i) {
+                if (!d[i].AlmostZero()) {
+                    if ((p[i] < min[i]) || (max[i] < p[i])) {
+                        yield break;
+                    }
+
+                    float odd = 1.0f / d[i];
+                    float t0 = (min[i] - p[i]) * odd;
+                    float t1 = (max[i] - p[i]) * odd;
+                    if (t0 > t1) {
+                        float tmp = t0;
+                        t0 = t1;
+                        t1 = tmp;
+                    }
+
+                    if (t0 > near) {
+                        near = t0;
+                        nearNormal = GetNormal(i);
+                        if (t0 < t1)
+                            nearNormal *= -1.0f;
+                    }
+                    if (t1 < far) {
+                        far = t1;
+                        farNormal = GetNormal(i);
+                        if (t0 > t1)
+                            farNormal *= -1.0f;
+                    }
+                    if (near >= far) {
+                        yield break;
+                    }
+                }
+            }
+
+            yield return new LineIntersectionInfo3D {
+                HitObject = this,
+                LineParameter = near,
+                Position = inLine.Along(near),
+                Normal = nearNormal
+            };
+            yield return new LineIntersectionInfo3D {
+                HitObject = this,
+                LineParameter = far,
+                Position = inLine.Along(far),
+                Normal = farNormal
+            };
         }
 
         public static bool operator ==(AABB3D left, AABB3D right)

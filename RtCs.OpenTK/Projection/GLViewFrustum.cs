@@ -93,7 +93,7 @@ namespace RtCs.OpenGL
 
             // check AABB intersects frutsum's edge
             foreach (EEdge edge in Enum.GetValues(typeof(EEdge))) {
-                if (GetEdge(edge).IsIntersect(inAABB)) {
+                if (!inAABB.IsIntersectWith(GetEdge(edge)).IsEmpty()) {
                     return true;
                 }
             }
