@@ -4,7 +4,6 @@ using RtCs.MathUtils.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 
 namespace RtCs.OpenGL
 {

@@ -1,7 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
 using System.Linq;
-using System.Reactive.Linq;
 
 namespace RtCs.OpenGL
 {
