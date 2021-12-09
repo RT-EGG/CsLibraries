@@ -6,9 +6,9 @@ namespace RtCs.MathUtils
 {
     public struct Matrix3x3 : IMatrix, IEquatable<Matrix3x3>
     {
-        public Matrix3x3(params float[] inValues)
-            : this((IEnumerable<float>)inValues)
-        { }
+        //public Matrix3x3(params float[] inValues)
+        //    : this((IEnumerable<float>)inValues)
+        //{ }
 
         public Matrix3x3(IEnumerable<float> inValues)
         {
@@ -25,6 +25,25 @@ namespace RtCs.MathUtils
             m22 = e.Current; e.MoveNext();
             return;
         }
+
+        public Matrix3x3(float in00, float in01, float in02, float in10, float in11, float in12, float in20, float in21, float in22)
+        {
+            m00 = in00;
+            m01 = in01;
+            m02 = in02;
+            m10 = in10;
+            m11 = in11;
+            m12 = in12;
+            m20 = in20;
+            m21 = in21;
+            m22 = in22;
+        }
+
+        public Matrix3x3(Matrix3x3 inSource)
+            : this(inSource.m00, inSource.m01, inSource.m02,
+                   inSource.m10, inSource.m11, inSource.m12,
+                   inSource.m20, inSource.m21, inSource.m22)
+        { }
 
         public float m00;
         public float m01;
@@ -129,12 +148,13 @@ namespace RtCs.MathUtils
                     this[0, 2], this[1, 2], this[2, 2]
                 );
 
-        int IMatrix.ElemCount => Matrix3x3.ElemCount;
-        int IMatrix.RowCount => Matrix3x3.RowCount;
-        int IMatrix.ColCount => Matrix3x3.ColCount;
+        int IMatrix.ElemCount => ElemCount;
+        int IMatrix.RowCount => RowCount;
+        int IMatrix.ColCount => ColCount;
+        int IReadOnlyCollection<float>.Count => ElemCount;
+        public const int ElemCount = 9;
         public const int RowCount = 3;
         public const int ColCount = 3;
-        public const int ElemCount = RowCount * ColCount;
 
         public override bool Equals(object inOther)
             => inOther is Matrix3x3 x && Equals(x);
@@ -206,8 +226,16 @@ namespace RtCs.MathUtils
         public Vector3 Multiply(Vector3 inRight)
             => Multiply(this, inRight);
 
-        public static readonly Matrix3x3 Identity = new Matrix3x3(Matrix.Identity(RowCount));
-        public static readonly Matrix3x3 Zero = new Matrix3x3(ElemCount.Enumerate(_ => 0.0f));
+        public static readonly Matrix3x3 Identity = new Matrix3x3(
+            1.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 1.0f
+        );
+        public static readonly Matrix3x3 Zero = new Matrix3x3(
+            0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f
+        );
 
         public static bool operator ==(Matrix3x3 left, Matrix3x3 right)
             => left.Equals(right);
@@ -216,22 +244,40 @@ namespace RtCs.MathUtils
         public static Matrix3x3 operator -(Matrix3x3 matrix)
             => matrix * -1.0f;
         public static Matrix3x3 operator +(Matrix3x3 left, Matrix3x3 right)
-            => new Matrix3x3(Matrix.Add(left, right));
+            => new Matrix3x3(left.m00 + right.m00, left.m01 + right.m01, left.m02 + right.m02,
+                             left.m10 + right.m10, left.m11 + right.m11, left.m12 + right.m12,
+                             left.m20 + right.m20, left.m21 + right.m21, left.m22 + right.m22);
         public static Matrix3x3 operator -(Matrix3x3 left, Matrix3x3 right)
-            => new Matrix3x3(Matrix.Subtract(left, right));
+            => new Matrix3x3(left.m00 - right.m00, left.m01 - right.m01, left.m02 - right.m02,
+                             left.m10 - right.m10, left.m11 - right.m11, left.m12 - right.m12,
+                             left.m20 - right.m20, left.m21 - right.m21, left.m22 - right.m22);
         public static Matrix3x3 operator *(Matrix3x3 left, float right)
-            => new Matrix3x3(Matrix.Multiply(left, right));
+            => new Matrix3x3(left.m00 * right, left.m01 * right, left.m02 * right,
+                             left.m10 * right, left.m11 * right, left.m12 * right,
+                             left.m20 * right, left.m21 * right, left.m22 * right);
         public static Matrix3x3 operator *(float left, Matrix3x3 right)
-            => new Matrix3x3(Matrix.Multiply(left, right));
+            => new Matrix3x3(left * right.m00, left * right.m01, left * right.m02,
+                             left * right.m10, left * right.m11, left * right.m12,
+                             left * right.m20, left * right.m21, left * right.m22);
         public static Matrix3x3 operator /(Matrix3x3 left, float right)
-            => new Matrix3x3(Matrix.Divide(left, right));
+            => new Matrix3x3(left.m00 / right, left.m01 / right, left.m02 / right,
+                             left.m10 / right, left.m11 / right, left.m12 / right,
+                             left.m20 / right, left.m21 / right, left.m22 / right);
         public static Matrix3x3 operator *(Matrix3x3 left, Matrix3x3 right)
-            => new Matrix3x3(Matrix.Multiply(left, right));
+        {
+            Matrix3x3 result = default;
+            Matrix.MultiplyMatrix(ref result, left, right);
+            return result;
+        }
 
         public static Vector3 Multiply(Matrix3x3 inLeft, Vector2 inRight, float inRightH)
             => Multiply(inLeft, new Vector3(inRight.x, inRight.y, inRightH));
         public static Vector3 Multiply(Matrix3x3 inLeft, Vector3 inRight)
-            => new Vector3(Matrix.Multiply(inLeft, inRight));
+        {
+            Vector3 result = default;
+            Matrix.MultiplyVector(ref result, inLeft, inRight);
+            return result;
+        }
 
         public static Matrix3x3 MakeTranslate(float inX, float inY)
             => new Matrix3x3(

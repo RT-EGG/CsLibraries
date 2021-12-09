@@ -158,44 +158,50 @@ namespace RtCs.MathUtils
             switch (inOrder) {
                 case EEulerRotationOrder.XYZ:
                     return new Matrix4x4(
-                                             (cy * cz),                  -(cy * sz),       sy,
-                            (sx * sy * cz) + (cx * sz), -(sx * sy * sz) + (cx * cz), -sx * cy,
-                            (cx * sy * cz) + (sx * sz),  (cx * sy * sz) + (sx * cz),  cx * cy
+                                             (cy * cz),                  -(cy * sz),       sy, 0.0f,
+                            (sx * sy * cz) + (cx * sz), -(sx * sy * sz) + (cx * cz), -sx * cy, 0.0f,
+                            (cx * sy * cz) + (sx * sz),  (cx * sy * sz) + (sx * cz),  cx * cy, 0.0f,
+                                                  0.0f,                        0.0f,     0.0f, 1.0f
                         );
 
                 case EEulerRotationOrder.XZY:
                     return new Matrix4x4(
-                                             (cy * cz),       -sz,                  (sy * cz),
-                            (cx * cy * sz) + (sx * sy), (cx * cz), (cx * sy * sz) - (sx * cy),
-                            (sx * cy * sz) - (cx * sy), (sx * cz), (sx * sy * sz) + (cx * cy)
+                                             (cy * cz),       -sz,                  (sy * cz), 0.0f,
+                            (cx * cy * sz) + (sx * sy), (cx * cz), (cx * sy * sz) - (sx * cy), 0.0f,
+                            (sx * cy * sz) - (cx * sy), (sx * cz), (sx * sy * sz) + (cx * cy), 0.0f,
+                                                  0.0f,      0.0f,                       0.0f, 1.0f
                         );
 
                 case EEulerRotationOrder.YXZ:
                     return new Matrix4x4(
-                            (sx * sy * sz) + (cy * cz), (sx * sy * cz) - (cy * sz), (cx * sy),
-                                             (cx * sz),                  (cx * cz),       -sx,
-                            (sx * cy * sz) - (sy * cz), (sx * cy * cz) + (sy * sz), (cx * cy)
+                            (sx * sy * sz) + (cy * cz), (sx * sy * cz) - (cy * sz), (cx * sy), 0.0f,
+                                             (cx * sz),                  (cx * cz),       -sx, 0.0f,
+                            (sx * cy * sz) - (sy * cz), (sx * cy * cz) + (sy * sz), (cx * cy), 0.0f,
+                                                  0.0f,                       0.0f,      0.0f, 1.0f
                         );
 
                 case EEulerRotationOrder.YZX:
                     return new Matrix4x4(
-                             (cy * cz), -(cx * cy * sz) + (sx * sy),  (sx * cy * sz) + (cx * sy),
-                                    sz,                   (cx * cz),                  -(sx * cz),
-                            -(sy * cz),  (cx * sy * sz) + (sx * cy), -(sx * sy * sz) + (cx * cy)
+                             (cy * cz), -(cx * cy * sz) + (sx * sy),  (sx * cy * sz) + (cx * sy), 0.0f,
+                                    sz,                   (cx * cz),                  -(sx * cz), 0.0f,
+                            -(sy * cz),  (cx * sy * sz) + (sx * cy), -(sx * sy * sz) + (cx * cy), 0.0f,
+                                  0.0f,                        0.0f,                        0.0f, 1.0f
                         );
 
                 case EEulerRotationOrder.ZXY:
                     return new Matrix4x4(
-                            -(sx * sy * sz) + (cy * cz), -(cx * sz),  (sx * cy * sz) + (sy * cz),
-                             (sx * sy * cz) + (cy * sz),  (cx * cz), -(sx * cy * cz) + (sy * sz),
-                                             -(cx * sy),         sx,                   (cx * cy)
+                            -(sx * sy * sz) + (cy * cz), -(cx * sz),  (sx * cy * sz) + (sy * cz), 0.0f,
+                             (sx * sy * cz) + (cy * sz),  (cx * cz), -(sx * cy * cz) + (sy * sz), 0.0f,
+                                             -(cx * sy),         sx,                   (cx * cy), 0.0f,
+                                                   0.0f,       0.0f,                        0.0f, 1.0f
                         );
 
                 case EEulerRotationOrder.ZYX:
                     return new Matrix4x4(
-                            (cy * cz), (sx * sy * cz) - (cx * sz), (cx * sy * cz) + (sx * sz),
-                            (cy * sz), (sx * sy * sz) + (cx * sz), (cx * sy * sz) - (sx * cz),
-                                  -sy,                  (sx * cy),                  (cx * cy)
+                            (cy * cz), (sx * sy * cz) - (cx * sz), (cx * sy * cz) + (sx * sz), 0.0f,
+                            (cy * sz), (sx * sy * sz) + (cx * sz), (cx * sy * sz) - (sx * cz), 0.0f,
+                                  -sy,                  (sx * cy),                  (cx * cy), 0.0f,
+                                 0.0f,                       0.0f,                       0.0f, 1.0f
                         );
             }
             throw new InvalidEnumValueException<EEulerRotationOrder>(inOrder);

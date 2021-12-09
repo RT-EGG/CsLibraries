@@ -6,9 +6,9 @@ namespace RtCs.MathUtils
 {
     public struct Matrix4x4 : IMatrix, IEquatable<Matrix4x4>
     {
-        public Matrix4x4(params float[] inValues)
-            : this((IEnumerable<float>) inValues)
-        { }
+        //public Matrix4x4(params float[] inValues)
+        //    : this((IEnumerable<float>) inValues)
+        //{ }
 
         public Matrix4x4(IEnumerable<float> inValues)
         {
@@ -31,6 +31,27 @@ namespace RtCs.MathUtils
             m32 = e.Current; e.MoveNext();
             m33 = e.Current; e.MoveNext();
             return;
+        }
+
+        public Matrix4x4(float in00, float in01, float in02, float in03, float in10, float in11, float in12, float in13, 
+                         float in20, float in21, float in22, float in23, float in30, float in31, float in32, float in33)
+        {
+            m00 = in00;
+            m01 = in01;
+            m02 = in02;
+            m03 = in03;
+            m10 = in10;
+            m11 = in11;
+            m12 = in12;
+            m13 = in13;
+            m20 = in20;
+            m21 = in21;
+            m22 = in22;
+            m23 = in23;
+            m30 = in30;
+            m31 = in31;
+            m32 = in32;
+            m33 = in33;
         }
 
         public float m00;
@@ -265,12 +286,13 @@ namespace RtCs.MathUtils
         public void SetEulerRotation(Vector3 inEuler, EEulerRotationOrder inOrder)
             => Set3x3(0, 0, MakeRotateEuelr(inEuler, inOrder).Extract3x3(0, 0));
 
-        int IMatrix.ElemCount => Matrix4x4.ElemCount;
-        int IMatrix.RowCount => Matrix4x4.RowCount;
-        int IMatrix.ColCount => Matrix4x4.ColCount;
+        int IMatrix.ElemCount => ElemCount;
+        int IMatrix.RowCount => RowCount;
+        int IMatrix.ColCount => ColCount;
+        int IReadOnlyCollection<float>.Count => ElemCount;
+        public const int ElemCount = 16;
         public const int RowCount = 4;
         public const int ColCount = 4;
-        public const int ElemCount = RowCount * ColCount;
 
         public override bool Equals(object inOther)
             => inOther is Matrix4x4 x && Equals(x);
@@ -394,8 +416,18 @@ namespace RtCs.MathUtils
         public Vector4 Multiply(Vector4 inRight)
             => Multiply(this, inRight);
 
-        public static readonly Matrix4x4 Identity = new Matrix4x4(Matrix.Identity(RowCount));
-        public static readonly Matrix4x4 Zero = new Matrix4x4(ElemCount.Enumerate(_ => 0.0f));
+        public static readonly Matrix4x4 Identity = new Matrix4x4(
+                1.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 1.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 1.0f
+            );
+        public static readonly Matrix4x4 Zero = new Matrix4x4(
+                0.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 0.0f
+            );
 
         public static bool operator ==(Matrix4x4 left, Matrix4x4 right)
             => left.Equals(right);
@@ -404,24 +436,57 @@ namespace RtCs.MathUtils
         public static Matrix4x4 operator -(Matrix4x4 matrix)
             => matrix * -1.0f;
         public static Matrix4x4 operator +(Matrix4x4 left, Matrix4x4 right)
-            => new Matrix4x4(Matrix.Add(left, right));
+            => new Matrix4x4(
+                    left.m00 + right.m00, left.m01 + right.m01, left.m02 + right.m02, left.m03 + right.m03,
+                    left.m10 + right.m10, left.m11 + right.m11, left.m12 + right.m12, left.m13 + right.m13,
+                    left.m20 + right.m20, left.m21 + right.m21, left.m22 + right.m22, left.m23 + right.m23,
+                    left.m30 + right.m30, left.m31 + right.m31, left.m32 + right.m32, left.m33 + right.m33
+                );
         public static Matrix4x4 operator -(Matrix4x4 left, Matrix4x4 right)
-            => new Matrix4x4(Matrix.Subtract(left, right));
+            => new Matrix4x4(
+                    left.m00 - right.m00, left.m01 - right.m01, left.m02 - right.m02, left.m03 - right.m03,
+                    left.m10 - right.m10, left.m11 - right.m11, left.m12 - right.m12, left.m13 - right.m13,
+                    left.m20 - right.m20, left.m21 - right.m21, left.m22 - right.m22, left.m23 - right.m23,
+                    left.m30 - right.m30, left.m31 - right.m31, left.m32 - right.m32, left.m33 - right.m33
+                );
         public static Matrix4x4 operator *(Matrix4x4 left, float right)
-            => new Matrix4x4(Matrix.Multiply(left, right));
+            => new Matrix4x4(
+                    left.m00 * right, left.m01 * right, left.m02 * right, left.m03 * right,
+                    left.m10 * right, left.m11 * right, left.m12 * right, left.m13 * right,
+                    left.m20 * right, left.m21 * right, left.m22 * right, left.m23 * right,
+                    left.m30 * right, left.m31 * right, left.m32 * right, left.m33 * right
+                );
         public static Matrix4x4 operator *(float left, Matrix4x4 right)
-            => new Matrix4x4(Matrix.Multiply(left, right));
+            => new Matrix4x4(
+                    left * right.m00, left * right.m01, left * right.m02, left * right.m03,
+                    left * right.m10, left * right.m11, left * right.m12, left * right.m13,
+                    left * right.m20, left * right.m21, left * right.m22, left * right.m23,
+                    left * right.m30, left * right.m31, left * right.m32, left * right.m33
+                );
         public static Matrix4x4 operator /(Matrix4x4 left, float right)
-            => new Matrix4x4(Matrix.Divide(left, right));
+            => new Matrix4x4(
+                    left.m00 / right, left.m01 / right, left.m02 / right, left.m03 / right,
+                    left.m10 / right, left.m11 / right, left.m12 / right, left.m13 / right,
+                    left.m20 / right, left.m21 / right, left.m22 / right, left.m23 / right,
+                    left.m30 / right, left.m31 / right, left.m32 / right, left.m33 / right
+                );
         public static Matrix4x4 operator *(Matrix4x4 left, Matrix4x4 right)
-            => new Matrix4x4(Matrix.Multiply(left, right));
+        {
+            Matrix4x4 result = default;
+            Matrix.MultiplyMatrix(ref result, left, right);
+            return result;
+        }
         public static Vector4 operator *(Matrix4x4 left, Vector4 right)
             => Multiply(left, right);
 
         public static Vector4 Multiply(Matrix4x4 inLeft, Vector3 inRight, float inRightW)
             => Multiply(inLeft, new Vector4(inRight.x, inRight.y, inRight.z, inRightW));
         public static Vector4 Multiply(Matrix4x4 inLeft, Vector4 inRight)
-            => new Vector4(Matrix.Multiply(inLeft, inRight));
+        {
+            Vector4 result = default;
+            Matrix.MultiplyVector(ref result, inLeft, inRight);
+            return result;
+        }
 
         public static Matrix4x4 MakeTranslate(float inX, float inY, float inZ)
             => new Matrix4x4(
