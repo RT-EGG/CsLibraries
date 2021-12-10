@@ -1,0 +1,46 @@
+\hypertarget{class_rt_cs_1_1_math_utils_1_1_transform}{}\doxysection{Rt\+Cs.\+Math\+Utils.\+Transform Class Reference}
+\label{class_rt_cs_1_1_math_utils_1_1_transform}\index{RtCs.MathUtils.Transform@{RtCs.MathUtils.Transform}}
+Inheritance diagram for Rt\+Cs.\+Math\+Utils.\+Transform\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_rt_cs_1_1_math_utils_1_1_transform}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_ac6f32d27f853275980032df3f9961b2c}\label{class_rt_cs_1_1_math_utils_1_1_transform_ac6f32d27f853275980032df3f9961b2c}} 
+I\+Read\+Only\+List$<$ \mbox{\hyperlink{class_rt_cs_1_1_math_utils_1_1_transform}{Transform}} $>$ {\bfseries Children} =$>$ m\+\_\+\+Children
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_a0111f299f300dd5cd3203eb4e7356e50}\label{class_rt_cs_1_1_math_utils_1_1_transform_a0111f299f300dd5cd3203eb4e7356e50}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries Local\+Matrix} =$>$ m\+\_\+\+Pos\+Rot\+Matrix $\ast$ m\+\_\+\+Scale\+Matrix
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_aaa5b69e8bf5865152da66f4b396e9b5c}\label{class_rt_cs_1_1_math_utils_1_1_transform_aaa5b69e8bf5865152da66f4b396e9b5c}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries World\+Matrix} =$>$ (Parent == null) ? Local\+Matrix \+: Parent.\+World\+Matrix $\ast$ Local\+Matrix
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_a95bd2882ef69e1b125e3058496159d12}\label{class_rt_cs_1_1_math_utils_1_1_transform_a95bd2882ef69e1b125e3058496159d12}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries World\+Position} =$>$ World\+Matrix.\+Translation
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_a7bdbdbcda57cfaed295f4e6a0e6f5e54}\label{class_rt_cs_1_1_math_utils_1_1_transform_a7bdbdbcda57cfaed295f4e6a0e6f5e54}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries World\+Rotation} =$>$ World\+Rotate\+Matrix.\+Rotation
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_a2336059197fb579e030f1fd91fcb858d}\label{class_rt_cs_1_1_math_utils_1_1_transform_a2336059197fb579e030f1fd91fcb858d}} 
+\mbox{\hyperlink{class_rt_cs_1_1_math_utils_1_1_transform}{Transform}} {\bfseries Parent}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_ac6bf985c9b626987709cdc792dd47f65}\label{class_rt_cs_1_1_math_utils_1_1_transform_ac6bf985c9b626987709cdc792dd47f65}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries Local\+Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_aad6b09b3844990f676ef2fee8c085fb3}\label{class_rt_cs_1_1_math_utils_1_1_transform_aad6b09b3844990f676ef2fee8c085fb3}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries Local\+Rotation}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_transform_a8281b7972bd1007ac88c32b2be153569}\label{class_rt_cs_1_1_math_utils_1_1_transform_a8281b7972bd1007ac88c32b2be153569}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries Local\+Scale}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/projects/\+Cs\+Libraries/\+Rt\+Cs.\+Math\+Utils/Transform.\+cs\end{DoxyCompactItemize}

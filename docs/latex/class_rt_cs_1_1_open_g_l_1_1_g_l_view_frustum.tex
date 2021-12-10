@@ -1,0 +1,88 @@
+\hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum Class Reference}
+\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum}\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a184e21c8166130568109a8cf47bfc79d}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a184e21c8166130568109a8cf47bfc79d}} 
+enum {\bfseries E\+Vertex} \{ \newline
+{\bfseries Left\+Bottom\+Near}, 
+{\bfseries Left\+Bottom\+Far}, 
+{\bfseries Left\+Top\+Near}, 
+{\bfseries Left\+Top\+Far}, 
+\newline
+{\bfseries Right\+Bottom\+Near}, 
+{\bfseries Right\+Bottom\+Far}, 
+{\bfseries Right\+Top\+Near}, 
+{\bfseries Right\+Top\+Far}
+ \}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ac3ea956262e4c8ff0ad2df100e6bd6ad}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ac3ea956262e4c8ff0ad2df100e6bd6ad}} 
+enum {\bfseries E\+Edge} \{ \newline
+{\bfseries Left\+Near}, 
+{\bfseries Left\+Far}, 
+{\bfseries Right\+Near}, 
+{\bfseries Right\+Far}, 
+\newline
+{\bfseries Bottom\+Near}, 
+{\bfseries Bottom\+Far}, 
+{\bfseries Top\+Near}, 
+{\bfseries Top\+Far}, 
+\newline
+{\bfseries Left\+Bottom}, 
+{\bfseries Left\+Top}, 
+{\bfseries Right\+Bottom}, 
+{\bfseries Right\+Top}
+ \}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a4ed8c4734137a14ce7df6b2609f5dc14}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a4ed8c4734137a14ce7df6b2609f5dc14}} 
+enum {\bfseries E\+Face} \{ \newline
+{\bfseries Left}, 
+{\bfseries Right}, 
+{\bfseries Bottom}, 
+{\bfseries Top}, 
+\newline
+{\bfseries Near}, 
+{\bfseries Far}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae4b644661f4f5fcdbd1292daeed2d976}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae4b644661f4f5fcdbd1292daeed2d976}} 
+{\bfseries G\+L\+View\+Frustum} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} in\+View\+Matrix, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} in\+Projection\+Matrix)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abeec5b43f918e7bc2c7f78d3b24b1328}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abeec5b43f918e7bc2c7f78d3b24b1328}} 
+bool {\bfseries Is\+Intersect\+A\+A\+BB} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_a_a_b_b3_d}{A\+A\+B\+B3D}} in\+A\+A\+BB)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a315bf132bbfd70028aaac08ef7cc727e}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a315bf132bbfd70028aaac08ef7cc727e}} 
+bool {\bfseries Is\+Intersect\+Sphere} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+World\+Center, float in\+Radius)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae77f0f75d1ed4f2e0b621a675c509036}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae77f0f75d1ed4f2e0b621a675c509036}} 
+float {\bfseries Calc\+Distance\+To} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+World\+Point)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abc77d2325bfec5e94c5fe174d10b28c6}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abc77d2325bfec5e94c5fe174d10b28c6}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries Calc\+Closest\+Point} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+World\+Point)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a5f9e5678d6532df6a058338718272620}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a5f9e5678d6532df6a058338718272620}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries Get\+Vertex} (E\+Vertex in\+Key)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a770e7c436abfd844d73bc1f0d083fecb}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a770e7c436abfd844d73bc1f0d083fecb}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_line3_d}{Line3D}} {\bfseries Get\+Edge} (E\+Edge in\+Key)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ab2f9a0d2c4b0a54fb97417b6e395b2d7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ab2f9a0d2c4b0a54fb97417b6e395b2d7}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_plane}{Plane}} {\bfseries Get\+Plane} (E\+Face in\+Key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a548b51aa638d583f9b6cd6261d0fb279}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a548b51aa638d583f9b6cd6261d0fb279}} 
+readonly \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries View\+Matrix}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a3203ecfb37e08fd109e7d2f55fd49ad8}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a3203ecfb37e08fd109e7d2f55fd49ad8}} 
+readonly \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries Projection\+Matrix}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/projects/\+Cs\+Libraries/\+Rt\+Cs.\+Open\+T\+K/\+Projection/G\+L\+View\+Frustum.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,67 @@
+\hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Render\+Object Class Reference}
+\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object}\index{RtCs.OpenGL.GLRenderObject@{RtCs.OpenGL.GLRenderObject}}
+Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Render\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a06f518e4309c9ecedd854e51985beed5}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a06f518e4309c9ecedd854e51985beed5}} 
+void {\bfseries Render} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_rendering_status}{G\+L\+Rendering\+Status}} in\+Rendering\+Status)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a8ec6860f19e07002cce0d63e4973795f}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a8ec6860f19e07002cce0d63e4973795f}} 
+void {\bfseries Calculate\+Bounding\+Box} ()
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_ad22ee9860bdd5e8e4e338e51fa4c3189}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_ad22ee9860bdd5e8e4e338e51fa4c3189}} 
+I\+Enumerable$<$ \mbox{\hyperlink{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_line_intersection_info3_d}{Line\+Intersection\+Info3D}} $>$ {\bfseries Is\+Intersect\+With} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_line3_d}{Line3D}} in\+Line)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_ab552807d9d24b778bc3ef74dbffb1efb}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_ab552807d9d24b778bc3ef74dbffb1efb}} 
+virtual E\+G\+L\+Render\+Level {\bfseries Render\+Level} =$>$ Renderer.\+Material.\+Render\+Level
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_aad69e85e5a28726846467b123c49a441}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_aad69e85e5a28726846467b123c49a441}} 
+virtual \mbox{\hyperlink{interface_rt_cs_1_1_open_g_l_1_1_i_g_l_blend_parameters}{I\+G\+L\+Blend\+Parameters}} {\bfseries Blend\+Parameters} =$>$ Renderer.\+Material.\+Blend\+Parameters
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a464b6da02be44de658d949f915d8a60e}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a464b6da02be44de658d949f915d8a60e}} 
+virtual void {\bfseries Pre\+Render} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_rendering_status}{G\+L\+Rendering\+Status}} in\+Status)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_aaad4f8e8d93c18bcbc05b6e441a2c586}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_aaad4f8e8d93c18bcbc05b6e441a2c586}} 
+virtual void {\bfseries Post\+Render} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_rendering_status}{G\+L\+Rendering\+Status}} in\+Status)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_ac48938fcd6b8f973ef2e8dff18118b91}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_ac48938fcd6b8f973ef2e8dff18118b91}} 
+bool {\bfseries Visible} = true\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_ad0f995fdb0d059717f9e24093ed93dfe}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_ad0f995fdb0d059717f9e24093ed93dfe}} 
+E\+G\+L\+Frustum\+Culling\+Mode {\bfseries Frustum\+Culling\+Mode} = E\+G\+L\+Frustum\+Culling\+Mode.\+Bounding\+Box\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a33b1ac33be417ae5a9bec48086dce6d1}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a33b1ac33be417ae5a9bec48086dce6d1}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_a_a_b_b3_d}{A\+A\+B\+B3D}} {\bfseries Bounding\+Box} = new \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_a_a_b_b3_d}{A\+A\+B\+B3D}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_afb5db7a55fdc0ffabb7efbb8ad95ed9e}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_afb5db7a55fdc0ffabb7efbb8ad95ed9e}} 
+E\+G\+L\+Render\+Polygon\+Mode {\bfseries Polygon\+Mode} = E\+G\+L\+Render\+Polygon\+Mode.\+Face\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a9784e933636cc1c57b0fae00892d88b9}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a9784e933636cc1c57b0fae00892d88b9}} 
+E\+G\+L\+Render\+Face\+Mode {\bfseries Render\+Face\+Mode} = E\+G\+L\+Render\+Face\+Mode.\+Front\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_adff31c196d9f39b54553b72f53c7b13e}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_adff31c196d9f39b54553b72f53c7b13e}} 
+\mbox{\hyperlink{class_rt_cs_1_1_math_utils_1_1_transform}{Transform}} {\bfseries Transform} = new \mbox{\hyperlink{class_rt_cs_1_1_math_utils_1_1_transform}{Transform}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a9952bc595f0987e763cd40e46e2debca}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object_a9952bc595f0987e763cd40e46e2debca}} 
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_renderer}{G\+L\+Renderer}} {\bfseries Renderer} = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_renderer}{G\+L\+Renderer}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/projects/\+Cs\+Libraries/\+Rt\+Cs.\+Open\+T\+K/G\+L\+Render\+Object.\+cs\end{DoxyCompactItemize}

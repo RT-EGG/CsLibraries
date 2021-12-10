@@ -1,0 +1,65 @@
+\hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program Class Reference}
+\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program}\index{RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}}
+Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.681296cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_acb1e288ca064c6b60ae985b9153adf84}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_acb1e288ca064c6b60ae985b9153adf84}} 
+void {\bfseries Attach\+Shader} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader}{G\+L\+Shader}} in\+Shader)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a0297631e4badb5579d26a8ba8adac611}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a0297631e4badb5579d26a8ba8adac611}} 
+void {\bfseries Detach\+Shader} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader}{G\+L\+Shader}} in\+Shader)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a79ab80d7c93dfcfb650696e57d158631}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a79ab80d7c93dfcfb650696e57d158631}} 
+bool {\bfseries Link} ()
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a7187d76557aff4aa09fddd8cd0c9ecb4}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a7187d76557aff4aa09fddd8cd0c9ecb4}} 
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property_socket}{G\+L\+Shader\+Uniform\+Property\+Socket}} {\bfseries Get\+Property\+Socket} (string in\+Name)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ad491bbf095f58609d9ff48231ad5afbd}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ad491bbf095f58609d9ff48231ad5afbd}} 
+virtual I\+Enumerable$<$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property}{G\+L\+Shader\+Uniform\+Property}} $>$ {\bfseries Create\+Default\+Properties} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a06cdd820811153ba16e92e8b7ef35e9a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a06cdd820811153ba16e92e8b7ef35e9a}} 
+I\+Read\+Only\+List$<$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property_socket}{G\+L\+Shader\+Uniform\+Property\+Socket}} $>$ {\bfseries Uniform\+Property\+Sockets} =$>$ m\+\_\+\+Uniform\+Property\+Sockets
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_adeb7087f9cc92e87a54fc88d691e8717}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_adeb7087f9cc92e87a54fc88d691e8717}} 
+bool {\bfseries Linked} =$>$ m\+\_\+\+Link\+State != 0
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a8afa8614c4cb5256b560242a8d8460f7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a8afa8614c4cb5256b560242a8d8460f7}} 
+I\+Read\+Only\+List$<$ string $>$ {\bfseries Link\+Error} =$>$ m\+\_\+\+Link\+Error
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a9cbafeace21350c5357cca544db3cecb}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a9cbafeace21350c5357cca544db3cecb}} 
+override void {\bfseries Create\+Resource\+Core} ()
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a89f0969dee58a9ed0557004e96045e5a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a89f0969dee58a9ed0557004e96045e5a}} 
+override void {\bfseries Destroy\+Resource\+Core} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ac8e759a009ae5b567eae020463bed44b}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ac8e759a009ae5b567eae020463bed44b}} 
+static List$<$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property_socket}{G\+L\+Shader\+Uniform\+Property\+Socket}} $>$ {\bfseries Collect\+Uniform\+Property\+Sockets} (int in\+Program\+ID)
+\end{DoxyCompactItemize}
+\doxysubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a3807eb3310e905702d87e0d6057d51b7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a3807eb3310e905702d87e0d6057d51b7}} 
+Action$<$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program}{G\+L\+Shader\+Program}} $>$ {\bfseries On\+After\+Linked}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/projects/\+Cs\+Libraries/\+Rt\+Cs.\+Open\+T\+K/\+Resource\+Object/\+Shader/G\+L\+Shader\+Program.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,79 @@
+\hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree}{}\doxysection{Rt\+Cs.\+Math\+Utils.\+Geometry.\+Octree Class Reference}
+\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree}\index{RtCs.MathUtils.Geometry.Octree@{RtCs.MathUtils.Geometry.Octree}}
+Inheritance diagram for Rt\+Cs.\+Math\+Utils.\+Geometry.\+Octree\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a123a54d5696a3b8c52d0e769f3b51422}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a123a54d5696a3b8c52d0e769f3b51422}} 
+{\bfseries Octree} (int in\+Max\+Level, float in\+Dimensions)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a12f335b313629fd201a72fd6b84b9b26}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a12f335b313629fd201a72fd6b84b9b26}} 
+{\bfseries Octree} (int in\+Max\+Level, float in\+Dimensions, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Offset)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_ab29f6d94d896f8341c5ae55516f77693}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_ab29f6d94d896f8341c5ae55516f77693}} 
+\mbox{\hyperlink{interface_rt_cs_1_1_math_utils_1_1_geometry_1_1_i_octree_cell}{I\+Octree\+Cell}} {\bfseries Register} (\mbox{\hyperlink{interface_rt_cs_1_1_math_utils_1_1_geometry_1_1_i_octree_registable}{I\+Octree\+Registable}} in\+Value)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_ab759f1fd8e4adaf5d5a7a4a5c18d14bc}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_ab759f1fd8e4adaf5d5a7a4a5c18d14bc}} 
+void {\bfseries Unregister} (\mbox{\hyperlink{interface_rt_cs_1_1_math_utils_1_1_geometry_1_1_i_octree_registable}{I\+Octree\+Registable}} in\+Value)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a545be1513a6936fb4a33eb2aa4d976d8}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a545be1513a6936fb4a33eb2aa4d976d8}} 
+void {\bfseries Clear} ()
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a7063621a9bf73af5196f29385d8595aa}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a7063621a9bf73af5196f29385d8595aa}} 
+\mbox{\hyperlink{interface_rt_cs_1_1_math_utils_1_1_geometry_1_1_i_octree_cell}{I\+Octree\+Cell}} {\bfseries Get\+Cell\+At} (int in\+Level, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Position)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_aaca7f1635afb52ed0ae81d89a4f50d97}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_aaca7f1635afb52ed0ae81d89a4f50d97}} 
+\mbox{\hyperlink{interface_rt_cs_1_1_math_utils_1_1_geometry_1_1_i_octree_cell}{I\+Octree\+Cell}} {\bfseries Get\+Cell\+At} (int in\+Level, Container3$<$ int $>$ in\+Axis\+Indices\+In\+End\+Layer)
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_ae72582b1940cb80235978744e99a0b0c}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_ae72582b1940cb80235978744e99a0b0c}} 
+I\+Enumerable$<$ \mbox{\hyperlink{interface_rt_cs_1_1_math_utils_1_1_geometry_1_1_i_octree_cell}{I\+Octree\+Cell}} $>$ {\bfseries Traverse\+On\+Ray} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_line3_d}{Line3D}} in\+Ray)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a2b012d3186c9eecccc139598ca4cfeba}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a2b012d3186c9eecccc139598ca4cfeba}} 
+readonly \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries Offset}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_afd9562652d640294919fdb0469ba8ed1}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_afd9562652d640294919fdb0469ba8ed1}} 
+readonly float\mbox{[}$\,$\mbox{]} {\bfseries Cell\+Dimensions}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static readonly uint\mbox{[}$\,$\mbox{]} {\bfseries Axis\+Cells\+In\+Layer}
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a51eb3fb2ebde25d3fdd610549774e177}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a51eb3fb2ebde25d3fdd610549774e177}} 
+int {\bfseries Max\+Level}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a46d0b879a79820b40e8cf51b9edf5e24}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_a46d0b879a79820b40e8cf51b9edf5e24}} 
+float {\bfseries Dimensions}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_afabc3cff837db732f853008321cf77c2}\label{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_octree_afabc3cff837db732f853008321cf77c2}} 
+\index{RtCs.MathUtils.Geometry.Octree@{RtCs.MathUtils.Geometry.Octree}!AxisCellsInLayer@{AxisCellsInLayer}}
+\index{AxisCellsInLayer@{AxisCellsInLayer}!RtCs.MathUtils.Geometry.Octree@{RtCs.MathUtils.Geometry.Octree}}
+\doxysubsubsection{\texorpdfstring{AxisCellsInLayer}{AxisCellsInLayer}}
+{\footnotesize\ttfamily readonly uint \mbox{[}$\,$\mbox{]} Rt\+Cs.\+Math\+Utils.\+Geometry.\+Octree.\+Axis\+Cells\+In\+Layer\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{            1, 2, 4, 8, 16, 32, 64, 128, 256}
+\DoxyCodeLine{        \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/projects/\+Cs\+Libraries/\+Rt\+Cs.\+Math\+Utils/\+Geometry/Octree.\+cs\end{DoxyCompactItemize}

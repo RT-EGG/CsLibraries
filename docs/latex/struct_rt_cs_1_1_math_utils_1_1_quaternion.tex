@@ -1,0 +1,136 @@
+\hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion}{}\doxysection{Rt\+Cs.\+Math\+Utils.\+Quaternion Struct Reference}
+\label{struct_rt_cs_1_1_math_utils_1_1_quaternion}\index{RtCs.MathUtils.Quaternion@{RtCs.MathUtils.Quaternion}}
+Inheritance diagram for Rt\+Cs.\+Math\+Utils.\+Quaternion\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_rt_cs_1_1_math_utils_1_1_quaternion}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_abb5681aeeba894fb1aacf0074d3b4cd6}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_abb5681aeeba894fb1aacf0074d3b4cd6}} 
+{\bfseries Quaternion} (float inX, float inY, float inZ, float inW)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a891af7b99cc6527af90995e8179491f8}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a891af7b99cc6527af90995e8179491f8}} 
+{\bfseries Quaternion} (float in\+Real, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Imaginary)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a8cf62c8c96adba040e85744b9324450a}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a8cf62c8c96adba040e85744b9324450a}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries To\+Euler} (E\+Euler\+Rotation\+Order in\+Order)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a5e02d1f147838c19516b825dc70634c1}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a5e02d1f147838c19516b825dc70634c1}} 
+void {\bfseries Conjugate} ()
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_ab402dd15e330876614ccd48d29a9492a}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_ab402dd15e330876614ccd48d29a9492a}} 
+void {\bfseries Normalize} ()
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a4c3ff44287b1312cb1fe993e10e9222f}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a4c3ff44287b1312cb1fe993e10e9222f}} 
+bool {\bfseries Equals} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} quaternion)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a0dada676eea794d70b4e74c1aa0dce83}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a0dada676eea794d70b4e74c1aa0dce83}} 
+override bool {\bfseries Equals} (object obj)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_aa88430d500e15b3a416df0baace74e40}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_aa88430d500e15b3a416df0baace74e40}} 
+override int {\bfseries Get\+Hash\+Code} ()
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_aa32b46511b3f6232ba03548feb912d49}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_aa32b46511b3f6232ba03548feb912d49}} 
+override string {\bfseries To\+String} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_af1e59c351a296e31aed8bac25acb3c2a}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_af1e59c351a296e31aed8bac25acb3c2a}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries From\+Euler} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Euler, E\+Euler\+Rotation\+Order in\+Order)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a118f645c2e9bece9e26723494dd24b3d}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a118f645c2e9bece9e26723494dd24b3d}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries From\+Euler} (float in\+EulerX, float in\+EulerY, float in\+EulerZ, E\+Euler\+Rotation\+Order in\+Order)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_ae8aae48a1fb06faba8c29c7e10cae545}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_ae8aae48a1fb06faba8c29c7e10cae545}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries Make\+Rotation} (float a\+Angle\+Rad, float a\+AxisX, float a\+AxisY, float a\+AxisZ)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a4814799b20e3e59c94f176cdb1cd7aa9}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a4814799b20e3e59c94f176cdb1cd7aa9}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries Make\+Rotation} (float in\+Angle\+Rad, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Axis)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a42d7a2c209bc4ad91941758de9c8745c}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a42d7a2c209bc4ad91941758de9c8745c}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries operator$\sim$} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Value)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a371a018b88c42f47c488530fc44b2a29}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a371a018b88c42f47c488530fc44b2a29}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries operator-\/} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Value)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_ae2cc51464b5570922225ed494c47f80d}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_ae2cc51464b5570922225ed494c47f80d}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries operator+} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Left, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Right)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_aafe129a97c1535fe52840b2b894fb459}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_aafe129a97c1535fe52840b2b894fb459}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries operator-\/} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Left, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Right)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_ab26939499ac591cd5dece08f8a830f3a}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_ab26939499ac591cd5dece08f8a830f3a}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries operator$\ast$} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Left, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Right)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_abc19bc9585dcd57045e59716fd85a86c}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_abc19bc9585dcd57045e59716fd85a86c}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries operator$\ast$} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Left, float in\+Right)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a3bb9f237ffe1cae81619e86f9737b870}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a3bb9f237ffe1cae81619e86f9737b870}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries operator$\ast$} (float in\+Left, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Right)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a133aaa33b7ae7642bdcd876449ffc89b}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a133aaa33b7ae7642bdcd876449ffc89b}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries operator/} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Left, float in\+Right)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a2384488ee07aec323538b62b26eed183}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a2384488ee07aec323538b62b26eed183}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries operator$\ast$} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Left, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Right)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a3c8ca0f16022f3d497221d92f1e9d829}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a3c8ca0f16022f3d497221d92f1e9d829}} 
+static float {\bfseries Dot} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Left, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Right)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_ac4c6de439cf864a9bdf8cc77a69682a0}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_ac4c6de439cf864a9bdf8cc77a69682a0}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries Linear\+Interpolate} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Value1, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Value2, float in\+Ratio)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_ad620f4f667e59c3206d3f4eb85854ec8}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_ad620f4f667e59c3206d3f4eb85854ec8}} 
+static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries Sphere\+Interpolate} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Value1, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} in\+Value2, float a\+Ratio)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a5877d0d02561e32885bdfacaa711735d}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a5877d0d02561e32885bdfacaa711735d}} 
+float {\bfseries x}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_ab83d5a80882f97177dc7f62c91cc9e17}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_ab83d5a80882f97177dc7f62c91cc9e17}} 
+float {\bfseries y}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a4f040ce8eaf6e7cc798d455b188d01ca}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a4f040ce8eaf6e7cc798d455b188d01ca}} 
+float {\bfseries z}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a2d1a4c21d32de0b065237b4ae1a02f02}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a2d1a4c21d32de0b065237b4ae1a02f02}} 
+float {\bfseries w}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a510c927bc5642214cd284602dab653f7}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a510c927bc5642214cd284602dab653f7}} 
+float {\bfseries Norm} =$>$ Real.\+Sqr() + Imaginary.\+Length2
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_afdf9b4c6c332c9383394f88281f8d2b2}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_afdf9b4c6c332c9383394f88281f8d2b2}} 
+float {\bfseries Abs} =$>$ (float)Math.\+Sqrt(Norm)
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a97e8b35c2ff456ec67beed294fe432c1}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a97e8b35c2ff456ec67beed294fe432c1}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries Conjugated} =$>$ new \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}}(Real, -\/Imaginary)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a328099b1cc7ae115cd159035e23ad741}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a328099b1cc7ae115cd159035e23ad741}} 
+static readonly \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries Identity} = new \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}}(0.\+0f, 0.\+0f, 0.\+0f, 1.\+0f)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a127a9192bade80f6e86c80d331e2d662}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a127a9192bade80f6e86c80d331e2d662}} 
+float {\bfseries Real}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_ad10b1de47552605455d58ca0bf6f8739}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_ad10b1de47552605455d58ca0bf6f8739}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries Imaginary}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{struct_rt_cs_1_1_math_utils_1_1_quaternion_a03435c156a061c21e423b414f202e925}\label{struct_rt_cs_1_1_math_utils_1_1_quaternion_a03435c156a061c21e423b414f202e925}} 
+\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_quaternion}{Quaternion}} {\bfseries Normalized}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/projects/\+Cs\+Libraries/\+Rt\+Cs.\+Math\+Utils/Quaternion.\+cs\end{DoxyCompactItemize}
