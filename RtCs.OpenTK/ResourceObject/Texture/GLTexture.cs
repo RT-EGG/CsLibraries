@@ -24,6 +24,9 @@ namespace RtCs.OpenGL
     public interface IGLColorTexture2D : IGLColorTexture, IGLTexture2D
     { }
 
+    /// <summary>
+    /// OpenGL texture object.
+    /// </summary>
     public abstract class GLTexture : GLResourceIdObject, IGLTexture
     {
         public GLTexture(PixelInternalFormat inPixelInternalFormat)
@@ -32,9 +35,18 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Apply all changes.
+        /// </summary>
+        /// <remarks>
+        /// Even if make changes by any method, the changes will not be applied internally until call this method.
+        /// </remarks>
         public virtual void Apply()
         { }
 
+        /// <summary>
+        /// The pixel store format in 
+        /// </summary>
         public PixelInternalFormat PixelInternalFormat
         { get; }
 
@@ -67,8 +79,16 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Get or set each pixels for texture object.
+        /// </summary>
         public ColorRGBA[] Pixels
         { get; set; } = new ColorRGBA[0];
+
+        /// <summary>
+        /// Get size of pixels that must be set.
+        /// </summary>
+        public abstract int PixelSize { get; }
 
         protected abstract void LoadPixels(ColorRGBA[] inPixels);
     }
@@ -83,6 +103,14 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Reset texture size.
+        /// </summary>
+        /// <param name="inWidth">New texture width.</param>
+        /// <param name="inHeight">New texture height.</param>
+        /// <remarks>
+        /// This method reset Pixels to null so you must reasign value and call Apply().
+        /// </remarks>
         public void ResizeBuffer(int inWidth, int inHeight)
         {
             Width = inWidth;
@@ -91,12 +119,30 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Get width of texture.
+        /// </summary>
+        /// <remarks>
+        /// If you want to change width, call ResizeBuffer().
+        /// </remarks>
         public int Width
         { get; private set; } = 0;
+        /// <summary>
+        /// Get height of texture.
+        /// </summary>
+        /// <remarks>
+        /// If you want to change height, call ResizeBuffer().
+        /// </remarks>
         public int Height
         { get; private set; } = 0;
+
+        /// <summary>
+        /// Get size as Vector2(Width, Height).
+        /// </summary>
         public Vector2 Size
             => new Vector2(Width, Height);
+
+        public override int PixelSize => Width * Height;
 
         protected override void LoadPixels(ColorRGBA[] inPixels)
         {

@@ -35,32 +35,101 @@ namespace RtCs.OpenGL
         CompareRefToTexture = All.CompareRefToTexture
     }
 
+    /// <summary>
+    /// OpenGL texture sampler object.
+    /// </summary>
+    /// <remarks>
+    /// To understand sampler object, see OpenGL official [wiki](https://www.khronos.org/opengl/wiki/Sampler_Object).
+    /// </remarks>
     public class GLTextureSampler : GLResourceIdObject
     {
         public GLTextureSampler()
             => Apply();
 
+        /// <summary>
+        /// Get or set MinFilter.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public EGLTextureMinFilter MinFilter
         { get; set; } = EGLTextureMinFilter.NearestMipmapLinear;
+        /// <summary>
+        /// Get or set MagFilter.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public EGLTextureMagFilter MagFilter
         { get; set; } = EGLTextureMagFilter.Linear;
+        /// <summary>
+        /// Get or set MinLOD.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public float MinLod
         { get; set; } = 1000.0f;
+        /// <summary>
+        /// Get or set MaxLOD.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public float MaxLod
         { get; set; } = 1000.0f;
+        /// <summary>
+        /// Get or set WrapS.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public EGLTextureWrapMode WrapS
         { get; set; } = EGLTextureWrapMode.Repeat;
+        /// <summary>
+        /// Get or set WrapT.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public EGLTextureWrapMode WrapT
         { get; set; } = EGLTextureWrapMode.Repeat;
+        /// <summary>
+        /// Get or set WrapR.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public EGLTextureWrapMode WrapR
         { get; set; } = EGLTextureWrapMode.Repeat;
+        /// <summary>
+        /// Get or set BorderColor.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public ColorRGBA BorderColor
         { get; set; } = new ColorRGBA(0, 0, 0, 0);
+        /// <summary>
+        /// Get or set CompareMode.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public EGLTextureCompareMode CompareMode
         { get; set; } = EGLTextureCompareMode.None;
+        /// <summary>
+        /// Get or set CompareFunc.
+        /// </summary>
+        /// <remarks>
+        /// The change is not applied internally until call Apply().
+        /// </remarks>
         public EGLCompareFunc CompareFunc
         { get; set; } = EGLCompareFunc.LEqual;
 
+        /// <summary>
+        /// Apply all changes.
+        /// </summary>
         public void Apply()
         {
             if (!m_ApplyRegistered) {
