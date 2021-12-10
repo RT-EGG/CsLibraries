@@ -1,7 +1,7 @@
 @pushd %~dp0
 
-@if exist output (
-    rmdir /s /q output
+@if exist ..\docs (
+    rmdir /s /q ..\docs
 )
 
 doxygen Doxyfile
