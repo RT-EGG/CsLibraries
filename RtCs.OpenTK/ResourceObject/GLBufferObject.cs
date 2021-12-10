@@ -4,18 +4,18 @@ namespace RtCs.OpenGL
 {
     public class GLBufferObject : GLResourceIdObject
     {
-        protected override void InternalCreateResource()
+        protected override void CreateResourceCore()
         {
-            base.InternalCreateResource();
+            base.CreateResourceCore();
             if (ID == 0) {
                 ID = GL.GenBuffer();
             }
             return;
         }
 
-        protected override void InternalDestroyResource()
+        protected override void DestroyResourceCore()
         {
-            base.InternalDestroyResource();
+            base.DestroyResourceCore();
             if (ID != 0) {
                 GL.DeleteBuffer(ID);
                 ID = 0;

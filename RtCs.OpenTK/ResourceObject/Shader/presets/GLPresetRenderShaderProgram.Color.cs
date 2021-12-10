@@ -12,7 +12,7 @@ namespace RtCs.OpenGL
             {
                 VertexAttribPointers.Add(new GLVertexAttributePointer.Position(0));
 
-                OnAfterCreateResource += _ => {
+                AfterCreateResource += (sender, args) => {
                     m_VertexShader = new GLShader.GLVertexShader();
                     m_FragmentShader = new GLShader.GLFragmentShader();
 

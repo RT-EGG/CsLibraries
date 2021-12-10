@@ -70,16 +70,16 @@ namespace RtCs.OpenGL
             return;
         }
 
-        protected override void InternalCreateResource()
+        protected override void CreateResourceCore()
         {
-            base.InternalCreateResource();
+            base.CreateResourceCore();
             ID = GL.GenSampler();            
             return;
         }
 
-        protected override void InternalDestroyResource()
+        protected override void DestroyResourceCore()
         {
-            base.InternalDestroyResource();
+            base.DestroyResourceCore();
             GL.DeleteSampler(ID);
             ID = 0;
             return;

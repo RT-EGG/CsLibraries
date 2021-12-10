@@ -38,16 +38,16 @@ namespace RtCs.OpenGL
         public PixelInternalFormat PixelInternalFormat
         { get; }
 
-        protected override void InternalCreateResource()
+        protected override void CreateResourceCore()
         {
-            base.InternalCreateResource();
+            base.CreateResourceCore();
             ID = GL.GenTexture();
             return;
         }
 
-        protected override void InternalDestroyResource()
+        protected override void DestroyResourceCore()
         {
-            base.InternalDestroyResource();
+            base.DestroyResourceCore();
             GL.DeleteTexture(ID);
             ID = 0;
             return;

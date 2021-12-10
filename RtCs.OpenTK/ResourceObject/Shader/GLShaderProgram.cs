@@ -37,18 +37,18 @@ namespace RtCs.OpenGL
         public virtual IEnumerable<GLShaderUniformProperty> CreateDefaultProperties()
             => new GLShaderUniformProperty[0];
 
-        protected override void InternalCreateResource()
+        protected override void CreateResourceCore()
         {
-            base.InternalCreateResource();
+            base.CreateResourceCore();
             if (ID == 0) {
                 ID = GL.CreateProgram();
             }
             return;
         }
 
-        protected override void InternalDestroyResource()
+        protected override void DestroyResourceCore()
         {
-            base.InternalDestroyResource();
+            base.DestroyResourceCore();
             if (ID != 0) {
                 GL.DeleteProgram(ID);
             }

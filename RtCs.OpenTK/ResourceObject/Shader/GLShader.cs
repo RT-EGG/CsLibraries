@@ -28,18 +28,18 @@ namespace RtCs.OpenGL
             return Compiled;
         }
 
-        protected override void InternalCreateResource()
+        protected override void CreateResourceCore()
         {
-            base.InternalCreateResource();
+            base.CreateResourceCore();
             if (ID == 0) {
                 ID = GL.CreateShader(ShaderType);
             }
             return;
         }
 
-        protected override void InternalDestroyResource()
+        protected override void DestroyResourceCore()
         {
-            base.InternalDestroyResource();
+            base.DestroyResourceCore();
             if (ID != 0) {
                 GL.DeleteShader(ID);
                 ID = 0;

@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RtCs.OpenGL
 {
-    public delegate void GLResourceObjectNotifyCallback(GLResourceObject inObject);
-    public delegate void GLResourceObjectNotifyEventHandler(GLResourceObject inObject);
-
     public abstract class GLResourceObject : GLObject
     {
         public GLResourceObject()
@@ -15,20 +13,20 @@ namespace RtCs.OpenGL
         
         public void CreateResource()
         {
-            InternalCreateResource();
-            m_OnAfterCreateResource?.Invoke(this);
+            CreateResourceCore();
+            m_OnAfterCreateResource?.Invoke(this, EventArgs.Empty);
             return;
         }
 
         public void DestroyResource()
         {
-            OnBeforeDestroyResource?.Invoke(this);
-            InternalDestroyResource();
+            BeforeDestroyResource?.Invoke(this, EventArgs.Empty);
+            DestroyResourceCore();
             return;
         }
 
-        protected virtual void InternalCreateResource() { }
-        protected virtual void InternalDestroyResource() { }
+        protected virtual void CreateResourceCore() { }
+        protected virtual void DestroyResourceCore() { }
         protected abstract bool IsResourceCreated { get; }
 
         protected override void DisposeObject(bool inDisposing)
@@ -39,11 +37,11 @@ namespace RtCs.OpenGL
             return;
         }
 
-        public event GLResourceObjectNotifyEventHandler OnAfterCreateResource
+        public event EventHandler AfterCreateResource
         {
             add {
                 if (IsResourceCreated) {
-                    value?.Invoke(this);
+                    value?.Invoke(this, EventArgs.Empty);
                 } else {
                     m_OnAfterCreateResource += value;
                 }
@@ -52,8 +50,8 @@ namespace RtCs.OpenGL
                 m_OnAfterCreateResource -= value;
             }
         }
-        private event GLResourceObjectNotifyEventHandler m_OnAfterCreateResource;
+        private event EventHandler m_OnAfterCreateResource;
 
-        public event GLResourceObjectNotifyEventHandler OnBeforeDestroyResource;
+        public event EventHandler BeforeDestroyResource;
     }
 }
