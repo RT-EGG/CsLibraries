@@ -6,6 +6,12 @@ namespace RtCs.OpenGL
 {
     public class GLShaderBinarySource : GLShaderSource
     {
+        /// <summary>
+        /// Laod binary source from file.
+        /// </summary>
+        /// <param name="inFilepath">Path to shader source text file.</param>
+        /// <param name="inEntryPoint">Identifier for shader entry point.</param>
+        /// <exception cref="FileNotFoundException">Throw if the file is not found.</exception>
         public void LoadFromFile(string inFilepath, string inEntryPoint)
         {
             if (!File.Exists(inFilepath)) {
@@ -30,8 +36,14 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Raw bytes of shader source.
+        /// </summary>
         public byte[] Binary
         { get; set; } = null;
+        /// <summary>
+        /// Identifier for shader entry point.
+        /// </summary>
         public string EntryPoint
         { get; set; } = "Main";
     }

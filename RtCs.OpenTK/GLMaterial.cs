@@ -33,6 +33,7 @@ namespace RtCs.OpenGL
             return;
         }
 
+        // TODO remove list access public methods.
         public void AddProperty(GLShaderUniformProperty inProperty)
             => m_Properties.Add(inProperty.Name, inProperty);
         public void RemoveProperty(string inName)

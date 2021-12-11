@@ -7,6 +7,9 @@ namespace RtCs.OpenGL
         void Apply();
     }
 
+    /// <summary>
+    /// The parameter of blending.
+    /// </summary>
     public class GLBlendParameters : IGLBlendParameters
     {
         public GLBlendParameters()
@@ -23,8 +26,14 @@ namespace RtCs.OpenGL
         public void Apply()
             => GL.BlendFunc(SourceFactor, DestinationFactor);
 
+        /// <summary>
+        /// The parameter for glBlendFunc 1st argument.
+        /// </summary>
         public BlendingFactor SourceFactor
         { get; set; } = BlendingFactor.One;
+        /// <summary>
+        /// The parameter for glBlendFunc 2nd argument.
+        /// </summary>
         public BlendingFactor DestinationFactor
         { get; set; } = BlendingFactor.Zero;
 

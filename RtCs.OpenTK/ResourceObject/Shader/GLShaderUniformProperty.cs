@@ -79,11 +79,20 @@ namespace RtCs.OpenGL
         }
     }
 
+    /// <summary>
+    /// Property value object for shader program.
+    /// </summary>
+    /// <remarks>
+    /// The instance is created material instance for each shader property socket.
+    /// </remarks>
     public abstract class GLShaderUniformProperty<T> : GLShaderUniformProperty
     {
         public GLShaderUniformProperty(GLShaderUniformPropertySocket inSocket)
             : base (inSocket) { }
 
+        /// <summary>
+        /// Get or set value to commit shader program.
+        /// </summary>
         public T Value
         { get; set; } = default;
     }

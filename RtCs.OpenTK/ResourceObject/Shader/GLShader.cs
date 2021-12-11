@@ -3,8 +3,23 @@ using System.Collections.Generic;
 
 namespace RtCs.OpenGL
 {
+    /// <summary>
+    /// OpenGL shader unit object.
+    /// </summary>
+    /// <remarks>
+    /// This class is abstract so don't use directlly.\n
+    /// Use classes inherit this class (GLShader.GLVertexShader, GLShader.GLFragmentShader, GLShader.GLTessControlShader, GLShader.GLTessEvaluationShader or GLShader.GLComputeShader).
+    /// </remarks>
     public abstract partial class GLShader : GLResourceIdObject
     {
+        /// <summary>
+        /// Compile shader using the source.
+        /// </summary>
+        /// <param name="inSource">Shader source to compile.</param>
+        /// <returns>If compile successed, return true, otherwise false.</returns>
+        /// <remarks>
+        /// The error will be stored to CompileError when this function failed.
+        /// </remarks>
         public bool Compile(GLShaderSource inSource)
         {
             m_CompileError.Clear();
@@ -49,7 +64,13 @@ namespace RtCs.OpenGL
 
         public abstract ShaderType ShaderType { get; }
 
+        /// <summary>
+        /// The status the last compilation is successed.
+        /// </summary>
         public bool Compiled => m_CompileState != 0;
+        /// <summary>
+        /// The error of last compilation.
+        /// </summary>
         public IReadOnlyList<string> CompileError => m_CompileError;
 
         private int m_CompileState = 0;

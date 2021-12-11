@@ -6,6 +6,12 @@ namespace RtCs.OpenGL
 {
     public partial class GLRenderShaderProgram
     {
+        /// <summary>
+        /// Texture shader object as one of preset shader program.
+        /// </summary>
+        /// <remarks>
+        /// This shader renders using mesh's TexCoord and texture reference.
+        /// </remarks>
         public class Texture : GLRenderShaderProgram.PresetType
         {
             public Texture()

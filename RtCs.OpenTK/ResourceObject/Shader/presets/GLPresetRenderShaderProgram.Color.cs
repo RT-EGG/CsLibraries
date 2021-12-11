@@ -6,6 +6,12 @@ namespace RtCs.OpenGL
 {
     public partial class GLRenderShaderProgram
     {
+        /// <summary>
+        /// Color shader object as one of preset shader program.
+        /// </summary>
+        /// <remarks>
+        /// This shader renders plane color.
+        /// </remarks>
         public class Color : GLRenderShaderProgram.PresetType
         {
             public Color()

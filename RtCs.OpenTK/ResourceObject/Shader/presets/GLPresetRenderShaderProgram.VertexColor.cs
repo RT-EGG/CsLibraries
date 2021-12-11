@@ -6,6 +6,12 @@ namespace RtCs.OpenGL
 {
     public partial class GLRenderShaderProgram
     {
+        /// <summary>
+        /// VertexColor shader object as one of preset shader program.
+        /// </summary>
+        /// <remarks>
+        /// This shader renders using mesh's vertex color. The fragment color will be deciced from interpolated between vertices.
+        /// </remarks>
         public class VertexColor : GLRenderShaderProgram.PresetType
         {
             public VertexColor()

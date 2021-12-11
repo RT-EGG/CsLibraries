@@ -2,6 +2,9 @@
 
 namespace RtCs.OpenGL
 {
+    /// <summary>
+    /// The uniform property socekt in the shader program.
+    /// </summary>
     public class GLShaderUniformPropertySocket
     {
         public GLShaderUniformPropertySocket(string inName, int inLocation, ActiveUniformType inType)
@@ -12,8 +15,17 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Name of the uniform property.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Location (nearly id) of the uniform property in the program.
+        /// </summary>
         public readonly int Location;
+        /// <summary>
+        /// Type of the uniform property.
+        /// </summary>
         public readonly ActiveUniformType Type;
     }
 }
