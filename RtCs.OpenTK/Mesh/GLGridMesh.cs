@@ -7,9 +7,32 @@ namespace RtCs.OpenGL
 {
     public partial class GLPrimitiveMesh
     {
+        /// <summary>
+        /// Create grid mesh by lines.
+        /// </summary>
+        /// <param name="inDimensions">Length of each axis.</param>
+        /// <param name="inDivisionX">Number of division along x-axis.</param>
+        /// <param name="inDivisionY">Number of division along y-axis.</param>
+        /// <param name="inDivisionZ">Number of division along z-axis.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup only Vertices.
+        /// </remarks>
         public static GLMesh CreateGrid(Vector3 inDimensions, int inDivisionX, int inDivisionY, int inDivisionZ)
             => CreateGrid(new Vector3(0.0f), inDimensions, inDivisionX, inDivisionY, inDivisionZ);
 
+        /// <summary>
+        /// Create grid mesh by lines.
+        /// </summary>
+        /// <param name="inOffset">The origin of mesh.</param>
+        /// <param name="inDimensions">Length of each axis.</param>
+        /// <param name="inDivisionX">Number of division along x-axis.</param>
+        /// <param name="inDivisionY">Number of division along y-axis.</param>
+        /// <param name="inDivisionZ">Number of division along z-axis.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup only Vertices.
+        /// </remarks>
         public static GLMesh CreateGrid(Vector3 inOffset, Vector3 inDimensions, int inDivisionX, int inDivisionY, int inDivisionZ)
         {
             float xStep = inDimensions.x / inDivisionX;

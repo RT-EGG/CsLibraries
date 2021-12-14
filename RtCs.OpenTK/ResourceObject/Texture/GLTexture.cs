@@ -45,7 +45,7 @@ namespace RtCs.OpenGL
         { }
 
         /// <summary>
-        /// The pixel store format in 
+        /// The pixel store format in graphics memory.
         /// </summary>
         public PixelInternalFormat PixelInternalFormat
         { get; }

@@ -6,6 +6,16 @@ namespace RtCs.OpenGL
 {
     public partial class GLPrimitiveMesh
     {
+        /// <summary>
+        /// Create uv sphere mesh.
+        /// </summary>
+        /// <param name="inSlices">Number of vertices divide horizontal direction. It must be at least 3.</param>
+        /// <param name="inStacks">Number of vertices divide vertical direction. It must be at least 3.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">The case that inSlices is less than 3 or inStacks is less than 3.</exception>
+        /// <remarks>
+        /// Returned mesh has setup Vertices and Normals.
+        /// </remarks>
         public static GLMesh CreateSphereUV(int inSlices, int inStacks)
         {
             if ((inSlices < 3) || (inStacks < 3)) {
@@ -66,6 +76,15 @@ namespace RtCs.OpenGL
             return CreateSphereMesh(positions, indices);
         }
 
+        /// <summary>
+        /// Create ico (icosahedron) sphere mesh.
+        /// </summary>
+        /// <param name="inSubdivision">Number of recursive division.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup Vertices and Normals.
+        /// There is no limit to inSubdivision. However, since the memory used will increase enormously, it is realistic to set the upper limit at around 8.
+        /// </remarks>
         public static GLMesh CreateSphereICO(int inSubdivision)
         {
             List<Vector3> positions = new List<Vector3>(12);
@@ -153,6 +172,14 @@ namespace RtCs.OpenGL
             return CreateSphereMesh(positions, indices);
         }
 
+        /// <summary>
+        /// Create rounded cube sphere mesh.
+        /// </summary>
+        /// <param name="inSubdivision">Amount of divissions per cube face.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup Vertices and Normals.
+        /// </remarks>
         public static GLMesh CreateSphereRoundedCube(int inSubdivision)
         {
             inSubdivision += 2;

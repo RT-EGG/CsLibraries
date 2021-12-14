@@ -33,32 +33,78 @@ namespace RtCs.OpenGL
         }
     }
 
+    /// <summary>
+    /// Object for rendering that is constructed from basic shapes (triangles, quads, line segments, or points).
+    /// </summary>
     public class GLMesh : GLObject, ILineIntersectable3D
     {
+        /// <summary>
+        /// Apply all changes.
+        /// </summary>
+        /// <remarks>
+        /// Even if make changes by any method, the changes will not be applied internally until call this method.
+        /// </remarks>
         public void Apply()
             => new GLMainThreadTask(_ => UpdateBuffer()) {
                 DoSoonIfCan = false
             }.Enqueue();
 
+        /// <summary>
+        /// Position of vertices.
+        /// </summary>
         public Vector3[] Vertices
         { get; set; } = default;
+        /// <summary>
+        /// Normal of vertices.
+        /// </summary>
         public Vector3[] Normals
         { get; set; } = default;
+        /// <summary>
+        /// Texture coordinate of vertices.
+        /// </summary>
         public Vector2[] TexCoords
         { get; set; } = default;
+        /// <summary>
+        /// Color of vertices.
+        /// </summary>
         public Vector4[] Colors
         { get; set; } = default;
 
+        /// <summary>
+        /// Type of basic shape of the mesh object.
+        /// </summary>
         public EGLMeshTopology Topology
         { get; set; } = EGLMeshTopology.Triangles;
+        /// <summary>
+        /// Array of ID construct each topology.
+        /// </summary>
+        /// <remarks>
+        /// The length of the array is a multiple of the number of vertices that make up a single topology 
+        /// (triangle:3*n, quads:4*n, points:1*n, lines:2*n).
+        /// </remarks>
         public int[] Indices
         { get; set; } = default;
 
+        /// <summary>
+        /// The hint how the data store of vertex buffer object will be accessed.
+        /// </summary>
+        /// <remarks>
+        /// To understand, see OpenGL official [reference](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferData.xhtml).
+        /// </remarks>
         public BufferUsageHint VertexBufferUsageHint
         { get; set; } = BufferUsageHint.StaticDraw;
+        /// <summary>
+        /// The hint how the data store of index buffer object will be accessed.
+        /// </summary>
+        /// <remarks>
+        /// To understand, see OpenGL official [reference](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferData.xhtml).
+        /// </remarks>
         public BufferUsageHint IndexBufferUsageHint
         { get; set; } = BufferUsageHint.StaticDraw;
 
+        /// <summary>
+        /// Number of topology.
+        /// </summary>
         public int TopologyCount
         {
             get {
@@ -80,9 +126,15 @@ namespace RtCs.OpenGL
             }
         }
 
+        /// <summary>
+        /// Bounds used for various culling.
+        /// </summary>
         public AABB3D BoundingBox
         { get; set; } = default;
 
+        /// <summary>
+        /// Clean up all buffers.
+        /// </summary>
         public void Clear()
         {
             Vertices = null;
@@ -94,6 +146,9 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Update BoundingBox by Vertices.
+        /// </summary>
         public void CalculateBoundingBox()
         {
             if (Vertices.IsNullOrEmpty()) {
@@ -153,6 +208,14 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Information of intersection with the line.
+        /// </summary>
+        /// <param name="inLine"></param>
+        /// <returns>Intersection information.</returns>
+        /// <remarks>
+        /// Not support the case that the topology is lines or points.
+        /// </remarks>
         public virtual IEnumerable<LineIntersectionInfo3D> IsIntersectWith(Line3D inLine)
         {
             switch (Topology) {
@@ -174,6 +237,11 @@ namespace RtCs.OpenGL
             yield break;
         }
 
+        /// <summary>
+        /// Get all triangles.
+        /// </summary>
+        /// <returns>Triangles construct the mesh.</returns>
+        /// <exception cref="InvalidOperationException">The case that the Topology is not Triangle.</exception>
         public IEnumerable<Triangle3D> GetTriangles()
         {
             if (Topology != EGLMeshTopology.Triangles) {
@@ -189,6 +257,11 @@ namespace RtCs.OpenGL
             }
         }
 
+        /// <summary>
+        /// Get all Quad divided to 2 triangles.
+        /// </summary>
+        /// <returns>Quads as devided to 2 triangles construct the mesh.</returns>
+        /// <exception cref="InvalidOperationException">The case that the Topology is not Quads.</exception>
         public IEnumerable<Triangle3D> GetDividedQuads()
         {
             if (Topology != EGLMeshTopology.Quads) {

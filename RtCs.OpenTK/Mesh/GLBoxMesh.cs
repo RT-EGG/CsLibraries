@@ -5,9 +5,26 @@ namespace RtCs.OpenGL
 {
     public partial class GLPrimitiveMesh
     {
+        /// <summary>
+        /// Create cube (1.0 x 1.0 x 1.0) mesh.
+        /// </summary>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup Vertices and Normals.
+        /// </remarks>
         public static GLMesh CreateBox()
             => CreateBox(1.0f, 1.0f, 1.0f);
 
+        /// <summary>
+        /// Create specified sized cube mesh.
+        /// </summary>
+        /// <param name="inSizeX">Length of x-axis.</param>
+        /// <param name="inSizeY">Length of y-axis.</param>
+        /// <param name="inSizeZ">Length of z-axis.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup Vertices and Normals.
+        /// </remarks>
         public static GLMesh CreateBox(float inSizeX, float inSizeY, float inSizeZ)
         {
             GLMesh mesh = new GLMesh();
@@ -112,6 +129,14 @@ namespace RtCs.OpenGL
             return mesh;
         }
 
+        /// <summary>
+        /// Create specified sized cube mesh.
+        /// </summary>
+        /// <param name="inSize">Length of each axis.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup Vertices and Normals.
+        /// </remarks>
         public static GLMesh CreateBox(Vector3 inSize)
             => CreateBox(inSize.x, inSize.y, inSize.z);
     }

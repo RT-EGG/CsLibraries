@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace RtCs.OpenGL
 {
+    /// <summary>
+    /// OpenGL view frustum geometry.
+    /// </summary>
     public class GLViewFrustum
     {
         public enum EVertex
@@ -46,6 +49,11 @@ namespace RtCs.OpenGL
             Far
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="inViewMatrix">OpenGL formated view-matrix.</param>
+        /// <param name="inProjectionMatrix">OpenGL formated projection-matrix.</param>
         public GLViewFrustum(Matrix4x4 inViewMatrix, Matrix4x4 inProjectionMatrix)
         {
             ViewMatrix = inViewMatrix;
@@ -73,6 +81,11 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Judge whether the frustum is interfare to the AABB.
+        /// </summary>
+        /// <param name="inAABB">Target AABB to judge.</param>
+        /// <returns>Return true if the frustum is interfare to the AABB, otherwise false.</returns>
         public bool IsIntersectAABB(AABB3D inAABB)
         {
             // check AABB contains frustum's vertices
@@ -100,12 +113,28 @@ namespace RtCs.OpenGL
             return false;
         }
 
+        /// <summary>
+        /// Judge whether the frustum is interfare to the sphere.
+        /// </summary>
+        /// <param name="inWorldCenter">Center position of the target sphere to judge.</param>
+        /// <param name="inRadius">Radius of the target shphere to judge.</param>
+        /// <returns>Return true if the frustum is interfare to the sphere, otherwise false.</returns>
         public bool IsIntersectSphere(Vector3 inWorldCenter, float inRadius)
             => CalcDistanceTo(inWorldCenter) <= inRadius;
 
+        /// <summary>
+        /// Calc distance to nearest of the frustum.
+        /// </summary>
+        /// <param name="inWorldPoint">Position to calculate distance.</param>
+        /// <returns>Distance to the frustum (face, edge or vertex).</returns>
         public float CalcDistanceTo(Vector3 inWorldPoint)
             => (CalcClosestPoint(inWorldPoint) - inWorldPoint).Length;
 
+        /// <summary>
+        /// Get closest point on or in the frustum.
+        /// </summary>
+        /// <param name="inWorldPoint">Position to calculate.</param>
+        /// <returns>Position on or in the frustum. If inWorldPoint is in the frustum, return inWorldPoint as is.</returns>
         public Vector3 CalcClosestPoint(Vector3 inWorldPoint)
         {
             var point = WorldToClipCoordinate(inWorldPoint);
@@ -192,7 +221,18 @@ namespace RtCs.OpenGL
             throw new InvalidProgramException($"{point}, {place:X}");
         }
 
+        /// <summary>
+        /// Get vertex position of the frustum.
+        /// </summary>
+        /// <param name="inKey">The ID of which vertex to get.</param>
+        /// <returns>Vertex position.</returns>
         public Vector3 GetVertex(EVertex inKey) => m_Vertices[inKey];
+
+        /// <summary>
+        /// Get edge of the frustum as line.
+        /// </summary>
+        /// <param name="inKey">The ID of which edge to get.</param>
+        /// <returns>Edge as Line3D type.</returns>
         public Line3D GetEdge(EEdge inKey)
         {
             Line3D Get(EVertex v1, EVertex v2) => new Line3D(GetVertex(v1), GetVertex(v2));
@@ -225,6 +265,11 @@ namespace RtCs.OpenGL
             throw new InvalidEnumValueException<EEdge>(inKey);
         }
 
+        /// <summary>
+        /// Get face of the frustum as plane.
+        /// </summary>
+        /// <param name="inKey">The ID of which face to get.</param>
+        /// <returns>Face as Plane type.</returns>
         public Plane GetPlane(EFace inKey)
         {
             switch (inKey) {

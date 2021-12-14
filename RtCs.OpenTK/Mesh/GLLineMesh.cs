@@ -6,9 +6,25 @@ namespace RtCs.OpenGL
 {
     public partial class GLPrimitiveMesh
     {
+        /// <summary>
+        /// Create line mesh.
+        /// </summary>
+        /// <param name="inLines">List of pair of position which construct lines.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup only Vertices.
+        /// </remarks>
         public static GLMesh CreateLines(params (Vector3 Point0, Vector3 Point1)[] inLines)
             => CreateLines((IEnumerable<(Vector3 Point0, Vector3 Point1)>)inLines);
 
+        /// <summary>
+        /// Create line mesh.
+        /// </summary>
+        /// <param name="inLines">List of pair of position which construct lines.</param>
+        /// <returns>Created mesh object.</returns>
+        /// <remarks>
+        /// Returned mesh has setup only Vertices.
+        /// </remarks>
         public static GLMesh CreateLines(IEnumerable<(Vector3 Point0, Vector3 Point1)> inLines)
         {
             GLMesh mesh = new GLMesh();
