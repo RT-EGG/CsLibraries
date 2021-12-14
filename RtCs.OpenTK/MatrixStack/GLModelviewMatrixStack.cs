@@ -1,10 +1,11 @@
-﻿using OpenTK.Graphics.OpenGL;
-using RtCs.MathUtils;
+﻿using RtCs.MathUtils;
 using System;
-using System.Linq;
 
 namespace RtCs.OpenGL
 {
+    /// <summary>
+    /// The matrix stack of model matrix and view matrix.
+    /// </summary>
     public class GLModelviewMatrixStack
     {
         public GLModelviewMatrixStack()
@@ -14,6 +15,9 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Get current matrix combined view matrix and model matrix.
+        /// </summary>
         public Matrix4x4 CurrentMatrix
         {
             get {
@@ -25,6 +29,9 @@ namespace RtCs.OpenGL
             }
         }
 
+        /// <summary>
+        /// Get current normal matrix used for normal transform.
+        /// </summary>
         public Matrix3x3 NormalMatrix
         {
             get {
@@ -51,14 +58,16 @@ namespace RtCs.OpenGL
         {
             m_MvMatrixChanged = true;
             m_NormMatrixChanged = true;
-
-            OpenTK.Graphics.OpenGL.GL.MatrixMode(MatrixMode.Modelview);
-            OpenTK.Graphics.OpenGL.GL.LoadMatrix(CurrentMatrix.ToArray());
-
             return;
         }
 
+        /// <summary>
+        /// Get model matrix stack.
+        /// </summary>
         public GLModelMatrixStack Model { get; } = new GLModelMatrixStack();
+        /// <summary>
+        /// Get view matrix stack.
+        /// </summary>
         public GLViewMatrixStack View { get; } = new GLViewMatrixStack();
         private Matrix3x3 m_NormalMatrix = Matrix3x3.Identity;
         private Matrix4x4 m_ModelViewMatrix = Matrix4x4.Identity;
