@@ -1,4 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using System;
 using System.Collections.Generic;
 
 namespace RtCs.OpenGL
@@ -48,27 +49,40 @@ namespace RtCs.OpenGL
             return;
         }
 
-        // TODO remove list access public methods.
-        public void AddProperty(GLShaderUniformProperty inProperty)
-            => m_Properties.Add(inProperty.Name, inProperty);
-        public void RemoveProperty(string inName)
-            => m_Properties.Remove(inName);
-        public void ClearProperties()
-            => m_Properties.Clear();
-
-        // TODO add TryGet pattern.
         /// <summary>
         /// Get property by name.
         /// </summary>
         /// <typeparam name="T">Type of property.</typeparam>
         /// <param name="inName">Name of property.</param>
-        /// <returns>The property if found by name and property type is T, otherwise null.</returns>
+        /// <exception cref="KeyNotFoundException">Case of that the property not found by name.</exception>
+        /// <exception cref="InvalidCastException">Case of that the property is not for type T.</exception>
+        /// <returns>The property.</returns>
         public GLShaderUniformProperty<T> GetProperty<T>(string inName)
         {
-            if (m_Properties.TryGetValue(inName, out var property)) {
-                return property as GLShaderUniformProperty<T>;
+            var property = m_Properties[inName];
+            if (!(property is GLShaderUniformProperty<T>)) {
+                throw new InvalidCastException($"");
             }
-            return null;
+            return property as GLShaderUniformProperty<T>;
+        }
+
+        /// <summary>
+        /// Try get property by name.
+        /// </summary>
+        /// <typeparam name="T">Type of property.</typeparam>
+        /// <param name="inName">Name of property.</param>
+        /// <param name="outProperty">Output the property if found, otherwise null.</param>
+        /// <returns>Return true if the property found by name and type of the property is T, otherwise false.</returns>
+        public bool TryGetProperty<T>(string inName, out GLShaderUniformProperty<T> outProperty)
+        {
+            if (m_Properties.TryGetValue(inName, out var property)) {
+                if (property is GLShaderUniformProperty<T>) {
+                    outProperty = property as GLShaderUniformProperty<T>;
+                    return true;
+                }
+            }
+            outProperty = null;
+            return false;
         }
 
         /// <summary>
