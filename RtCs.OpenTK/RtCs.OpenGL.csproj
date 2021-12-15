@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GLCamera.cs" />
-    <Compile Include="GLDisplayList.cs" />
     <Compile Include="GLMainThreadTask.cs" />
     <Compile Include="GLMaterial.cs" />
     <Compile Include="GLObject.cs" />

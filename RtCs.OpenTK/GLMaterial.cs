@@ -3,13 +3,28 @@ using System.Collections.Generic;
 
 namespace RtCs.OpenGL
 {
+    /// <summary>
+    /// Value to decide the rendering order and parameters.
+    /// </summary>
     public enum EGLRenderLevel
     {
+        /// <summary>
+        /// No transparency part, for general object.
+        /// </summary>
         Opaque = 0,
+        /// <summary>
+        /// Has transparency part (non-1 alpha).
+        /// </summary>
         Transparent,
+        /// <summary>
+        /// Overwrite all.
+        /// </summary>
         Overlay
     }
 
+    /// <summary>
+    /// Object that decide render color using shader and properties for the shader.
+    /// </summary>
     public class GLMaterial : GLObject
     {
         public GLMaterial()
@@ -41,6 +56,13 @@ namespace RtCs.OpenGL
         public void ClearProperties()
             => m_Properties.Clear();
 
+        // TODO add TryGet pattern.
+        /// <summary>
+        /// Get property by name.
+        /// </summary>
+        /// <typeparam name="T">Type of property.</typeparam>
+        /// <param name="inName">Name of property.</param>
+        /// <returns>The property if found by name and property type is T, otherwise null.</returns>
         public GLShaderUniformProperty<T> GetProperty<T>(string inName)
         {
             if (m_Properties.TryGetValue(inName, out var property)) {
@@ -49,6 +71,15 @@ namespace RtCs.OpenGL
             return null;
         }
 
+        /// <summary>
+        /// Set property value.
+        /// </summary>
+        /// <typeparam name="T">Type of property.</typeparam>
+        /// <param name="inName">Name of property.</param>
+        /// <param name="inValue">Value of property.</param>
+        /// <remarks>
+        /// If not found property inName, or the property is not T, do nothing.
+        /// </remarks>
         public void SetPropertyValue<T>(string inName, T inValue)
         {
             var property = GetProperty<T>(inName);
@@ -58,6 +89,9 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Set or get shader.
+        /// </summary>
         public GLRenderShaderProgram Shader
         {
             get => m_Shader;
@@ -76,9 +110,15 @@ namespace RtCs.OpenGL
             }
         }
 
+        /// <summary>
+        /// Set or get parameter for blending.
+        /// </summary>
         public IGLBlendParameters BlendParameters
         { get; set; } = GLBlendParameters.Default;
 
+        /// <summary>
+        /// Value to decide the rendering order and parameters.
+        /// </summary>
         public EGLRenderLevel RenderLevel
         { get; set; } = EGLRenderLevel.Opaque;
 

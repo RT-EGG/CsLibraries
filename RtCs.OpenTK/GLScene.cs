@@ -6,11 +6,18 @@ using System.Linq;
 
 namespace RtCs.OpenGL
 {
+    /// <summary>
+    /// Represent the world to render.
+    /// </summary>
     public class GLScene
     {
         public void Render()
             => Render(new GLRenderingStatus());
 
+        /// <summary>
+        /// Execute rendering command.
+        /// </summary>
+        /// <param name="inStatus">Rendering data store.</param>
         public void Render(GLRenderingStatus inStatus)
         {
             if (DisplayList == null) {
@@ -80,6 +87,9 @@ namespace RtCs.OpenGL
             && (inObject.Renderer.Material != null)
             && (inObject.Renderer.Mesh != null);
 
+        /// <summary>
+        /// The render objects which render in scene.
+        /// </summary>
         public IEnumerable<GLRenderObject> DisplayList
         { get; set; } = null;
     }

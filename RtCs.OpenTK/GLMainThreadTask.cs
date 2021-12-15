@@ -14,19 +14,32 @@ namespace RtCs.OpenGL
     }
     public delegate void GLMainThreadTaskEventHandler(GLMainThreadTaskEventArgs inArgs);
 
+    /// <summary>
+    /// The object to register process run once on thread which is OpenGL context valid.
+    /// </summary>
     public class GLMainThreadTask
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="inAction">The process run on next timing when OpenGL context is valid.</param>
+        /// <remarks>
+        /// Just creating an instance does not register the task, but only executing "Enqueue" will register it.
+        /// </remarks>
         public GLMainThreadTask(GLMainThreadTaskEventHandler inAction)
         {
             Action = inAction;
             return;
         }
 
+        /// <summary>
+        /// Enqueue the task.
+        /// </summary>
         public void Enqueue()
             => GLMainThreadTaskQueue.Enqueue(this);
 
         public GLMainThreadTaskEventHandler Action
-        { get; set; } = null;
+        { get; } = null;
 
         public GLMainThreadTaskEventArgs ActionArgument
         { get; set; } = GLMainThreadTaskEventArgs.Empty;

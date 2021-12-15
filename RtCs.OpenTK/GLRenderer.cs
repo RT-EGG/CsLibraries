@@ -2,8 +2,15 @@
 
 namespace RtCs.OpenGL
 {
+    /// <summary>
+    /// The object to render from mesh and material.
+    /// </summary>
     public class GLRenderer : GLObject
     {
+        /// <summary>
+        /// Execute render command.
+        /// </summary>
+        /// <param name="inStatus">Rendering data store.</param>
         public void Render(GLRenderingStatus inStatus)
         {
             if (Mesh == null) {
@@ -45,8 +52,14 @@ namespace RtCs.OpenGL
             }
         }
 
+        /// <summary>
+        /// Get or set mesh.
+        /// </summary>
         public GLMesh Mesh
         { get; set; } = null;
+        /// <summary>
+        /// Get or set material.
+        /// </summary>
         public GLMaterial Material
         { get; set; } = null;
     }

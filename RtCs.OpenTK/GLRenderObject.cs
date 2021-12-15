@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace RtCs.OpenGL
 {
+    /// <summary>
+    /// Value to decide render mesh element.
+    /// </summary>
     [Flags]
     public enum EGLRenderPolygonMode
     {
@@ -15,13 +18,24 @@ namespace RtCs.OpenGL
         Point = PolygonMode.Point
     }
 
+    /// <summary>
+    /// How to do frustum culling test.
+    /// </summary>
     public enum EGLFrustumCullingMode
     {
+        /// <summary>
+        /// No frustum test.
+        /// </summary>
         AlwaysRender,
+        /// <summary>
+        /// Frustum test by RenderObject.BoundingBox.
+        /// </summary>
         BoundingBox,
-        //BoundingSphere
     }
 
+    /// <summary>
+    /// Value to decide face culling.
+    /// </summary>
     [Flags]
     public enum EGLRenderFaceMode
     {
@@ -30,8 +44,15 @@ namespace RtCs.OpenGL
         FrontAndBack = Front | Back
     }
 
+    /// <summary>
+    /// The object to render from transform and renderer.
+    /// </summary>
     public class GLRenderObject : GLObject, ILineIntersectable3D
     {
+        /// <summary>
+        /// Execute render command.
+        /// </summary>
+        /// <param name="inRenderingStatus">Rendering data store.</param>
         public void Render(GLRenderingStatus inRenderingStatus)
         {
             GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)PolygonMode);
@@ -51,6 +72,9 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Update BoundingBox by Renderer.Mesh.Vertices.
+        /// </summary>
         public void CalculateBoundingBox()
         {
             var vertices = Renderer?.Mesh?.Vertices;
@@ -64,6 +88,9 @@ namespace RtCs.OpenGL
             return;
         }
 
+        /// <summary>
+        /// Flag whether do render.
+        /// </summary>
         public bool Visible
         { get; set; } = true;
 
@@ -75,6 +102,10 @@ namespace RtCs.OpenGL
         // safe access to GLRenderObject.BlendParameters
         public virtual IGLBlendParameters BlendParameters
             => Renderer.Material.BlendParameters;
+
+        /// <summary>
+        /// How to do frustum culling test.
+        /// </summary>
         public EGLFrustumCullingMode FrustumCullingMode
         { get; set; } = EGLFrustumCullingMode.BoundingBox;
 
@@ -120,17 +151,32 @@ namespace RtCs.OpenGL
             }
         }
 
+        /// <summary>
+        /// Bounds used for various culling.
+        /// </summary>
         public AABB3D BoundingBox
         { get; set; } = new AABB3D();
 
+        /// <summary>
+        /// Flag to decide render mesh element.
+        /// </summary>
         public EGLRenderPolygonMode PolygonMode
         { get; set; } = EGLRenderPolygonMode.Face;
 
+        /// <summary>
+        /// Flag to decide face culling.
+        /// </summary>
         public EGLRenderFaceMode RenderFaceMode
         { get; set; } = EGLRenderFaceMode.Front;
 
+        /// <summary>
+        /// Object's transform.
+        /// </summary>
         public Transform Transform
         { get; } = new Transform();
+        /// <summary>
+        /// Renderer object following the object.
+        /// </summary>
         public GLRenderer Renderer
         { get; } = new GLRenderer();
     }
