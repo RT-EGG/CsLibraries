@@ -1,48 +1,126 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}\index{RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}}
-Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.631579cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}
-\end{center}
-\end{figure}
-\doxysubsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_abdb1c3f833c10ccb7f351abae84c0d39}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_abdb1c3f833c10ccb7f351abae84c0d39}} 
-void {\bfseries Create\+Resource} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a886abc8cbdef37439490e117c3014150}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a886abc8cbdef37439490e117c3014150}} 
-void {\bfseries Destroy\+Resource} ()
-\end{DoxyCompactItemize}
+
+
+Base class of \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} resourced object classes.  
+
+
+
+
+Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Object.
+
+
+
+Inherited by Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Id\+Object.
+
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acb910ccce39ee0bd4d1b525350521a0f}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acb910ccce39ee0bd4d1b525350521a0f}} 
-virtual void {\bfseries Create\+Resource\+Core} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a065c386b2bf17d1a6ddfb652babfcf55}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a065c386b2bf17d1a6ddfb652babfcf55}} 
-virtual void {\bfseries Destroy\+Resource\+Core} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acf8b2a7c9f15ec037e96f9f44fa5a206}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acf8b2a7c9f15ec037e96f9f44fa5a206}} 
-override void {\bfseries Dispose\+Object} (bool in\+Disposing)
-\end{DoxyCompactItemize}
+virtual void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acb910ccce39ee0bd4d1b525350521a0f}{Create\+Resource\+Core}} ()
+\begin{DoxyCompactList}\small\item\em Call opengl-\/initialization method. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a065c386b2bf17d1a6ddfb652babfcf55}{Destroy\+Resource\+Core}} ()
+\begin{DoxyCompactList}\small\item\em Call opengl-\/destroy method. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a6ca1c74f6a054c6fb826d6721a4e37a7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a6ca1c74f6a054c6fb826d6721a4e37a7}} 
-abstract bool {\bfseries Is\+Resource\+Created}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_ad45142c53daf00979204ca0282658435}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_ad45142c53daf00979204ca0282658435}} 
-Event\+Handler? {\bfseries After\+Create\+Resource}
-\end{DoxyCompactItemize}
-\doxysubsection*{Events}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a2a9fc203d2e56dcd8198231e0060e825}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a2a9fc203d2e56dcd8198231e0060e825}} 
-Event\+Handler {\bfseries Before\+Destroy\+Resource}
-\end{DoxyCompactItemize}
+abstract bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a6ca1c74f6a054c6fb826d6721a4e37a7}{Is\+Resource\+Created}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The status that the object is already generated. \end{DoxyCompactList}\item 
+Event\+Handler? \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_ad45142c53daf00979204ca0282658435}{After\+Create\+Resource}}
+\begin{DoxyCompactList}\small\item\em The event called after Create\+Resource\+Core. \end{DoxyCompactList}\item 
+Event\+Handler \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a2a9fc203d2e56dcd8198231e0060e825}{Before\+Destroy\+Resource}}
+\begin{DoxyCompactList}\small\item\em The event called before Destroy\+Resource\+Core. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Base class of \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} resourced object classes. 
+
+\mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} resourced object in this library means that object is managed by ID created by gl\+Gen\+X\+XX function. For example, buffer, texture and so on. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acb910ccce39ee0bd4d1b525350521a0f}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acb910ccce39ee0bd4d1b525350521a0f}} 
+\index{RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}!CreateResourceCore@{CreateResourceCore}}
+\index{CreateResourceCore@{CreateResourceCore}!RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}}
+\doxysubsubsection{\texorpdfstring{CreateResourceCore()}{CreateResourceCore()}}
+{\footnotesize\ttfamily virtual void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object.\+Create\+Resource\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Call opengl-\/initialization method. 
+
+The class inherits \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}{G\+L\+Resource\+Object}} should be call initialize method in this method, for example, gl\+Gen\+Textures, gl\+Gen\+Buffers and so on.~\newline
+This method will be called when opengl context is valid. 
+
+Reimplemented in \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_sampler_a8b4b8388e696ad16cec3fe8fc6ff2270}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture\+Sampler}}, \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a9cbafeace21350c5357cca544db3cecb}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program}}, \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a3978c6389b6dfa3019ac742a372a7ea1}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture}}, and \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a3d5fce3ea44bef01a8941ca18218ed1a}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader}}.
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a065c386b2bf17d1a6ddfb652babfcf55}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a065c386b2bf17d1a6ddfb652babfcf55}} 
+\index{RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}!DestroyResourceCore@{DestroyResourceCore}}
+\index{DestroyResourceCore@{DestroyResourceCore}!RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}}
+\doxysubsubsection{\texorpdfstring{DestroyResourceCore()}{DestroyResourceCore()}}
+{\footnotesize\ttfamily virtual void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object.\+Destroy\+Resource\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Call opengl-\/destroy method. 
+
+The class inherits \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}{G\+L\+Resource\+Object}} should be call destroy method in this method, for example, gl\+Delete\+Textures, gl\+Delete\+Buffers and so on.~\newline
+This method will be called when opengl context is valid. 
+
+Reimplemented in \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_sampler_aac9ebd8c64de03d58c3af817d9d5de36}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture\+Sampler}}, \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a89f0969dee58a9ed0557004e96045e5a}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program}}, \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_ab9aaf495fe1429de13169921a1fd066b}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture}}, and \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a5eeb3dd6eec60ce04721796c59929045}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader}}.
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_ad45142c53daf00979204ca0282658435}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_ad45142c53daf00979204ca0282658435}} 
+\index{RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}!AfterCreateResource@{AfterCreateResource}}
+\index{AfterCreateResource@{AfterCreateResource}!RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}}
+\doxysubsubsection{\texorpdfstring{AfterCreateResource}{AfterCreateResource}}
+{\footnotesize\ttfamily Event\+Handler? Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object.\+After\+Create\+Resource\hspace{0.3cm}{\ttfamily [add]}, {\ttfamily [remove]}}
+
+
+
+The event called after Create\+Resource\+Core. 
+
+The event will be called after Create\+Resource\+Core, this means that the event will be called after the resource created.~\newline
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & This object.\\
+\hline
+{\em e} & Event\+Args.\+Empty\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a2a9fc203d2e56dcd8198231e0060e825}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a2a9fc203d2e56dcd8198231e0060e825}} 
+\index{RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}!BeforeDestroyResource@{BeforeDestroyResource}}
+\index{BeforeDestroyResource@{BeforeDestroyResource}!RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}}
+\doxysubsubsection{\texorpdfstring{BeforeDestroyResource}{BeforeDestroyResource}}
+{\footnotesize\ttfamily Event\+Handler Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object.\+Before\+Destroy\+Resource\hspace{0.3cm}{\ttfamily [add]}, {\ttfamily [remove]}}
+
+
+
+The event called before Destroy\+Resource\+Core. 
+
+The event will be called after Destroy\+Resource\+Core, this means that the event will be called befire the resource destroyed.~\newline
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & This object.\\
+\hline
+{\em e} & Event\+Args.\+Empty\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a6ca1c74f6a054c6fb826d6721a4e37a7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a6ca1c74f6a054c6fb826d6721a4e37a7}} 
+\index{RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}!IsResourceCreated@{IsResourceCreated}}
+\index{IsResourceCreated@{IsResourceCreated}!RtCs.OpenGL.GLResourceObject@{RtCs.OpenGL.GLResourceObject}}
+\doxysubsubsection{\texorpdfstring{IsResourceCreated}{IsResourceCreated}}
+{\footnotesize\ttfamily abstract bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object.\+Is\+Resource\+Created\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected]}}
+
+
+
+The status that the object is already generated. 
+
+If the object is generated, returns true, Otherwise false. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

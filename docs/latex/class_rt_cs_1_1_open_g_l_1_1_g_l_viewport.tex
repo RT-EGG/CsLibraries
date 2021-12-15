@@ -1,45 +1,135 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport}\index{RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}}
-Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=3.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport}
-\end{center}
-\end{figure}
+
+
+The object represents region of render target.  
+
+
+
+
+Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Object.
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a43eddfe9e6f46bd82465721f471554ad}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a43eddfe9e6f46bd82465721f471554ad}} 
-{\bfseries G\+L\+Viewport} (int inX, int inY, int in\+Width, int in\+Height)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a05b95459719ec3fadb87b7b37e1b054d}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a05b95459719ec3fadb87b7b37e1b054d}} 
-void {\bfseries Adapt} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a94f4ca5130a449623631db5d8a770536}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a94f4ca5130a449623631db5d8a770536}} 
-int\mbox{[}$\,$\mbox{]} {\bfseries To\+Array} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a43eddfe9e6f46bd82465721f471554ad}{G\+L\+Viewport}} (int inX, int inY, int in\+Width, int in\+Height)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a05b95459719ec3fadb87b7b37e1b054d}{Adapt}} ()
+\begin{DoxyCompactList}\small\item\em Call gl\+Viewport with properties. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a1e67a7de77c7045dc99a11e9958c18b9}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a1e67a7de77c7045dc99a11e9958c18b9}} 
-float {\bfseries Aspect\+Ratio} =$>$ Width / (float)Height
-\end{DoxyCompactItemize}
+float \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a1e67a7de77c7045dc99a11e9958c18b9}{Aspect\+Ratio}} =$>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a8155abb86fa76114ac49848cc6d53d78}{Width}} / (float)\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a6179f5d7f85ac9496b03ebf40e4b7e63}{Height}}
+\begin{DoxyCompactList}\small\item\em Value of Width / Height. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_abad3467f633c69e61a2b6d0a97586c02}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_abad3467f633c69e61a2b6d0a97586c02}} 
-int {\bfseries X} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a9bf844662164c7a493cd3d749a633282}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a9bf844662164c7a493cd3d749a633282}} 
-int {\bfseries Y} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a8155abb86fa76114ac49848cc6d53d78}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a8155abb86fa76114ac49848cc6d53d78}} 
-int {\bfseries Width} = 1\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+int \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_abad3467f633c69e61a2b6d0a97586c02}{X}} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Left corner of the viewport. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a9bf844662164c7a493cd3d749a633282}{Y}} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Bottom corner of the viewport. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a8155abb86fa76114ac49848cc6d53d78}{Width}} = 1\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Width of the viewport. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a6179f5d7f85ac9496b03ebf40e4b7e63}{Height}} = 1\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Height of the viewport. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The object represents region of render target. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a43eddfe9e6f46bd82465721f471554ad}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a43eddfe9e6f46bd82465721f471554ad}} 
+\index{RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}!GLViewport@{GLViewport}}
+\index{GLViewport@{GLViewport}!RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}}
+\doxysubsubsection{\texorpdfstring{GLViewport()}{GLViewport()}}
+{\footnotesize\ttfamily Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport.\+G\+L\+Viewport (\begin{DoxyParamCaption}\item[{int}]{inX,  }\item[{int}]{inY,  }\item[{int}]{in\+Width,  }\item[{int}]{in\+Height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inX} & Initial value of X.\\
+\hline
+{\em inY} & Initial value of Y.\\
+\hline
+{\em in\+Width} & Initial value of Width.\\
+\hline
+{\em in\+Height} & Initial value of Height.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a05b95459719ec3fadb87b7b37e1b054d}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a05b95459719ec3fadb87b7b37e1b054d}} 
+\index{RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}!Adapt@{Adapt}}
+\index{Adapt@{Adapt}!RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}}
+\doxysubsubsection{\texorpdfstring{Adapt()}{Adapt()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport.\+Adapt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Call gl\+Viewport with properties. 
+
+Read more, see official \href{https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glViewport.xhtml}{\texttt{ reference}}. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a1e67a7de77c7045dc99a11e9958c18b9}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a1e67a7de77c7045dc99a11e9958c18b9}} 
+\index{RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}!AspectRatio@{AspectRatio}}
+\index{AspectRatio@{AspectRatio}!RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}}
+\doxysubsubsection{\texorpdfstring{AspectRatio}{AspectRatio}}
+{\footnotesize\ttfamily float Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport.\+Aspect\+Ratio =$>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a8155abb86fa76114ac49848cc6d53d78}{Width}} / (float)\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a6179f5d7f85ac9496b03ebf40e4b7e63}{Height}}}
+
+
+
+Value of Width / Height. 
+
+
+
+\doxysubsection{Property Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a6179f5d7f85ac9496b03ebf40e4b7e63}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a6179f5d7f85ac9496b03ebf40e4b7e63}} 
-int {\bfseries Height} = 1\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\index{RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}!Height@{Height}}
+\index{Height@{Height}!RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}}
+\doxysubsubsection{\texorpdfstring{Height}{Height}}
+{\footnotesize\ttfamily int Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport.\+Height = 1\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Height of the viewport. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a8155abb86fa76114ac49848cc6d53d78}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a8155abb86fa76114ac49848cc6d53d78}} 
+\index{RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}!Width@{Width}}
+\index{Width@{Width}!RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}}
+\doxysubsubsection{\texorpdfstring{Width}{Width}}
+{\footnotesize\ttfamily int Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport.\+Width = 1\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Width of the viewport. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_abad3467f633c69e61a2b6d0a97586c02}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_abad3467f633c69e61a2b6d0a97586c02}} 
+\index{RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}!X@{X}}
+\index{X@{X}!RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}}
+\doxysubsubsection{\texorpdfstring{X}{X}}
+{\footnotesize\ttfamily int Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport.\+X = 0\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Left corner of the viewport. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a9bf844662164c7a493cd3d749a633282}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_viewport_a9bf844662164c7a493cd3d749a633282}} 
+\index{RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}!Y@{Y}}
+\index{Y@{Y}!RtCs.OpenGL.GLViewport@{RtCs.OpenGL.GLViewport}}
+\doxysubsubsection{\texorpdfstring{Y}{Y}}
+{\footnotesize\ttfamily int Rt\+Cs.\+Open\+G\+L.\+G\+L\+Viewport.\+Y = 0\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Bottom corner of the viewport. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

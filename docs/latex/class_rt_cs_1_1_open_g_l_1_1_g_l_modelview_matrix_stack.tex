@@ -1,20 +1,69 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Modelview\+Matrix\+Stack Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack}\index{RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}}
+
+
+The matrix stack of model matrix and view matrix.  
+
+
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
+Matrix4x4 \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_aae2015897778f35c68b2b92ed46ab4d0}{Current\+Matrix}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get current matrix combined view matrix and model matrix. \end{DoxyCompactList}\item 
+Matrix3x3 \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a5d81e6df2b52bbabc9220b8bc94a6323}{Normal\+Matrix}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get current normal matrix used for normal transform. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_model_matrix_stack}{G\+L\+Model\+Matrix\+Stack}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a96be7c7063939a2e7a962a585ab7e3fa}{Model}} = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_model_matrix_stack}{G\+L\+Model\+Matrix\+Stack}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get model matrix stack. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}{G\+L\+View\+Matrix\+Stack}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a61a446e7e7b2e620fe9cee1c6dfd97dd}{View}} = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}{G\+L\+View\+Matrix\+Stack}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get view matrix stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The matrix stack of model matrix and view matrix. 
+
+
+
+\doxysubsection{Property Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_aae2015897778f35c68b2b92ed46ab4d0}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_aae2015897778f35c68b2b92ed46ab4d0}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries Current\+Matrix}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a5d81e6df2b52bbabc9220b8bc94a6323}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a5d81e6df2b52bbabc9220b8bc94a6323}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix3x3}{Matrix3x3}} {\bfseries Normal\+Matrix}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\index{RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}!CurrentMatrix@{CurrentMatrix}}
+\index{CurrentMatrix@{CurrentMatrix}!RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}}
+\doxysubsubsection{\texorpdfstring{CurrentMatrix}{CurrentMatrix}}
+{\footnotesize\ttfamily Matrix4x4 Rt\+Cs.\+Open\+G\+L.\+G\+L\+Modelview\+Matrix\+Stack.\+Current\+Matrix\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get current matrix combined view matrix and model matrix. 
+
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a96be7c7063939a2e7a962a585ab7e3fa}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a96be7c7063939a2e7a962a585ab7e3fa}} 
-\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_model_matrix_stack}{G\+L\+Model\+Matrix\+Stack}} {\bfseries Model} = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_model_matrix_stack}{G\+L\+Model\+Matrix\+Stack}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+\index{RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}!Model@{Model}}
+\index{Model@{Model}!RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}}
+\doxysubsubsection{\texorpdfstring{Model}{Model}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_model_matrix_stack}{G\+L\+Model\+Matrix\+Stack}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Modelview\+Matrix\+Stack.\+Model = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_model_matrix_stack}{G\+L\+Model\+Matrix\+Stack}}()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get model matrix stack. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a5d81e6df2b52bbabc9220b8bc94a6323}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a5d81e6df2b52bbabc9220b8bc94a6323}} 
+\index{RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}!NormalMatrix@{NormalMatrix}}
+\index{NormalMatrix@{NormalMatrix}!RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}}
+\doxysubsubsection{\texorpdfstring{NormalMatrix}{NormalMatrix}}
+{\footnotesize\ttfamily Matrix3x3 Rt\+Cs.\+Open\+G\+L.\+G\+L\+Modelview\+Matrix\+Stack.\+Normal\+Matrix\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get current normal matrix used for normal transform. 
+
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a61a446e7e7b2e620fe9cee1c6dfd97dd}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_modelview_matrix_stack_a61a446e7e7b2e620fe9cee1c6dfd97dd}} 
-\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}{G\+L\+View\+Matrix\+Stack}} {\bfseries View} = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}{G\+L\+View\+Matrix\+Stack}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
+\index{RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}!View@{View}}
+\index{View@{View}!RtCs.OpenGL.GLModelviewMatrixStack@{RtCs.OpenGL.GLModelviewMatrixStack}}
+\doxysubsubsection{\texorpdfstring{View}{View}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}{G\+L\+View\+Matrix\+Stack}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Modelview\+Matrix\+Stack.\+View = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}{G\+L\+View\+Matrix\+Stack}}()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get view matrix stack. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,26 +1,55 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Main\+Thread\+Task Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task}\index{RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}}
+
+
+The object to register process run once on thread which is \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} context valid.  
+
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a99772baf67f786307f463f08372a179f}{G\+L\+Main\+Thread\+Task}} (G\+L\+Main\+Thread\+Task\+Event\+Handler in\+Action)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a15198e7ca15b1ca03ff8a7ffac876c3b}{Enqueue}} ()
+\begin{DoxyCompactList}\small\item\em Enqueue the task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The object to register process run once on thread which is \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} context valid. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a99772baf67f786307f463f08372a179f}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a99772baf67f786307f463f08372a179f}} 
-{\bfseries G\+L\+Main\+Thread\+Task} (G\+L\+Main\+Thread\+Task\+Event\+Handler in\+Action)
-\item 
+\index{RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}!GLMainThreadTask@{GLMainThreadTask}}
+\index{GLMainThreadTask@{GLMainThreadTask}!RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}}
+\doxysubsubsection{\texorpdfstring{GLMainThreadTask()}{GLMainThreadTask()}}
+{\footnotesize\ttfamily Rt\+Cs.\+Open\+G\+L.\+G\+L\+Main\+Thread\+Task.\+G\+L\+Main\+Thread\+Task (\begin{DoxyParamCaption}\item[{G\+L\+Main\+Thread\+Task\+Event\+Handler}]{in\+Action }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Action} & The process run on next timing when \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} context is valid.\\
+\hline
+\end{DoxyParams}
+
+
+Just creating an instance does not register the task, but only executing \char`\"{}\+Enqueue\char`\"{} will register it. 
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a15198e7ca15b1ca03ff8a7ffac876c3b}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a15198e7ca15b1ca03ff8a7ffac876c3b}} 
-void {\bfseries Enqueue} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a072dd77967c2d84a3ae064ec18acc7d3}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a072dd77967c2d84a3ae064ec18acc7d3}} 
-G\+L\+Main\+Thread\+Task\+Event\+Handler {\bfseries Action} = null\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_ade8f3c8e8f708a8254d53f856e472152}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_ade8f3c8e8f708a8254d53f856e472152}} 
-\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_event_args}{G\+L\+Main\+Thread\+Task\+Event\+Args}} {\bfseries Action\+Argument} = G\+L\+Main\+Thread\+Task\+Event\+Args.\+Empty\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_aa46909fc892947d65cdd3502939f62c3}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_aa46909fc892947d65cdd3502939f62c3}} 
-bool {\bfseries Do\+Soon\+If\+Can} = true\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+\index{RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}!Enqueue@{Enqueue}}
+\index{Enqueue@{Enqueue}!RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}}
+\doxysubsubsection{\texorpdfstring{Enqueue()}{Enqueue()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Main\+Thread\+Task.\+Enqueue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Enqueue the task. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

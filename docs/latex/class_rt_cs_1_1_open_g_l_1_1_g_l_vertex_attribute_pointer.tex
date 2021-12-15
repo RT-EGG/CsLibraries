@@ -1,40 +1,80 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer}\index{RtCs.OpenGL.GLVertexAttributePointer@{RtCs.OpenGL.GLVertexAttributePointer}}
-Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=0.933333cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer}
-\end{center}
-\end{figure}
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_1_1_color}{Color}}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_1_1_normal}{Normal}}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_1_1_position}{Position}}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_1_1_tex_coord}{Tex\+Coord}}
-\end{DoxyCompactItemize}
+
+
+Pointer object of vertex attribute in shader program.  
+
+
+
+
+Inherited by Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer.\+Color, Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer.\+Normal, Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer.\+Position, and Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer.\+Tex\+Coord.
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a79ca85a4fa2f00904c8421271877f2b5}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a79ca85a4fa2f00904c8421271877f2b5}} 
-{\bfseries G\+L\+Vertex\+Attribute\+Pointer} (int in\+Index)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a79ca85a4fa2f00904c8421271877f2b5}{G\+L\+Vertex\+Attribute\+Pointer}} (int in\+Index)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a1e9fa03bfa67def5c372959fc2af6ef2}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a1e9fa03bfa67def5c372959fc2af6ef2}} 
-readonly int {\bfseries Index}
-\end{DoxyCompactItemize}
+readonly int \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a1e9fa03bfa67def5c372959fc2af6ef2}{Index}}
+\begin{DoxyCompactList}\small\item\em Layout location of vertex attribute in shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
+abstract E\+G\+L\+Vertex\+Attribute\+Type \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a105e10491874f1456a4f1393cd05d3c8}{Attribute\+Type}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Type of vertex attribute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Pointer object of vertex attribute in shader program. 
+
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh}{G\+L\+Mesh}} object referes pointer to commit vertex attributes.~\newline
+This class is abstract so don\textquotesingle{}t use directlly.~\newline
+Use classes inherit this class (G\+L\+Vertex\+Attribute\+Pointer.\+Position, G\+L\+Vertex\+Attribute\+Pointer.\+Normal, G\+L\+Vertex\+Attribute\+Pointer.\+Color or G\+L\+Vertex\+Attribute\+Pointer.\+Tex\+Coord). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a79ca85a4fa2f00904c8421271877f2b5}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a79ca85a4fa2f00904c8421271877f2b5}} 
+\index{RtCs.OpenGL.GLVertexAttributePointer@{RtCs.OpenGL.GLVertexAttributePointer}!GLVertexAttributePointer@{GLVertexAttributePointer}}
+\index{GLVertexAttributePointer@{GLVertexAttributePointer}!RtCs.OpenGL.GLVertexAttributePointer@{RtCs.OpenGL.GLVertexAttributePointer}}
+\doxysubsubsection{\texorpdfstring{GLVertexAttributePointer()}{GLVertexAttributePointer()}}
+{\footnotesize\ttfamily Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer.\+G\+L\+Vertex\+Attribute\+Pointer (\begin{DoxyParamCaption}\item[{int}]{in\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Index} & Initial value of Index.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a1e9fa03bfa67def5c372959fc2af6ef2}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a1e9fa03bfa67def5c372959fc2af6ef2}} 
+\index{RtCs.OpenGL.GLVertexAttributePointer@{RtCs.OpenGL.GLVertexAttributePointer}!Index@{Index}}
+\index{Index@{Index}!RtCs.OpenGL.GLVertexAttributePointer@{RtCs.OpenGL.GLVertexAttributePointer}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily readonly int Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer.\+Index}
+
+
+
+Layout location of vertex attribute in shader program. 
+
+
+
+\doxysubsection{Property Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a105e10491874f1456a4f1393cd05d3c8}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_pointer_a105e10491874f1456a4f1393cd05d3c8}} 
-abstract E\+G\+L\+Vertex\+Attribute\+Type {\bfseries Attribute\+Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
+\index{RtCs.OpenGL.GLVertexAttributePointer@{RtCs.OpenGL.GLVertexAttributePointer}!AttributeType@{AttributeType}}
+\index{AttributeType@{AttributeType}!RtCs.OpenGL.GLVertexAttributePointer@{RtCs.OpenGL.GLVertexAttributePointer}}
+\doxysubsubsection{\texorpdfstring{AttributeType}{AttributeType}}
+{\footnotesize\ttfamily abstract E\+G\+L\+Vertex\+Attribute\+Type Rt\+Cs.\+Open\+G\+L.\+G\+L\+Vertex\+Attribute\+Pointer.\+Attribute\+Type\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Type of vertex attribute. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

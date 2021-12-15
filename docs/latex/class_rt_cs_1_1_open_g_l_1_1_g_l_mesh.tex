@@ -1,74 +1,249 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh}\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
-Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=3.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh}
-\end{center}
-\end{figure}
+
+
+Object for rendering that is constructed from basic shapes (triangles, quads, line segments, or points).  
+
+
+
+
+Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Object, and Rt\+Cs.\+Math\+Utils.\+Geometry.\+I\+Line\+Intersectable3D.
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a00c6bac570e03068d7330eb9dd13bda2}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a00c6bac570e03068d7330eb9dd13bda2}} 
-void {\bfseries Apply} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3c22da1f700fa0a11fef9b3612e8a375}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3c22da1f700fa0a11fef9b3612e8a375}} 
-void {\bfseries Clear} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a4600a7333bfa772fb189f742edc6a9b8}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a4600a7333bfa772fb189f742edc6a9b8}} 
-void {\bfseries Calculate\+Bounding\+Box} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a580bebf4510e6c8bad439bf758b2fcb8}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a580bebf4510e6c8bad439bf758b2fcb8}} 
-virtual I\+Enumerable$<$ \mbox{\hyperlink{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_line_intersection_info3_d}{Line\+Intersection\+Info3D}} $>$ {\bfseries Is\+Intersect\+With} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_line3_d}{Line3D}} in\+Line)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8102c8cb35a4170abef76dcecc7f67ec}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8102c8cb35a4170abef76dcecc7f67ec}} 
-I\+Enumerable$<$ \mbox{\hyperlink{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_triangle3_d}{Triangle3D}} $>$ {\bfseries Get\+Triangles} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aa20c32874a935a274cc9a988f2e16779}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aa20c32874a935a274cc9a988f2e16779}} 
-I\+Enumerable$<$ \mbox{\hyperlink{class_rt_cs_1_1_math_utils_1_1_geometry_1_1_triangle3_d}{Triangle3D}} $>$ {\bfseries Get\+Divided\+Quads} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a202b4595a2b9a69fbe8e8d348b461bfd}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a202b4595a2b9a69fbe8e8d348b461bfd}} 
-override void {\bfseries Dispose\+Object} (bool in\+Disposing)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a00c6bac570e03068d7330eb9dd13bda2}{Apply}} ()
+\begin{DoxyCompactList}\small\item\em Apply all changes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3c22da1f700fa0a11fef9b3612e8a375}{Clear}} ()
+\begin{DoxyCompactList}\small\item\em Clean up all buffers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a4600a7333bfa772fb189f742edc6a9b8}{Calculate\+Bounding\+Box}} ()
+\begin{DoxyCompactList}\small\item\em Update Bounding\+Box by Vertices. \end{DoxyCompactList}\item 
+virtual I\+Enumerable$<$ Line\+Intersection\+Info3D $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a580bebf4510e6c8bad439bf758b2fcb8}{Is\+Intersect\+With}} (Line3D in\+Line)
+\begin{DoxyCompactList}\small\item\em Information of intersection with the line. \end{DoxyCompactList}\item 
+I\+Enumerable$<$ Triangle3D $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8102c8cb35a4170abef76dcecc7f67ec}{Get\+Triangles}} ()
+\begin{DoxyCompactList}\small\item\em Get all triangles. \end{DoxyCompactList}\item 
+I\+Enumerable$<$ Triangle3D $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aa20c32874a935a274cc9a988f2e16779}{Get\+Divided\+Quads}} ()
+\begin{DoxyCompactList}\small\item\em Get all Quad divided to 2 triangles. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ae23d3e6f8770f9c787b64a27de651ba9}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ae23d3e6f8770f9c787b64a27de651ba9}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}}\mbox{[}$\,$\mbox{]} {\bfseries Vertices} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3fb737e10cda148e15cd66c78f236189}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3fb737e10cda148e15cd66c78f236189}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}}\mbox{[}$\,$\mbox{]} {\bfseries Normals} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a7e3253eb4832fea9b4caf6d6c691d17a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a7e3253eb4832fea9b4caf6d6c691d17a}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector2}{Vector2}}\mbox{[}$\,$\mbox{]} {\bfseries Tex\+Coords} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5b8842017f17f06c80e3605fe1cba5a2}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5b8842017f17f06c80e3605fe1cba5a2}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector4}{Vector4}}\mbox{[}$\,$\mbox{]} {\bfseries Colors} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8936f39969eb5245755820a4cfbb8f8a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8936f39969eb5245755820a4cfbb8f8a}} 
-E\+G\+L\+Mesh\+Topology {\bfseries Topology} = E\+G\+L\+Mesh\+Topology.\+Triangles\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5928fb0fe26ad5814f1ac9fd536bf182}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5928fb0fe26ad5814f1ac9fd536bf182}} 
-int\mbox{[}$\,$\mbox{]} {\bfseries Indices} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aecacdeac170e9247acca5160c6525c76}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aecacdeac170e9247acca5160c6525c76}} 
-Buffer\+Usage\+Hint {\bfseries Vertex\+Buffer\+Usage\+Hint} = Buffer\+Usage\+Hint.\+Static\+Draw\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ada932cf322aa2b382a5d505b764b7b0d}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ada932cf322aa2b382a5d505b764b7b0d}} 
-Buffer\+Usage\+Hint {\bfseries Index\+Buffer\+Usage\+Hint} = Buffer\+Usage\+Hint.\+Static\+Draw\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ac992c570b22a4d2f5c068f1e7298c5fd}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ac992c570b22a4d2f5c068f1e7298c5fd}} 
-int {\bfseries Topology\+Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
+Vector3\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ae23d3e6f8770f9c787b64a27de651ba9}{Vertices}} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Position of vertices. \end{DoxyCompactList}\item 
+Vector3\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3fb737e10cda148e15cd66c78f236189}{Normals}} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Normal of vertices. \end{DoxyCompactList}\item 
+Vector2\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a7e3253eb4832fea9b4caf6d6c691d17a}{Tex\+Coords}} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Texture coordinate of vertices. \end{DoxyCompactList}\item 
+Vector4\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5b8842017f17f06c80e3605fe1cba5a2}{Colors}} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Color of vertices. \end{DoxyCompactList}\item 
+E\+G\+L\+Mesh\+Topology \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8936f39969eb5245755820a4cfbb8f8a}{Topology}} = E\+G\+L\+Mesh\+Topology.\+Triangles\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Type of basic shape of the mesh object. \end{DoxyCompactList}\item 
+int\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5928fb0fe26ad5814f1ac9fd536bf182}{Indices}} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Array of ID construct each topology. \end{DoxyCompactList}\item 
+Buffer\+Usage\+Hint \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aecacdeac170e9247acca5160c6525c76}{Vertex\+Buffer\+Usage\+Hint}} = Buffer\+Usage\+Hint.\+Static\+Draw\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The hint how the data store of vertex buffer object will be accessed. \end{DoxyCompactList}\item 
+Buffer\+Usage\+Hint \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ada932cf322aa2b382a5d505b764b7b0d}{Index\+Buffer\+Usage\+Hint}} = Buffer\+Usage\+Hint.\+Static\+Draw\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The hint how the data store of index buffer object will be accessed. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ac992c570b22a4d2f5c068f1e7298c5fd}{Topology\+Count}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Number of topology. \end{DoxyCompactList}\item 
+A\+A\+B\+B3D \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ad5836e3516e1b1e2dde343ac3cd884dd}{Bounding\+Box}} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Bounds used for various culling. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Object for rendering that is constructed from basic shapes (triangles, quads, line segments, or points). 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a00c6bac570e03068d7330eb9dd13bda2}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a00c6bac570e03068d7330eb9dd13bda2}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!Apply@{Apply}}
+\index{Apply@{Apply}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{Apply()}{Apply()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Apply (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Apply all changes. 
+
+Even if make changes by any method, the changes will not be applied internally until call this method. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a4600a7333bfa772fb189f742edc6a9b8}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a4600a7333bfa772fb189f742edc6a9b8}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!CalculateBoundingBox@{CalculateBoundingBox}}
+\index{CalculateBoundingBox@{CalculateBoundingBox}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{CalculateBoundingBox()}{CalculateBoundingBox()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Calculate\+Bounding\+Box (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Update Bounding\+Box by Vertices. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3c22da1f700fa0a11fef9b3612e8a375}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3c22da1f700fa0a11fef9b3612e8a375}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!Clear@{Clear}}
+\index{Clear@{Clear}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{Clear()}{Clear()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Clean up all buffers. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aa20c32874a935a274cc9a988f2e16779}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aa20c32874a935a274cc9a988f2e16779}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!GetDividedQuads@{GetDividedQuads}}
+\index{GetDividedQuads@{GetDividedQuads}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{GetDividedQuads()}{GetDividedQuads()}}
+{\footnotesize\ttfamily I\+Enumerable$<$Triangle3D$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Get\+Divided\+Quads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get all Quad divided to 2 triangles. 
+
+\begin{DoxyReturn}{Returns}
+Quads as devided to 2 triangles construct the mesh.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Operation\+Exception} & The case that the Topology is not Quads.\\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8102c8cb35a4170abef76dcecc7f67ec}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8102c8cb35a4170abef76dcecc7f67ec}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!GetTriangles@{GetTriangles}}
+\index{GetTriangles@{GetTriangles}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{GetTriangles()}{GetTriangles()}}
+{\footnotesize\ttfamily I\+Enumerable$<$Triangle3D$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Get\+Triangles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get all triangles. 
+
+\begin{DoxyReturn}{Returns}
+Triangles construct the mesh.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Operation\+Exception} & The case that the Topology is not Triangle.\\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a580bebf4510e6c8bad439bf758b2fcb8}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a580bebf4510e6c8bad439bf758b2fcb8}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!IsIntersectWith@{IsIntersectWith}}
+\index{IsIntersectWith@{IsIntersectWith}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{IsIntersectWith()}{IsIntersectWith()}}
+{\footnotesize\ttfamily virtual I\+Enumerable$<$Line\+Intersection\+Info3D$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Is\+Intersect\+With (\begin{DoxyParamCaption}\item[{Line3D}]{in\+Line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Information of intersection with the line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Line} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Intersection information.
+\end{DoxyReturn}
+
+
+Not support the case that the topology is lines or points. 
+
+\doxysubsection{Property Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ad5836e3516e1b1e2dde343ac3cd884dd}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ad5836e3516e1b1e2dde343ac3cd884dd}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_a_a_b_b3_d}{A\+A\+B\+B3D}} {\bfseries Bounding\+Box} = default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a2ea47b2d08042146c575279549281c73}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a2ea47b2d08042146c575279549281c73}} 
-\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_list}{G\+L\+Vertex\+Attribute\+List}} {\bfseries Vertex\+Attributes} = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_vertex_attribute_list}{G\+L\+Vertex\+Attribute\+List}}()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!BoundingBox@{BoundingBox}}
+\index{BoundingBox@{BoundingBox}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{BoundingBox}{BoundingBox}}
+{\footnotesize\ttfamily A\+A\+B\+B3D Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Bounding\+Box = default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Bounds used for various culling. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5b8842017f17f06c80e3605fe1cba5a2}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5b8842017f17f06c80e3605fe1cba5a2}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!Colors@{Colors}}
+\index{Colors@{Colors}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{Colors}{Colors}}
+{\footnotesize\ttfamily Vector4 \mbox{[}$\,$\mbox{]} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Colors = default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Color of vertices. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ada932cf322aa2b382a5d505b764b7b0d}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ada932cf322aa2b382a5d505b764b7b0d}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!IndexBufferUsageHint@{IndexBufferUsageHint}}
+\index{IndexBufferUsageHint@{IndexBufferUsageHint}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{IndexBufferUsageHint}{IndexBufferUsageHint}}
+{\footnotesize\ttfamily Buffer\+Usage\+Hint Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Index\+Buffer\+Usage\+Hint = Buffer\+Usage\+Hint.\+Static\+Draw\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The hint how the data store of index buffer object will be accessed. 
+
+To understand, see \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} official \href{https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferData.xhtml}{\texttt{ reference}}. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5928fb0fe26ad5814f1ac9fd536bf182}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a5928fb0fe26ad5814f1ac9fd536bf182}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!Indices@{Indices}}
+\index{Indices@{Indices}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{Indices}{Indices}}
+{\footnotesize\ttfamily int \mbox{[}$\,$\mbox{]} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Indices = default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Array of ID construct each topology. 
+
+The length of the array is a multiple of the number of vertices that make up a single topology (triangle\+:3$\ast$n, quads\+:4$\ast$n, points\+:1$\ast$n, lines\+:2$\ast$n). \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3fb737e10cda148e15cd66c78f236189}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a3fb737e10cda148e15cd66c78f236189}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!Normals@{Normals}}
+\index{Normals@{Normals}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{Normals}{Normals}}
+{\footnotesize\ttfamily Vector3 \mbox{[}$\,$\mbox{]} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Normals = default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Normal of vertices. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a7e3253eb4832fea9b4caf6d6c691d17a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a7e3253eb4832fea9b4caf6d6c691d17a}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!TexCoords@{TexCoords}}
+\index{TexCoords@{TexCoords}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{TexCoords}{TexCoords}}
+{\footnotesize\ttfamily Vector2 \mbox{[}$\,$\mbox{]} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Tex\+Coords = default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Texture coordinate of vertices. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8936f39969eb5245755820a4cfbb8f8a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_a8936f39969eb5245755820a4cfbb8f8a}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!Topology@{Topology}}
+\index{Topology@{Topology}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{Topology}{Topology}}
+{\footnotesize\ttfamily E\+G\+L\+Mesh\+Topology Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Topology = E\+G\+L\+Mesh\+Topology.\+Triangles\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Type of basic shape of the mesh object. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ac992c570b22a4d2f5c068f1e7298c5fd}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ac992c570b22a4d2f5c068f1e7298c5fd}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!TopologyCount@{TopologyCount}}
+\index{TopologyCount@{TopologyCount}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{TopologyCount}{TopologyCount}}
+{\footnotesize\ttfamily int Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Topology\+Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Number of topology. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aecacdeac170e9247acca5160c6525c76}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_aecacdeac170e9247acca5160c6525c76}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!VertexBufferUsageHint@{VertexBufferUsageHint}}
+\index{VertexBufferUsageHint@{VertexBufferUsageHint}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{VertexBufferUsageHint}{VertexBufferUsageHint}}
+{\footnotesize\ttfamily Buffer\+Usage\+Hint Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Vertex\+Buffer\+Usage\+Hint = Buffer\+Usage\+Hint.\+Static\+Draw\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The hint how the data store of vertex buffer object will be accessed. 
+
+To understand, see \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} official \href{https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferData.xhtml}{\texttt{ reference}}. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ae23d3e6f8770f9c787b64a27de651ba9}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_mesh_ae23d3e6f8770f9c787b64a27de651ba9}} 
+\index{RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!RtCs.OpenGL.GLMesh@{RtCs.OpenGL.GLMesh}}
+\doxysubsubsection{\texorpdfstring{Vertices}{Vertices}}
+{\footnotesize\ttfamily Vector3 \mbox{[}$\,$\mbox{]} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Mesh.\+Vertices = default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Position of vertices. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

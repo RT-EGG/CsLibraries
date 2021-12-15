@@ -1,24 +1,78 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Matrix\+Stack Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}\index{RtCs.OpenGL.GLViewMatrixStack@{RtCs.OpenGL.GLViewMatrixStack}}
+
+
+The matrix stack used for view matrix.  
+
+
 Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Matrix\+Stack\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=5.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}
+\includegraphics[height=3.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_aa6a41dc8b7ec4e0c07602e478273a2a4}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_aa6a41dc8b7ec4e0c07602e478273a2a4}} 
-void {\bfseries Look\+At} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Center, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Target\+Point, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Up\+Direction)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_aa6a41dc8b7ec4e0c07602e478273a2a4}{Look\+At}} (Vector3 in\+Center, Vector3 in\+Target\+Point, Vector3 in\+Up\+Direction)
+\begin{DoxyCompactList}\small\item\em Set view matrix like as to set the position and rotation of the camera, \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_a589abc47f3da9951f43676da2b0f2b7a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_a589abc47f3da9951f43676da2b0f2b7a}} 
-static \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries Make\+Look\+At\+View\+Matrix} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Center, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Target\+Point, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+Up\+Direction)
-\end{DoxyCompactItemize}
+static Matrix4x4 \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_a589abc47f3da9951f43676da2b0f2b7a}{Make\+Look\+At\+View\+Matrix}} (Vector3 in\+Center, Vector3 in\+Target\+Point, Vector3 in\+Up\+Direction)
+\begin{DoxyCompactList}\small\item\em Create view matrix like as to set the position and rotation of the camera, \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+The matrix stack used for view matrix. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_aa6a41dc8b7ec4e0c07602e478273a2a4}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_aa6a41dc8b7ec4e0c07602e478273a2a4}} 
+\index{RtCs.OpenGL.GLViewMatrixStack@{RtCs.OpenGL.GLViewMatrixStack}!LookAt@{LookAt}}
+\index{LookAt@{LookAt}!RtCs.OpenGL.GLViewMatrixStack@{RtCs.OpenGL.GLViewMatrixStack}}
+\doxysubsubsection{\texorpdfstring{LookAt()}{LookAt()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Matrix\+Stack.\+Look\+At (\begin{DoxyParamCaption}\item[{Vector3}]{in\+Center,  }\item[{Vector3}]{in\+Target\+Point,  }\item[{Vector3}]{in\+Up\+Direction }\end{DoxyParamCaption})}
+
+
+
+Set view matrix like as to set the position and rotation of the camera, 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Center} & The position of the camera.\\
+\hline
+{\em in\+Target\+Point} & The point that the camera looks.\\
+\hline
+{\em in\+Up\+Direction} & The direction that tha camera\textquotesingle{}s head faces.\\
+\hline
+\end{DoxyParams}
+
+
+Same as Load\+Matrix(\+Make\+Look\+At\+View\+Matrix). \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_a589abc47f3da9951f43676da2b0f2b7a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack_a589abc47f3da9951f43676da2b0f2b7a}} 
+\index{RtCs.OpenGL.GLViewMatrixStack@{RtCs.OpenGL.GLViewMatrixStack}!MakeLookAtViewMatrix@{MakeLookAtViewMatrix}}
+\index{MakeLookAtViewMatrix@{MakeLookAtViewMatrix}!RtCs.OpenGL.GLViewMatrixStack@{RtCs.OpenGL.GLViewMatrixStack}}
+\doxysubsubsection{\texorpdfstring{MakeLookAtViewMatrix()}{MakeLookAtViewMatrix()}}
+{\footnotesize\ttfamily static Matrix4x4 Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Matrix\+Stack.\+Make\+Look\+At\+View\+Matrix (\begin{DoxyParamCaption}\item[{Vector3}]{in\+Center,  }\item[{Vector3}]{in\+Target\+Point,  }\item[{Vector3}]{in\+Up\+Direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Create view matrix like as to set the position and rotation of the camera, 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Center} & The position of the camera.\\
+\hline
+{\em in\+Target\+Point} & The point that the camera looks.\\
+\hline
+{\em in\+Up\+Direction} & The direction that tha camera\textquotesingle{}s head faces.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Created view matrix.
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

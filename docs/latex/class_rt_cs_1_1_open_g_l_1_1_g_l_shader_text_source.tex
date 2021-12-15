@@ -1,35 +1,140 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Text\+Source Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}\index{RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}}
-Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Text\+Source\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}
-\end{center}
-\end{figure}
+
+
+Shader unit text source.  
+
+
+
+
+Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Source.
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_a163fd4df46051a62ce83ae7f480939ef}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_a163fd4df46051a62ce83ae7f480939ef}} 
-void {\bfseries Load\+From\+File} (string in\+Filepath)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_a163fd4df46051a62ce83ae7f480939ef}{Load\+From\+File}} (string in\+Filepath)
+\begin{DoxyCompactList}\small\item\em Laod text source from file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_ac9f53479b02ddcf169aa2765c50776b6}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_ac9f53479b02ddcf169aa2765c50776b6}} 
-static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} {\bfseries Create\+File\+Source} (string in\+Filepath)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_aaf0120d19cfef8438576d01315ee228f}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_aaf0120d19cfef8438576d01315ee228f}} 
-static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} {\bfseries Create\+Text\+Source} (string in\+Text)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_adcdadfeace8cc10c7e1f6c4529a96d46}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_adcdadfeace8cc10c7e1f6c4529a96d46}} 
-static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} {\bfseries Create\+Assembly\+Text\+Resource\+Source} (string in\+Resource\+Name)
-\end{DoxyCompactItemize}
+static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_ac9f53479b02ddcf169aa2765c50776b6}{Create\+File\+Source}} (string in\+Filepath)
+\begin{DoxyCompactList}\small\item\em Create shader source and load from text file. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_aaf0120d19cfef8438576d01315ee228f}{Create\+Text\+Source}} (string in\+Text)
+\begin{DoxyCompactList}\small\item\em Create shader source and set source to Text. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_adcdadfeace8cc10c7e1f6c4529a96d46}{Create\+Assembly\+Text\+Resource\+Source}} (string in\+Resource\+Name)
+\begin{DoxyCompactList}\small\item\em Create shader source and load text from embeded resource. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
+string \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_a24b9ae1dcc4486b86b8394b54d768376}{Text}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Raw text of shader source. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Shader unit text source. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_adcdadfeace8cc10c7e1f6c4529a96d46}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_adcdadfeace8cc10c7e1f6c4529a96d46}} 
+\index{RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}!CreateAssemblyTextResourceSource@{CreateAssemblyTextResourceSource}}
+\index{CreateAssemblyTextResourceSource@{CreateAssemblyTextResourceSource}!RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}}
+\doxysubsubsection{\texorpdfstring{CreateAssemblyTextResourceSource()}{CreateAssemblyTextResourceSource()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Text\+Source.\+Create\+Assembly\+Text\+Resource\+Source (\begin{DoxyParamCaption}\item[{string}]{in\+Resource\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Create shader source and load text from embeded resource. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Resource\+Name} & Path to embeded resource in project.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The shader source object loaded Text from embeded resource.
+\end{DoxyReturn}
+
+
+This function create the instance of \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}}, load text from Assembly.\+Get\+Executing\+Assembly().Get\+Manifest\+Resource\+Stream(in\+Resource\+Name).~\newline
+About exceptions thrown this method, see Assembly.\+Get\+Executing\+Assembly().Get\+Manifest\+Resource\+Stream(). \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_ac9f53479b02ddcf169aa2765c50776b6}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_ac9f53479b02ddcf169aa2765c50776b6}} 
+\index{RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}!CreateFileSource@{CreateFileSource}}
+\index{CreateFileSource@{CreateFileSource}!RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}}
+\doxysubsubsection{\texorpdfstring{CreateFileSource()}{CreateFileSource()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Text\+Source.\+Create\+File\+Source (\begin{DoxyParamCaption}\item[{string}]{in\+Filepath }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Create shader source and load from text file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Filepath} & Path to shader source text file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The shader source object has loaded text source file.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Exception} & Throw if the file is not found.\\
+\hline
+\end{DoxyExceptions}
+
+
+This function create the instance of \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}}, call Load\+From\+File, then return the instance. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_aaf0120d19cfef8438576d01315ee228f}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_aaf0120d19cfef8438576d01315ee228f}} 
+\index{RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}!CreateTextSource@{CreateTextSource}}
+\index{CreateTextSource@{CreateTextSource}!RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}}
+\doxysubsubsection{\texorpdfstring{CreateTextSource()}{CreateTextSource()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Text\+Source.\+Create\+Text\+Source (\begin{DoxyParamCaption}\item[{string}]{in\+Text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create shader source and set source to Text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Text} & Raw text of shader source.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The shader source object has set Text property.
+\end{DoxyReturn}
+
+
+This function create the instance of \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source}{G\+L\+Shader\+Text\+Source}}, set in\+Text to Text property, then return the instance. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_a163fd4df46051a62ce83ae7f480939ef}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_a163fd4df46051a62ce83ae7f480939ef}} 
+\index{RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}!LoadFromFile@{LoadFromFile}}
+\index{LoadFromFile@{LoadFromFile}!RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}}
+\doxysubsubsection{\texorpdfstring{LoadFromFile()}{LoadFromFile()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Text\+Source.\+Load\+From\+File (\begin{DoxyParamCaption}\item[{string}]{in\+Filepath }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Laod text source from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Filepath} & Path to shader source text file.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Exception} & Throw if the file is not found.\\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Property Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_a24b9ae1dcc4486b86b8394b54d768376}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_text_source_a24b9ae1dcc4486b86b8394b54d768376}} 
-string {\bfseries Text}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+\index{RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}!Text@{Text}}
+\index{Text@{Text}!RtCs.OpenGL.GLShaderTextSource@{RtCs.OpenGL.GLShaderTextSource}}
+\doxysubsubsection{\texorpdfstring{Text}{Text}}
+{\footnotesize\ttfamily string Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Text\+Source.\+Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Raw text of shader source. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,36 +1,96 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture}\index{RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}}
-Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=7.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_texture}
-\end{center}
-\end{figure}
+
+
+\mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} texture object.  
+
+
+
+
+Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Id\+Object, and Rt\+Cs.\+Open\+G\+L.\+I\+G\+L\+Texture.
+
+
+
+Inherited by Rt\+Cs.\+Open\+G\+L.\+G\+L\+Color\+Texture.
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a121b39e2a6bdbc7f47d2e233e81120bf}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a121b39e2a6bdbc7f47d2e233e81120bf}} 
-{\bfseries G\+L\+Texture} (Pixel\+Internal\+Format in\+Pixel\+Internal\+Format)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a02ae6e183a5d7b3e3165068ebcaba57d}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a02ae6e183a5d7b3e3165068ebcaba57d}} 
-virtual void {\bfseries Apply} ()
-\end{DoxyCompactItemize}
+virtual void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a02ae6e183a5d7b3e3165068ebcaba57d}{Apply}} ()
+\begin{DoxyCompactList}\small\item\em Apply all changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a3978c6389b6dfa3019ac742a372a7ea1}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a3978c6389b6dfa3019ac742a372a7ea1}} 
-override void {\bfseries Create\+Resource\+Core} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_ab9aaf495fe1429de13169921a1fd066b}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_ab9aaf495fe1429de13169921a1fd066b}} 
-override void {\bfseries Destroy\+Resource\+Core} ()
-\end{DoxyCompactItemize}
+override void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a3978c6389b6dfa3019ac742a372a7ea1}{Create\+Resource\+Core}} ()
+\begin{DoxyCompactList}\small\item\em Call opengl-\/initialization method. \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_ab9aaf495fe1429de13169921a1fd066b}{Destroy\+Resource\+Core}} ()
+\begin{DoxyCompactList}\small\item\em Call opengl-\/destroy method. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
+Pixel\+Internal\+Format \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a720ee036ee704ece3cc22aa622a481ee}{Pixel\+Internal\+Format}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The pixel store format in graphics memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} texture object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a02ae6e183a5d7b3e3165068ebcaba57d}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a02ae6e183a5d7b3e3165068ebcaba57d}} 
+\index{RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}!Apply@{Apply}}
+\index{Apply@{Apply}!RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}}
+\doxysubsubsection{\texorpdfstring{Apply()}{Apply()}}
+{\footnotesize\ttfamily virtual void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture.\+Apply (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Apply all changes. 
+
+Even if make changes by any method, the changes will not be applied internally until call this method. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a3978c6389b6dfa3019ac742a372a7ea1}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a3978c6389b6dfa3019ac742a372a7ea1}} 
+\index{RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}!CreateResourceCore@{CreateResourceCore}}
+\index{CreateResourceCore@{CreateResourceCore}!RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}}
+\doxysubsubsection{\texorpdfstring{CreateResourceCore()}{CreateResourceCore()}}
+{\footnotesize\ttfamily override void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture.\+Create\+Resource\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Call opengl-\/initialization method. 
+
+The class inherits \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}{G\+L\+Resource\+Object}} should be call initialize method in this method, for example, gl\+Gen\+Textures, gl\+Gen\+Buffers and so on.~\newline
+This method will be called when opengl context is valid. 
+
+Reimplemented from \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acb910ccce39ee0bd4d1b525350521a0f}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object}}.
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_ab9aaf495fe1429de13169921a1fd066b}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_ab9aaf495fe1429de13169921a1fd066b}} 
+\index{RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}!DestroyResourceCore@{DestroyResourceCore}}
+\index{DestroyResourceCore@{DestroyResourceCore}!RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}}
+\doxysubsubsection{\texorpdfstring{DestroyResourceCore()}{DestroyResourceCore()}}
+{\footnotesize\ttfamily override void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture.\+Destroy\+Resource\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Call opengl-\/destroy method. 
+
+The class inherits \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}{G\+L\+Resource\+Object}} should be call destroy method in this method, for example, gl\+Delete\+Textures, gl\+Delete\+Buffers and so on.~\newline
+This method will be called when opengl context is valid. 
+
+Reimplemented from \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a065c386b2bf17d1a6ddfb652babfcf55}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object}}.
+
+
+
+\doxysubsection{Property Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a720ee036ee704ece3cc22aa622a481ee}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_texture_a720ee036ee704ece3cc22aa622a481ee}} 
-Pixel\+Internal\+Format {\bfseries Pixel\+Internal\+Format}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\index{RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}!PixelInternalFormat@{PixelInternalFormat}}
+\index{PixelInternalFormat@{PixelInternalFormat}!RtCs.OpenGL.GLTexture@{RtCs.OpenGL.GLTexture}}
+\doxysubsubsection{\texorpdfstring{PixelInternalFormat}{PixelInternalFormat}}
+{\footnotesize\ttfamily Pixel\+Internal\+Format Rt\+Cs.\+Open\+G\+L.\+G\+L\+Texture.\+Pixel\+Internal\+Format\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The pixel store format in graphics memory. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

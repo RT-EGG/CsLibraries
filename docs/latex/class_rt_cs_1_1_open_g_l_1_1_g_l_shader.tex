@@ -1,55 +1,119 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader}\index{RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}}
-Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.210526cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_shader}
-\end{center}
-\end{figure}
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_1_1_g_l_compute_shader}{G\+L\+Compute\+Shader}}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_1_1_g_l_fragment_shader}{G\+L\+Fragment\+Shader}}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_1_1_g_l_tess_control_shader}{G\+L\+Tess\+Control\+Shader}}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_1_1_g_l_tess_evaluation_shader}{G\+L\+Tess\+Evaluation\+Shader}}
-\item 
-class \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_1_1_g_l_vertex_shader}{G\+L\+Vertex\+Shader}}
-\end{DoxyCompactItemize}
+
+
+\mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} shader unit object.  
+
+
+
+
+Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Id\+Object.
+
+
+
+Inherited by Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+G\+L\+Compute\+Shader, Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+G\+L\+Fragment\+Shader, Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+G\+L\+Tess\+Control\+Shader, Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+G\+L\+Tess\+Evaluation\+Shader, and Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+G\+L\+Vertex\+Shader.
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_aca9aa01429ca6179feb1811892a1739c}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_aca9aa01429ca6179feb1811892a1739c}} 
-bool {\bfseries Compile} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_source}{G\+L\+Shader\+Source}} in\+Source)
-\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_aca9aa01429ca6179feb1811892a1739c}{Compile}} (G\+L\+Shader\+Source in\+Source)
+\begin{DoxyCompactList}\small\item\em Compile shader using the source. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_ae732cfcbe370bbd11074f65b53a85dfc}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_ae732cfcbe370bbd11074f65b53a85dfc}} 
-bool {\bfseries Compiled} =$>$ m\+\_\+\+Compile\+State != 0
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a087da62a99aeeeb58ae1a25ebb7d4d3e}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a087da62a99aeeeb58ae1a25ebb7d4d3e}} 
-I\+Read\+Only\+List$<$ string $>$ {\bfseries Compile\+Error} =$>$ m\+\_\+\+Compile\+Error
-\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_ae732cfcbe370bbd11074f65b53a85dfc}{Compiled}} =$>$ m\+\_\+\+Compile\+State != 0
+\begin{DoxyCompactList}\small\item\em The status the last compilation is successed. \end{DoxyCompactList}\item 
+I\+Read\+Only\+List$<$ string $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a087da62a99aeeeb58ae1a25ebb7d4d3e}{Compile\+Error}} =$>$ m\+\_\+\+Compile\+Error
+\begin{DoxyCompactList}\small\item\em The error of last compilation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a3d5fce3ea44bef01a8941ca18218ed1a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a3d5fce3ea44bef01a8941ca18218ed1a}} 
-override void {\bfseries Create\+Resource\+Core} ()
-\item 
+override void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a3d5fce3ea44bef01a8941ca18218ed1a}{Create\+Resource\+Core}} ()
+\begin{DoxyCompactList}\small\item\em Call opengl-\/initialization method. \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a5eeb3dd6eec60ce04721796c59929045}{Destroy\+Resource\+Core}} ()
+\begin{DoxyCompactList}\small\item\em Call opengl-\/destroy method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} shader unit object. 
+
+This class is abstract so don\textquotesingle{}t use directlly.~\newline
+Use classes inherit this class (G\+L\+Shader.\+G\+L\+Vertex\+Shader, G\+L\+Shader.\+G\+L\+Fragment\+Shader, G\+L\+Shader.\+G\+L\+Tess\+Control\+Shader, G\+L\+Shader.\+G\+L\+Tess\+Evaluation\+Shader or G\+L\+Shader.\+G\+L\+Compute\+Shader). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_aca9aa01429ca6179feb1811892a1739c}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_aca9aa01429ca6179feb1811892a1739c}} 
+\index{RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}!Compile@{Compile}}
+\index{Compile@{Compile}!RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}}
+\doxysubsubsection{\texorpdfstring{Compile()}{Compile()}}
+{\footnotesize\ttfamily bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+Compile (\begin{DoxyParamCaption}\item[{G\+L\+Shader\+Source}]{in\+Source }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Compile shader using the source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Source} & Shader source to compile.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If compile successed, return true, otherwise false.
+\end{DoxyReturn}
+
+
+The error will be stored to Compile\+Error when this function failed. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a3d5fce3ea44bef01a8941ca18218ed1a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a3d5fce3ea44bef01a8941ca18218ed1a}} 
+\index{RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}!CreateResourceCore@{CreateResourceCore}}
+\index{CreateResourceCore@{CreateResourceCore}!RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}}
+\doxysubsubsection{\texorpdfstring{CreateResourceCore()}{CreateResourceCore()}}
+{\footnotesize\ttfamily override void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+Create\+Resource\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Call opengl-\/initialization method. 
+
+The class inherits \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}{G\+L\+Resource\+Object}} should be call initialize method in this method, for example, gl\+Gen\+Textures, gl\+Gen\+Buffers and so on.~\newline
+This method will be called when opengl context is valid. 
+
+Reimplemented from \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_acb910ccce39ee0bd4d1b525350521a0f}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object}}.
+
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a5eeb3dd6eec60ce04721796c59929045}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a5eeb3dd6eec60ce04721796c59929045}} 
-override void {\bfseries Destroy\+Resource\+Core} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a1409488543229df3ea549f22211cacf3}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a1409488543229df3ea549f22211cacf3}} 
-abstract Shader\+Type {\bfseries Shader\+Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\index{RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}!DestroyResourceCore@{DestroyResourceCore}}
+\index{DestroyResourceCore@{DestroyResourceCore}!RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}}
+\doxysubsubsection{\texorpdfstring{DestroyResourceCore()}{DestroyResourceCore()}}
+{\footnotesize\ttfamily override void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+Destroy\+Resource\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Call opengl-\/destroy method. 
+
+The class inherits \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object}{G\+L\+Resource\+Object}} should be call destroy method in this method, for example, gl\+Delete\+Textures, gl\+Delete\+Buffers and so on.~\newline
+This method will be called when opengl context is valid. 
+
+Reimplemented from \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_resource_object_a065c386b2bf17d1a6ddfb652babfcf55}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Resource\+Object}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_ae732cfcbe370bbd11074f65b53a85dfc}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_ae732cfcbe370bbd11074f65b53a85dfc}} 
+\index{RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}!Compiled@{Compiled}}
+\index{Compiled@{Compiled}!RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}}
+\doxysubsubsection{\texorpdfstring{Compiled}{Compiled}}
+{\footnotesize\ttfamily bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+Compiled =$>$ m\+\_\+\+Compile\+State != 0}
+
+
+
+The status the last compilation is successed. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a087da62a99aeeeb58ae1a25ebb7d4d3e}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_a087da62a99aeeeb58ae1a25ebb7d4d3e}} 
+\index{RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}!CompileError@{CompileError}}
+\index{CompileError@{CompileError}!RtCs.OpenGL.GLShader@{RtCs.OpenGL.GLShader}}
+\doxysubsubsection{\texorpdfstring{CompileError}{CompileError}}
+{\footnotesize\ttfamily I\+Read\+Only\+List$<$string$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader.\+Compile\+Error =$>$ m\+\_\+\+Compile\+Error}
+
+
+
+The error of last compilation. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

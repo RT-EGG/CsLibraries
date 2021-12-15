@@ -1,48 +1,147 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack}\index{RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}}
+
+
+Base class of matrix stack.  
+
+
 Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=5.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack}
+\includegraphics[height=3.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_ab50ea4bda5dced2b885725d1cad99219}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_ab50ea4bda5dced2b885725d1cad99219}} 
-void {\bfseries Load\+Identity} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a74346edf2ce8e1339307283cdcb48228}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a74346edf2ce8e1339307283cdcb48228}} 
-void {\bfseries Load\+Matrix} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} in\+Value)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a6bfe2ef81264c325a16322058a5b2eaf}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a6bfe2ef81264c325a16322058a5b2eaf}} 
-void {\bfseries Multi\+Matrix} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} a\+Value)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a15e89eee5b252260098b1dad2c2dadf4}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a15e89eee5b252260098b1dad2c2dadf4}} 
-void {\bfseries Push\+Matrix} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a360b29070ed0a4b640c3f86e6e0b10c1}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a360b29070ed0a4b640c3f86e6e0b10c1}} 
-void {\bfseries Pop\+Matrix} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a038ed2806702bffe8bcbaf26455ba103}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a038ed2806702bffe8bcbaf26455ba103}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries Current\+Matrix} =$>$ m\+\_\+\+Current\+Matrix
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_ab50ea4bda5dced2b885725d1cad99219}{Load\+Identity}} ()
+\begin{DoxyCompactList}\small\item\em Set current matrix to identity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a74346edf2ce8e1339307283cdcb48228}{Load\+Matrix}} (Matrix4x4 in\+Value)
+\begin{DoxyCompactList}\small\item\em Set current matrix to the specified. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a7fea25b31195290caa70ef2eda5a3389}{Multi\+Matrix}} (Matrix4x4 in\+Value)
+\begin{DoxyCompactList}\small\item\em Multply specified matrix to current matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a15e89eee5b252260098b1dad2c2dadf4}{Push\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Push current matrix to stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a360b29070ed0a4b640c3f86e6e0b10c1}{Pop\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Pop matrix from peek of stack and set to current matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a09e7a731adc53a1763e9c75bc58ec954}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a09e7a731adc53a1763e9c75bc58ec954}} 
-abstract Matrix\+Mode {\bfseries Target\+Matrix\+Mode}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
+Matrix4x4 \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a038ed2806702bffe8bcbaf26455ba103}{Current\+Matrix}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get current matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Events}
 \begin{DoxyCompactItemize}
 \item 
+Event\+Handler \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a56db8cf1f9c895cb3fd8eea98d82b2ab}{On\+Matrix\+Changed}}
+\begin{DoxyCompactList}\small\item\em The event called at last of Load\+Matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class of matrix stack. 
+
+Used as an alternative to \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} Matrix method group (gl\+Push\+Matrix, gl\+Load\+Matrix, gl\+Mult\+Matrix and so on). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_ab50ea4bda5dced2b885725d1cad99219}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_ab50ea4bda5dced2b885725d1cad99219}} 
+\index{RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}!LoadIdentity@{LoadIdentity}}
+\index{LoadIdentity@{LoadIdentity}!RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}}
+\doxysubsubsection{\texorpdfstring{LoadIdentity()}{LoadIdentity()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack.\+Load\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set current matrix to identity. 
+
+Same as Load\+Matrix(Matrix4x4.\+Identity). \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a74346edf2ce8e1339307283cdcb48228}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a74346edf2ce8e1339307283cdcb48228}} 
+\index{RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}!LoadMatrix@{LoadMatrix}}
+\index{LoadMatrix@{LoadMatrix}!RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}}
+\doxysubsubsection{\texorpdfstring{LoadMatrix()}{LoadMatrix()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack.\+Load\+Matrix (\begin{DoxyParamCaption}\item[{Matrix4x4}]{in\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set current matrix to the specified. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Value} & New matrix to set current.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a7fea25b31195290caa70ef2eda5a3389}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a7fea25b31195290caa70ef2eda5a3389}} 
+\index{RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}!MultiMatrix@{MultiMatrix}}
+\index{MultiMatrix@{MultiMatrix}!RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}}
+\doxysubsubsection{\texorpdfstring{MultiMatrix()}{MultiMatrix()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack.\+Multi\+Matrix (\begin{DoxyParamCaption}\item[{Matrix4x4}]{in\+Value }\end{DoxyParamCaption})}
+
+
+
+Multply specified matrix to current matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Value} & Matrix to multiply.\\
+\hline
+\end{DoxyParams}
+
+
+Same as Load\+Matrix(\+Current\+Matrix $\ast$ a\+Value). \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a360b29070ed0a4b640c3f86e6e0b10c1}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a360b29070ed0a4b640c3f86e6e0b10c1}} 
+\index{RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}!PopMatrix@{PopMatrix}}
+\index{PopMatrix@{PopMatrix}!RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}}
+\doxysubsubsection{\texorpdfstring{PopMatrix()}{PopMatrix()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack.\+Pop\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pop matrix from peek of stack and set to current matrix. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Operation\+Exception} & The case that the stack is empty.\\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a15e89eee5b252260098b1dad2c2dadf4}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a15e89eee5b252260098b1dad2c2dadf4}} 
+\index{RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}!PushMatrix@{PushMatrix}}
+\index{PushMatrix@{PushMatrix}!RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}}
+\doxysubsubsection{\texorpdfstring{PushMatrix()}{PushMatrix()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack.\+Push\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Push current matrix to stack. 
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a038ed2806702bffe8bcbaf26455ba103}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a038ed2806702bffe8bcbaf26455ba103}} 
+\index{RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}!CurrentMatrix@{CurrentMatrix}}
+\index{CurrentMatrix@{CurrentMatrix}!RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}}
+\doxysubsubsection{\texorpdfstring{CurrentMatrix}{CurrentMatrix}}
+{\footnotesize\ttfamily Matrix4x4 Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack.\+Current\+Matrix\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get current matrix. 
+
+
+
+\doxysubsection{Event Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a56db8cf1f9c895cb3fd8eea98d82b2ab}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack_a56db8cf1f9c895cb3fd8eea98d82b2ab}} 
-Event\+Handler {\bfseries On\+Matrix\+Changed}
-\end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\index{RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}!OnMatrixChanged@{OnMatrixChanged}}
+\index{OnMatrixChanged@{OnMatrixChanged}!RtCs.OpenGL.GLMatrixStack@{RtCs.OpenGL.GLMatrixStack}}
+\doxysubsubsection{\texorpdfstring{OnMatrixChanged}{OnMatrixChanged}}
+{\footnotesize\ttfamily Event\+Handler Rt\+Cs.\+Open\+G\+L.\+G\+L\+Matrix\+Stack.\+On\+Matrix\+Changed}
+
+
+
+The event called at last of Load\+Matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & This instance.\\
+\hline
+{\em e} & Set Event\+Args.\+Empty.\\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

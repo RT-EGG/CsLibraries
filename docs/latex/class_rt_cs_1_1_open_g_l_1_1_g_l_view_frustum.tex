@@ -1,86 +1,185 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum}\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
-\doxysubsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a184e21c8166130568109a8cf47bfc79d}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a184e21c8166130568109a8cf47bfc79d}} 
-enum {\bfseries E\+Vertex} \{ \newline
-{\bfseries Left\+Bottom\+Near}, 
-{\bfseries Left\+Bottom\+Far}, 
-{\bfseries Left\+Top\+Near}, 
-{\bfseries Left\+Top\+Far}, 
-\newline
-{\bfseries Right\+Bottom\+Near}, 
-{\bfseries Right\+Bottom\+Far}, 
-{\bfseries Right\+Top\+Near}, 
-{\bfseries Right\+Top\+Far}
- \}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ac3ea956262e4c8ff0ad2df100e6bd6ad}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ac3ea956262e4c8ff0ad2df100e6bd6ad}} 
-enum {\bfseries E\+Edge} \{ \newline
-{\bfseries Left\+Near}, 
-{\bfseries Left\+Far}, 
-{\bfseries Right\+Near}, 
-{\bfseries Right\+Far}, 
-\newline
-{\bfseries Bottom\+Near}, 
-{\bfseries Bottom\+Far}, 
-{\bfseries Top\+Near}, 
-{\bfseries Top\+Far}, 
-\newline
-{\bfseries Left\+Bottom}, 
-{\bfseries Left\+Top}, 
-{\bfseries Right\+Bottom}, 
-{\bfseries Right\+Top}
- \}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a4ed8c4734137a14ce7df6b2609f5dc14}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a4ed8c4734137a14ce7df6b2609f5dc14}} 
-enum {\bfseries E\+Face} \{ \newline
-{\bfseries Left}, 
-{\bfseries Right}, 
-{\bfseries Bottom}, 
-{\bfseries Top}, 
-\newline
-{\bfseries Near}, 
-{\bfseries Far}
- \}
-\end{DoxyCompactItemize}
+
+
+\mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} view frustum geometry.  
+
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae4b644661f4f5fcdbd1292daeed2d976}{G\+L\+View\+Frustum}} (Matrix4x4 in\+View\+Matrix, Matrix4x4 in\+Projection\+Matrix)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abeec5b43f918e7bc2c7f78d3b24b1328}{Is\+Intersect\+A\+A\+BB}} (A\+A\+B\+B3D in\+A\+A\+BB)
+\begin{DoxyCompactList}\small\item\em Judge whether the frustum is interfare to the A\+A\+BB. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a315bf132bbfd70028aaac08ef7cc727e}{Is\+Intersect\+Sphere}} (Vector3 in\+World\+Center, float in\+Radius)
+\begin{DoxyCompactList}\small\item\em Judge whether the frustum is interfare to the sphere. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae77f0f75d1ed4f2e0b621a675c509036}{Calc\+Distance\+To}} (Vector3 in\+World\+Point)
+\begin{DoxyCompactList}\small\item\em Calc distance to nearest of the frustum. \end{DoxyCompactList}\item 
+Vector3 \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abc77d2325bfec5e94c5fe174d10b28c6}{Calc\+Closest\+Point}} (Vector3 in\+World\+Point)
+\begin{DoxyCompactList}\small\item\em Get closest point on or in the frustum. \end{DoxyCompactList}\item 
+Vector3 \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a5f9e5678d6532df6a058338718272620}{Get\+Vertex}} (E\+Vertex in\+Key)
+\begin{DoxyCompactList}\small\item\em Get vertex position of the frustum. \end{DoxyCompactList}\item 
+Line3D \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a770e7c436abfd844d73bc1f0d083fecb}{Get\+Edge}} (E\+Edge in\+Key)
+\begin{DoxyCompactList}\small\item\em Get edge of the frustum as line. \end{DoxyCompactList}\item 
+Plane \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ab2f9a0d2c4b0a54fb97417b6e395b2d7}{Get\+Plane}} (E\+Face in\+Key)
+\begin{DoxyCompactList}\small\item\em Get face of the frustum as plane. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} view frustum geometry. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae4b644661f4f5fcdbd1292daeed2d976}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae4b644661f4f5fcdbd1292daeed2d976}} 
-{\bfseries G\+L\+View\+Frustum} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} in\+View\+Matrix, \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} in\+Projection\+Matrix)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abeec5b43f918e7bc2c7f78d3b24b1328}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abeec5b43f918e7bc2c7f78d3b24b1328}} 
-bool {\bfseries Is\+Intersect\+A\+A\+BB} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_a_a_b_b3_d}{A\+A\+B\+B3D}} in\+A\+A\+BB)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a315bf132bbfd70028aaac08ef7cc727e}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a315bf132bbfd70028aaac08ef7cc727e}} 
-bool {\bfseries Is\+Intersect\+Sphere} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+World\+Center, float in\+Radius)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae77f0f75d1ed4f2e0b621a675c509036}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae77f0f75d1ed4f2e0b621a675c509036}} 
-float {\bfseries Calc\+Distance\+To} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+World\+Point)
-\item 
+\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}!GLViewFrustum@{GLViewFrustum}}
+\index{GLViewFrustum@{GLViewFrustum}!RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsubsection{\texorpdfstring{GLViewFrustum()}{GLViewFrustum()}}
+{\footnotesize\ttfamily Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum.\+G\+L\+View\+Frustum (\begin{DoxyParamCaption}\item[{Matrix4x4}]{in\+View\+Matrix,  }\item[{Matrix4x4}]{in\+Projection\+Matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+View\+Matrix} & \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} formated view-\/matrix.\\
+\hline
+{\em in\+Projection\+Matrix} & \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} formated projection-\/matrix.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abc77d2325bfec5e94c5fe174d10b28c6}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abc77d2325bfec5e94c5fe174d10b28c6}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries Calc\+Closest\+Point} (\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} in\+World\+Point)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a5f9e5678d6532df6a058338718272620}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a5f9e5678d6532df6a058338718272620}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_vector3}{Vector3}} {\bfseries Get\+Vertex} (E\+Vertex in\+Key)
-\item 
+\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}!CalcClosestPoint@{CalcClosestPoint}}
+\index{CalcClosestPoint@{CalcClosestPoint}!RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsubsection{\texorpdfstring{CalcClosestPoint()}{CalcClosestPoint()}}
+{\footnotesize\ttfamily Vector3 Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum.\+Calc\+Closest\+Point (\begin{DoxyParamCaption}\item[{Vector3}]{in\+World\+Point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get closest point on or in the frustum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+World\+Point} & Position to calculate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Position on or in the frustum. If in\+World\+Point is in the frustum, return in\+World\+Point as is.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae77f0f75d1ed4f2e0b621a675c509036}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ae77f0f75d1ed4f2e0b621a675c509036}} 
+\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}!CalcDistanceTo@{CalcDistanceTo}}
+\index{CalcDistanceTo@{CalcDistanceTo}!RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsubsection{\texorpdfstring{CalcDistanceTo()}{CalcDistanceTo()}}
+{\footnotesize\ttfamily float Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum.\+Calc\+Distance\+To (\begin{DoxyParamCaption}\item[{Vector3}]{in\+World\+Point }\end{DoxyParamCaption})}
+
+
+
+Calc distance to nearest of the frustum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+World\+Point} & Position to calculate distance.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distance to the frustum (face, edge or vertex).
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a770e7c436abfd844d73bc1f0d083fecb}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a770e7c436abfd844d73bc1f0d083fecb}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_line3_d}{Line3D}} {\bfseries Get\+Edge} (E\+Edge in\+Key)
-\item 
+\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}!GetEdge@{GetEdge}}
+\index{GetEdge@{GetEdge}!RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsubsection{\texorpdfstring{GetEdge()}{GetEdge()}}
+{\footnotesize\ttfamily Line3D Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum.\+Get\+Edge (\begin{DoxyParamCaption}\item[{E\+Edge}]{in\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get edge of the frustum as line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Key} & The ID of which edge to get.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Edge as Line3D type.
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ab2f9a0d2c4b0a54fb97417b6e395b2d7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_ab2f9a0d2c4b0a54fb97417b6e395b2d7}} 
-\mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_plane}{Plane}} {\bfseries Get\+Plane} (E\+Face in\+Key)
-\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a548b51aa638d583f9b6cd6261d0fb279}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a548b51aa638d583f9b6cd6261d0fb279}} 
-readonly \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries View\+Matrix}
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a3203ecfb37e08fd109e7d2f55fd49ad8}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a3203ecfb37e08fd109e7d2f55fd49ad8}} 
-readonly \mbox{\hyperlink{struct_rt_cs_1_1_math_utils_1_1_matrix4x4}{Matrix4x4}} {\bfseries Projection\+Matrix}
-\end{DoxyCompactItemize}
+\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}!GetPlane@{GetPlane}}
+\index{GetPlane@{GetPlane}!RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsubsection{\texorpdfstring{GetPlane()}{GetPlane()}}
+{\footnotesize\ttfamily Plane Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum.\+Get\+Plane (\begin{DoxyParamCaption}\item[{E\+Face}]{in\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get face of the frustum as plane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Key} & The ID of which face to get.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Face as Plane type.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a5f9e5678d6532df6a058338718272620}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a5f9e5678d6532df6a058338718272620}} 
+\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}!GetVertex@{GetVertex}}
+\index{GetVertex@{GetVertex}!RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsubsection{\texorpdfstring{GetVertex()}{GetVertex()}}
+{\footnotesize\ttfamily Vector3 Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum.\+Get\+Vertex (\begin{DoxyParamCaption}\item[{E\+Vertex}]{in\+Key }\end{DoxyParamCaption})}
+
+
+
+Get vertex position of the frustum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Key} & The ID of which vertex to get.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vertex position.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abeec5b43f918e7bc2c7f78d3b24b1328}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_abeec5b43f918e7bc2c7f78d3b24b1328}} 
+\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}!IsIntersectAABB@{IsIntersectAABB}}
+\index{IsIntersectAABB@{IsIntersectAABB}!RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsubsection{\texorpdfstring{IsIntersectAABB()}{IsIntersectAABB()}}
+{\footnotesize\ttfamily bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum.\+Is\+Intersect\+A\+A\+BB (\begin{DoxyParamCaption}\item[{A\+A\+B\+B3D}]{in\+A\+A\+BB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Judge whether the frustum is interfare to the A\+A\+BB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+A\+A\+BB} & Target A\+A\+BB to judge.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the frustum is interfare to the A\+A\+BB, otherwise false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a315bf132bbfd70028aaac08ef7cc727e}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum_a315bf132bbfd70028aaac08ef7cc727e}} 
+\index{RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}!IsIntersectSphere@{IsIntersectSphere}}
+\index{IsIntersectSphere@{IsIntersectSphere}!RtCs.OpenGL.GLViewFrustum@{RtCs.OpenGL.GLViewFrustum}}
+\doxysubsubsection{\texorpdfstring{IsIntersectSphere()}{IsIntersectSphere()}}
+{\footnotesize\ttfamily bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+View\+Frustum.\+Is\+Intersect\+Sphere (\begin{DoxyParamCaption}\item[{Vector3}]{in\+World\+Center,  }\item[{float}]{in\+Radius }\end{DoxyParamCaption})}
+
+
+
+Judge whether the frustum is interfare to the sphere. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+World\+Center} & Center position of the target sphere to judge.\\
+\hline
+{\em in\+Radius} & Radius of the target shphere to judge.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the frustum is interfare to the sphere, otherwise false.
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

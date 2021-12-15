@@ -1,45 +1,118 @@
 \hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material}{}\doxysection{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material Class Reference}
 \label{class_rt_cs_1_1_open_g_l_1_1_g_l_material}\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
-Inheritance diagram for Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=3.000000cm]{class_rt_cs_1_1_open_g_l_1_1_g_l_material}
-\end{center}
-\end{figure}
+
+
+Object that decide render color using shader and properties for the shader.  
+
+
+
+
+Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Object.
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a671f3c4c1801d41dc762f5a7d35b9794}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a671f3c4c1801d41dc762f5a7d35b9794}} 
-virtual void {\bfseries Commit\+Properties} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_rendering_status}{G\+L\+Rendering\+Status}} in\+Rendering\+Status)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a55bb5e4956ea13aa739ecaacffc5cd60}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a55bb5e4956ea13aa739ecaacffc5cd60}} 
-void {\bfseries Add\+Property} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property}{G\+L\+Shader\+Uniform\+Property}} in\+Property)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a1d8c0f3595fefd84e310dd634a89501a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a1d8c0f3595fefd84e310dd634a89501a}} 
-void {\bfseries Remove\+Property} (string in\+Name)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ab68b66c772d6d28eb5ee527ad5061eac}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ab68b66c772d6d28eb5ee527ad5061eac}} 
-void {\bfseries Clear\+Properties} ()
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}} 
-\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property}{G\+L\+Shader\+Uniform\+Property}}$<$ T $>$ {\bfseries Get\+Property$<$ T $>$} (string in\+Name)
-\item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}} 
-void {\bfseries Set\+Property\+Value$<$ T $>$} (string in\+Name, T in\+Value)
-\end{DoxyCompactItemize}
+G\+L\+Shader\+Uniform\+Property$<$ T $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}{Get\+Property$<$ T $>$}} (string in\+Name)
+\begin{DoxyCompactList}\small\item\em Get property by name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}{Set\+Property\+Value$<$ T $>$}} (string in\+Name, T in\+Value)
+\begin{DoxyCompactList}\small\item\em Set property value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae51e42ea2f4865adc8d1d66e2b1ecae7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae51e42ea2f4865adc8d1d66e2b1ecae7}} 
-\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_shader_program}{G\+L\+Render\+Shader\+Program}} {\bfseries Shader}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_shader_program}{G\+L\+Render\+Shader\+Program}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae51e42ea2f4865adc8d1d66e2b1ecae7}{Shader}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set or get shader. \end{DoxyCompactList}\item 
+I\+G\+L\+Blend\+Parameters \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a2cc37737f7ccc7995c5e4151bf326c10}{Blend\+Parameters}} = G\+L\+Blend\+Parameters.\+Default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set or get parameter for blending. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l_a66e3d78b8268b48581baed0353695247}{E\+G\+L\+Render\+Level}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ade33bdc936e843fc9cbe4cff93ed3954}{Render\+Level}} = \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l_a66e3d78b8268b48581baed0353695247afaa90538de35640e4b1e31ccf35b6eb5}{E\+G\+L\+Render\+Level.\+Opaque}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Value to decide the rendering order and parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Object that decide render color using shader and properties for the shader. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}} 
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!GetProperty$<$ T $>$@{GetProperty$<$ T $>$}}
+\index{GetProperty$<$ T $>$@{GetProperty$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{GetProperty$<$ T $>$()}{GetProperty< T >()}}
+{\footnotesize\ttfamily G\+L\+Shader\+Uniform\+Property$<$T$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Get\+Property$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get property by name. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of property.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Name} & Name of property.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The property if found by name and property type is T, otherwise null.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}} 
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!SetPropertyValue$<$ T $>$@{SetPropertyValue$<$ T $>$}}
+\index{SetPropertyValue$<$ T $>$@{SetPropertyValue$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{SetPropertyValue$<$ T $>$()}{SetPropertyValue< T >()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Set\+Property\+Value$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name,  }\item[{T}]{in\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set property value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of property.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Name} & Name of property.\\
+\hline
+{\em in\+Value} & Value of property.\\
+\hline
+\end{DoxyParams}
+
+
+If not found property in\+Name, or the property is not T, do nothing. 
+
+\doxysubsection{Property Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a2cc37737f7ccc7995c5e4151bf326c10}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a2cc37737f7ccc7995c5e4151bf326c10}} 
-\mbox{\hyperlink{interface_rt_cs_1_1_open_g_l_1_1_i_g_l_blend_parameters}{I\+G\+L\+Blend\+Parameters}} {\bfseries Blend\+Parameters} = G\+L\+Blend\+Parameters.\+Default\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!BlendParameters@{BlendParameters}}
+\index{BlendParameters@{BlendParameters}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{BlendParameters}{BlendParameters}}
+{\footnotesize\ttfamily I\+G\+L\+Blend\+Parameters Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Blend\+Parameters = G\+L\+Blend\+Parameters.\+Default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Set or get parameter for blending. 
+
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ade33bdc936e843fc9cbe4cff93ed3954}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ade33bdc936e843fc9cbe4cff93ed3954}} 
-E\+G\+L\+Render\+Level {\bfseries Render\+Level} = E\+G\+L\+Render\+Level.\+Opaque\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!RenderLevel@{RenderLevel}}
+\index{RenderLevel@{RenderLevel}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{RenderLevel}{RenderLevel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l_a66e3d78b8268b48581baed0353695247}{E\+G\+L\+Render\+Level}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Render\+Level = \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l_a66e3d78b8268b48581baed0353695247afaa90538de35640e4b1e31ccf35b6eb5}{E\+G\+L\+Render\+Level.\+Opaque}}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Value to decide the rendering order and parameters. 
+
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae51e42ea2f4865adc8d1d66e2b1ecae7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae51e42ea2f4865adc8d1d66e2b1ecae7}} 
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!Shader@{Shader}}
+\index{Shader@{Shader}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{Shader}{Shader}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_shader_program}{G\+L\+Render\+Shader\+Program}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Shader\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Set or get shader. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

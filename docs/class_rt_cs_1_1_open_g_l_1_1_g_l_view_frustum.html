@@ -66,96 +66,324 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">RtCs.OpenGL.GLViewFrustum Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="namespace_rt_cs_1_1_open_g_l.html">OpenGL</a> view frustum geometry.  
+ <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:a184e21c8166130568109a8cf47bfc79d"><td class="memItemLeft" align="right" valign="top"><a id="a184e21c8166130568109a8cf47bfc79d"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>EVertex</b> { <br />
-&#160;&#160;<b>LeftBottomNear</b>, 
-<b>LeftBottomFar</b>, 
-<b>LeftTopNear</b>, 
-<b>LeftTopFar</b>, 
-<br />
-&#160;&#160;<b>RightBottomNear</b>, 
-<b>RightBottomFar</b>, 
-<b>RightTopNear</b>, 
-<b>RightTopFar</b>
-<br />
- }</td></tr>
-<tr class="separator:a184e21c8166130568109a8cf47bfc79d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3ea956262e4c8ff0ad2df100e6bd6ad"><td class="memItemLeft" align="right" valign="top"><a id="ac3ea956262e4c8ff0ad2df100e6bd6ad"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>EEdge</b> { <br />
-&#160;&#160;<b>LeftNear</b>, 
-<b>LeftFar</b>, 
-<b>RightNear</b>, 
-<b>RightFar</b>, 
-<br />
-&#160;&#160;<b>BottomNear</b>, 
-<b>BottomFar</b>, 
-<b>TopNear</b>, 
-<b>TopFar</b>, 
-<br />
-&#160;&#160;<b>LeftBottom</b>, 
-<b>LeftTop</b>, 
-<b>RightBottom</b>, 
-<b>RightTop</b>
-<br />
- }</td></tr>
-<tr class="separator:ac3ea956262e4c8ff0ad2df100e6bd6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ed8c4734137a14ce7df6b2609f5dc14"><td class="memItemLeft" align="right" valign="top"><a id="a4ed8c4734137a14ce7df6b2609f5dc14"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>EFace</b> { <br />
-&#160;&#160;<b>Left</b>, 
-<b>Right</b>, 
-<b>Bottom</b>, 
-<b>Top</b>, 
-<br />
-&#160;&#160;<b>Near</b>, 
-<b>Far</b>
-<br />
- }</td></tr>
-<tr class="separator:a4ed8c4734137a14ce7df6b2609f5dc14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae4b644661f4f5fcdbd1292daeed2d976"><td class="memItemLeft" align="right" valign="top"><a id="ae4b644661f4f5fcdbd1292daeed2d976"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GLViewFrustum</b> (<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_matrix4x4.html">Matrix4x4</a> inViewMatrix, <a class="el" href="struct_rt_cs_1_1_math_utils_1_1_matrix4x4.html">Matrix4x4</a> inProjectionMatrix)</td></tr>
+<tr class="memitem:ae4b644661f4f5fcdbd1292daeed2d976"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#ae4b644661f4f5fcdbd1292daeed2d976">GLViewFrustum</a> (Matrix4x4 inViewMatrix, Matrix4x4 inProjectionMatrix)</td></tr>
+<tr class="memdesc:ae4b644661f4f5fcdbd1292daeed2d976"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#ae4b644661f4f5fcdbd1292daeed2d976">More...</a><br /></td></tr>
 <tr class="separator:ae4b644661f4f5fcdbd1292daeed2d976"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abeec5b43f918e7bc2c7f78d3b24b1328"><td class="memItemLeft" align="right" valign="top"><a id="abeec5b43f918e7bc2c7f78d3b24b1328"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsIntersectAABB</b> (<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_a_a_b_b3_d.html">AABB3D</a> inAABB)</td></tr>
+<tr class="memitem:abeec5b43f918e7bc2c7f78d3b24b1328"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#abeec5b43f918e7bc2c7f78d3b24b1328">IsIntersectAABB</a> (AABB3D inAABB)</td></tr>
+<tr class="memdesc:abeec5b43f918e7bc2c7f78d3b24b1328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Judge whether the frustum is interfare to the AABB.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#abeec5b43f918e7bc2c7f78d3b24b1328">More...</a><br /></td></tr>
 <tr class="separator:abeec5b43f918e7bc2c7f78d3b24b1328"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a315bf132bbfd70028aaac08ef7cc727e"><td class="memItemLeft" align="right" valign="top"><a id="a315bf132bbfd70028aaac08ef7cc727e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsIntersectSphere</b> (<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_vector3.html">Vector3</a> inWorldCenter, float inRadius)</td></tr>
+<tr class="memitem:a315bf132bbfd70028aaac08ef7cc727e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#a315bf132bbfd70028aaac08ef7cc727e">IsIntersectSphere</a> (Vector3 inWorldCenter, float inRadius)</td></tr>
+<tr class="memdesc:a315bf132bbfd70028aaac08ef7cc727e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Judge whether the frustum is interfare to the sphere.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#a315bf132bbfd70028aaac08ef7cc727e">More...</a><br /></td></tr>
 <tr class="separator:a315bf132bbfd70028aaac08ef7cc727e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae77f0f75d1ed4f2e0b621a675c509036"><td class="memItemLeft" align="right" valign="top"><a id="ae77f0f75d1ed4f2e0b621a675c509036"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>CalcDistanceTo</b> (<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_vector3.html">Vector3</a> inWorldPoint)</td></tr>
+<tr class="memitem:ae77f0f75d1ed4f2e0b621a675c509036"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#ae77f0f75d1ed4f2e0b621a675c509036">CalcDistanceTo</a> (Vector3 inWorldPoint)</td></tr>
+<tr class="memdesc:ae77f0f75d1ed4f2e0b621a675c509036"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calc distance to nearest of the frustum.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#ae77f0f75d1ed4f2e0b621a675c509036">More...</a><br /></td></tr>
 <tr class="separator:ae77f0f75d1ed4f2e0b621a675c509036"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc77d2325bfec5e94c5fe174d10b28c6"><td class="memItemLeft" align="right" valign="top"><a id="abc77d2325bfec5e94c5fe174d10b28c6"></a>
-<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CalcClosestPoint</b> (<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_vector3.html">Vector3</a> inWorldPoint)</td></tr>
+<tr class="memitem:abc77d2325bfec5e94c5fe174d10b28c6"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#abc77d2325bfec5e94c5fe174d10b28c6">CalcClosestPoint</a> (Vector3 inWorldPoint)</td></tr>
+<tr class="memdesc:abc77d2325bfec5e94c5fe174d10b28c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get closest point on or in the frustum.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#abc77d2325bfec5e94c5fe174d10b28c6">More...</a><br /></td></tr>
 <tr class="separator:abc77d2325bfec5e94c5fe174d10b28c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f9e5678d6532df6a058338718272620"><td class="memItemLeft" align="right" valign="top"><a id="a5f9e5678d6532df6a058338718272620"></a>
-<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetVertex</b> (EVertex inKey)</td></tr>
+<tr class="memitem:a5f9e5678d6532df6a058338718272620"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#a5f9e5678d6532df6a058338718272620">GetVertex</a> (EVertex inKey)</td></tr>
+<tr class="memdesc:a5f9e5678d6532df6a058338718272620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get vertex position of the frustum.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#a5f9e5678d6532df6a058338718272620">More...</a><br /></td></tr>
 <tr class="separator:a5f9e5678d6532df6a058338718272620"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a770e7c436abfd844d73bc1f0d083fecb"><td class="memItemLeft" align="right" valign="top"><a id="a770e7c436abfd844d73bc1f0d083fecb"></a>
-<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_line3_d.html">Line3D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetEdge</b> (EEdge inKey)</td></tr>
+<tr class="memitem:a770e7c436abfd844d73bc1f0d083fecb"><td class="memItemLeft" align="right" valign="top">Line3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#a770e7c436abfd844d73bc1f0d083fecb">GetEdge</a> (EEdge inKey)</td></tr>
+<tr class="memdesc:a770e7c436abfd844d73bc1f0d083fecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get edge of the frustum as line.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#a770e7c436abfd844d73bc1f0d083fecb">More...</a><br /></td></tr>
 <tr class="separator:a770e7c436abfd844d73bc1f0d083fecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2f9a0d2c4b0a54fb97417b6e395b2d7"><td class="memItemLeft" align="right" valign="top"><a id="ab2f9a0d2c4b0a54fb97417b6e395b2d7"></a>
-<a class="el" href="struct_rt_cs_1_1_math_utils_1_1_geometry_1_1_plane.html">Plane</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetPlane</b> (EFace inKey)</td></tr>
+<tr class="memitem:ab2f9a0d2c4b0a54fb97417b6e395b2d7"><td class="memItemLeft" align="right" valign="top">Plane&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#ab2f9a0d2c4b0a54fb97417b6e395b2d7">GetPlane</a> (EFace inKey)</td></tr>
+<tr class="memdesc:ab2f9a0d2c4b0a54fb97417b6e395b2d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get face of the frustum as plane.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_view_frustum.html#ab2f9a0d2c4b0a54fb97417b6e395b2d7">More...</a><br /></td></tr>
 <tr class="separator:ab2f9a0d2c4b0a54fb97417b6e395b2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a548b51aa638d583f9b6cd6261d0fb279"><td class="memItemLeft" align="right" valign="top"><a id="a548b51aa638d583f9b6cd6261d0fb279"></a>
-readonly <a class="el" href="struct_rt_cs_1_1_math_utils_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ViewMatrix</b></td></tr>
-<tr class="separator:a548b51aa638d583f9b6cd6261d0fb279"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3203ecfb37e08fd109e7d2f55fd49ad8"><td class="memItemLeft" align="right" valign="top"><a id="a3203ecfb37e08fd109e7d2f55fd49ad8"></a>
-readonly <a class="el" href="struct_rt_cs_1_1_math_utils_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ProjectionMatrix</b></td></tr>
-<tr class="separator:a3203ecfb37e08fd109e7d2f55fd49ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="namespace_rt_cs_1_1_open_g_l.html">OpenGL</a> view frustum geometry. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae4b644661f4f5fcdbd1292daeed2d976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4b644661f4f5fcdbd1292daeed2d976">&#9670;&nbsp;</a></span>GLViewFrustum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RtCs.OpenGL.GLViewFrustum.GLViewFrustum </td>
+          <td>(</td>
+          <td class="paramtype">Matrix4x4&#160;</td>
+          <td class="paramname"><em>inViewMatrix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Matrix4x4&#160;</td>
+          <td class="paramname"><em>inProjectionMatrix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inViewMatrix</td><td><a class="el" href="namespace_rt_cs_1_1_open_g_l.html">OpenGL</a> formated view-matrix.</td></tr>
+    <tr><td class="paramname">inProjectionMatrix</td><td><a class="el" href="namespace_rt_cs_1_1_open_g_l.html">OpenGL</a> formated projection-matrix.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="abc77d2325bfec5e94c5fe174d10b28c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc77d2325bfec5e94c5fe174d10b28c6">&#9670;&nbsp;</a></span>CalcClosestPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 RtCs.OpenGL.GLViewFrustum.CalcClosestPoint </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>inWorldPoint</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get closest point on or in the frustum. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inWorldPoint</td><td>Position to calculate.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Position on or in the frustum. If inWorldPoint is in the frustum, return inWorldPoint as is.</dd></dl>
+
+</div>
+</div>
+<a id="ae77f0f75d1ed4f2e0b621a675c509036"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae77f0f75d1ed4f2e0b621a675c509036">&#9670;&nbsp;</a></span>CalcDistanceTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RtCs.OpenGL.GLViewFrustum.CalcDistanceTo </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>inWorldPoint</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calc distance to nearest of the frustum. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inWorldPoint</td><td>Position to calculate distance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Distance to the frustum (face, edge or vertex).</dd></dl>
+
+</div>
+</div>
+<a id="a770e7c436abfd844d73bc1f0d083fecb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a770e7c436abfd844d73bc1f0d083fecb">&#9670;&nbsp;</a></span>GetEdge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Line3D RtCs.OpenGL.GLViewFrustum.GetEdge </td>
+          <td>(</td>
+          <td class="paramtype">EEdge&#160;</td>
+          <td class="paramname"><em>inKey</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get edge of the frustum as line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inKey</td><td>The ID of which edge to get.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Edge as Line3D type.</dd></dl>
+
+</div>
+</div>
+<a id="ab2f9a0d2c4b0a54fb97417b6e395b2d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2f9a0d2c4b0a54fb97417b6e395b2d7">&#9670;&nbsp;</a></span>GetPlane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Plane RtCs.OpenGL.GLViewFrustum.GetPlane </td>
+          <td>(</td>
+          <td class="paramtype">EFace&#160;</td>
+          <td class="paramname"><em>inKey</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get face of the frustum as plane. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inKey</td><td>The ID of which face to get.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Face as Plane type.</dd></dl>
+
+</div>
+</div>
+<a id="a5f9e5678d6532df6a058338718272620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f9e5678d6532df6a058338718272620">&#9670;&nbsp;</a></span>GetVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 RtCs.OpenGL.GLViewFrustum.GetVertex </td>
+          <td>(</td>
+          <td class="paramtype">EVertex&#160;</td>
+          <td class="paramname"><em>inKey</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get vertex position of the frustum. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inKey</td><td>The ID of which vertex to get.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vertex position.</dd></dl>
+
+</div>
+</div>
+<a id="abeec5b43f918e7bc2c7f78d3b24b1328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeec5b43f918e7bc2c7f78d3b24b1328">&#9670;&nbsp;</a></span>IsIntersectAABB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RtCs.OpenGL.GLViewFrustum.IsIntersectAABB </td>
+          <td>(</td>
+          <td class="paramtype">AABB3D&#160;</td>
+          <td class="paramname"><em>inAABB</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Judge whether the frustum is interfare to the AABB. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inAABB</td><td>Target AABB to judge.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return true if the frustum is interfare to the AABB, otherwise false.</dd></dl>
+
+</div>
+</div>
+<a id="a315bf132bbfd70028aaac08ef7cc727e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a315bf132bbfd70028aaac08ef7cc727e">&#9670;&nbsp;</a></span>IsIntersectSphere()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RtCs.OpenGL.GLViewFrustum.IsIntersectSphere </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>inWorldCenter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>inRadius</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Judge whether the frustum is interfare to the sphere. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inWorldCenter</td><td>Center position of the target sphere to judge.</td></tr>
+    <tr><td class="paramname">inRadius</td><td>Radius of the target shphere to judge.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return true if the frustum is interfare to the sphere, otherwise false.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>F:/projects/CsLibraries/RtCs.OpenTK/Projection/GLViewFrustum.cs</li>
 </ul>
