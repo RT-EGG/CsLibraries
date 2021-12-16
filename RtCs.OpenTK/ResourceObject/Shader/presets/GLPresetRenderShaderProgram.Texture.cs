@@ -34,18 +34,6 @@ namespace RtCs.OpenGL
                 return;
             }
 
-            public override IEnumerable<GLShaderUniformProperty> CreateDefaultProperties()
-            {
-                foreach (var @base in base.CreateDefaultProperties())
-                {
-                    yield return @base;
-                }
-                yield return new GLShaderUniformProperty.Texture(GetPropertySocket("inTexture")) { Value = null };
-                yield return new GLShaderUniformProperty.Mat4(GetPropertySocket("inProjectionMatrix")) { Value = Matrix4x4.Identity };
-                yield return new GLShaderUniformProperty.Mat4(GetPropertySocket("inModelviewMatrix")) { Value = Matrix4x4.Identity };
-                yield break;
-            }
-
             private GLShader.GLVertexShader m_VertexShader = null;
             private GLShader.GLFragmentShader m_FragmentShader = null;
         }
