@@ -27,5 +27,27 @@ namespace RtCs.OpenGL
         /// Type of the uniform property.
         /// </summary>
         public readonly ActiveUniformType Type;
+
+        public GLShaderUniformProperty CreateDefaultProperty()
+            => CreateDefaultProperty(this);
+
+        public static GLShaderUniformProperty CreateDefaultProperty(GLShaderUniformPropertySocket inSocket)
+        {
+            switch (inSocket.Type) {
+                case ActiveUniformType.Int:
+                    return new GLShaderUniformProperty.Int(inSocket);
+                case ActiveUniformType.Float:
+                    return new GLShaderUniformProperty.Float(inSocket);
+                case ActiveUniformType.Double:
+                    return new GLShaderUniformProperty.Double(inSocket);
+                case ActiveUniformType.FloatVec4:
+                    return new GLShaderUniformProperty.Vec4(inSocket);
+                case ActiveUniformType.FloatMat4:
+                    return new GLShaderUniformProperty.Mat4(inSocket);
+                case ActiveUniformType.Sampler2D:
+                    return new GLShaderUniformProperty.Texture(inSocket);
+            }
+            return null;
+        }
     }
 }

@@ -61,7 +61,7 @@ namespace RtCs.OpenGL
         {
             var property = m_Properties[inName];
             if (!(property is GLShaderUniformProperty<T>)) {
-                throw new InvalidCastException($"");
+                throw new InvalidCastException($"The property \"{inName}\" is not for {typeof(T).Name}.");
             }
             return property as GLShaderUniformProperty<T>;
         }
@@ -143,18 +143,21 @@ namespace RtCs.OpenGL
         {
             Dictionary<string, GLShaderUniformProperty> newList = new Dictionary<string, GLShaderUniformProperty>();
             if (m_Shader != null) {
+                // Inherit from previous properties.
                 foreach (var socket in m_Shader.UniformPropertySockets) {
-                    if (newList.TryGetValue(socket.Name, out var property)) {
+                    if (m_Properties.TryGetValue(socket.Name, out var property)) {
                         newList.Add(socket.Name, property);
                     }
                 }
 
-                foreach (var @default in m_Shader.CreateDefaultProperties()) {
-                    if (@default?.Socket == null) {
+                foreach (var defaultProperty in m_Shader.CreateDefaultProperties()) {
+                    if (defaultProperty?.Socket == null) {
                         continue;
                     }
-                    if (!newList.ContainsKey(@default.Name)) {
-                        newList.Add(@default.Name, @default);
+                    if (!newList.ContainsKey(defaultProperty.Name)) {
+                        newList.Add(defaultProperty.Name, defaultProperty);
+                    } else {
+                        newList[defaultProperty.Name] = defaultProperty;
                     }
                 }
             }

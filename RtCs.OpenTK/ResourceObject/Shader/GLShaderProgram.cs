@@ -55,6 +55,7 @@ namespace RtCs.OpenGL
         /// </remarks>
         public IReadOnlyList<GLShaderUniformPropertySocket> UniformPropertySockets
             => m_UniformPropertySockets;
+
         /// <summary>
         /// Find and get property socket from UniformPropertySockets by name.
         /// </summary>
@@ -70,7 +71,7 @@ namespace RtCs.OpenGL
         /// Default properties.
         /// </returns>
         public virtual IEnumerable<GLShaderUniformProperty> CreateDefaultProperties()
-            => new GLShaderUniformProperty[0];
+            => UniformPropertySockets.Select(s => s.CreateDefaultProperty()).Where(s => s != null);
 
         protected override void CreateResourceCore()
         {
