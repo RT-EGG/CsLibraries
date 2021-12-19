@@ -1,8 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
 using RtCs.OpenGL;
-using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace GLTestVisualizer.TestView.AlphaBlending
 {
@@ -21,13 +19,13 @@ namespace GLTestVisualizer.TestView.AlphaBlending
             return;
         }
 
-        public override void CommitProperties(GLRenderingStatus inRenderingStatus)
+        protected override void CommitPropertiesCore(GLRenderingStatus inRenderingStatus)
         {
             GetProperty<Vector4>("inColor").Value = Color;
             GetProperty<Matrix4x4>("inProjectionMatrix").Value = inRenderingStatus.ProjectionMatrix.CurrentMatrix;
             GetProperty<Matrix4x4>("inModelviewMatrix").Value = inRenderingStatus.ModelViewMatrix.CurrentMatrix;
 
-            base.CommitProperties(inRenderingStatus);
+            base.CommitPropertiesCore(inRenderingStatus);
             return;
         }
 

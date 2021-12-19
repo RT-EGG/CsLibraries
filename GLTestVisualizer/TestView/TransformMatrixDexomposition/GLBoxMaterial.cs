@@ -11,12 +11,12 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
-        public override void CommitProperties(GLRenderingStatus inRenderingStatus)
+        protected override void CommitPropertiesCore(GLRenderingStatus inRenderingStatus)
         {
             GetProperty<Matrix4x4>("inProjectionMatrix").Value = inRenderingStatus.ProjectionMatrix.CurrentMatrix;
             GetProperty<Matrix4x4>("inModelviewMatrix").Value = inRenderingStatus.ModelViewMatrix.CurrentMatrix;
 
-            base.CommitProperties(inRenderingStatus);
+            base.CommitPropertiesCore(inRenderingStatus);
             return;
         }
 

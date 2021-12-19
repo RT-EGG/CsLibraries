@@ -34,7 +34,10 @@ namespace RtCs.OpenGL
             return;
         }
 
-        public virtual void CommitProperties(GLRenderingStatus inRenderingStatus)
+        public void CommitProperties(GLRenderingStatus inRenderingStatus)
+            => CommitPropertiesCore(inRenderingStatus);
+
+        protected virtual void CommitPropertiesCore(GLRenderingStatus inRenderingStatus)
         {
             if (Shader == null) {
                 return;
