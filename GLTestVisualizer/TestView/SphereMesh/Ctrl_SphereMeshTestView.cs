@@ -47,37 +47,37 @@ namespace GLTestVisualizer.TestView.SphereMesh
             return;
         }
 
-        private void GLViewer_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderingStatus inStatus)
+        private void GLViewer_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
         {
-            inStatus.ProjectionMatrix.PushMatrix();
+            inParameter.ProjectionMatrix.PushMatrix();
             try {
-                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
+                inParameter.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
 
-                inStatus.ModelViewMatrix.View.PushMatrix();
-                inStatus.ModelViewMatrix.Model.PushMatrix();
+                inParameter.ModelViewMatrix.View.PushMatrix();
+                inParameter.ModelViewMatrix.Model.PushMatrix();
                 try {
-                    inStatus.ModelViewMatrix.View.LookAt(new Vector3(0.0f, 1.0f, 4.0f), new Vector3(0.0f), new Vector3(0.0f, 1.0f, 0.0f));
-                    inStatus.ModelViewMatrix.Model.LoadIdentity();
+                    inParameter.ModelViewMatrix.View.LookAt(new Vector3(0.0f, 1.0f, 4.0f), new Vector3(0.0f), new Vector3(0.0f, 1.0f, 0.0f));
+                    inParameter.ModelViewMatrix.Model.LoadIdentity();
 
                     GL.Enable(EnableCap.DepthTest);
                     GL.Enable(EnableCap.CullFace);
                     GL.LineWidth(1.0f);
 
-                    m_UvAxix.Render(inStatus);
-                    m_UvSphere.Render(inStatus);
+                    m_UvAxix.Render(inParameter);
+                    m_UvSphere.Render(inParameter);
 
-                    m_IcoAxis.Render(inStatus);
-                    m_IcoSphere.Render(inStatus);
+                    m_IcoAxis.Render(inParameter);
+                    m_IcoSphere.Render(inParameter);
 
-                    m_RcAxis.Render(inStatus);
-                    m_RcSphere.Render(inStatus);
+                    m_RcAxis.Render(inParameter);
+                    m_RcSphere.Render(inParameter);
 
                 } finally {
-                    inStatus.ModelViewMatrix.Model.PopMatrix();
-                    inStatus.ModelViewMatrix.View.PopMatrix();
+                    inParameter.ModelViewMatrix.Model.PopMatrix();
+                    inParameter.ModelViewMatrix.View.PopMatrix();
                 }
             } finally {
-                inStatus.ProjectionMatrix.PopMatrix();
+                inParameter.ProjectionMatrix.PopMatrix();
             }
             return;
         }

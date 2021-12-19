@@ -1,14 +1,8 @@
 ﻿using RtCs;
-using RtCs.OpenGL;
 using RtCs.MathUtils;
+using RtCs.OpenGL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace GLTestVisualizer.TestView.Octree
 {
@@ -59,10 +53,10 @@ namespace GLTestVisualizer.TestView.Octree
             return;
         }
 
-        private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderingStatus inStatus)
+        private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
         {
             m_Camera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, (float)glView.Width / (float)glView.Height, 0.01f, 100.0f);
-            m_Camera.Render(inStatus, m_Scene);
+            m_Camera.Render(inParameter, m_Scene);
             return;
         }
 

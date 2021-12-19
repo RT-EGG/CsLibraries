@@ -89,7 +89,7 @@ namespace GLTestVisualizer.TestView.Raycast
             return;
         }
 
-        private void GLFPSView_OnRenderScene(GLControl inControl, GLRenderingStatus inStatus)
+        private void GLFPSView_OnRenderScene(GLControl inControl, GLRenderParameter inParameter)
         {
             Vector3 rayPoint0 = m_FPSCameraRayVisualizer.Transform.WorldPosition;
             Vector3 rayPoint1 = rayPoint0 + (m_FPSCameraRayVisualizer.Transform.WorldRotation * new Vector3(0.0f, 0.0f, -1.0f) * (float)UdRayLength.Value);
@@ -108,10 +108,10 @@ namespace GLTestVisualizer.TestView.Raycast
             m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_HitPointMarkerObjects);
 
             m_FPSCamera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
-            m_FPSCamera.Render(inStatus, m_Scene);
+            m_FPSCamera.Render(inParameter, m_Scene);
         }
 
-        private void GLTPSView_OnRenderScene(GLControl inControl, GLRenderingStatus inStatus)
+        private void GLTPSView_OnRenderScene(GLControl inControl, GLRenderParameter inStatus)
         {
             m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0f, 1.0f, (float)UdRayLength.Value);
 

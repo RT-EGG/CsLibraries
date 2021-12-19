@@ -11,10 +11,10 @@ namespace RtCs.OpenGL
 
     public static class GLCameraExtensions
     {
-        public static void Render(this IGLCamera inCamera, GLRenderingStatus inStatus, GLScene inScene)
-            => inCamera.Render(inStatus, s => inScene.Render(s));
+        public static void Render(this IGLCamera inCamera, GLRenderParameter inParameter, GLScene inScene)
+            => inCamera.Render(inParameter, s => inScene.Render(s));
 
-        public static void Render(this IGLCamera inCamera, GLRenderingStatus inStatus, Action<GLRenderingStatus> inRender)
+        public static void Render(this IGLCamera inCamera, GLRenderParameter inStatus, Action<GLRenderParameter> inRender)
         {
             inStatus.ProjectionMatrix.PushMatrix();
             try {

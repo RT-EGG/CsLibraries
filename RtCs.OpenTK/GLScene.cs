@@ -6,35 +6,40 @@ using System.Linq;
 
 namespace RtCs.OpenGL
 {
+    public interface IGLScene
+    {
+        IEnumerable<GLLight> Lights { get; }
+    }
+
     /// <summary>
     /// Represent the world to render.
     /// </summary>
-    public class GLScene
+    public class GLScene : IGLScene
     {
         public void Render()
-            => Render(new GLRenderingStatus());
+            => Render(new GLRenderParameter());
 
         /// <summary>
         /// Execute rendering command.
         /// </summary>
-        /// <param name="inStatus">Rendering data store.</param>
-        public void Render(GLRenderingStatus inStatus)
+        /// <param name="inParameter">Rendering data store.</param>
+        public void Render(GLRenderParameter inParameter)
         {
             if (DisplayList == null) {
                 return;
             }
 
-            inStatus.ModelViewMatrix.Model.PushMatrix();
+            inParameter.ModelViewMatrix.Model.PushMatrix();
             try {
-                inStatus.ModelViewMatrix.Model.LoadIdentity();
+                inParameter.ModelViewMatrix.Model.LoadIdentity();
 
                 //
                 var list = DisplayList.ToList();
                 List<(GLRenderObject @object, float distance)> transparents = new List<(GLRenderObject, float)>(list.Count);
                 List<GLRenderObject> overlays = new List<GLRenderObject>(list.Count);
 
-                Vector3 viewPosition = inStatus.ModelViewMatrix.View.CurrentMatrix.Inversed.Translation;
-                var viewFrustum = new GLViewFrustum(inStatus.ModelViewMatrix.View.CurrentMatrix, inStatus.ProjectionMatrix.CurrentMatrix);
+                Vector3 viewPosition = inParameter.ModelViewMatrix.View.CurrentMatrix.Inversed.Translation;
+                var viewFrustum = new GLViewFrustum(inParameter.ModelViewMatrix.View.CurrentMatrix, inParameter.ProjectionMatrix.CurrentMatrix);
 
                 list.Where(o => CanRender(o)).ForEach(obj => {
                     switch (obj.FrustumCullingMode) {
@@ -54,7 +59,7 @@ namespace RtCs.OpenGL
                             return;
                     }
 
-                    obj.Render(inStatus);
+                    obj.Render(inParameter);
                 });
 
                 GL.Enable(EnableCap.Blend);
@@ -63,18 +68,18 @@ namespace RtCs.OpenGL
                 transparents.Sort((l, r) => Math.Sign(l.distance - r.distance));
                 transparents.Select(item => item.@object).ForEach(obj => {
                     obj.BlendParameters.Apply();
-                    obj.Render(inStatus);
+                    obj.Render(inParameter);
                 });
 
                 overlays.ForEach(obj => {
-                    obj.Render(inStatus);
+                    obj.Render(inParameter);
                 });
 
                 GL.Disable(EnableCap.Blend);
                 GL.DepthMask(true);
 
             } finally {
-                inStatus.ModelViewMatrix.Model.PopMatrix();
+                inParameter.ModelViewMatrix.Model.PopMatrix();
             }
             return;
         }
@@ -91,6 +96,12 @@ namespace RtCs.OpenGL
         /// The render objects which render in scene.
         /// </summary>
         public IEnumerable<GLRenderObject> DisplayList
-        { get; set; } = null;
+        { get; set; } = new GLRenderObject[0];
+
+        /// <summary>
+        /// The light objects in scene.
+        /// </summary>
+        public IEnumerable<GLLight> Lights
+        { get; set; } = new GLLight[0];
     }
 }

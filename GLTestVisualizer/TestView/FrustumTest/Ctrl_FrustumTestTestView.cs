@@ -137,35 +137,35 @@ namespace GLTestVisualizer.TestView.FrustumTest
             return;
         }
 
-        private void GLFirstPersonView_OnRenderScene(GLControl inControl, GLRenderingStatus inStatus)
+        private void GLFirstPersonView_OnRenderScene(GLControl inControl, GLRenderParameter inParameter)
         {
             if (m_CurrentParameterView == null) {
                 return;
             }
 
-            inStatus.ProjectionMatrix.PushMatrix();
+            inParameter.ProjectionMatrix.PushMatrix();
             try {
-                inStatus.ProjectionMatrix.LoadMatrix(m_CurrentParameterView.ProjectionMatrix);
+                inParameter.ProjectionMatrix.LoadMatrix(m_CurrentParameterView.ProjectionMatrix);
 
-                inStatus.ModelViewMatrix.View.PushMatrix();
+                inParameter.ModelViewMatrix.View.PushMatrix();
                 try {
-                    inStatus.ModelViewMatrix.View.LoadMatrix(m_FPSCamera.ViewMatrix);
-                    inStatus.ModelViewMatrix.Model.LoadIdentity();
+                    inParameter.ModelViewMatrix.View.LoadMatrix(m_FPSCamera.ViewMatrix);
+                    inParameter.ModelViewMatrix.Model.LoadIdentity();
 
-                    m_Origin.Render(inStatus);
-                    m_FrustumRenderObject.Render(inStatus);
-                    m_SphereObjects.ForEach(item => item.Render(inStatus));
+                    m_Origin.Render(inParameter);
+                    m_FrustumRenderObject.Render(inParameter);
+                    m_SphereObjects.ForEach(item => item.Render(inParameter));
 
                 } finally {
-                    inStatus.ModelViewMatrix.View.PopMatrix();
+                    inParameter.ModelViewMatrix.View.PopMatrix();
                 }
             } finally {
-                inStatus.ProjectionMatrix.PopMatrix();
+                inParameter.ProjectionMatrix.PopMatrix();
             }
             return;
         }
 
-        private void GLThridPersonView_OnRenderScene(GLControl inControl, GLRenderingStatus inStatus)
+        private void GLThridPersonView_OnRenderScene(GLControl inControl, GLRenderParameter inStatus)
         {
             inStatus.ProjectionMatrix.PushMatrix();
             try {

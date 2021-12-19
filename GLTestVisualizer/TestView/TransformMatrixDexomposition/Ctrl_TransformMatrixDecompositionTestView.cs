@@ -109,33 +109,33 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
-        private void GLViewr_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderingStatus inStatus)
+        private void GLViewr_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderParameter inParameter)
         {
-            inStatus.ProjectionMatrix.PushMatrix();
+            inParameter.ProjectionMatrix.PushMatrix();
             try {
-                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
+                inParameter.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
 
-                inStatus.ModelViewMatrix.View.PushMatrix();
-                inStatus.ModelViewMatrix.Model.PushMatrix();
+                inParameter.ModelViewMatrix.View.PushMatrix();
+                inParameter.ModelViewMatrix.Model.PushMatrix();
                 try {
-                    inStatus.ModelViewMatrix.View.LookAt(new Vector3(0.0f, 2.0f, 2.0f), new Vector3(0.0f), new Vector3(0.0f, 1.0f, 0.0f));
-                    inStatus.ModelViewMatrix.Model.LoadIdentity();
+                    inParameter.ModelViewMatrix.View.LookAt(new Vector3(0.0f, 2.0f, 2.0f), new Vector3(0.0f), new Vector3(0.0f, 1.0f, 0.0f));
+                    inParameter.ModelViewMatrix.Model.LoadIdentity();
 
                     GL.Enable(EnableCap.DepthTest);
                     GL.Enable(EnableCap.CullFace);
                     GL.LineWidth(1.0f);
 
-                    m_MatrixInputAxisView.Render(inStatus);
-                    m_MatrixInputView.Render(inStatus);
-                    m_MatrixOutputAxisView.Render(inStatus);
-                    m_MatrixOutputView.Render(inStatus);
+                    m_MatrixInputAxisView.Render(inParameter);
+                    m_MatrixInputView.Render(inParameter);
+                    m_MatrixOutputAxisView.Render(inParameter);
+                    m_MatrixOutputView.Render(inParameter);
 
                 } finally {
-                    inStatus.ModelViewMatrix.Model.PopMatrix();
-                    inStatus.ModelViewMatrix.View.PopMatrix();
+                    inParameter.ModelViewMatrix.Model.PopMatrix();
+                    inParameter.ModelViewMatrix.View.PopMatrix();
                 }
             } finally {
-                inStatus.ProjectionMatrix.PopMatrix();
+                inParameter.ProjectionMatrix.PopMatrix();
             }
             return;
         }

@@ -52,22 +52,20 @@ namespace RtCs.OpenGL
         /// <summary>
         /// Execute render command.
         /// </summary>
-        /// <param name="inRenderingStatus">Rendering data store.</param>
-        public void Render(GLRenderingStatus inRenderingStatus)
+        /// <param name="inRednerParameter">Rendering parameter.</param>
+        public void Render(GLRenderParameter inRednerParameter)
         {
             GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)PolygonMode);
             CullFace(RenderFaceMode);
 
-            inRenderingStatus.ModelViewMatrix.Model.PushMatrix();
+            inRednerParameter.ModelViewMatrix.Model.PushMatrix();
             try {
-                inRenderingStatus.ModelViewMatrix.Model.MultiMatrix(Transform.WorldMatrix);
+                inRednerParameter.ModelViewMatrix.Model.MultiMatrix(Transform.WorldMatrix);
 
-                PreRender(inRenderingStatus);
-                Renderer.Render(inRenderingStatus);
-                PostRender(inRenderingStatus);
+                Renderer.Render(inRednerParameter);
 
             } finally {
-                inRenderingStatus.ModelViewMatrix.Model.PopMatrix();
+                inRednerParameter.ModelViewMatrix.Model.PopMatrix();
             }
             return;
         }
@@ -109,9 +107,9 @@ namespace RtCs.OpenGL
         public EGLFrustumCullingMode FrustumCullingMode
         { get; set; } = EGLFrustumCullingMode.BoundingBox;
 
-        protected virtual void PreRender(GLRenderingStatus inStatus)
+        protected virtual void PreRender(GLRenderParameter inStatus)
         { }
-        protected virtual void PostRender(GLRenderingStatus inStatus)
+        protected virtual void PostRender(GLRenderParameter inStatus)
         { }
 
         private void CullFace(EGLRenderFaceMode inMode)

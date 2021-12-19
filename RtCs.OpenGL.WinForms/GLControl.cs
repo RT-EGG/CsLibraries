@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace RtCs.OpenGL.WinForms
 {
-    public delegate void GLRenderSceneEventHandler(GLControl inControl, GLRenderingStatus inStatus);
+    public delegate void GLRenderSceneEventHandler(GLControl inControl, GLRenderParameter inParameter);
 
     public partial class GLControl : OpenTK.GLControl
     {
@@ -39,7 +39,7 @@ namespace RtCs.OpenGL.WinForms
             } else {
                 OnPaintProc = RuntimePaint;
             }
-            m_RenderingStatus = new GLRenderingStatus();
+            m_RenderingStatus = new GLRenderParameter();
             return;
         }
 
@@ -85,7 +85,7 @@ namespace RtCs.OpenGL.WinForms
             return mode | GetDesignMode(inControl.Parent);
         }
 
-        private GLRenderingStatus m_RenderingStatus = null;
+        private GLRenderParameter m_RenderingStatus = null;
 
         private static IGraphicsContext GraphicsContext
         { get; set; } = null;

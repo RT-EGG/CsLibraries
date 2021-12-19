@@ -158,9 +158,9 @@ namespace GLTestVisualizer.TestView.Text
         private void TextBoxInput_TextChanged(object sender, EventArgs e)
             => ChangeText((sender as TextBox).Text);
 
-        private void GLView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderingStatus inStatus)
+        private void GLView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
         {
-            GLRenderingStatus status = new GLRenderingStatus();
+            GLRenderParameter status = new GLRenderParameter();
             status.Viewport.SetRect(inControl.ClientRectangle);
             status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(0.0f, inControl.Width, -inControl.Height, 0.0f, -10.0f, 10.0f));
             status.ModelViewMatrix.View.LoadIdentity();

@@ -3,7 +3,7 @@
     /// <summary>
     /// Data store for rendering.
     /// </summary>
-    public class GLRenderingStatus : GLObject
+    public class GLRenderParameter : GLObject
     {
         /// <summary>
         /// Region of render target.

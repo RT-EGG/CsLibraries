@@ -10,8 +10,8 @@ namespace RtCs.OpenGL
         /// <summary>
         /// Execute render command.
         /// </summary>
-        /// <param name="inStatus">Rendering data store.</param>
-        public void Render(GLRenderingStatus inStatus)
+        /// <param name="inParameter">Rendering data store.</param>
+        public void Render(GLRenderParameter inParameter)
         {
             if (Mesh == null) {
                 return;
@@ -29,7 +29,7 @@ namespace RtCs.OpenGL
             }
             try {
                 GL.UseProgram(shader.ID);
-                Material.CommitProperties(inStatus);
+                Material.CommitProperties(inParameter);
 
                 GL.BindBuffer(BufferTarget.ArrayBuffer, Mesh.VertexBuffer);
 
