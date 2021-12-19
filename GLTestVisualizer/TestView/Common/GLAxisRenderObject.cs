@@ -35,12 +35,12 @@ namespace GLTestVisualizer.TestView
                 return;
             }
 
-            protected override void CommitPropertiesCore(GLRenderingStatus inRenderingStatus)
+            protected override void CommitPropertiesCore(GLRenderParameter inParameter)
             {
-                GetProperty<Matrix4x4>("inProjectionMatrix").Value = inRenderingStatus.ProjectionMatrix.CurrentMatrix;
-                GetProperty<Matrix4x4>("inModelviewMatrix").Value = inRenderingStatus.ModelViewMatrix.CurrentMatrix;
+                GetProperty<Matrix4x4>("inProjectionMatrix").Value = inParameter.ProjectionMatrix.CurrentMatrix;
+                GetProperty<Matrix4x4>("inModelviewMatrix").Value = inParameter.ModelViewMatrix.CurrentMatrix;
 
-                base.CommitPropertiesCore(inRenderingStatus);
+                base.CommitPropertiesCore(inParameter);
                 return;
             }
 

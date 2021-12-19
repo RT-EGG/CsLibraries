@@ -11,13 +11,13 @@ namespace GLTestVisualizer.TestView.SphereMesh
             return;
         }
 
-        protected override void CommitPropertiesCore(GLRenderingStatus inRenderingStatus)
+        protected override void CommitPropertiesCore(GLRenderParameter inParameter)
         {
             GetProperty<Vector4>("inColor").Value = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
-            GetProperty<Matrix4x4>("inProjectionMatrix").Value = inRenderingStatus.ProjectionMatrix.CurrentMatrix;
-            GetProperty<Matrix4x4>("inModelviewMatrix").Value = inRenderingStatus.ModelViewMatrix.CurrentMatrix;
+            GetProperty<Matrix4x4>("inProjectionMatrix").Value = inParameter.ProjectionMatrix.CurrentMatrix;
+            GetProperty<Matrix4x4>("inModelviewMatrix").Value = inParameter.ModelViewMatrix.CurrentMatrix;
 
-            base.CommitPropertiesCore(inRenderingStatus);
+            base.CommitPropertiesCore(inParameter);
             return;
         }
 
