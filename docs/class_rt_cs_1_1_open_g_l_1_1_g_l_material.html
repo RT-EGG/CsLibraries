@@ -84,6 +84,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae202a05e0db757b207c69e8f6a1f4072"><td class="memItemLeft" align="right" valign="top">GLShaderUniformProperty&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_material.html#ae202a05e0db757b207c69e8f6a1f4072">GetProperty&lt; T &gt;</a> (string inName)</td></tr>
 <tr class="memdesc:ae202a05e0db757b207c69e8f6a1f4072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get property by name.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_material.html#ae202a05e0db757b207c69e8f6a1f4072">More...</a><br /></td></tr>
 <tr class="separator:ae202a05e0db757b207c69e8f6a1f4072"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac23d190ca55b3409a1be4ba07d333bf9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_material.html#ac23d190ca55b3409a1be4ba07d333bf9">TryGetProperty&lt; T &gt;</a> (string inName, out GLShaderUniformProperty&lt; T &gt; outProperty)</td></tr>
+<tr class="memdesc:ac23d190ca55b3409a1be4ba07d333bf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try get property by name.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_material.html#ac23d190ca55b3409a1be4ba07d333bf9">More...</a><br /></td></tr>
+<tr class="separator:ac23d190ca55b3409a1be4ba07d333bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeccc024db881de44d9ae292bef343c64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_material.html#aeccc024db881de44d9ae292bef343c64">SetPropertyValue&lt; T &gt;</a> (string inName, T inValue)</td></tr>
 <tr class="memdesc:aeccc024db881de44d9ae292bef343c64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set property value.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_material.html#aeccc024db881de44d9ae292bef343c64">More...</a><br /></td></tr>
 <tr class="separator:aeccc024db881de44d9ae292bef343c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,7 +143,14 @@ Properties</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The property if found by name and property type is T, otherwise null.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">KeyNotFoundException</td><td>Case of that the property not found by name.</td></tr>
+    <tr><td class="paramname">InvalidCastException</td><td>Case of that the property is not for type T.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The property.</dd></dl>
 
 </div>
 </div>
@@ -193,6 +203,58 @@ Properties</h2></td></tr>
   </dd>
 </dl>
 <p>If not found property inName, or the property is not T, do nothing. </p>
+
+</div>
+</div>
+<a id="ac23d190ca55b3409a1be4ba07d333bf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac23d190ca55b3409a1be4ba07d333bf9">&#9670;&nbsp;</a></span>TryGetProperty&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RtCs.OpenGL.GLMaterial.TryGetProperty&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>inName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out GLShaderUniformProperty&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>outProperty</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Try get property by name. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of property.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inName</td><td>Name of property.</td></tr>
+    <tr><td class="paramname">outProperty</td><td>Output the property if found, otherwise null.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return true if the property found by name and type of the property is T, otherwise false.</dd></dl>
 
 </div>
 </div>

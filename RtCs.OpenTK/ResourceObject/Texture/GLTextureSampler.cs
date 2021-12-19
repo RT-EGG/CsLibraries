@@ -134,7 +134,7 @@ namespace RtCs.OpenGL
         {
             if (!m_ApplyRegistered) {
                 m_ApplyRegistered = true;
-                new GLMainThreadTask(_ => ApplyChanged()).Enqueue();
+                GLMainThreadTask.CreateNew(_ => ApplyChanged());
             }
             return;
         }

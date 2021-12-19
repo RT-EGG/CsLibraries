@@ -75,7 +75,7 @@ namespace RtCs.OpenGL
         public override void Apply()
         {
             base.Apply();
-            new GLMainThreadTask(args => LoadPixels(Pixels)).Enqueue();
+            GLMainThreadTask.CreateNew(_ => LoadPixels(Pixels));
             return;
         }
 

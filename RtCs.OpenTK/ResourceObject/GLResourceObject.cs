@@ -12,11 +12,8 @@ namespace RtCs.OpenGL
     public abstract class GLResourceObject : GLObject
     {
         public GLResourceObject()
-        {
-            new GLMainThreadTask(_ => CreateResource()).Enqueue();
-            return;
-        }
-        
+            => GLMainThreadTask.CreateNew(_ => CreateResource());
+
         internal void CreateResource()
         {
             CreateResourceCore();
@@ -63,7 +60,7 @@ namespace RtCs.OpenGL
         {
             base.DisposeObject(inDisposing);
 
-            new GLMainThreadTask(_ => DestroyResource()).Enqueue();
+            GLMainThreadTask.CreateNew(_ => DestroyResource());
             return;
         }
 

@@ -12,48 +12,84 @@ namespace RtCs.OpenGL
         public string StackTrace
         { get; } = Environment.StackTrace;
     }
-    public delegate void GLMainThreadTaskEventHandler(GLMainThreadTaskEventArgs inArgs);
+
+    public class GLMainThreadTaskOptions<T> where T : GLMainThreadTaskEventArgs
+    {
+        /// <summary>
+        /// The argument used for GLMainThreadTask's TaskMethod.
+        /// </summary>
+        public T Argument
+        { get; set; } = default;
+    }
+
+    /// <summary>
+    /// The options for GLMainThreadTask execution.
+    /// </summary>
+    public class GLMainThreadTaskOptions : GLMainThreadTaskOptions<GLMainThreadTaskEventArgs>
+    { 
+        public GLMainThreadTaskOptions()
+            => Argument = GLMainThreadTaskEventArgs.Empty;
+    }
 
     /// <summary>
     /// The object to register process run once on thread which is OpenGL context valid.
     /// </summary>
-    public class GLMainThreadTask
+    public abstract class GLMainThreadTask
     {
         /// <summary>
-        /// Constructor.
+        /// Create new task.
         /// </summary>
-        /// <param name="inAction">The process run on next timing when OpenGL context is valid.</param>
-        /// <remarks>
-        /// Just creating an instance does not register the task, but only executing "Enqueue" will register it.
-        /// </remarks>
-        public GLMainThreadTask(GLMainThreadTaskEventHandler inAction)
+        /// <typeparam name="T">Specially method argument type.</typeparam>
+        /// <param name="inTaskMethod">The method called when next timing the OpenGL is valid.</param>
+        /// <param name="inOptions">The option for task method execution.</param>
+        /// <returns></returns>
+        public static GLMainThreadTask CreateNew<T>(Action<T> inTaskMethod, GLMainThreadTaskOptions<T> inOptions = null) where T : GLMainThreadTaskEventArgs
         {
-            Action = inAction;
-            return;
+            var task = new TaskCore<T>(inTaskMethod, inOptions);
+            GLMainThreadTaskQueue.Enqueue(task);
+            return task;
         }
 
         /// <summary>
-        /// Enqueue the task.
+        /// Create new task.
         /// </summary>
-        public void Enqueue()
-            => GLMainThreadTaskQueue.Enqueue(this);
+        /// <param name="inTaskMethod">The method called when next timing the OpenGL is valid.</param>
+        /// <param name="inOptions">The option for task method execution.</param>
+        /// <returns></returns>
+        public static GLMainThreadTask CreateNew(Action<GLMainThreadTaskEventArgs> inTaskMethod, GLMainThreadTaskOptions inOptions = null)
+            => CreateNew<GLMainThreadTaskEventArgs>(inTaskMethod, inOptions);
 
-        public GLMainThreadTaskEventHandler Action
-        { get; } = null;
+        private GLMainThreadTask()
+        { }
 
-        public GLMainThreadTaskEventArgs ActionArgument
-        { get; set; } = GLMainThreadTaskEventArgs.Empty;
+        internal void Execute()
+            => ExecuteCore();
 
-        public bool DoSoonIfCan
-        { get; set; } = true;
+        protected abstract void ExecuteCore();
+
+        private class TaskCore<T> : GLMainThreadTask where T : GLMainThreadTaskEventArgs
+        {
+            public TaskCore(Action<T> inTaskMethod, GLMainThreadTaskOptions<T> inOptions)
+            {
+                TaskMethod = inTaskMethod;
+                Options = inOptions ?? new GLMainThreadTaskOptions<T>();
+                return;
+            }
+
+            protected override void ExecuteCore()
+                => TaskMethod(Options.Argument);
+
+            private readonly Action<T> TaskMethod;
+            private readonly GLMainThreadTaskOptions<T> Options;
+        }
     }
 
     public class GLMainThreadTaskQueue
     {
         internal static void Enqueue(GLMainThreadTask inTask)
         {
-            if (CanProcessSoon && inTask.DoSoonIfCan) {
-                ProcessTask(inTask);
+            if (CanProcessSoon) {
+                inTask.Execute();
             } else {
                 m_TaskQueue.Enqueue(inTask);
             }
@@ -63,13 +99,10 @@ namespace RtCs.OpenGL
         public static void Process()
         {
             while (m_TaskQueue.Count > 0) {
-                ProcessTask(m_TaskQueue.Dequeue());
+                m_TaskQueue.Dequeue().Execute();
             }
             return;
         }
-
-        private static void ProcessTask(GLMainThreadTask inTask)
-            => inTask.Action.Invoke(inTask.ActionArgument);
 
         private static Queue<GLMainThreadTask> m_TaskQueue = new Queue<GLMainThreadTask>();
         private static bool CanProcessSoon => OpenTK.Graphics.GraphicsContext.CurrentContext != null;

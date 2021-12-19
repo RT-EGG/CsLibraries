@@ -28,6 +28,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                 }
             }
             m_Cube.Colors = vertColors;
+            m_Cube.Apply();
 
             m_MatrixInputView.Renderer.Mesh = m_Cube;
             m_MatrixInputView.Renderer.Material = m_Material;

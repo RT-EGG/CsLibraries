@@ -14,6 +14,8 @@ Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Object.
 \item 
 G\+L\+Shader\+Uniform\+Property$<$ T $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}{Get\+Property$<$ T $>$}} (string in\+Name)
 \begin{DoxyCompactList}\small\item\em Get property by name. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ac23d190ca55b3409a1be4ba07d333bf9}{Try\+Get\+Property$<$ T $>$}} (string in\+Name, out G\+L\+Shader\+Uniform\+Property$<$ T $>$ out\+Property)
+\begin{DoxyCompactList}\small\item\em Try get property by name. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}{Set\+Property\+Value$<$ T $>$}} (string in\+Name, T in\+Value)
 \begin{DoxyCompactList}\small\item\em Set property value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
@@ -53,8 +55,15 @@ Get property by name.
 {\em in\+Name} & Name of property.\\
 \hline
 \end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Key\+Not\+Found\+Exception} & Case of that the property not found by name.\\
+\hline
+{\em Invalid\+Cast\+Exception} & Case of that the property is not for type T.\\
+\hline
+\end{DoxyExceptions}
 \begin{DoxyReturn}{Returns}
-The property if found by name and property type is T, otherwise null.
+The property.
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}} 
 \index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!SetPropertyValue$<$ T $>$@{SetPropertyValue$<$ T $>$}}
@@ -80,7 +89,32 @@ Set property value.
 \end{DoxyParams}
 
 
-If not found property in\+Name, or the property is not T, do nothing. 
+If not found property in\+Name, or the property is not T, do nothing. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ac23d190ca55b3409a1be4ba07d333bf9}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ac23d190ca55b3409a1be4ba07d333bf9}} 
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!TryGetProperty$<$ T $>$@{TryGetProperty$<$ T $>$}}
+\index{TryGetProperty$<$ T $>$@{TryGetProperty$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{TryGetProperty$<$ T $>$()}{TryGetProperty< T >()}}
+{\footnotesize\ttfamily bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Try\+Get\+Property$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name,  }\item[{out G\+L\+Shader\+Uniform\+Property$<$ T $>$}]{out\+Property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Try get property by name. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of property.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Name} & Name of property.\\
+\hline
+{\em out\+Property} & Output the property if found, otherwise null.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the property found by name and type of the property is T, otherwise false.
+\end{DoxyReturn}
+
 
 \doxysubsection{Property Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a2cc37737f7ccc7995c5e4151bf326c10}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a2cc37737f7ccc7995c5e4151bf326c10}} 

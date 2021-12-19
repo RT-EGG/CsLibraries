@@ -5,13 +5,13 @@
 The object to register process run once on thread which is \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} context valid.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a99772baf67f786307f463f08372a179f}{G\+L\+Main\+Thread\+Task}} (G\+L\+Main\+Thread\+Task\+Event\+Handler in\+Action)
-\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a15198e7ca15b1ca03ff8a7ffac876c3b}{Enqueue}} ()
-\begin{DoxyCompactList}\small\item\em Enqueue the task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task}{G\+L\+Main\+Thread\+Task}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a173e82c2178cf8a19b15a5b6ccd3ad84}{Create\+New$<$ T $>$}} (Action$<$ T $>$ in\+Task\+Method, \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_options}{G\+L\+Main\+Thread\+Task\+Options}}$<$ T $>$ in\+Options=null)
+\begin{DoxyCompactList}\small\item\em Create new task. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task}{G\+L\+Main\+Thread\+Task}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_acd7f13ea1eb9ad2b75d4d1c127864c15}{Create\+New}} (Action$<$ G\+L\+Main\+Thread\+Task\+Event\+Args $>$ in\+Task\+Method, \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_options}{G\+L\+Main\+Thread\+Task\+Options}} in\+Options=null)
+\begin{DoxyCompactList}\small\item\em Create new task. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -19,37 +19,56 @@ The object to register process run once on thread which is \mbox{\hyperlink{name
 
 
 
-\doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a99772baf67f786307f463f08372a179f}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a99772baf67f786307f463f08372a179f}} 
-\index{RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}!GLMainThreadTask@{GLMainThreadTask}}
-\index{GLMainThreadTask@{GLMainThreadTask}!RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}}
-\doxysubsubsection{\texorpdfstring{GLMainThreadTask()}{GLMainThreadTask()}}
-{\footnotesize\ttfamily Rt\+Cs.\+Open\+G\+L.\+G\+L\+Main\+Thread\+Task.\+G\+L\+Main\+Thread\+Task (\begin{DoxyParamCaption}\item[{G\+L\+Main\+Thread\+Task\+Event\+Handler}]{in\+Action }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_acd7f13ea1eb9ad2b75d4d1c127864c15}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_acd7f13ea1eb9ad2b75d4d1c127864c15}} 
+\index{RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}!CreateNew@{CreateNew}}
+\index{CreateNew@{CreateNew}!RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}}
+\doxysubsubsection{\texorpdfstring{CreateNew()}{CreateNew()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task}{G\+L\+Main\+Thread\+Task}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Main\+Thread\+Task.\+Create\+New (\begin{DoxyParamCaption}\item[{Action$<$ G\+L\+Main\+Thread\+Task\+Event\+Args $>$}]{in\+Task\+Method,  }\item[{\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_options}{G\+L\+Main\+Thread\+Task\+Options}}}]{in\+Options = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-Constructor. 
+Create new task. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em in\+Action} & The process run on next timing when \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} context is valid.\\
+{\em in\+Task\+Method} & The method called when next timing the \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} is valid.\\
+\hline
+{\em in\+Options} & The option for task method execution.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
 
-
-Just creating an instance does not register the task, but only executing \char`\"{}\+Enqueue\char`\"{} will register it. 
-
-\doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a15198e7ca15b1ca03ff8a7ffac876c3b}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a15198e7ca15b1ca03ff8a7ffac876c3b}} 
-\index{RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}!Enqueue@{Enqueue}}
-\index{Enqueue@{Enqueue}!RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}}
-\doxysubsubsection{\texorpdfstring{Enqueue()}{Enqueue()}}
-{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Main\+Thread\+Task.\+Enqueue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a173e82c2178cf8a19b15a5b6ccd3ad84}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_a173e82c2178cf8a19b15a5b6ccd3ad84}} 
+\index{RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}!CreateNew$<$ T $>$@{CreateNew$<$ T $>$}}
+\index{CreateNew$<$ T $>$@{CreateNew$<$ T $>$}!RtCs.OpenGL.GLMainThreadTask@{RtCs.OpenGL.GLMainThreadTask}}
+\doxysubsubsection{\texorpdfstring{CreateNew$<$ T $>$()}{CreateNew< T >()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task}{G\+L\+Main\+Thread\+Task}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_acd7f13ea1eb9ad2b75d4d1c127864c15}{Rt\+Cs.\+Open\+G\+L.\+G\+L\+Main\+Thread\+Task.\+Create\+New}}$<$ T $>$ (\begin{DoxyParamCaption}\item[{Action$<$ T $>$}]{in\+Task\+Method,  }\item[{\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_main_thread_task_options}{G\+L\+Main\+Thread\+Task\+Options}}$<$ T $>$}]{in\+Options = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
-Enqueue the task. 
+Create new task. 
 
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Specially method argument type.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Task\+Method} & The method called when next timing the \mbox{\hyperlink{namespace_rt_cs_1_1_open_g_l}{Open\+GL}} is valid.\\
+\hline
+{\em in\+Options} & The option for task method execution.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em T} : {\em G\+L\+Main\+Thread\+Task\+Event\+Args}]\end{description}
+\end{Desc}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

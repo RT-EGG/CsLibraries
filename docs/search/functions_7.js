@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['makelookatviewmatrix_229',['MakeLookAtViewMatrix',['../class_rt_cs_1_1_open_g_l_1_1_g_l_view_matrix_stack.html#a589abc47f3da9951f43676da2b0f2b7a',1,'RtCs::OpenGL::GLViewMatrixStack']]],
-  ['multimatrix_230',['MultiMatrix',['../class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack.html#a7fea25b31195290caa70ef2eda5a3389',1,'RtCs::OpenGL::GLMatrixStack']]]
+  ['popmatrix_236',['PopMatrix',['../class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack.html#a360b29070ed0a4b640c3f86e6e0b10c1',1,'RtCs::OpenGL::GLMatrixStack']]],
+  ['pushmatrix_237',['PushMatrix',['../class_rt_cs_1_1_open_g_l_1_1_g_l_matrix_stack.html#a15e89eee5b252260098b1dad2c2dadf4',1,'RtCs::OpenGL::GLMatrixStack']]]
 ];

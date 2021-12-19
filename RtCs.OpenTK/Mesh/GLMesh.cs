@@ -45,9 +45,7 @@ namespace RtCs.OpenGL
         /// Even if make changes by any method, the changes will not be applied internally until call this method.
         /// </remarks>
         public void Apply()
-            => new GLMainThreadTask(_ => UpdateBuffer()) {
-                DoSoonIfCan = false
-            }.Enqueue();
+            => GLMainThreadTask.CreateNew(_ => UpdateBuffer());
 
         /// <summary>
         /// Position of vertices.
