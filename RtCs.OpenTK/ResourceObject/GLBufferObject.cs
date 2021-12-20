@@ -7,8 +7,7 @@ namespace RtCs.OpenGL
         public void UpdateBuffer<T>(int inSize, T[] inValues, BufferUsageHint inUsageHint) where T : unmanaged
         {
             GLMainThreadTask.CreateNew(_ => {
-                GL.BindBuffer(BufferTarget.ArrayBuffer, ID);
-                GL.BufferData(BufferTarget.ArrayBuffer, inSize, inValues, inUsageHint);
+                GL.NamedBufferData(ID, inSize, inValues, inUsageHint);
             });
             return;
         }
@@ -17,7 +16,8 @@ namespace RtCs.OpenGL
         {
             base.CreateResourceCore();
             if (ID == 0) {
-                ID = GL.GenBuffer();
+                GL.CreateBuffers(1, out int buffer);
+                ID = buffer;
             }
             return;
         }
