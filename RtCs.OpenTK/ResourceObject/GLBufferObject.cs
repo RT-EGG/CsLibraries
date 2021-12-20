@@ -1,9 +1,18 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL4;
 
 namespace RtCs.OpenGL
 {
     public class GLBufferObject : GLResourceIdObject
     {
+        public void UpdateBuffer<T>(int inSize, T[] inValues, BufferUsageHint inUsageHint) where T : unmanaged
+        {
+            GLMainThreadTask.CreateNew(_ => {
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ID);
+                GL.BufferData(BufferTarget.ArrayBuffer, inSize, inValues, inUsageHint);
+            });
+            return;
+        }
+
         protected override void CreateResourceCore()
         {
             base.CreateResourceCore();

@@ -186,13 +186,11 @@ namespace RtCs.OpenGL
                 Array.Copy(attrib.Data, 0, buffer, attrib.DataOffset, attrib.Data.Length);
             }
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBuffer);
-            GL.BufferData(BufferTarget.ArrayBuffer, buffer.Length * sizeof(float), buffer, VertexBufferUsageHint);
+            VertexBuffer.UpdateBuffer(buffer.Length * sizeof(float), buffer, VertexBufferUsageHint);
 
             var indices = Indices;
             if (!indices.IsNullOrEmpty()) {
-                GL.BindBuffer(BufferTarget.ElementArrayBuffer, IndexBuffer);
-                GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(int), indices, IndexBufferUsageHint);
+                IndexBuffer.UpdateBuffer(indices.Length * sizeof(int), indices, IndexBufferUsageHint);
             }
             return;
         }
