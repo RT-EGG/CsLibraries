@@ -60,7 +60,7 @@ namespace RtCs.OpenGL
         {
             public Mat4(GLShaderUniformPropertySocket inSocket) : base(inSocket) { }
             protected override void DoCommitProperty(int inProgramID, int inLocation, CommitStatus inCommitState)
-                => GL.ProgramUniformMatrix4(inProgramID, inLocation, 1, false, Value.ToGLArrayF());
+                => GL.ProgramUniformMatrix4(inProgramID, inLocation, 1, false, Value.ToGLFloatArray());
         }
 
         public class Texture : GLShaderUniformProperty<GLTextureReference>
