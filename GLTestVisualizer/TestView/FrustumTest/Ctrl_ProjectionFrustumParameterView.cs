@@ -43,7 +43,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
         }
 
         public override Matrix4x4 ProjectionMatrix
-            => Matrix4x4.MakeFrustum(
+            => Matrix4x4.MakePerspective(
                 (float)(UdOffsetX.Value - (UdSizeX.Value * 0.5m)),
                 (float)(UdOffsetX.Value + (UdSizeX.Value * 0.5m)),
                 (float)(UdOffsetY.Value - (UdSizeY.Value * 0.5m)),

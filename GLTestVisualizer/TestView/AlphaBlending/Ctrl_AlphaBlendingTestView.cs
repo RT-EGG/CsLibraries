@@ -59,7 +59,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
 
         private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderParameter inParameter)
         {
-            m_Camera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, inControl.Width, inControl.Height, 0.01f, 100.0f);
+            m_Camera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, inControl.Width, inControl.Height, 0.01f, 100.0f);
             m_Camera.Render(inParameter, m_Scene);
             return;
         }

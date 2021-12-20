@@ -51,7 +51,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
         {
             inParameter.ProjectionMatrix.PushMatrix();
             try {
-                inParameter.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
+                inParameter.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
 
                 inParameter.ModelViewMatrix.View.PushMatrix();
                 inParameter.ModelViewMatrix.Model.PushMatrix();

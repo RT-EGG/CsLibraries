@@ -45,6 +45,7 @@
     <Compile Include="GLMainThreadTask.cs" />
     <Compile Include="GLMaterial.cs" />
     <Compile Include="GLObject.cs" />
+    <Compile Include="GLProjection.cs" />
     <Compile Include="GLRenderParameter.cs" />
     <Compile Include="GLRenderObject.cs" />
     <Compile Include="GLScene.cs" />

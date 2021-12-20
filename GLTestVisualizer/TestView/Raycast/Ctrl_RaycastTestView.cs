@@ -107,7 +107,7 @@ namespace GLTestVisualizer.TestView.Raycast
 
             m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_HitPointMarkerObjects);
 
-            m_FPSCamera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
+            m_FPSCamera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
             m_FPSCamera.Render(inParameter, m_Scene);
         }
 
@@ -121,7 +121,7 @@ namespace GLTestVisualizer.TestView.Raycast
                 m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_FPSCameraVisualizer, m_FPSCameraRayVisualizer).Concat(m_HitPointMarkerObjects); ;
             }
 
-            m_TPSCamera.ProjectionMatrix = Matrix4x4.MakePerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
+            m_TPSCamera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
             m_TPSCamera.Render(inStatus, m_Scene);
             return;
         }

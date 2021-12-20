@@ -169,7 +169,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
         {
             inStatus.ProjectionMatrix.PushMatrix();
             try {
-                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakePerspective(45.0f, (float)GLThrirdPersonView.Width / (float)GLThrirdPersonView.Height, 0.01f, 1000.0f));
+                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLThrirdPersonView.Width / (float)GLThrirdPersonView.Height, 0.01f, 1000.0f));
 
                 inStatus.ModelViewMatrix.View.PushMatrix();
                 try {

@@ -621,7 +621,7 @@ namespace RtCs.MathUtils
         public static Matrix4x4 MakeOrtho(float aFovY, float aWidth, float aHeight, float aNear, float aFar)
             => MakeOrtho(aFovY * (aWidth / aHeight), aFovY, aNear, aFar);
 
-        public static Matrix4x4 MakeFrustum(float inLeft, float inRight, float inBottom, float inTop, float inNear, float inFar)
+        public static Matrix4x4 MakePerspective(float inLeft, float inRight, float inBottom, float inTop, float inNear, float inFar)
         {
             if (inLeft.AlmostEquals(inRight)) {
                 throw new DivideByZeroException($"Argument \"{nameof(inLeft)}\" and \"{nameof(inRight)}\" must be different value.");
@@ -641,19 +641,16 @@ namespace RtCs.MathUtils
                 );
         }
 
-        public static Matrix4x4 MakeFrustum(float inWidth, float inHeight, float inNear, float inFar)
-            => MakeFrustum(-inWidth * 0.5f, inWidth * 0.5f, -inHeight * 0.5f, inHeight * 0.5f, inNear, inFar);
-
-        public static Matrix4x4 MakePerspective(float inFovYinDeg, float inAspect, float inNear, float inFar)
+        public static Matrix4x4 MakeSymmetricalPerspective(float inFovYinDeg, float inAspect, float inNear, float inFar)
         {
             float fovY_2 = (float)Math.Tan(inFovYinDeg.DegToRad() * 0.5f) * inNear;
             float fovX_2 = fovY_2 * inAspect;
 
-            return MakeFrustum(-fovX_2, fovX_2, -fovY_2, fovY_2, inNear, inFar);
+            return MakePerspective(-fovX_2, fovX_2, -fovY_2, fovY_2, inNear, inFar);
         }
 
-        public static Matrix4x4 MakePerspective(float aFovY, float aWidth, float aHeight, float aNear, float aFar)
-            => MakePerspective(aFovY, aWidth / aHeight, aNear, aFar);
+        public static Matrix4x4 MakeSymmetricalPerspective(float aFovY, float aWidth, float aHeight, float aNear, float aFar)
+            => MakeSymmetricalPerspective(aFovY, aWidth / aHeight, aNear, aFar);
 
         public override string ToString()
         {
