@@ -44,6 +44,7 @@
     <Compile Include="GLCamera.cs" />
     <Compile Include="GLMainThreadTask.cs" />
     <Compile Include="GLMaterial.cs" />
+    <Compile Include="GLTransformMatrixBuffer.cs" />
     <Compile Include="GLObject.cs" />
     <Compile Include="GLProjection.cs" />
     <Compile Include="GLRenderParameter.cs" />
