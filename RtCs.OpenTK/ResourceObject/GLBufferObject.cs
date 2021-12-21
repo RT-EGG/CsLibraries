@@ -4,7 +4,7 @@ namespace RtCs.OpenGL
 {
     public class GLBufferObject : GLResourceIdObject
     {
-        public void UpdateBuffer<T>(int inSize, T[] inValues, BufferUsageHint inUsageHint) where T : unmanaged
+        public void AllocateBuffer<T>(int inSize, T[] inValues, BufferUsageHint inUsageHint) where T : unmanaged
         {
             GLMainThreadTask.CreateNew(_ => {
                 GL.NamedBufferData(ID, inSize, inValues, inUsageHint);
