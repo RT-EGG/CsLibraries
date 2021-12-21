@@ -9,6 +9,18 @@ namespace RtCs.OpenGL
     public abstract class GLProjection
     {
         /// <summary>
+        /// Projection matrix made from the projection settings.
+        /// </summary>
+        public abstract Matrix4x4 ProjectionMatrix
+        { get; }
+    }
+
+    /// <summary>
+    /// Ortho projection.
+    /// </summary>
+    public sealed class GLOrthoProjection : GLProjection
+    {
+        /// <summary>
         /// Left edge position of near clip plane.
         /// </summary>
         public float Left
@@ -40,18 +52,6 @@ namespace RtCs.OpenGL
         public float Far
         { get; set; } = 100.0f;
 
-        /// <summary>
-        /// Projection matrix made from the projection settings.
-        /// </summary>
-        public abstract Matrix4x4 ProjectionMatrix
-        { get; }
-    }
-
-    /// <summary>
-    /// Ortho projection.
-    /// </summary>
-    public sealed class GLOrthoProjection : GLProjection
-    {
         public override Matrix4x4 ProjectionMatrix
             => Matrix4x4.MakeOrtho(Left, Right, Bottom, Top, Near, Far);
     }
@@ -61,6 +61,38 @@ namespace RtCs.OpenGL
     /// </summary>
     public sealed class GLPerspectiveProjection : GLProjection
     {
+        /// <summary>
+        /// Left edge position of near clip plane.
+        /// </summary>
+        public float Left
+        { get; set; } = -1.0f;
+        /// <summary>
+        /// Right edge position of near clip plane.
+        /// </summary>
+        public float Right
+        { get; set; } = 1.0f;
+        /// <summary>
+        /// Bottom edge position of near clip plane.
+        /// </summary>
+        public float Bottom
+        { get; set; } = -1.0f;
+        /// <summary>
+        /// Top edge position of near clip plane.
+        /// </summary>
+        public float Top
+        { get; set; } = 1.0f;
+
+        /// <summary>
+        /// Distance to near clip plane.
+        /// </summary>
+        public float Near
+        { get; set; } = 0.01f;
+        /// <summary>
+        /// Distance to far clip plane.
+        /// </summary>
+        public float Far
+        { get; set; } = 100.0f;
+
         /// <summary>
         /// Set near plane rect.
         /// </summary>
