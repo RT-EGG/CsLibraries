@@ -45,7 +45,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
             CreateNewCube(new Vector3(1.6f, 0.4f, 1.6f), new Vector3(0.9f, 0.0f, 0.9f));
             CreateNewCube(new Vector3(1.6f, 1.6f, 1.6f), new Vector3(0.9f, 0.9f, 0.9f));
 
-            m_Scene.DisplayList = m_CubeObjects;
+            m_Scene.DisplayList.Register(m_CubeObjects);
             return;
         }
 

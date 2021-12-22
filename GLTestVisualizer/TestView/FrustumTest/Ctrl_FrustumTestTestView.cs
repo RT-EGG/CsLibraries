@@ -76,6 +76,8 @@ namespace GLTestVisualizer.TestView.FrustumTest
         {
             m_SphereObjects.DisposeItems();
             m_SphereObjects.Clear();
+            m_CubeObjects.DisposeItems();
+            m_CubeObjects.Clear();
 
             Random randomizer = new Random();
             int count = (randomizer.Next() % 30) + 1;
@@ -88,6 +90,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 }.GetRectangularCoordinate();
                 newSphere.Renderer.Mesh = m_SphereMesh;
                 newSphere.Renderer.Material = m_OutFrustumMaterial;
+                newSphere.CalculateBoundingBox();
                 m_SphereObjects.Add(newSphere);
             }
 
@@ -107,8 +110,14 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 newCube.Renderer.Mesh = m_CubeMesh;
                 newCube.Renderer.Material = m_OutFrustumMaterial;
                 newCube.CalculateBoundingBox();
-                m_SphereObjects.Add(newCube);
+                m_CubeObjects.Add(newCube);
             }
+
+            m_Scene.DisplayList.Clear();
+            m_Scene.DisplayList.Register(m_Origin);
+            m_Scene.DisplayList.Register(m_FrustumRenderObject);
+            m_Scene.DisplayList.Register(m_SphereObjects);
+            m_Scene.DisplayList.Register(m_CubeObjects);
             return;
         }
 
@@ -143,49 +152,57 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 return;
             }
 
-            inParameter.ProjectionMatrix.PushMatrix();
-            try {
-                inParameter.ProjectionMatrix.LoadMatrix(m_CurrentParameterView.ProjectionMatrix);
+            m_Origin.Visible = false;
+            m_FPSCamera.ProjectionMatrix = m_CurrentParameterView.ProjectionMatrix;
+            m_FPSCamera.Render(inParameter, m_Scene);
 
-                inParameter.ModelViewMatrix.View.PushMatrix();
-                try {
-                    inParameter.ModelViewMatrix.View.LoadMatrix(m_FPSCamera.ViewMatrix);
-                    inParameter.ModelViewMatrix.Model.LoadIdentity();
+            //inParameter.ProjectionMatrix.PushMatrix();
+            //try {
+            //    inParameter.ProjectionMatrix.LoadMatrix(m_CurrentParameterView.ProjectionMatrix);
 
-                    m_Origin.Render(inParameter);
-                    m_FrustumRenderObject.Render(inParameter);
-                    m_SphereObjects.ForEach(item => item.Render(inParameter));
+            //    inParameter.ModelViewMatrix.View.PushMatrix();
+            //    try {
+            //        inParameter.ModelViewMatrix.View.LoadMatrix(m_FPSCamera.ViewMatrix);
+            //        inParameter.ModelViewMatrix.Model.LoadIdentity();
 
-                } finally {
-                    inParameter.ModelViewMatrix.View.PopMatrix();
-                }
-            } finally {
-                inParameter.ProjectionMatrix.PopMatrix();
-            }
+            //        m_Origin.Render(inParameter);
+            //        m_FrustumRenderObject.Render(inParameter);
+            //        m_SphereObjects.ForEach(item => item.Render(inParameter));
+
+            //    } finally {
+            //        inParameter.ModelViewMatrix.View.PopMatrix();
+            //    }
+            //} finally {
+            //    inParameter.ProjectionMatrix.PopMatrix();
+            //}
             return;
         }
 
-        private void GLThridPersonView_OnRenderScene(GLControl inControl, GLRenderParameter inStatus)
+        private void GLThridPersonView_OnRenderScene(GLControl inControl, GLRenderParameter inParameter)
         {
-            inStatus.ProjectionMatrix.PushMatrix();
-            try {
-                inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLThrirdPersonView.Width / (float)GLThrirdPersonView.Height, 0.01f, 1000.0f));
+            m_Origin.Visible = true;
+            m_TPSCamera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLThrirdPersonView.Width / (float)GLThrirdPersonView.Height, 0.01f, 1000.0f);
+            m_TPSCamera.Render(inParameter, m_Scene);
+            
+            //inStatus.ProjectionMatrix.PushMatrix();
+            //try {
+            //    inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLThrirdPersonView.Width / (float)GLThrirdPersonView.Height, 0.01f, 1000.0f));
 
-                inStatus.ModelViewMatrix.View.PushMatrix();
-                try {
-                    inStatus.ModelViewMatrix.View.LoadMatrix(m_TPSCamera.ViewMatrix);
-                    inStatus.ModelViewMatrix.Model.LoadIdentity();
+            //    inStatus.ModelViewMatrix.View.PushMatrix();
+            //    try {
+            //        inStatus.ModelViewMatrix.View.LoadMatrix(m_TPSCamera.ViewMatrix);
+            //        inStatus.ModelViewMatrix.Model.LoadIdentity();
 
-                    m_Origin.Render(inStatus);
-                    m_FrustumRenderObject.Render(inStatus);
-                    m_SphereObjects.ForEach(item => item.Render(inStatus));
+            //        m_Origin.Render(inStatus);
+            //        m_FrustumRenderObject.Render(inStatus);
+            //        m_SphereObjects.ForEach(item => item.Render(inStatus));
                     
-                } finally {
-                    inStatus.ModelViewMatrix.View.PopMatrix();
-                }
-            } finally {
-                inStatus.ProjectionMatrix.PopMatrix();
-            }
+            //    } finally {
+            //        inStatus.ModelViewMatrix.View.PopMatrix();
+            //    }
+            //} finally {
+            //    inStatus.ProjectionMatrix.PopMatrix();
+            //}
             return;
         }
 
@@ -240,6 +257,8 @@ namespace GLTestVisualizer.TestView.FrustumTest
         }
 
         private Ctrl_ProjectionParameterView m_CurrentParameterView = null;
+
+        private GLScene m_Scene = new GLScene();
 
         private GLAxisRenderObject m_Origin = new GLAxisRenderObject();
         private GLViewFrustumRendererObject m_FrustumRenderObject = new GLViewFrustumRendererObject();
