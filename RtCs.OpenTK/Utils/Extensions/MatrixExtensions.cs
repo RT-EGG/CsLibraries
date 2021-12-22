@@ -1,4 +1,6 @@
 ﻿using RtCs.MathUtils;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RtCs.OpenGL
 {
@@ -29,6 +31,22 @@ namespace RtCs.OpenGL
                 inMat[1, 2],
                 inMat[2, 2]
             };
+
+        public static void CopyToGLArray(this Matrix3x3 inMat, float[] inDst, int inOffset)
+            => CopyToGLArray(inMat, inDst, ref inOffset);
+
+        public static void CopyToGLArray(this Matrix3x3 inMat, float[] inDst, ref int inOffset)
+        {
+            inDst[inOffset++] = inMat.m00;
+            inDst[inOffset++] = inMat.m10;
+            inDst[inOffset++] = inMat.m20;
+            inDst[inOffset++] = inMat.m01;
+            inDst[inOffset++] = inMat.m11;
+            inDst[inOffset++] = inMat.m21;
+            inDst[inOffset++] = inMat.m02;
+            inDst[inOffset++] = inMat.m12;
+            inDst[inOffset++] = inMat.m22;
+        }
 
         public static float[] ToGLFloatArray(this Matrix4x4 inMat)
             => new float[Matrix4x4.ElemCount] {
@@ -71,23 +89,26 @@ namespace RtCs.OpenGL
             };
 
         public static void CopyToGLArray(this Matrix4x4 inMat, float[] inDst, int inOffset)
+            => CopyToGLArray(inMat, inDst, ref inOffset);
+
+        public static void CopyToGLArray(this Matrix4x4 inMat, float[] inDst, ref int inOffset)
         {
-            inDst[inOffset + 0] = inMat.m00;
-            inDst[inOffset + 1] = inMat.m10;
-            inDst[inOffset + 2] = inMat.m20;
-            inDst[inOffset + 3] = inMat.m30;
-            inDst[inOffset + 4] = inMat.m01;
-            inDst[inOffset + 5] = inMat.m11;
-            inDst[inOffset + 6] = inMat.m21;
-            inDst[inOffset + 7] = inMat.m31;
-            inDst[inOffset + 8] = inMat.m02;
-            inDst[inOffset + 9] = inMat.m12;
-            inDst[inOffset + 10] = inMat.m22;
-            inDst[inOffset + 11] = inMat.m32;
-            inDst[inOffset + 12] = inMat.m03;
-            inDst[inOffset + 13] = inMat.m13;
-            inDst[inOffset + 14] = inMat.m23;
-            inDst[inOffset + 15] = inMat.m33;
+            inDst[inOffset++] = inMat.m00;
+            inDst[inOffset++] = inMat.m10;
+            inDst[inOffset++] = inMat.m20;
+            inDst[inOffset++] = inMat.m30;
+            inDst[inOffset++] = inMat.m01;
+            inDst[inOffset++] = inMat.m11;
+            inDst[inOffset++] = inMat.m21;
+            inDst[inOffset++] = inMat.m31;
+            inDst[inOffset++] = inMat.m02;
+            inDst[inOffset++] = inMat.m12;
+            inDst[inOffset++] = inMat.m22;
+            inDst[inOffset++] = inMat.m32;
+            inDst[inOffset++] = inMat.m03;
+            inDst[inOffset++] = inMat.m13;
+            inDst[inOffset++] = inMat.m23;
+            inDst[inOffset++] = inMat.m33;
         }
     }
 }
