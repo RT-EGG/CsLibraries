@@ -17,8 +17,6 @@ namespace GLTestVisualizer.TestView.Octree
         {
             base.Start();
 
-            m_Scene.DisplayList = DisplayList;
-
             m_OctreeObject.LocalPosition = m_Octree.Offset;
             m_OctreeObject.SetupForOctree(m_Octree);
 
@@ -38,6 +36,11 @@ namespace GLTestVisualizer.TestView.Octree
                 ElevationAngleDeg = 0.0f,
                 Radius = 20.0f
             };
+
+            m_Scene.DisplayList.Clear();
+            m_Scene.DisplayList.Register(m_SphereObject);
+            m_Scene.DisplayList.Register(m_SphereBoundsObject);
+            m_Scene.DisplayList.Register(m_OctreeObject);
 
             ValidationTimer.Enabled = true;
             CheckBoxAutoTime.Checked = true;
@@ -93,17 +96,6 @@ namespace GLTestVisualizer.TestView.Octree
 
         private void CheckBoxAutoTime_CheckedChanged(object sender, EventArgs e)
             => AutoTrackTimer.Enabled = CheckBoxAutoTime.Checked;
-
-        private IEnumerable<GLRenderObject> DisplayList
-        {
-            get {
-                yield return m_SphereObject;
-                yield return m_SphereBoundsObject;
-                foreach (var a in m_OctreeObject) {
-                    yield return a;
-                }
-            }
-        }
 
         private const float OctreeSize = 8.0f;
         private RtCs.MathUtils.Geometry.Octree m_Octree = new RtCs.MathUtils.Geometry.Octree(3, OctreeSize, new Vector3(-OctreeSize * 0.5f));

@@ -34,7 +34,7 @@ namespace RtCs.OpenGL
                 inParameter.ModelViewMatrix.Model.LoadIdentity();
 
                 //
-                var list = DisplayList.ToList();
+                var list = DisplayList.Items;
                 List<(GLRenderObject @object, float distance)> transparents = new List<(GLRenderObject, float)>(list.Count);
                 List<GLRenderObject> overlays = new List<GLRenderObject>(list.Count);
 
@@ -95,8 +95,8 @@ namespace RtCs.OpenGL
         /// <summary>
         /// The render objects which render in scene.
         /// </summary>
-        public IEnumerable<GLRenderObject> DisplayList
-        { get; set; } = new GLRenderObject[0];
+        public GLDisplayList DisplayList
+        { get; } = new GLDisplayList();
 
         /// <summary>
         /// The light objects in scene.

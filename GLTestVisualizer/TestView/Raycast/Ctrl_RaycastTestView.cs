@@ -105,7 +105,8 @@ namespace GLTestVisualizer.TestView.Raycast
                 m_HitPointMarkerObjects.Add(marker);
             }
 
-            m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_HitPointMarkerObjects);
+            m_Scene.DisplayList.Clear();
+            m_Scene.DisplayList.Register(m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_HitPointMarkerObjects));
 
             m_FPSCamera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
             m_FPSCamera.Render(inParameter, m_Scene);
@@ -115,10 +116,13 @@ namespace GLTestVisualizer.TestView.Raycast
         {
             m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0f, 1.0f, (float)UdRayLength.Value);
 
+            m_Scene.DisplayList.Clear();
+            m_Scene.DisplayList.Register(m_RaycastableObjects);
+            m_Scene.DisplayList.Register(m_HitPointMarkerObjects);
+            m_Scene.DisplayList.Register(m_FPSCameraVisualizer);
+            m_Scene.DisplayList.Register(m_FPSCameraRayVisualizer);
             if (CheckShowOctreeGrid.Checked) {
-                m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_OctreeRenderObject).Concat(m_FPSCameraVisualizer, m_FPSCameraRayVisualizer).Concat(m_HitPointMarkerObjects); ;
-            } else {
-                m_Scene.DisplayList = m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_FPSCameraVisualizer, m_FPSCameraRayVisualizer).Concat(m_HitPointMarkerObjects); ;
+                m_Scene.DisplayList.Register(m_OctreeRenderObject);
             }
 
             m_TPSCamera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);

@@ -77,7 +77,8 @@ namespace GLTestVisualizer.TestView.Texture
             status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(inControl.Width, inControl.Height, -10.0f, 10.0f));
             status.ModelViewMatrix.View.LoadIdentity();
 
-            m_Scene.DisplayList = DisplayList;
+            m_Scene.DisplayList.Clear();
+            m_Scene.DisplayList.Register(m_TextureObject);
             m_Scene.Render(status);
             return;
         }
@@ -166,13 +167,6 @@ namespace GLTestVisualizer.TestView.Texture
 
             GLView.Invalidate();
             return;
-        }
-
-        private IEnumerable<GLRenderObject> DisplayList
-        {
-            get {
-                yield return m_TextureObject;
-            }
         }
 
         private GLScene m_Scene = new GLScene();

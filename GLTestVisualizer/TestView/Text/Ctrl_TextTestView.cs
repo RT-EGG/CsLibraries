@@ -97,6 +97,7 @@ namespace GLTestVisualizer.TestView.Text
             Queue<CharacterRenderObject> savedRenderObjects = new Queue<CharacterRenderObject>(m_Characters);
             Vector2 position = new Vector2();
 
+            m_Scene.DisplayList.Clear();
             m_Characters.Clear();
             int index = 0;
             while (index < inText.Length) {
@@ -119,6 +120,7 @@ namespace GLTestVisualizer.TestView.Text
                     newObject = savedRenderObjects.Dequeue();
                 }
                 m_Characters.Add(newObject);
+                m_Scene.DisplayList.Register(newObject);
 
                 char character = inText[index++];
                 if (!m_CurrentAtlases.TryGetAtlasFor(character, out var atlas)) {
@@ -145,9 +147,6 @@ namespace GLTestVisualizer.TestView.Text
             return;
         }
 
-        private IEnumerable<GLRenderObject> DisplayList
-            => m_Characters;
-
         private void ButtonFont_Click(object sender, EventArgs e)
         {
             if (FontDialog.ShowDialog() == DialogResult.OK) {
@@ -165,7 +164,6 @@ namespace GLTestVisualizer.TestView.Text
             status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(0.0f, inControl.Width, -inControl.Height, 0.0f, -10.0f, 10.0f));
             status.ModelViewMatrix.View.LoadIdentity();
 
-            m_Scene.DisplayList = DisplayList;
             m_Scene.Render(status);
             return;
         }
