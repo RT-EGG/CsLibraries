@@ -105,6 +105,34 @@ namespace RtCs.OpenGL.Properties {
         }
         
         /// <summary>
+        ///   layout (std140) uniform BuiltInMatrix4 {
+        ///	mat4 Matrix;
+        ///} BuiltIn_Model, BuiltIn_View, BuiltIn_Projection, BuiltIn_ModelView, BuiltIn_ViewProjection, BuiltIn_ModelViewProjection;
+        ///
+        ///layout (std140) uniform BuiltInMatrix3 {
+        ///	mat3 Matrix;
+        ///} BuiltIn_Normal;
+        ///
+        ///mat4 ModelMatrix;
+        ///mat4 ViewMatrix;
+        ///mat4 ProjectionMatrix;
+        ///mat4 ModelViewMatrix;
+        ///mat4 ViewProjectionMatrix;
+        ///mat4 ModelViewProjectionMatrix;
+        ///mat3 NormalMatrix;
+        ///
+        ///void ReadBuiltInVariables()
+        ///{
+        ///	ModelMatrix = BuiltIn_Model.Matrix;
+        ///	ViewMatrix =  [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ShaderBuiltInSource_h {
+            get {
+                return ResourceManager.GetString("ShaderBuiltInSource.h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   #version 460
         ///
         ///out vec4 outColor;
@@ -114,9 +142,10 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///void main()
         ///{
-        ///    outColor = texture2D(texture, inTexCoord);
+        ///    outColor = texture(inTexture, inTexCoord);
         ///    return;
-        ///} に類似しているローカライズされた文字列を検索します。
+        ///}
+        /// に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Texture_fragment_glsl {
             get {
@@ -141,7 +170,7 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///void main()
         ///{
-        ///    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);	
+        ///    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);
         ///    outTexCoord = inTexCoord;
         ///    return;
         ///} に類似しているローカライズされた文字列を検索します。

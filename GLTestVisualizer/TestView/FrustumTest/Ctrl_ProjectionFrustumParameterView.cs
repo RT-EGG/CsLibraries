@@ -1,4 +1,5 @@
 ﻿using RtCs.MathUtils;
+using RtCs.OpenGL;
 using System;
 using System.Windows.Forms;
 
@@ -42,14 +43,19 @@ namespace GLTestVisualizer.TestView.FrustumTest
             return;
         }
 
-        public override Matrix4x4 ProjectionMatrix
-            => Matrix4x4.MakePerspective(
-                (float)(UdOffsetX.Value - (UdSizeX.Value * 0.5m)),
-                (float)(UdOffsetX.Value + (UdSizeX.Value * 0.5m)),
-                (float)(UdOffsetY.Value - (UdSizeY.Value * 0.5m)),
-                (float)(UdOffsetY.Value + (UdSizeY.Value * 0.5m)),
-                (float)UdDepthMin.Value,
-                (float)(UdDepthMin.Value + UdDepthLength.Value)
-            );
+        public override GLProjection Projection
+        {
+            get {
+                m_Projection.Left = (float)(UdOffsetX.Value - (UdSizeX.Value * 0.5m));
+                m_Projection.Right = (float)(UdOffsetX.Value + (UdSizeX.Value * 0.5m));
+                m_Projection.Bottom = (float)(UdOffsetY.Value - (UdSizeY.Value * 0.5m));
+                m_Projection.Top = (float)(UdOffsetY.Value + (UdSizeY.Value * 0.5m));
+                m_Projection.Near = (float)UdDepthMin.Value;
+                m_Projection.Far = (float)(UdDepthMin.Value + UdDepthLength.Value);
+                return m_Projection;
+            }
+        }
+
+        private GLPerspectiveProjection m_Projection = new GLPerspectiveProjection();
     }
 }

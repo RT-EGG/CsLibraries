@@ -15,7 +15,7 @@ namespace RtCs.OpenGL
         Lines
     }
 
-    static class EGLMeshTopologyExtensions
+    public static class EGLMeshTopologyExtensions
     {
         public static PrimitiveType ToPrimitiveType(this EGLMeshTopology inValue)
         {
@@ -278,9 +278,25 @@ namespace RtCs.OpenGL
             }
         }
 
-        internal GLBufferObject VertexBuffer
+        internal void BindAttributes(IEnumerable<GLVertexAttributePointer> inAttributes)
+        {
+            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBuffer);
+            foreach (var attribPointer in inAttributes) {
+                var attrib = VertexAttributes[attribPointer.AttributeType];
+                if (attrib == null) {
+                    continue;
+                }
+                GL.EnableVertexAttribArray(attribPointer.Index);
+                GL.VertexAttribPointer(attribPointer.Index, attrib.Size, VertexAttribPointerType.Float, false, attrib.Stride, attrib.Offset);
+            }
+
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, IndexBuffer);
+            return;
+        }
+
+        public GLBufferObject VertexBuffer
         { get; } = new GLBufferObject();
-        internal GLBufferObject IndexBuffer
+        public GLBufferObject IndexBuffer
         { get; } = new GLBufferObject();
 
         public GLVertexAttributeList VertexAttributes

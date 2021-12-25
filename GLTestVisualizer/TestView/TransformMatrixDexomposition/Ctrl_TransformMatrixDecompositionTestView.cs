@@ -10,6 +10,20 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         public Ctrl_TransformMatrixDecompositionTestView()
         {
             InitializeComponent();
+            return;
+        }
+
+        public override string SceneName => "Transform Matrix Decomposition";
+
+        public override void Start()
+        {
+            base.Start();
+
+            ComboRotationOrder.Items.Clear();
+            foreach (EEulerRotationOrder order in Enum.GetValues(typeof(EEulerRotationOrder))) {
+                ComboRotationOrder.Items.Add(order);
+            }
+            ComboRotationOrder.SelectedIndex = 0;
 
             Vector4[] vertColors = new Vector4[m_Cube.Vertices.Length];
             for (int i = 0; i < m_Cube.Vertices.Length; ++i) {
@@ -33,26 +47,27 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             m_MatrixInputView.Renderer.Mesh = m_Cube;
             m_MatrixInputView.Renderer.Material = m_Material;
             m_MatrixInputView.Transform.LocalPosition = new Vector3(-1.0f, 0.0f, 0.0f);
+            m_MatrixInputView.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
             m_MatrixOutputView.Renderer.Mesh = m_Cube;
             m_MatrixOutputView.Renderer.Material = m_Material;
             m_MatrixOutputView.Transform.LocalPosition = new Vector3(1.0f, 0.0f, 0.0f);
+            m_MatrixOutputView.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
 
             m_MatrixInputAxisView.Transform.Parent = m_MatrixInputView.Transform;
+            m_MatrixInputAxisView.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
             m_MatrixOutputAxisView.Transform.Parent = m_MatrixOutputView.Transform;
-            return;
-        }
+            m_MatrixOutputAxisView.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
 
-        public override string SceneName => "Transform Matrix Decomposition";
+            m_Projection.Near = 0.01f;
+            m_Projection.Far = 100.0f;
+            m_Camera.Projection = m_Projection;
+            m_Camera.Transform.LocalPosition = new Vector3(0.0f, 2.0f, 2.0f);
+            m_Camera.Transform.LocalRotation = Quaternion.FromEuler((-45.0f).DegToRad(), 0.0f, 0.0f, EEulerRotationOrder.YXZ);
 
-        public override void Start()
-        {
-            base.Start();
-
-            ComboRotationOrder.Items.Clear();
-            foreach (EEulerRotationOrder order in Enum.GetValues(typeof(EEulerRotationOrder))) {
-                ComboRotationOrder.Items.Add(order);
-            }
-            ComboRotationOrder.SelectedIndex = 0;
+            m_Scene.DisplayList.Register(m_MatrixInputView);
+            m_Scene.DisplayList.Register(m_MatrixInputAxisView);
+            m_Scene.DisplayList.Register(m_MatrixOutputView);
+            m_Scene.DisplayList.Register(m_MatrixOutputAxisView);
             return;
         }
 
@@ -111,32 +126,8 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
         private void GLViewr_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderParameter inParameter)
         {
-            inParameter.ProjectionMatrix.PushMatrix();
-            try {
-                inParameter.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
-
-                inParameter.ModelViewMatrix.View.PushMatrix();
-                inParameter.ModelViewMatrix.Model.PushMatrix();
-                try {
-                    inParameter.ModelViewMatrix.View.LookAt(new Vector3(0.0f, 2.0f, 2.0f), new Vector3(0.0f), new Vector3(0.0f, 1.0f, 0.0f));
-                    inParameter.ModelViewMatrix.Model.LoadIdentity();
-
-                    GL.Enable(EnableCap.DepthTest);
-                    GL.Enable(EnableCap.CullFace);
-                    GL.LineWidth(1.0f);
-
-                    m_MatrixInputAxisView.Render(inParameter);
-                    m_MatrixInputView.Render(inParameter);
-                    m_MatrixOutputAxisView.Render(inParameter);
-                    m_MatrixOutputView.Render(inParameter);
-
-                } finally {
-                    inParameter.ModelViewMatrix.Model.PopMatrix();
-                    inParameter.ModelViewMatrix.View.PopMatrix();
-                }
-            } finally {
-                inParameter.ProjectionMatrix.PopMatrix();
-            }
+            m_Projection.SetAngleAndViewportSize(60.0f, inControl.Width, inControl.Height);
+            m_Scene.Render(m_Camera);
             return;
         }
 
@@ -160,5 +151,9 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
         private GLRenderObject m_MatrixOutputView = new GLRenderObject();
         private GLAxisRenderObject m_MatrixOutputAxisView = new GLAxisRenderObject();
         private Transform m_DummyTransform = new Transform();
+
+        private GLScene m_Scene = new GLScene();
+        private GLPerspectiveProjection m_Projection = new GLPerspectiveProjection();
+        private GLCamera m_Camera = new GLCamera();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RtCs.MathUtils;
+using RtCs.OpenGL;
 using System;
 using System.Windows.Forms;
 
@@ -28,7 +29,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
         protected virtual void AutoAspectReference_Resize(object sender, EventArgs e)
         { }
 
-        public virtual Matrix4x4 ProjectionMatrix => Matrix4x4.Identity;
+        public virtual GLProjection Projection => null;
 
         protected Control AutoAspectReference
         { get; private set; } = null;

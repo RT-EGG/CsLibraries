@@ -54,6 +54,10 @@ namespace GLTestVisualizer.TestView.Text
             m_AtlasTextureMaterial.TextureReference.Sampler = m_TextureSampler;
             m_AtlasTextureObject.Renderer.Material = m_AtlasTextureMaterial;
             m_AtlasTextureObject.Renderer.Mesh = m_AtlasMesh;
+
+            m_Projection.Near = -10.0f;
+            m_Projection.Far = 10.0f;
+            m_Camera.Projection = m_Projection;
         }
 
         public override void Exit()
@@ -116,6 +120,7 @@ namespace GLTestVisualizer.TestView.Text
                 CharacterRenderObject newObject;
                 if (savedRenderObjects.IsEmpty()) {
                     newObject = new CharacterRenderObject(m_TextureSampler);
+                    newObject.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
                 } else {
                     newObject = savedRenderObjects.Dequeue();
                 }
@@ -159,12 +164,11 @@ namespace GLTestVisualizer.TestView.Text
 
         private void GLView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
         {
-            GLRenderParameter status = new GLRenderParameter();
-            status.Viewport.SetRect(inControl.ClientRectangle);
-            status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(0.0f, inControl.Width, -inControl.Height, 0.0f, -10.0f, 10.0f));
-            status.ModelViewMatrix.View.LoadIdentity();
-
-            m_Scene.Render(status);
+            m_Projection.Left = 0.0f;
+            m_Projection.Right = inControl.Width;
+            m_Projection.Top = 0.0f;
+            m_Projection.Bottom = -inControl.Height;
+            m_Scene.Render(m_Camera);
             return;
         }
 
@@ -186,6 +190,8 @@ namespace GLTestVisualizer.TestView.Text
         private Dictionary<FontInitializer, CharacterImageAtlasses> m_Atlasses = new Dictionary<FontInitializer, CharacterImageAtlasses>();
         private CharacterImageAtlasses m_CurrentAtlases = null;
 
+        private GLOrthoProjection m_Projection = new GLOrthoProjection();
+        private GLCamera m_Camera = new GLCamera();
         private GLScene m_Scene = new GLScene();
         private Transform m_TextOrigin = new Transform();
         private List<CharacterRenderObject> m_Characters = new List<CharacterRenderObject>();

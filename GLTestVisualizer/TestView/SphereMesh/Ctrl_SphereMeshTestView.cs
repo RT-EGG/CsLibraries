@@ -21,19 +21,38 @@ namespace GLTestVisualizer.TestView.SphereMesh
             m_UvSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_UvSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereUV(5, 5);
             m_UvSphere.Renderer.Material = new GLSphereMaterial();
+            m_UvSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
             m_UvAxix.Transform.Parent = m_UvSphere.Transform;
+            m_UvAxix.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
 
             m_IcoSphere.Transform.LocalPosition = new Vector3(0.0f, 0.0f, 0.0f);
             m_IcoSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_IcoSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereICO(0);
             m_IcoSphere.Renderer.Material = new GLSphereMaterial();
+            m_IcoSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
             m_IcoAxis.Transform.Parent = m_IcoSphere.Transform;
+            m_IcoAxis.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
 
             m_RcSphere.Transform.LocalPosition = new Vector3(2.5f, 0.0f, 0.0f);
             m_RcSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_RcSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereRoundedCube(2);
             m_RcSphere.Renderer.Material = new GLSphereMaterial();
+            m_RcSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
             m_RcAxis.Transform.Parent = m_RcSphere.Transform;
+            m_RcAxis.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
+
+            m_Scene.DisplayList.Register(m_UvSphere);
+            m_Scene.DisplayList.Register(m_UvAxix);
+            m_Scene.DisplayList.Register(m_IcoSphere);
+            m_Scene.DisplayList.Register(m_IcoAxis);
+            m_Scene.DisplayList.Register(m_RcSphere);
+            m_Scene.DisplayList.Register(m_RcAxis);
+
+            m_Projection.Near = 0.01f;
+            m_Projection.Far = 100.0f;
+            m_Camera.Projection = m_Projection;
+            m_Camera.Transform.LocalPosition = new Vector3(0.0f, 4.0f, 4.0f);
+            m_Camera.Transform.LocalRotation = Quaternion.FromEuler((-45.0f).DegToRad(), 0.0f, 0.0f, EEulerRotationOrder.YXZ);
             return;
         }
 
@@ -49,36 +68,8 @@ namespace GLTestVisualizer.TestView.SphereMesh
 
         private void GLViewer_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
         {
-            inParameter.ProjectionMatrix.PushMatrix();
-            try {
-                inParameter.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLViewer.Width / (float)GLViewer.Height, 0.01f, 100.0f));
-
-                inParameter.ModelViewMatrix.View.PushMatrix();
-                inParameter.ModelViewMatrix.Model.PushMatrix();
-                try {
-                    inParameter.ModelViewMatrix.View.LookAt(new Vector3(0.0f, 1.0f, 4.0f), new Vector3(0.0f), new Vector3(0.0f, 1.0f, 0.0f));
-                    inParameter.ModelViewMatrix.Model.LoadIdentity();
-
-                    GL.Enable(EnableCap.DepthTest);
-                    GL.Enable(EnableCap.CullFace);
-                    GL.LineWidth(1.0f);
-
-                    m_UvAxix.Render(inParameter);
-                    m_UvSphere.Render(inParameter);
-
-                    m_IcoAxis.Render(inParameter);
-                    m_IcoSphere.Render(inParameter);
-
-                    m_RcAxis.Render(inParameter);
-                    m_RcSphere.Render(inParameter);
-
-                } finally {
-                    inParameter.ModelViewMatrix.Model.PopMatrix();
-                    inParameter.ModelViewMatrix.View.PopMatrix();
-                }
-            } finally {
-                inParameter.ProjectionMatrix.PopMatrix();
-            }
+            m_Projection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Scene.Render(m_Camera);
             return;
         }
 
@@ -113,5 +104,9 @@ namespace GLTestVisualizer.TestView.SphereMesh
 
         private GLRenderObject m_RcSphere = new GLRenderObject();
         private GLAxisRenderObject m_RcAxis = new GLAxisRenderObject();
+
+        private GLScene m_Scene = new GLScene();
+        private GLPerspectiveProjection m_Projection = new GLPerspectiveProjection();
+        private GLCamera m_Camera = new GLCamera();
     }
 }

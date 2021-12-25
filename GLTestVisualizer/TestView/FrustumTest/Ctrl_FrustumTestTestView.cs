@@ -20,8 +20,6 @@ namespace GLTestVisualizer.TestView.FrustumTest
         public Ctrl_FrustumTestTestView()
         {
             InitializeComponent();
-            RandomizeSpheres();
-
             return;
         }
 
@@ -55,8 +53,12 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 ElevationAngleDeg = -15.0f,
                 Radius = 50.0f
             };
+            m_TPSProjection.Near = 0.01f;
+            m_TPSProjection.Far = 1000.0f;
+            m_TPSCamera.Projection = m_TPSProjection;
 
             timer1.Enabled = true;
+            RandomizeSpheres();
             return;
         }
 
@@ -127,7 +129,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 return;
             }
 
-            GLViewFrustum frustum = new GLViewFrustum(m_FPSCamera.Transform.WorldMatrix.Inversed, m_CurrentParameterView.ProjectionMatrix);
+            GLViewFrustum frustum = new GLViewFrustum(m_FPSCamera.ViewMatrix, m_CurrentParameterView.Projection.ProjectionMatrix);
             foreach (var sphere in m_SphereObjects) {
                 Vector3 p = new Vector3(sphere.Transform.WorldMatrix.Multiply(new Vector4(0.0f, 0.0f, 0.0f, 1.0f)));
                 if (frustum.IsIntersectSphere(p, 1.0f)) {
@@ -153,56 +155,16 @@ namespace GLTestVisualizer.TestView.FrustumTest
             }
 
             m_Origin.Visible = false;
-            m_FPSCamera.ProjectionMatrix = m_CurrentParameterView.ProjectionMatrix;
-            m_FPSCamera.Render(inParameter, m_Scene);
-
-            //inParameter.ProjectionMatrix.PushMatrix();
-            //try {
-            //    inParameter.ProjectionMatrix.LoadMatrix(m_CurrentParameterView.ProjectionMatrix);
-
-            //    inParameter.ModelViewMatrix.View.PushMatrix();
-            //    try {
-            //        inParameter.ModelViewMatrix.View.LoadMatrix(m_FPSCamera.ViewMatrix);
-            //        inParameter.ModelViewMatrix.Model.LoadIdentity();
-
-            //        m_Origin.Render(inParameter);
-            //        m_FrustumRenderObject.Render(inParameter);
-            //        m_SphereObjects.ForEach(item => item.Render(inParameter));
-
-            //    } finally {
-            //        inParameter.ModelViewMatrix.View.PopMatrix();
-            //    }
-            //} finally {
-            //    inParameter.ProjectionMatrix.PopMatrix();
-            //}
+            m_FPSCamera.Projection = m_CurrentParameterView.Projection;
+            m_Scene.Render(m_FPSCamera);
             return;
         }
 
         private void GLThridPersonView_OnRenderScene(GLControl inControl, GLRenderParameter inParameter)
         {
             m_Origin.Visible = true;
-            m_TPSCamera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLThrirdPersonView.Width / (float)GLThrirdPersonView.Height, 0.01f, 1000.0f);
-            m_TPSCamera.Render(inParameter, m_Scene);
-            
-            //inStatus.ProjectionMatrix.PushMatrix();
-            //try {
-            //    inStatus.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLThrirdPersonView.Width / (float)GLThrirdPersonView.Height, 0.01f, 1000.0f));
-
-            //    inStatus.ModelViewMatrix.View.PushMatrix();
-            //    try {
-            //        inStatus.ModelViewMatrix.View.LoadMatrix(m_TPSCamera.ViewMatrix);
-            //        inStatus.ModelViewMatrix.Model.LoadIdentity();
-
-            //        m_Origin.Render(inStatus);
-            //        m_FrustumRenderObject.Render(inStatus);
-            //        m_SphereObjects.ForEach(item => item.Render(inStatus));
-                    
-            //    } finally {
-            //        inStatus.ModelViewMatrix.View.PopMatrix();
-            //    }
-            //} finally {
-            //    inStatus.ProjectionMatrix.PopMatrix();
-            //}
+            m_TPSProjection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Scene.Render(m_TPSCamera);
             return;
         }
 
@@ -238,7 +200,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (m_CurrentParameterView != null) {
-                m_FrustumRenderObject.ProjectionMatrix = m_CurrentParameterView.ProjectionMatrix;
+                m_FrustumRenderObject.ProjectionMatrix = m_CurrentParameterView.Projection.ProjectionMatrix;
             }
 
             CheckInFrustum();
@@ -264,6 +226,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
         private GLViewFrustumRendererObject m_FrustumRenderObject = new GLViewFrustumRendererObject();
         private RotationCameraModel m_FPSCamera = new RotationCameraModel();
         private RotationCameraMouseController m_FPSCameraController = null;
+        private GLPerspectiveProjection m_TPSProjection = new GLPerspectiveProjection();
         private OrbitCameraModel m_TPSCamera = new OrbitCameraModel();
         private OrbitCameraMouseController m_TPSCameraController = null;
 

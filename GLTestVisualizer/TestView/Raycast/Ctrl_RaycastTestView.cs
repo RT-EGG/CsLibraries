@@ -16,6 +16,12 @@ namespace GLTestVisualizer.TestView.Raycast
         public Ctrl_RaycastTestView()
         {
             InitializeComponent();
+            return;
+        }
+
+        public override void Start()
+        {
+            base.Start();
 
             m_OctreeRenderObject.SetupForOctree(m_Octree);
             m_OctreeRenderObject.LocalPosition = new Vector3(m_Octree.Offset);
@@ -28,10 +34,17 @@ namespace GLTestVisualizer.TestView.Raycast
                 ElevationAngleDeg = -15.0f,
                 Radius = 50.0f
             };
+            m_TPSProjection.Near = 0.01f;
+            m_TPSProjection.Far = 1000.0f;
+            m_TPSCamera.Projection = m_TPSProjection;
 
             m_FPSCameraController = new FreeFlyCameraKeyMouseController(GLFPSView);
             m_FPSCameraController.Camera = m_FPSCamera;
             m_FPSCameraController.TransferPerFrame = 3.0f * (InvalidateTimer.Interval * 0.001f);
+            m_FPSProjection.Near = 0.01f;
+            m_FPSProjection.Far = 1000.0f;
+            m_FPSCamera.Projection = m_FPSProjection;
+
             m_FPSCameraVisualizer.Transform.Parent = m_FPSCamera.Transform;
             m_FPSCameraVisualizer.Renderer.Mesh = m_SphereMesh;
             m_FPSCameraVisualizer.Renderer.Material = new GLColorMaterial {
@@ -43,12 +56,6 @@ namespace GLTestVisualizer.TestView.Raycast
             m_FPSCameraRayVisualizer.Renderer.Material = new GLColorMaterial {
                 Color = new Vector3(1.0f, 1.0f, 1.0f)
             };
-            return;
-        }
-
-        public override void Start()
-        {
-            base.Start();
 
             RandomizeObjects();
             InvalidateTimer.Enabled = true;
@@ -108,8 +115,8 @@ namespace GLTestVisualizer.TestView.Raycast
             m_Scene.DisplayList.Clear();
             m_Scene.DisplayList.Register(m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_HitPointMarkerObjects));
 
-            m_FPSCamera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
-            m_FPSCamera.Render(inParameter, m_Scene);
+            m_FPSProjection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Scene.Render(m_FPSCamera);
         }
 
         private void GLTPSView_OnRenderScene(GLControl inControl, GLRenderParameter inStatus)
@@ -125,8 +132,8 @@ namespace GLTestVisualizer.TestView.Raycast
                 m_Scene.DisplayList.Register(m_OctreeRenderObject);
             }
 
-            m_TPSCamera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)GLTPSView.Width / (float)GLTPSView.Height, 0.01f, 1000.0f);
-            m_TPSCamera.Render(inStatus, m_Scene);
+            m_TPSProjection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Scene.Render(m_TPSCamera);
             return;
         }
 
@@ -205,8 +212,10 @@ namespace GLTestVisualizer.TestView.Raycast
         private Queue<GLRenderObject> m_RenderObjectPool = new Queue<GLRenderObject>();
 
         private GLScene m_Scene = new GLScene();
+        private GLPerspectiveProjection m_TPSProjection = new GLPerspectiveProjection();
         private OrbitCameraModel m_TPSCamera = new OrbitCameraModel();
         private OrbitCameraMouseController m_TPSCameraController = null;
+        private GLPerspectiveProjection m_FPSProjection = new GLPerspectiveProjection();
         private FreeFlyCameraModel m_FPSCamera = new FreeFlyCameraModel();
         private FreeFlyCameraKeyMouseController m_FPSCameraController = null;
         private GLRenderObject m_FPSCameraVisualizer = new GLRenderObject();

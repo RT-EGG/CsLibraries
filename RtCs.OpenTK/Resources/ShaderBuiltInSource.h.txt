@@ -1,0 +1,36 @@
+layout (std140) uniform BuiltIn_ViewProjectionMatrix {
+	mat4 ViewMatrix;
+	mat4 ProjectionMatrix;
+	mat4 ViewProjectionMatrix;
+};
+
+layout (std430) readonly buffer BuiltIn_ModelMatrix {
+	mat4 ModelMatrices[];
+};
+
+layout (std430) readonly buffer BuiltIn_ModelViewMatrix {
+	mat4 ModelViewMatrices[];
+};
+
+layout (std430) readonly buffer BuiltIn_ModelViewProjectionMatrix {
+	mat4 ModelViewProjectionMatrices[];
+};
+
+layout (std430) readonly buffer BuiltIn_NormalMatrix {
+	mat3 NormalMatrices[];
+};
+
+uniform int RenderInstanceID;
+
+mat4 ModelMatrix;
+mat4 ModelViewMatrix;
+mat4 ModelViewProjectionMatrix;
+mat3 NormalMatrix;
+
+void ExpandBuiltInVariables()
+{
+	ModelMatrix = ModelMatrices[RenderInstanceID];
+	ModelViewMatrix = ModelViewMatrices[RenderInstanceID];
+	ModelViewProjectionMatrix = ModelViewProjectionMatrices[RenderInstanceID];
+	NormalMatrix = NormalMatrices[RenderInstanceID];
+}

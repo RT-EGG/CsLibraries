@@ -11,13 +11,11 @@ namespace GLTestVisualizer.TestView.Octree
             return;
         }
 
-        protected override void CommitPropertiesCore(GLRenderParameter inParameter)
+        protected override void CommitPropertiesCore()
         {
             GetProperty<Vector4>("inColor").Value = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
-            GetProperty<Matrix4x4>("inProjectionMatrix").Value = inParameter.ProjectionMatrix.CurrentMatrix;
-            GetProperty<Matrix4x4>("inModelviewMatrix").Value = inParameter.ModelViewMatrix.CurrentMatrix;
 
-            base.CommitPropertiesCore(inParameter);
+            base.CommitPropertiesCore();
             return;
         }
 

@@ -35,15 +35,6 @@ namespace GLTestVisualizer.TestView
                 return;
             }
 
-            protected override void CommitPropertiesCore(GLRenderParameter inParameter)
-            {
-                GetProperty<Matrix4x4>("inProjectionMatrix").Value = inParameter.ProjectionMatrix.CurrentMatrix;
-                GetProperty<Matrix4x4>("inModelviewMatrix").Value = inParameter.ModelViewMatrix.CurrentMatrix;
-
-                base.CommitPropertiesCore(inParameter);
-                return;
-            }
-
             private new GLRenderShaderProgram Shader => base.Shader;
         }
     }

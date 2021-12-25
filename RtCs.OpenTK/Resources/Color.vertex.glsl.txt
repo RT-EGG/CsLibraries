@@ -1,7 +1,6 @@
 #version 460
 
-layout (location = 0) uniform mat4 inProjectionMatrix;
-layout (location = 1) uniform mat4 inModelviewMatrix;
+#include "BuiltIn.h"
 
 layout (location = 0) in vec3 inPosition;
 
@@ -12,6 +11,8 @@ out gl_PerVertex
 
 void main()
 {
-    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);	
+    ExpandBuiltInVariables();
+
+    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);	
     return;
 }

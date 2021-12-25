@@ -37,6 +37,10 @@ namespace GLTestVisualizer.TestView.Octree
                 Radius = 20.0f
             };
 
+            m_Projection.Near = 0.01f;
+            m_Projection.Far = 100.0f;
+            m_Camera.Projection = m_Projection;
+
             m_Scene.DisplayList.Clear();
             m_Scene.DisplayList.Register(m_SphereObject);
             m_Scene.DisplayList.Register(m_SphereBoundsObject);
@@ -58,8 +62,8 @@ namespace GLTestVisualizer.TestView.Octree
 
         private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
         {
-            m_Camera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, (float)glView.Width / (float)glView.Height, 0.01f, 100.0f);
-            m_Camera.Render(inParameter, m_Scene);
+            m_Projection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Scene.Render(m_Camera);
             return;
         }
 
@@ -106,6 +110,7 @@ namespace GLTestVisualizer.TestView.Octree
         private GLMesh m_SphereBoundsMesh = GLPrimitiveMesh.CreateBox();
         private GLSolidColorMaterial m_SphereMaterial = new GLSolidColorMaterial();
 
+        private GLPerspectiveProjection m_Projection = new GLPerspectiveProjection();
         private OrbitCameraModel m_Camera = new OrbitCameraModel();
         private OrbitCameraMouseController m_CameraController = null;
 

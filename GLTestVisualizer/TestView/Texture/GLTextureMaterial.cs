@@ -14,13 +14,11 @@ namespace GLTestVisualizer.TestView.Texture
             return;
         }
 
-        protected override void CommitPropertiesCore(GLRenderParameter inParameter)
+        protected override void CommitPropertiesCore()
         {
             SetPropertyValue("inTexture", TextureReference);
-            SetPropertyValue("inProjectionMatrix", inParameter.ProjectionMatrix.CurrentMatrix);
-            SetPropertyValue("inModelviewMatrix", inParameter.ModelViewMatrix.CurrentMatrix);
 
-            base.CommitPropertiesCore(inParameter);
+            base.CommitPropertiesCore();
             return;
         }
 

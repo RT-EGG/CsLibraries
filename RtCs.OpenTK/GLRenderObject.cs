@@ -44,31 +44,55 @@ namespace RtCs.OpenGL
         FrontAndBack = Front | Back
     }
 
-    /// <summary>
-    /// The object to render from transform and renderer.
-    /// </summary>
-    public class GLRenderObject : GLObject, ILineIntersectable3D
+
+    public static class GLRenderFaceModeExtensions
     {
-        /// <summary>
-        /// Execute render command.
-        /// </summary>
-        /// <param name="inRednerParameter">Rendering parameter.</param>
-        public void Render(GLRenderParameter inRednerParameter)
+        public static void CullFace(this EGLRenderFaceMode inValue)
         {
-            GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)PolygonMode);
-            CullFace(RenderFaceMode);
-
-            inRednerParameter.ModelViewMatrix.Model.PushMatrix();
-            try {
-                inRednerParameter.ModelViewMatrix.Model.MultiMatrix(Transform.WorldMatrix);
-
-                Renderer.Render(inRednerParameter);
-
-            } finally {
-                inRednerParameter.ModelViewMatrix.Model.PopMatrix();
+            switch (inValue) {
+                case EGLRenderFaceMode.Back:
+                    GL.Enable(EnableCap.CullFace);
+                    GL.CullFace(CullFaceMode.Front);
+                    break;
+                case EGLRenderFaceMode.Front:
+                    GL.Enable(EnableCap.CullFace);
+                    GL.CullFace(CullFaceMode.Back);
+                    break;
+                case EGLRenderFaceMode.FrontAndBack:
+                    GL.Disable(EnableCap.CullFace);
+                    break;
+                default:
+                    throw new InvalidEnumValueException<EGLRenderFaceMode>(inValue);
             }
-            return;
         }
+    }
+    
+
+/// <summary>
+/// The object to render from transform and renderer.
+/// </summary>
+public class GLRenderObject : GLObject, ILineIntersectable3D
+    {
+        ///// <summary>
+        ///// Execute render command.
+        ///// </summary>
+        ///// <param name="inRednerParameter">Rendering parameter.</param>
+        //public void Render(GLRenderParameter inRednerParameter)
+        //{
+        //    GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)PolygonMode);
+        //    CullFace(RenderFaceMode);
+
+        //    inRednerParameter.ModelViewMatrix.Model.PushMatrix();
+        //    try {
+        //        inRednerParameter.ModelViewMatrix.Model.MultiMatrix(Transform.WorldMatrix);
+
+        //        Renderer.Render(inRednerParameter);
+
+        //    } finally {
+        //        inRednerParameter.ModelViewMatrix.Model.PopMatrix();
+        //    }
+        //    return;
+        //}
 
         /// <summary>
         /// Update BoundingBox by Renderer.Mesh.Vertices.
@@ -91,15 +115,6 @@ namespace RtCs.OpenGL
         /// </summary>
         public bool Visible
         { get; set; } = true;
-
-        // TODO
-        // safe access to GLRenderObject.RenderLevel
-        public virtual EGLRenderLevel RenderLevel
-            => Renderer.Material.RenderLevel;
-        // TODO
-        // safe access to GLRenderObject.BlendParameters
-        public virtual IGLBlendParameters BlendParameters
-            => Renderer.Material.BlendParameters;
 
         /// <summary>
         /// How to do frustum culling test.
@@ -177,5 +192,8 @@ namespace RtCs.OpenGL
         /// </summary>
         public GLRenderer Renderer
         { get; } = new GLRenderer();
+
+        internal int RenderInstanceID
+        { get; set; } = -1;
     }
 }

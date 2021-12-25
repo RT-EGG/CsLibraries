@@ -52,6 +52,14 @@ namespace RtCs.OpenGL
         public float Far
         { get; set; } = 100.0f;
 
+        public void SetSymmetrical(float inWidth, float inHeight)
+        {
+            Left = -inWidth * 0.5f;
+            Right = inWidth * 0.5f;
+            Bottom = -inHeight * 0.5f;
+            Top = inHeight * 0.5f;
+        }
+
         public override Matrix4x4 ProjectionMatrix
             => Matrix4x4.MakeOrtho(Left, Right, Bottom, Top, Near, Far);
     }

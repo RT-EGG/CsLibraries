@@ -6,15 +6,18 @@ namespace RtCs.OpenGL
 {
     public class GLTransformMatrixBuffer
     {
-        public void SetBuffers(GLCamera inCamera, ICollection<GLRenderObject> inObjects)
+        public void SetBuffers(GLCamera inCamera, IReadOnlyList<GLRenderObject> inObjects)
         {
             Matrix4x4 viewMatrix = inCamera.ViewMatrix;
             Matrix4x4 projectionMatrix = (inCamera.Projection == null) ? Matrix4x4.Identity : inCamera.Projection.ProjectionMatrix;
             Matrix4x4 viewProjectionMatrix = projectionMatrix * viewMatrix;
 
-            ViewMatrixBuffer.AllocateBuffer(BufferSize44, viewMatrix.ToGLFloatArray(), UsageHint);
-            ProjectionMatrixBuffer.AllocateBuffer(BufferSize44, projectionMatrix.ToGLFloatArray(), UsageHint);
-            ViewProjectionMatrixBuffer.AllocateBuffer(BufferSize44, viewProjectionMatrix.ToGLFloatArray(), UsageHint);
+            float[] viewProjectionMatrixBuffer = new float[16 * 3];
+            viewMatrix.CopyToGLArray(viewProjectionMatrixBuffer, 0);
+            projectionMatrix.CopyToGLArray(viewProjectionMatrixBuffer, 16);
+            viewProjectionMatrix.CopyToGLArray(viewProjectionMatrixBuffer, 32);
+
+            ViewProjectionMatrixBuffer.AllocateBuffer(sizeof(float) * viewProjectionMatrixBuffer.Length, viewProjectionMatrixBuffer, BufferUsageHint.DynamicDraw);
 
             int count44 = BufferSize44 * inObjects.Count;
             int count33 = BufferSize33 * inObjects.Count;
@@ -25,7 +28,8 @@ namespace RtCs.OpenGL
             int index44 = 0;
             int index33 = 0;
 
-            foreach (var renderObject in inObjects) {
+            for (int i = 0; i < inObjects.Count; ++i) {
+                var renderObject = inObjects[i];
                 Matrix4x4 modelMatrix = renderObject.Transform.WorldMatrix;
                 Matrix4x4 modelViewMatrix = viewMatrix * modelMatrix;
                 Matrix4x4 modelViewProjectionMatrix = projectionMatrix * modelViewMatrix;
@@ -41,6 +45,8 @@ namespace RtCs.OpenGL
                 modelViewProjectionMatrix.CopyToGLArray(modelViewProjectionMatrices, index44);
                 normalMatrix.CopyToGLArray(normalMatrices, index33);
 
+                renderObject.RenderInstanceID = i;
+
                 index44 += 16;
                 index33 += 9;
             }
@@ -52,15 +58,11 @@ namespace RtCs.OpenGL
             return;
         }
 
+        public GLBufferObject ViewProjectionMatrixBuffer
+        { get; set; } = new GLBufferObject();
         public GLBufferObject ModelMatrixBuffer
         { get; private set; } = new GLBufferObject();
-        public GLBufferObject ViewMatrixBuffer
-        { get; private set; } = new GLBufferObject();
         public GLBufferObject ModelViewMatrixBuffer
-        { get; private set; } = new GLBufferObject();
-        public GLBufferObject ProjectionMatrixBuffer
-        { get; private set; } = new GLBufferObject();
-        public GLBufferObject ViewProjectionMatrixBuffer
         { get; private set; } = new GLBufferObject();
         public GLBufferObject ModelViewProjectionMatrixBuffer
         { get; private set; } = new GLBufferObject();

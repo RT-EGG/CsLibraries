@@ -39,8 +39,10 @@ namespace RtCs.OpenGL
 
             if (Linked) {
                 m_UniformPropertySockets = CollectUniformPropertySockets(ID);
+                m_UniformBlockSockets = CollectUniformBlockSockets(ID, m_UniformPropertySockets);
             } else {
                 m_UniformPropertySockets.Clear();
+                m_UniformBlockSockets.Clear();
                 m_LinkError.AddRange(GL.GetProgramInfoLog(ID).Split('\n'));
             }
             OnAfterLinked?.Invoke(this);
@@ -55,6 +57,48 @@ namespace RtCs.OpenGL
         /// </remarks>
         public IReadOnlyList<GLShaderUniformPropertySocket> UniformPropertySockets
             => m_UniformPropertySockets;
+
+        /// <summary>
+        /// Lsit of uniform block socket in linked shader program.
+        /// </summary>
+        /// <remarks>
+        /// This will be updated when called Link().
+        /// </remarks>
+        public IReadOnlyList<GLShaderUniformBlockSocket> UniformBlockSockets
+            => m_UniformBlockSockets;
+
+        /// <summary>
+        /// Get binding-point of shader-storage-buffer-object in shader program.
+        /// </summary>
+        /// <param name="inName">The name of buffer.</param>
+        /// <returns>Returns binding-point if found by name, otherwise -1.</returns>
+        public int GetShaderStorageBufferBindPoint(string inName)
+        {
+            if (m_ShaderStorageBufferSockets.TryGetFirst(out var socket, s => s.Name == inName)) {
+                return socket.Binding;
+            }
+
+            var binding = GL.GetProgramResourceIndex(ID, ProgramInterface.ShaderStorageBlock, inName);
+            if (binding < 0) {
+                return -1;
+            }
+
+            var newSocket = new GLShaderStorageBufferSocket(inName, binding);
+            m_ShaderStorageBufferSockets.Add(newSocket);
+            return binding;
+        }
+
+        /// <summary>
+        /// Get binding-point of shader-storage-buffer-object in shader program.
+        /// </summary>
+        /// <param name="inName">The name of buffer.</param>
+        /// <param name="outBinding">The binding-point of buffer.</param>
+        /// <returns>Returns true if found by name, otherwise false.</returns>
+        public bool TryGetShaderStorageBufferBindPoint(string inName, out int outBinding)
+        {
+            outBinding = GetShaderStorageBufferBindPoint(inName);
+            return outBinding >= 0;
+        }
 
         /// <summary>
         /// Find and get property socket from UniformPropertySockets by name.
@@ -102,7 +146,29 @@ namespace RtCs.OpenGL
                 int location = GL.GetUniformLocation(inProgramID, name);
 
                 result.Add(new GLShaderUniformPropertySocket(name, location, type));
+            }           
+
+            return result;
+        }
+
+        protected static List<GLShaderUniformBlockSocket> CollectUniformBlockSockets(int inProgramID, IReadOnlyList<GLShaderUniformPropertySocket> inUniformSockets)
+        {
+            GL.GetProgram(inProgramID, GetProgramParameterName.ActiveUniformBlocks, out int count);
+            var result = new List<GLShaderUniformBlockSocket>(count);
+
+            int length;
+            for (int i = 0; i < count; ++i) {
+                GL.GetActiveUniformBlockName(inProgramID, i, 255, out length, out string name);
+                GL.GetActiveUniformBlock(inProgramID, i, ActiveUniformBlockParameter.UniformBlockBinding, out int binding);
+                GL.GetActiveUniformBlock(inProgramID, i, ActiveUniformBlockParameter.UniformBlockDataSize, out int dataSize);
+                GL.GetActiveUniformBlock(inProgramID, i, ActiveUniformBlockParameter.UniformBlockActiveUniforms, out int numUniforms);
+
+                int[] indices = new int[numUniforms];
+                GL.GetActiveUniformBlock(inProgramID, i, ActiveUniformBlockParameter.UniformBlockActiveUniformIndices, indices);
+
+                result.Add(new GLShaderUniformBlockSocket(name, binding, dataSize, inUniformSockets.ElementsAt(indices).ToArray()));
             }
+
             return result;
         }
 
@@ -127,5 +193,7 @@ namespace RtCs.OpenGL
         private List<string> m_LinkError = new List<string>();
 
         private List<GLShaderUniformPropertySocket> m_UniformPropertySockets = new List<GLShaderUniformPropertySocket>();
+        private List<GLShaderUniformBlockSocket> m_UniformBlockSockets = new List<GLShaderUniformBlockSocket>();
+        private List<GLShaderStorageBufferSocket> m_ShaderStorageBufferSockets = new List<GLShaderStorageBufferSocket>();
     }
 }

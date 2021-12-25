@@ -45,6 +45,10 @@ namespace GLTestVisualizer.TestView.AlphaBlending
             CreateNewCube(new Vector3(1.6f, 0.4f, 1.6f), new Vector3(0.9f, 0.0f, 0.9f));
             CreateNewCube(new Vector3(1.6f, 1.6f, 1.6f), new Vector3(0.9f, 0.9f, 0.9f));
 
+            m_Projection.Near = 0.01f;
+            m_Projection.Far = 100.0f;
+            m_Camera.Projection = m_Projection;
+
             m_Scene.DisplayList.Register(m_CubeObjects);
             return;
         }
@@ -59,14 +63,15 @@ namespace GLTestVisualizer.TestView.AlphaBlending
 
         private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderParameter inParameter)
         {
-            m_Camera.ProjectionMatrix = Matrix4x4.MakeSymmetricalPerspective(45.0f, inControl.Width, inControl.Height, 0.01f, 100.0f);
-            m_Camera.Render(inParameter, m_Scene);
+            m_Projection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Scene.Render(m_Camera);
             return;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
             => glView.Invalidate();
 
+        private GLPerspectiveProjection m_Projection = new GLPerspectiveProjection();
         private OrbitCameraModel m_Camera = new OrbitCameraModel();
         private OrbitCameraMouseController m_CameraController = null;
 

@@ -31,6 +31,9 @@ namespace RtCs.OpenGL
         public GLShaderUniformProperty CreateDefaultProperty()
             => CreateDefaultProperty(this);
 
+        public override string ToString()
+            => $"[{Location}] {Name} ({Type})";
+
         public static GLShaderUniformProperty CreateDefaultProperty(GLShaderUniformPropertySocket inSocket)
         {
             switch (inSocket.Type) {

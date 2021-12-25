@@ -50,6 +50,36 @@ namespace RtCs
         public static IEnumerable<T> Enumerate<T>(this int inCount, Func<int, T> inInitializer)
             => inCount.Range().Select(i => inInitializer(i));
 
+        public static bool TryGetFirst<T>(this IEnumerable<T> inItems, out T outValue, Predicate<T> inComparer)
+        {
+            outValue = default;
+            foreach (var item in inItems) {
+                if (inComparer(item)) {
+                    outValue = item;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static IEnumerable<T> ElementsAt<T>(this IReadOnlyList<T> inItems, IEnumerable<int> inIndices)
+        {
+            foreach (var index in inIndices) {
+                yield return inItems[index];
+            }
+            yield break;
+        }
+
+        public static IEnumerable<T> ElementsAt<T>(this IReadOnlyList<T> inItems, ICollection<int> inIndices)
+        {
+            T[] result = new T[inIndices.Count];
+            int i = 0;
+            foreach (var index in inIndices) {
+                result[i++] = inItems[index];
+            }
+            return result;
+        }
+
         public static bool IsEmpty(this IEnumerable inItems)
         {
             foreach (var _ in inItems) {

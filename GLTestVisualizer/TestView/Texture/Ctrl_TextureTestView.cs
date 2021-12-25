@@ -67,19 +67,20 @@ namespace GLTestVisualizer.TestView.Texture
             UpDownBorderG.ValueChanged += UpDownBorderColor_ValueChanged;
             UpDownBorderB.ValueChanged += UpDownBorderColor_ValueChanged;
             UpDownBorderA.ValueChanged += UpDownBorderColor_ValueChanged;
+
+            m_Projection.Near = -10.0f;
+            m_Projection.Far = 10.0f;
+            m_Camera.Projection = m_Projection;
             return;
         }
 
         private void GLView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderParameter inParameter)
         {
-            GLRenderParameter status = new GLRenderParameter();
-            status.Viewport.SetRect(inControl.ClientRectangle);
-            status.ProjectionMatrix.LoadMatrix(Matrix4x4.MakeOrtho(inControl.Width, inControl.Height, -10.0f, 10.0f));
-            status.ModelViewMatrix.View.LoadIdentity();
+            m_Projection.SetSymmetrical(inControl.Width, inControl.Height);
 
             m_Scene.DisplayList.Clear();
             m_Scene.DisplayList.Register(m_TextureObject);
-            m_Scene.Render(status);
+            m_Scene.Render(m_Camera);
             return;
         }
 
@@ -169,6 +170,8 @@ namespace GLTestVisualizer.TestView.Texture
             return;
         }
 
+        private GLOrthoProjection m_Projection = new GLOrthoProjection();
+        private GLCamera m_Camera = new GLCamera();
         private GLScene m_Scene = new GLScene();
         private GLRenderObject m_TextureObject = new GLRenderObject();
         private GLMesh m_TextureMesh = new GLMesh();

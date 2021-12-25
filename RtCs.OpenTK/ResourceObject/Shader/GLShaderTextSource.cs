@@ -76,7 +76,7 @@ namespace RtCs.OpenGL
         }
 
         internal override void LoadSource(int inShaderID)
-            => GL.ShaderSource(inShaderID, Text);
+            => GL.ShaderSource(inShaderID, GLShaderBuiltInVariable.IncludeBuiltIn(Text));
 
         /// <summary>
         /// Raw text of shader source.
