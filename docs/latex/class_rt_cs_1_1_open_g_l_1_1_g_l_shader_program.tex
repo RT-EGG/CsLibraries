@@ -20,15 +20,21 @@ void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a0297631e4
 \begin{DoxyCompactList}\small\item\em Detach shader unit. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a79ab80d7c93dfcfb650696e57d158631}{Link}} ()
 \begin{DoxyCompactList}\small\item\em Link shader program using attached shader units. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property_socket}{G\+L\+Shader\+Uniform\+Property\+Socket}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a7187d76557aff4aa09fddd8cd0c9ecb4}{Get\+Property\+Socket}} (string in\+Name)
+int \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a0714f99b3f62fcd84ce8900feb8d4441}{Get\+Shader\+Storage\+Buffer\+Bind\+Point}} (string in\+Name)
+\begin{DoxyCompactList}\small\item\em Get binding-\/point of shader-\/storage-\/buffer-\/object in shader program. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ab91c21fc54f6d63844b33334debd9e31}{Try\+Get\+Shader\+Storage\+Buffer\+Bind\+Point}} (string in\+Name, out int out\+Binding)
+\begin{DoxyCompactList}\small\item\em Get binding-\/point of shader-\/storage-\/buffer-\/object in shader program. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_variable_socket}{G\+L\+Shader\+Uniform\+Variable\+Socket}} \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a46c8fae93e06b18fdf9ae1e91aa439aa}{Get\+Property\+Socket}} (string in\+Name)
 \begin{DoxyCompactList}\small\item\em Find and get property socket from Uniform\+Property\+Sockets by name. \end{DoxyCompactList}\item 
-virtual I\+Enumerable$<$ G\+L\+Shader\+Uniform\+Property $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ad491bbf095f58609d9ff48231ad5afbd}{Create\+Default\+Properties}} ()
+virtual I\+Enumerable$<$ G\+L\+Shader\+Uniform\+Variable $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ab7b19b96cdf44070d7fb27b0b6d657cc}{Create\+Default\+Properties}} ()
 \begin{DoxyCompactList}\small\item\em Create default property for each sockets to initialize. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-I\+Read\+Only\+List$<$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property_socket}{G\+L\+Shader\+Uniform\+Property\+Socket}} $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a06cdd820811153ba16e92e8b7ef35e9a}{Uniform\+Property\+Sockets}} =$>$ m\+\_\+\+Uniform\+Property\+Sockets
+I\+Read\+Only\+List$<$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_variable_socket}{G\+L\+Shader\+Uniform\+Variable\+Socket}} $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_aacc27337d91c5af43a49ee516ef4a546}{Uniform\+Property\+Sockets}} =$>$ m\+\_\+\+Uniform\+Property\+Sockets
 \begin{DoxyCompactList}\small\item\em Lsit of property socket in linked shader program. \end{DoxyCompactList}\item 
+I\+Read\+Only\+List$<$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_block_socket}{G\+L\+Shader\+Uniform\+Block\+Socket}} $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a6061130582f6ab793378d15cf546815a}{Uniform\+Block\+Sockets}} =$>$ m\+\_\+\+Uniform\+Block\+Sockets
+\begin{DoxyCompactList}\small\item\em Lsit of uniform block socket in linked shader program. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_adeb7087f9cc92e87a54fc88d691e8717}{Linked}} =$>$ m\+\_\+\+Link\+State != 0
 \begin{DoxyCompactList}\small\item\em The status the last linking is successed. \end{DoxyCompactList}\item 
 I\+Read\+Only\+List$<$ string $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a8afa8614c4cb5256b560242a8d8460f7}{Link\+Error}} =$>$ m\+\_\+\+Link\+Error
@@ -68,11 +74,11 @@ Attach shader unit as part of program.
 {\em in\+Shader} & Shader unit object to attach.\\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ad491bbf095f58609d9ff48231ad5afbd}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ad491bbf095f58609d9ff48231ad5afbd}} 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ab7b19b96cdf44070d7fb27b0b6d657cc}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ab7b19b96cdf44070d7fb27b0b6d657cc}} 
 \index{RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}!CreateDefaultProperties@{CreateDefaultProperties}}
 \index{CreateDefaultProperties@{CreateDefaultProperties}!RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}}
 \doxysubsubsection{\texorpdfstring{CreateDefaultProperties()}{CreateDefaultProperties()}}
-{\footnotesize\ttfamily virtual I\+Enumerable$<$G\+L\+Shader\+Uniform\+Property$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Create\+Default\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual I\+Enumerable$<$G\+L\+Shader\+Uniform\+Variable$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Create\+Default\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -126,11 +132,11 @@ Detach shader unit.
 {\em in\+Shader} & Shader unit object to Detach.\\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a7187d76557aff4aa09fddd8cd0c9ecb4}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a7187d76557aff4aa09fddd8cd0c9ecb4}} 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a46c8fae93e06b18fdf9ae1e91aa439aa}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a46c8fae93e06b18fdf9ae1e91aa439aa}} 
 \index{RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}!GetPropertySocket@{GetPropertySocket}}
 \index{GetPropertySocket@{GetPropertySocket}!RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}}
 \doxysubsubsection{\texorpdfstring{GetPropertySocket()}{GetPropertySocket()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property_socket}{G\+L\+Shader\+Uniform\+Property\+Socket}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Get\+Property\+Socket (\begin{DoxyParamCaption}\item[{string}]{in\+Name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_variable_socket}{G\+L\+Shader\+Uniform\+Variable\+Socket}} Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Get\+Property\+Socket (\begin{DoxyParamCaption}\item[{string}]{in\+Name }\end{DoxyParamCaption})}
 
 
 
@@ -138,11 +144,29 @@ Find and get property socket from Uniform\+Property\+Sockets by name.
 
 
 \begin{DoxyParams}{Parameters}
-{\em in\+Name} & Search key equivalent to \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property_socket_a5b5e58a71f89c7311f40013590a64ed9}{G\+L\+Shader\+Uniform\+Property\+Socket.\+Name}}.\\
+{\em in\+Name} & Search key equivalent to G\+L\+Shader\+Uniform\+Property\+Socket.\+Name.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns property socket matched with in\+Name, if not found returns null.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a0714f99b3f62fcd84ce8900feb8d4441}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a0714f99b3f62fcd84ce8900feb8d4441}} 
+\index{RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}!GetShaderStorageBufferBindPoint@{GetShaderStorageBufferBindPoint}}
+\index{GetShaderStorageBufferBindPoint@{GetShaderStorageBufferBindPoint}!RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}}
+\doxysubsubsection{\texorpdfstring{GetShaderStorageBufferBindPoint()}{GetShaderStorageBufferBindPoint()}}
+{\footnotesize\ttfamily int Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Get\+Shader\+Storage\+Buffer\+Bind\+Point (\begin{DoxyParamCaption}\item[{string}]{in\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get binding-\/point of shader-\/storage-\/buffer-\/object in shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Name} & The name of buffer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns binding-\/point if found by name, otherwise -\/1.
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a79ab80d7c93dfcfb650696e57d158631}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a79ab80d7c93dfcfb650696e57d158631}} 
 \index{RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}!Link@{Link}}
@@ -159,7 +183,27 @@ If compile successed, return true, otherwise false.
 \end{DoxyReturn}
 
 
-The error will be stored to Link\+Error when this function failed. 
+The error will be stored to Link\+Error when this function failed. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ab91c21fc54f6d63844b33334debd9e31}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_ab91c21fc54f6d63844b33334debd9e31}} 
+\index{RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}!TryGetShaderStorageBufferBindPoint@{TryGetShaderStorageBufferBindPoint}}
+\index{TryGetShaderStorageBufferBindPoint@{TryGetShaderStorageBufferBindPoint}!RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}}
+\doxysubsubsection{\texorpdfstring{TryGetShaderStorageBufferBindPoint()}{TryGetShaderStorageBufferBindPoint()}}
+{\footnotesize\ttfamily bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Try\+Get\+Shader\+Storage\+Buffer\+Bind\+Point (\begin{DoxyParamCaption}\item[{string}]{in\+Name,  }\item[{out int}]{out\+Binding }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get binding-\/point of shader-\/storage-\/buffer-\/object in shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Name} & The name of buffer.\\
+\hline
+{\em out\+Binding} & The binding-\/point of buffer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if found by name, otherwise false.
+\end{DoxyReturn}
+
 
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_adeb7087f9cc92e87a54fc88d691e8717}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_adeb7087f9cc92e87a54fc88d691e8717}} 
@@ -182,11 +226,21 @@ The status the last linking is successed.
 
 The error of last linking. 
 
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a06cdd820811153ba16e92e8b7ef35e9a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a06cdd820811153ba16e92e8b7ef35e9a}} 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a6061130582f6ab793378d15cf546815a}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a6061130582f6ab793378d15cf546815a}} 
+\index{RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}!UniformBlockSockets@{UniformBlockSockets}}
+\index{UniformBlockSockets@{UniformBlockSockets}!RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}}
+\doxysubsubsection{\texorpdfstring{UniformBlockSockets}{UniformBlockSockets}}
+{\footnotesize\ttfamily I\+Read\+Only\+List$<$\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_block_socket}{G\+L\+Shader\+Uniform\+Block\+Socket}}$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Uniform\+Block\+Sockets =$>$ m\+\_\+\+Uniform\+Block\+Sockets}
+
+
+
+Lsit of uniform block socket in linked shader program. 
+
+This will be updated when called \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_a79ab80d7c93dfcfb650696e57d158631}{Link()}}. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_aacc27337d91c5af43a49ee516ef4a546}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_program_aacc27337d91c5af43a49ee516ef4a546}} 
 \index{RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}!UniformPropertySockets@{UniformPropertySockets}}
 \index{UniformPropertySockets@{UniformPropertySockets}!RtCs.OpenGL.GLShaderProgram@{RtCs.OpenGL.GLShaderProgram}}
 \doxysubsubsection{\texorpdfstring{UniformPropertySockets}{UniformPropertySockets}}
-{\footnotesize\ttfamily I\+Read\+Only\+List$<$\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_property_socket}{G\+L\+Shader\+Uniform\+Property\+Socket}}$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Uniform\+Property\+Sockets =$>$ m\+\_\+\+Uniform\+Property\+Sockets}
+{\footnotesize\ttfamily I\+Read\+Only\+List$<$\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_shader_uniform_variable_socket}{G\+L\+Shader\+Uniform\+Variable\+Socket}}$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Shader\+Program.\+Uniform\+Property\+Sockets =$>$ m\+\_\+\+Uniform\+Property\+Sockets}
 
 
 

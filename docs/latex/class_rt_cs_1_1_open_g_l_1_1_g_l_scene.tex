@@ -12,12 +12,12 @@ Inherits Rt\+Cs.\+Open\+G\+L.\+I\+G\+L\+Scene.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a2b88fb8a57ceb9e0c422afcfe5c6c906}{Render}} (\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_parameter}{G\+L\+Render\+Parameter}} in\+Parameter)
-\begin{DoxyCompactList}\small\item\em Execute rendering command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a08d09c25041a7bca08a46539a7e0caef}{Render}} (G\+L\+Camera in\+Camera)
+\begin{DoxyCompactList}\small\item\em Render scene from camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-I\+Enumerable$<$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object}{G\+L\+Render\+Object}} $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_ac45418b3e75484fb9521061c002d0bd7}{Display\+List}} = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object}{G\+L\+Render\+Object}}\mbox{[}0\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+G\+L\+Display\+List \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a3e502d0de4fa963711fe99fe02578456}{Display\+List}} = new G\+L\+Display\+List()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \begin{DoxyCompactList}\small\item\em The render objects which render in scene. \end{DoxyCompactList}\item 
 I\+Enumerable$<$ G\+L\+Light $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_afd6604a41af7cd8264e26623c4a6da11}{Lights}} = new G\+L\+Light\mbox{[}0\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \begin{DoxyCompactList}\small\item\em The light objects in scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -29,29 +29,29 @@ Represent the world to render.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a2b88fb8a57ceb9e0c422afcfe5c6c906}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a2b88fb8a57ceb9e0c422afcfe5c6c906}} 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a08d09c25041a7bca08a46539a7e0caef}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a08d09c25041a7bca08a46539a7e0caef}} 
 \index{RtCs.OpenGL.GLScene@{RtCs.OpenGL.GLScene}!Render@{Render}}
 \index{Render@{Render}!RtCs.OpenGL.GLScene@{RtCs.OpenGL.GLScene}}
 \doxysubsubsection{\texorpdfstring{Render()}{Render()}}
-{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Scene.\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_parameter}{G\+L\+Render\+Parameter}}}]{in\+Parameter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Scene.\+Render (\begin{DoxyParamCaption}\item[{G\+L\+Camera}]{in\+Camera }\end{DoxyParamCaption})}
 
 
 
-Execute rendering command. 
+Render scene from camera. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em in\+Parameter} & Rendering data store.\\
+{\em in\+Camera} & The camera displaying scene.\\
 \hline
 \end{DoxyParams}
 
 
 \doxysubsection{Property Documentation}
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_ac45418b3e75484fb9521061c002d0bd7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_ac45418b3e75484fb9521061c002d0bd7}} 
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a3e502d0de4fa963711fe99fe02578456}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_scene_a3e502d0de4fa963711fe99fe02578456}} 
 \index{RtCs.OpenGL.GLScene@{RtCs.OpenGL.GLScene}!DisplayList@{DisplayList}}
 \index{DisplayList@{DisplayList}!RtCs.OpenGL.GLScene@{RtCs.OpenGL.GLScene}}
 \doxysubsubsection{\texorpdfstring{DisplayList}{DisplayList}}
-{\footnotesize\ttfamily I\+Enumerable$<$\mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object}{G\+L\+Render\+Object}}$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Scene.\+Display\+List = new \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_render_object}{G\+L\+Render\+Object}}\mbox{[}0\mbox{]}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+{\footnotesize\ttfamily G\+L\+Display\+List Rt\+Cs.\+Open\+G\+L.\+G\+L\+Scene.\+Display\+List = new G\+L\+Display\+List()\hspace{0.3cm}{\ttfamily [get]}}
 
 
 

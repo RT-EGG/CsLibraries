@@ -81,15 +81,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2b88fb8a57ceb9e0c422afcfe5c6c906"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#a2b88fb8a57ceb9e0c422afcfe5c6c906">Render</a> (<a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_render_parameter.html">GLRenderParameter</a> inParameter)</td></tr>
-<tr class="memdesc:a2b88fb8a57ceb9e0c422afcfe5c6c906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute rendering command.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#a2b88fb8a57ceb9e0c422afcfe5c6c906">More...</a><br /></td></tr>
-<tr class="separator:a2b88fb8a57ceb9e0c422afcfe5c6c906"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d09c25041a7bca08a46539a7e0caef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#a08d09c25041a7bca08a46539a7e0caef">Render</a> (GLCamera inCamera)</td></tr>
+<tr class="memdesc:a08d09c25041a7bca08a46539a7e0caef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render scene from camera.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#a08d09c25041a7bca08a46539a7e0caef">More...</a><br /></td></tr>
+<tr class="separator:a08d09c25041a7bca08a46539a7e0caef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ac45418b3e75484fb9521061c002d0bd7"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_render_object.html">GLRenderObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#ac45418b3e75484fb9521061c002d0bd7">DisplayList</a> = new <a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_render_object.html">GLRenderObject</a>[0]<code> [get, set]</code></td></tr>
-<tr class="memdesc:ac45418b3e75484fb9521061c002d0bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The render objects which render in scene.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#ac45418b3e75484fb9521061c002d0bd7">More...</a><br /></td></tr>
-<tr class="separator:ac45418b3e75484fb9521061c002d0bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e502d0de4fa963711fe99fe02578456"><td class="memItemLeft" align="right" valign="top">GLDisplayList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#a3e502d0de4fa963711fe99fe02578456">DisplayList</a> = new GLDisplayList()<code> [get]</code></td></tr>
+<tr class="memdesc:a3e502d0de4fa963711fe99fe02578456"><td class="mdescLeft">&#160;</td><td class="mdescRight">The render objects which render in scene.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#a3e502d0de4fa963711fe99fe02578456">More...</a><br /></td></tr>
+<tr class="separator:a3e502d0de4fa963711fe99fe02578456"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd6604a41af7cd8264e26623c4a6da11"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; GLLight &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#afd6604a41af7cd8264e26623c4a6da11">Lights</a> = new GLLight[0]<code> [get, set]</code></td></tr>
 <tr class="memdesc:afd6604a41af7cd8264e26623c4a6da11"><td class="mdescLeft">&#160;</td><td class="mdescRight">The light objects in scene.  <a href="class_rt_cs_1_1_open_g_l_1_1_g_l_scene.html#afd6604a41af7cd8264e26623c4a6da11">More...</a><br /></td></tr>
 <tr class="separator:afd6604a41af7cd8264e26623c4a6da11"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -97,34 +97,26 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represent the world to render. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2b88fb8a57ceb9e0c422afcfe5c6c906"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b88fb8a57ceb9e0c422afcfe5c6c906">&#9670;&nbsp;</a></span>Render()</h2>
+<a id="a08d09c25041a7bca08a46539a7e0caef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08d09c25041a7bca08a46539a7e0caef">&#9670;&nbsp;</a></span>Render()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void RtCs.OpenGL.GLScene.Render </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_render_parameter.html">GLRenderParameter</a>&#160;</td>
-          <td class="paramname"><em>inParameter</em></td><td>)</td>
+          <td class="paramtype">GLCamera&#160;</td>
+          <td class="paramname"><em>inCamera</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Execute rendering command. </p>
+<p>Render scene from camera. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inParameter</td><td>Rendering data store.</td></tr>
+    <tr><td class="paramname">inCamera</td><td>The camera displaying scene.</td></tr>
   </table>
   </dd>
 </dl>
@@ -132,8 +124,8 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a id="ac45418b3e75484fb9521061c002d0bd7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac45418b3e75484fb9521061c002d0bd7">&#9670;&nbsp;</a></span>DisplayList</h2>
+<a id="a3e502d0de4fa963711fe99fe02578456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e502d0de4fa963711fe99fe02578456">&#9670;&nbsp;</a></span>DisplayList</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,12 +134,12 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">IEnumerable&lt;<a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_render_object.html">GLRenderObject</a>&gt; RtCs.OpenGL.GLScene.DisplayList = new <a class="el" href="class_rt_cs_1_1_open_g_l_1_1_g_l_render_object.html">GLRenderObject</a>[0]</td>
+          <td class="memname">GLDisplayList RtCs.OpenGL.GLScene.DisplayList = new GLDisplayList()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

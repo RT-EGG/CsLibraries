@@ -12,11 +12,11 @@ Inherits Rt\+Cs.\+Open\+G\+L.\+G\+L\+Object.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-G\+L\+Shader\+Uniform\+Property$<$ T $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}{Get\+Property$<$ T $>$}} (string in\+Name)
+G\+L\+Shader\+Uniform\+Variable$<$ T $>$ \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a32ccfc064b4cc3c61f409eb599673025}{Get\+Variable$<$ T $>$}} (string in\+Name)
 \begin{DoxyCompactList}\small\item\em Get property by name. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ac23d190ca55b3409a1be4ba07d333bf9}{Try\+Get\+Property$<$ T $>$}} (string in\+Name, out G\+L\+Shader\+Uniform\+Property$<$ T $>$ out\+Property)
-\begin{DoxyCompactList}\small\item\em Try get property by name. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}{Set\+Property\+Value$<$ T $>$}} (string in\+Name, T in\+Value)
+bool \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a4495be524750437b7911f24977db1402}{Try\+Get\+Variable$<$ T $>$}} (string in\+Name, out G\+L\+Shader\+Uniform\+Variable$<$ T $>$ out\+Property)
+\begin{DoxyCompactList}\small\item\em Try get variable by name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ad82873720c9ccfd75ef6812effaa50f7}{Set\+Variable\+Value$<$ T $>$}} (string in\+Name, T in\+Value)
 \begin{DoxyCompactList}\small\item\em Set property value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
@@ -35,11 +35,11 @@ Object that decide render color using shader and properties for the shader.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ae202a05e0db757b207c69e8f6a1f4072}} 
-\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!GetProperty$<$ T $>$@{GetProperty$<$ T $>$}}
-\index{GetProperty$<$ T $>$@{GetProperty$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
-\doxysubsubsection{\texorpdfstring{GetProperty$<$ T $>$()}{GetProperty< T >()}}
-{\footnotesize\ttfamily G\+L\+Shader\+Uniform\+Property$<$T$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Get\+Property$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a32ccfc064b4cc3c61f409eb599673025}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a32ccfc064b4cc3c61f409eb599673025}} 
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!GetVariable$<$ T $>$@{GetVariable$<$ T $>$}}
+\index{GetVariable$<$ T $>$@{GetVariable$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{GetVariable$<$ T $>$()}{GetVariable< T >()}}
+{\footnotesize\ttfamily G\+L\+Shader\+Uniform\+Variable$<$T$>$ Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Get\+Variable$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -47,29 +47,29 @@ Get property by name.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of property.\\
+{\em T} & Type of the variable.\\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em in\+Name} & Name of property.\\
+{\em in\+Name} & Name of the variable.\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em Key\+Not\+Found\+Exception} & Case of that the property not found by name.\\
+{\em Key\+Not\+Found\+Exception} & Case of that the variable not found by name.\\
 \hline
-{\em Invalid\+Cast\+Exception} & Case of that the property is not for type T.\\
+{\em Invalid\+Cast\+Exception} & Case of that the variable is not for type T.\\
 \hline
 \end{DoxyExceptions}
 \begin{DoxyReturn}{Returns}
-The property.
+The variable.
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_aeccc024db881de44d9ae292bef343c64}} 
-\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!SetPropertyValue$<$ T $>$@{SetPropertyValue$<$ T $>$}}
-\index{SetPropertyValue$<$ T $>$@{SetPropertyValue$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
-\doxysubsubsection{\texorpdfstring{SetPropertyValue$<$ T $>$()}{SetPropertyValue< T >()}}
-{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Set\+Property\+Value$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name,  }\item[{T}]{in\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ad82873720c9ccfd75ef6812effaa50f7}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ad82873720c9ccfd75ef6812effaa50f7}} 
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!SetVariableValue$<$ T $>$@{SetVariableValue$<$ T $>$}}
+\index{SetVariableValue$<$ T $>$@{SetVariableValue$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{SetVariableValue$<$ T $>$()}{SetVariableValue< T >()}}
+{\footnotesize\ttfamily void Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Set\+Variable\+Value$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name,  }\item[{T}]{in\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -77,42 +77,42 @@ Set property value.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of property.\\
+{\em T} & Type of the variable.\\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em in\+Name} & Name of property.\\
+{\em in\+Name} & Name of the variable.\\
 \hline
-{\em in\+Value} & Value of property.\\
+{\em in\+Value} & Value of the variable.\\
 \hline
 \end{DoxyParams}
 
 
-If not found property in\+Name, or the property is not T, do nothing. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ac23d190ca55b3409a1be4ba07d333bf9}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_ac23d190ca55b3409a1be4ba07d333bf9}} 
-\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!TryGetProperty$<$ T $>$@{TryGetProperty$<$ T $>$}}
-\index{TryGetProperty$<$ T $>$@{TryGetProperty$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
-\doxysubsubsection{\texorpdfstring{TryGetProperty$<$ T $>$()}{TryGetProperty< T >()}}
-{\footnotesize\ttfamily bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Try\+Get\+Property$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name,  }\item[{out G\+L\+Shader\+Uniform\+Property$<$ T $>$}]{out\+Property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+If not found variable in\+Name, or the variable is not T, do nothing. \mbox{\Hypertarget{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a4495be524750437b7911f24977db1402}\label{class_rt_cs_1_1_open_g_l_1_1_g_l_material_a4495be524750437b7911f24977db1402}} 
+\index{RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}!TryGetVariable$<$ T $>$@{TryGetVariable$<$ T $>$}}
+\index{TryGetVariable$<$ T $>$@{TryGetVariable$<$ T $>$}!RtCs.OpenGL.GLMaterial@{RtCs.OpenGL.GLMaterial}}
+\doxysubsubsection{\texorpdfstring{TryGetVariable$<$ T $>$()}{TryGetVariable< T >()}}
+{\footnotesize\ttfamily bool Rt\+Cs.\+Open\+G\+L.\+G\+L\+Material.\+Try\+Get\+Variable$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{in\+Name,  }\item[{out G\+L\+Shader\+Uniform\+Variable$<$ T $>$}]{out\+Property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Try get property by name. 
+Try get variable by name. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of property.\\
+{\em T} & Type of the variable.\\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em in\+Name} & Name of property.\\
+{\em in\+Name} & Name of variable.\\
 \hline
 {\em out\+Property} & Output the property if found, otherwise null.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Return true if the property found by name and type of the property is T, otherwise false.
+Return true if the variable found by name and type of the property is T, otherwise false.
 \end{DoxyReturn}
 
 
