@@ -43,11 +43,11 @@ namespace RtCs.OpenGL
                 return;
             }
 
-            GLShaderUniformProperty.CommitStatus commitState = new GLShaderUniformProperty.CommitStatus {
+            GLShaderUniformVariable.CommitStatus commitState = new GLShaderUniformVariable.CommitStatus {
                 CurrentAvailableTextureUnit = TextureUnit.Texture0
             };
-            foreach (var property in m_Properties.Values) {
-                property.CommitProperty(Shader, commitState);
+            foreach (var variable in m_UniformVariables.Values) {
+                variable.CommitVariable(Shader, commitState);
             }
             return;
         }
@@ -55,32 +55,32 @@ namespace RtCs.OpenGL
         /// <summary>
         /// Get property by name.
         /// </summary>
-        /// <typeparam name="T">Type of property.</typeparam>
-        /// <param name="inName">Name of property.</param>
-        /// <exception cref="KeyNotFoundException">Case of that the property not found by name.</exception>
-        /// <exception cref="InvalidCastException">Case of that the property is not for type T.</exception>
-        /// <returns>The property.</returns>
-        public GLShaderUniformProperty<T> GetProperty<T>(string inName)
+        /// <typeparam name="T">Type of the variable.</typeparam>
+        /// <param name="inName">Name of the variable.</param>
+        /// <exception cref="KeyNotFoundException">Case of that the variable not found by name.</exception>
+        /// <exception cref="InvalidCastException">Case of that the variable is not for type T.</exception>
+        /// <returns>The variable.</returns>
+        public GLShaderUniformVariable<T> GetVariable<T>(string inName)
         {
-            var property = m_Properties[inName];
-            if (!(property is GLShaderUniformProperty<T>)) {
+            var property = m_UniformVariables[inName];
+            if (!(property is GLShaderUniformVariable<T>)) {
                 throw new InvalidCastException($"The property \"{inName}\" is not for {typeof(T).Name}.");
             }
-            return property as GLShaderUniformProperty<T>;
+            return property as GLShaderUniformVariable<T>;
         }
 
         /// <summary>
-        /// Try get property by name.
+        /// Try get variable by name.
         /// </summary>
-        /// <typeparam name="T">Type of property.</typeparam>
-        /// <param name="inName">Name of property.</param>
+        /// <typeparam name="T">Type of the variable.</typeparam>
+        /// <param name="inName">Name of variable.</param>
         /// <param name="outProperty">Output the property if found, otherwise null.</param>
-        /// <returns>Return true if the property found by name and type of the property is T, otherwise false.</returns>
-        public bool TryGetProperty<T>(string inName, out GLShaderUniformProperty<T> outProperty)
+        /// <returns>Return true if the variable found by name and type of the property is T, otherwise false.</returns>
+        public bool TryGetVariable<T>(string inName, out GLShaderUniformVariable<T> outProperty)
         {
-            if (m_Properties.TryGetValue(inName, out var property)) {
-                if (property is GLShaderUniformProperty<T>) {
-                    outProperty = property as GLShaderUniformProperty<T>;
+            if (m_UniformVariables.TryGetValue(inName, out var property)) {
+                if (property is GLShaderUniformVariable<T>) {
+                    outProperty = property as GLShaderUniformVariable<T>;
                     return true;
                 }
             }
@@ -91,17 +91,17 @@ namespace RtCs.OpenGL
         /// <summary>
         /// Set property value.
         /// </summary>
-        /// <typeparam name="T">Type of property.</typeparam>
-        /// <param name="inName">Name of property.</param>
-        /// <param name="inValue">Value of property.</param>
+        /// <typeparam name="T">Type of the variable.</typeparam>
+        /// <param name="inName">Name of the variable.</param>
+        /// <param name="inValue">Value of the variable.</param>
         /// <remarks>
-        /// If not found property inName, or the property is not T, do nothing.
+        /// If not found variable inName, or the variable is not T, do nothing.
         /// </remarks>
-        public void SetPropertyValue<T>(string inName, T inValue)
+        public void SetVariableValue<T>(string inName, T inValue)
         {
-            var property = GetProperty<T>(inName);
-            if (property != null) {
-                property.Value = inValue;
+            var variable = GetVariable<T>(inName);
+            if (variable != null) {
+                variable.Value = inValue;
             }
             return;
         }
@@ -117,7 +117,7 @@ namespace RtCs.OpenGL
                     m_Shader.OnAfterLinked -= OnShaderLinked;
                 }
 
-                m_Properties.Clear();
+                m_UniformVariables.Clear();
                 m_Shader = value;
                 if (m_Shader != null) {
                     m_Shader.OnAfterLinked += OnShaderLinked;
@@ -144,11 +144,11 @@ namespace RtCs.OpenGL
 
         private void ResetupProperties()
         {
-            Dictionary<string, GLShaderUniformProperty> newList = new Dictionary<string, GLShaderUniformProperty>();
+            Dictionary<string, GLShaderUniformVariable> newList = new Dictionary<string, GLShaderUniformVariable>();
             if (m_Shader != null) {
                 // Inherit from previous properties.
                 foreach (var socket in m_Shader.UniformPropertySockets) {
-                    if (m_Properties.TryGetValue(socket.Name, out var property)) {
+                    if (m_UniformVariables.TryGetValue(socket.Name, out var property)) {
                         newList.Add(socket.Name, property);
                     }
                 }
@@ -165,11 +165,11 @@ namespace RtCs.OpenGL
                 }
             }
 
-            m_Properties = newList;
+            m_UniformVariables = newList;
             return;
         }
 
-        private Dictionary<string, GLShaderUniformProperty> m_Properties = new Dictionary<string, GLShaderUniformProperty>();
+        private Dictionary<string, GLShaderUniformVariable> m_UniformVariables = new Dictionary<string, GLShaderUniformVariable>();
         private GLRenderShaderProgram m_Shader = null;
     }
 }

@@ -83,11 +83,11 @@
     <Compile Include="ResourceObject\Shader\GLShaderProgram.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderStorageBufferSocket.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderUniformBlockSocket.cs" />
-    <Compile Include="ResourceObject\Shader\GLShaderUniformProperty.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderUniformVariable.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderTextSource.cs" />
     <Compile Include="ResourceObject\Shader\GLShader.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderSource.cs" />
-    <Compile Include="ResourceObject\Shader\GLShaderUniformPropertySocket.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderUniformVariableSocket.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttribute.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttributePointer.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Color.cs" />

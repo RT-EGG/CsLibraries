@@ -16,7 +16,7 @@ namespace GLTestVisualizer.TestView.Texture
 
         protected override void CommitPropertiesCore()
         {
-            SetPropertyValue("inTexture", TextureReference);
+            SetVariableValue("inTexture", TextureReference);
 
             base.CommitPropertiesCore();
             return;

@@ -13,7 +13,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
         protected override void CommitPropertiesCore()
         {
-            GetProperty<Vector4>("inColor").Value = IsInFrustum ? new Vector4(1.0f, 0.0f, 0.0f, 1.0f) : new Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+            GetVariable<Vector4>("inColor").Value = IsInFrustum ? new Vector4(1.0f, 0.0f, 0.0f, 1.0f) : new Vector4(0.0f, 0.0f, 1.0f, 1.0f);
 
             base.CommitPropertiesCore();
             return;

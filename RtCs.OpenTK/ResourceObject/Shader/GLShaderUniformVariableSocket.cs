@@ -5,9 +5,9 @@ namespace RtCs.OpenGL
     /// <summary>
     /// The uniform property socekt in the shader program.
     /// </summary>
-    public class GLShaderUniformPropertySocket
+    public class GLShaderUniformVariableSocket
     {
-        public GLShaderUniformPropertySocket(string inName, int inLocation, ActiveUniformType inType)
+        public GLShaderUniformVariableSocket(string inName, int inLocation, ActiveUniformType inType)
         {
             Name = inName;
             Location = inLocation;
@@ -28,27 +28,27 @@ namespace RtCs.OpenGL
         /// </summary>
         public readonly ActiveUniformType Type;
 
-        public GLShaderUniformProperty CreateDefaultProperty()
+        public GLShaderUniformVariable CreateDefaultProperty()
             => CreateDefaultProperty(this);
 
         public override string ToString()
             => $"[{Location}] {Name} ({Type})";
 
-        public static GLShaderUniformProperty CreateDefaultProperty(GLShaderUniformPropertySocket inSocket)
+        public static GLShaderUniformVariable CreateDefaultProperty(GLShaderUniformVariableSocket inSocket)
         {
             switch (inSocket.Type) {
                 case ActiveUniformType.Int:
-                    return new GLShaderUniformProperty.Int(inSocket);
+                    return new GLShaderUniformVariable.Int(inSocket);
                 case ActiveUniformType.Float:
-                    return new GLShaderUniformProperty.Float(inSocket);
+                    return new GLShaderUniformVariable.Float(inSocket);
                 case ActiveUniformType.Double:
-                    return new GLShaderUniformProperty.Double(inSocket);
+                    return new GLShaderUniformVariable.Double(inSocket);
                 case ActiveUniformType.FloatVec4:
-                    return new GLShaderUniformProperty.Vec4(inSocket);
+                    return new GLShaderUniformVariable.Vec4(inSocket);
                 case ActiveUniformType.FloatMat4:
-                    return new GLShaderUniformProperty.Mat4(inSocket);
+                    return new GLShaderUniformVariable.Mat4(inSocket);
                 case ActiveUniformType.Sampler2D:
-                    return new GLShaderUniformProperty.Texture(inSocket);
+                    return new GLShaderUniformVariable.Texture(inSocket);
             }
             return null;
         }

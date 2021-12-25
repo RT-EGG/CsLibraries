@@ -21,7 +21,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
 
         protected override void CommitPropertiesCore()
         {
-            GetProperty<Vector4>("inColor").Value = Color;
+            GetVariable<Vector4>("inColor").Value = Color;
 
             base.CommitPropertiesCore();
             return;

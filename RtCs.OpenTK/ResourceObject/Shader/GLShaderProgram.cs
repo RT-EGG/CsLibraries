@@ -55,7 +55,7 @@ namespace RtCs.OpenGL
         /// <remarks>
         /// This will be updated when called Link().
         /// </remarks>
-        public IReadOnlyList<GLShaderUniformPropertySocket> UniformPropertySockets
+        public IReadOnlyList<GLShaderUniformVariableSocket> UniformPropertySockets
             => m_UniformPropertySockets;
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace RtCs.OpenGL
         /// </summary>
         /// <param name="inName">Search key equivalent to GLShaderUniformPropertySocket.Name.</param>
         /// <returns>Returns property socket matched with inName, if not found returns null.</returns>
-        public GLShaderUniformPropertySocket GetPropertySocket(string inName)
+        public GLShaderUniformVariableSocket GetPropertySocket(string inName)
             => UniformPropertySockets.FirstOrDefault(s => s.Name == inName);
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace RtCs.OpenGL
         /// <returns>
         /// Default properties.
         /// </returns>
-        public virtual IEnumerable<GLShaderUniformProperty> CreateDefaultProperties()
+        public virtual IEnumerable<GLShaderUniformVariable> CreateDefaultProperties()
             => UniformPropertySockets.Select(s => s.CreateDefaultProperty()).Where(s => s != null);
 
         protected override void CreateResourceCore()
@@ -135,23 +135,23 @@ namespace RtCs.OpenGL
             return;
         }
 
-        protected static List<GLShaderUniformPropertySocket> CollectUniformPropertySockets(int inProgramID)
+        protected static List<GLShaderUniformVariableSocket> CollectUniformPropertySockets(int inProgramID)
         {
             GL.GetProgram(inProgramID, GetProgramParameterName.ActiveUniforms, out int count);
-            var result = new List<GLShaderUniformPropertySocket>(count);
+            var result = new List<GLShaderUniformVariableSocket>(count);
             
             int size, length;            
             for (int i = 0; i < count; ++i) {
                 GL.GetActiveUniform(inProgramID, i, 255, out length, out size, out ActiveUniformType type, out string name);
                 int location = GL.GetUniformLocation(inProgramID, name);
 
-                result.Add(new GLShaderUniformPropertySocket(name, location, type));
+                result.Add(new GLShaderUniformVariableSocket(name, location, type));
             }           
 
             return result;
         }
 
-        protected static List<GLShaderUniformBlockSocket> CollectUniformBlockSockets(int inProgramID, IReadOnlyList<GLShaderUniformPropertySocket> inUniformSockets)
+        protected static List<GLShaderUniformBlockSocket> CollectUniformBlockSockets(int inProgramID, IReadOnlyList<GLShaderUniformVariableSocket> inUniformSockets)
         {
             GL.GetProgram(inProgramID, GetProgramParameterName.ActiveUniformBlocks, out int count);
             var result = new List<GLShaderUniformBlockSocket>(count);
@@ -192,7 +192,7 @@ namespace RtCs.OpenGL
         private int m_LinkState = 0;
         private List<string> m_LinkError = new List<string>();
 
-        private List<GLShaderUniformPropertySocket> m_UniformPropertySockets = new List<GLShaderUniformPropertySocket>();
+        private List<GLShaderUniformVariableSocket> m_UniformPropertySockets = new List<GLShaderUniformVariableSocket>();
         private List<GLShaderUniformBlockSocket> m_UniformBlockSockets = new List<GLShaderUniformBlockSocket>();
         private List<GLShaderStorageBufferSocket> m_ShaderStorageBufferSockets = new List<GLShaderStorageBufferSocket>();
     }

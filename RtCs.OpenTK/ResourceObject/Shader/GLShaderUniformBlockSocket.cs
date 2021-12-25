@@ -5,12 +5,12 @@
     /// </summary>
     public class GLShaderUniformBlockSocket
     {
-        public GLShaderUniformBlockSocket(string inName, int inBinding, int inDataSize, GLShaderUniformPropertySocket[] inUniforms)
+        public GLShaderUniformBlockSocket(string inName, int inBinding, int inDataSize, GLShaderUniformVariableSocket[] inVariables)
         {
             Name = inName;
             Binding = inBinding;
             DataSize = inDataSize;
-            Uniforms = inUniforms;
+            Variables = inVariables;
             return;
         }
 
@@ -29,6 +29,6 @@
         /// <summary>
         /// The variables contains in the uniform buffer in the program.
         /// </summary>
-        public readonly GLShaderUniformPropertySocket[] Uniforms;
+        public readonly GLShaderUniformVariableSocket[] Variables;
     }
 }
