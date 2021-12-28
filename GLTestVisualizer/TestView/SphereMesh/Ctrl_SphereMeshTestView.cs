@@ -66,9 +66,9 @@ namespace GLTestVisualizer.TestView.SphereMesh
             return;
         }
 
-        private void GLViewer_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
+        private void GLViewer_OnRenderScene(object inSender, EventArgs inArgs)
         {
-            m_Projection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Projection.SetAngleAndViewportSize(45.0f, GLViewer.Width, GLViewer.Height);
             m_Scene.Render(m_Camera);
             return;
         }

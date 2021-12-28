@@ -44,7 +44,7 @@ namespace GLTestVisualizer.TestView.Text
             this.GLView.Size = new System.Drawing.Size(770, 319);
             this.GLView.TabIndex = 0;
             this.GLView.VSync = false;
-            this.GLView.OnRenderScene += new RtCs.OpenGL.WinForms.GLRenderSceneEventHandler(this.GLView_OnRenderScene);
+            this.GLView.OnRenderScene += new System.EventHandler(this.GLView_OnRenderScene);
             // 
             // TextBoxInput
             // 

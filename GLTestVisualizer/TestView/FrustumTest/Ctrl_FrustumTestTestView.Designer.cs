@@ -34,7 +34,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             this.ComboProjectionType = new System.Windows.Forms.ComboBox();
             this.CheckBoxAutoAspect = new System.Windows.Forms.CheckBox();
             this.PanelParameterView = new System.Windows.Forms.Panel();
-            this.GLThrirdPersonView = new RtCs.OpenGL.WinForms.GLControl();
+            this.GLThirdPersonView = new RtCs.OpenGL.WinForms.GLControl();
             this.PanelViews = new System.Windows.Forms.TableLayoutPanel();
             this.GLFirstPersonView = new RtCs.OpenGL.WinForms.GLControl();
             this.ButtonRandomizer = new System.Windows.Forms.Button();
@@ -93,23 +93,23 @@ namespace GLTestVisualizer.TestView.FrustumTest
             this.PanelParameterView.Size = new System.Drawing.Size(619, 140);
             this.PanelParameterView.TabIndex = 2;
             // 
-            // GLThrirdPersonView
+            // GLThirdPersonView
             // 
-            this.GLThrirdPersonView.BackColor = System.Drawing.Color.Black;
-            this.GLThrirdPersonView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GLThrirdPersonView.Location = new System.Drawing.Point(312, 3);
-            this.GLThrirdPersonView.Name = "GLThrirdPersonView";
-            this.GLThrirdPersonView.Size = new System.Drawing.Size(304, 319);
-            this.GLThrirdPersonView.TabIndex = 0;
-            this.GLThrirdPersonView.VSync = false;
-            this.GLThrirdPersonView.OnRenderScene += new RtCs.OpenGL.WinForms.GLRenderSceneEventHandler(this.GLThridPersonView_OnRenderScene);
+            this.GLThirdPersonView.BackColor = System.Drawing.Color.Black;
+            this.GLThirdPersonView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GLThirdPersonView.Location = new System.Drawing.Point(312, 3);
+            this.GLThirdPersonView.Name = "GLThirdPersonView";
+            this.GLThirdPersonView.Size = new System.Drawing.Size(304, 319);
+            this.GLThirdPersonView.TabIndex = 0;
+            this.GLThirdPersonView.VSync = false;
+            this.GLThirdPersonView.OnRenderScene += new System.EventHandler(this.GLThirdPersonView_OnRenderScene);
             // 
             // PanelViews
             // 
             this.PanelViews.ColumnCount = 2;
             this.PanelViews.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.PanelViews.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PanelViews.Controls.Add(this.GLThrirdPersonView, 1, 0);
+            this.PanelViews.Controls.Add(this.GLThirdPersonView, 1, 0);
             this.PanelViews.Controls.Add(this.GLFirstPersonView, 0, 0);
             this.PanelViews.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelViews.Location = new System.Drawing.Point(0, 0);
@@ -129,7 +129,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             this.GLFirstPersonView.Size = new System.Drawing.Size(303, 319);
             this.GLFirstPersonView.TabIndex = 1;
             this.GLFirstPersonView.VSync = false;
-            this.GLFirstPersonView.OnRenderScene += new RtCs.OpenGL.WinForms.GLRenderSceneEventHandler(this.GLFirstPersonView_OnRenderScene);
+            this.GLFirstPersonView.OnRenderScene += new System.EventHandler(this.GLFirstPersonView_OnRenderScene);
             // 
             // ButtonRandomizer
             // 
@@ -160,7 +160,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
         #endregion
 
-        private RtCs.OpenGL.WinForms.GLControl GLThrirdPersonView;
+        private RtCs.OpenGL.WinForms.GLControl GLThirdPersonView;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox ComboProjectionType;

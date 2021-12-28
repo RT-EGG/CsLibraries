@@ -72,28 +72,7 @@ namespace RtCs.OpenGL
 /// The object to render from transform and renderer.
 /// </summary>
 public class GLRenderObject : GLObject, ILineIntersectable3D
-    {
-        ///// <summary>
-        ///// Execute render command.
-        ///// </summary>
-        ///// <param name="inRednerParameter">Rendering parameter.</param>
-        //public void Render(GLRenderParameter inRednerParameter)
-        //{
-        //    GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)PolygonMode);
-        //    CullFace(RenderFaceMode);
-
-        //    inRednerParameter.ModelViewMatrix.Model.PushMatrix();
-        //    try {
-        //        inRednerParameter.ModelViewMatrix.Model.MultiMatrix(Transform.WorldMatrix);
-
-        //        Renderer.Render(inRednerParameter);
-
-        //    } finally {
-        //        inRednerParameter.ModelViewMatrix.Model.PopMatrix();
-        //    }
-        //    return;
-        //}
-
+{
         /// <summary>
         /// Update BoundingBox by Renderer.Mesh.Vertices.
         /// </summary>
@@ -122,10 +101,8 @@ public class GLRenderObject : GLObject, ILineIntersectable3D
         public EGLFrustumCullingMode FrustumCullingMode
         { get; set; } = EGLFrustumCullingMode.BoundingBox;
 
-        protected virtual void PreRender(GLRenderParameter inStatus)
-        { }
-        protected virtual void PostRender(GLRenderParameter inStatus)
-        { }
+        public event EventHandler BeforeRender;
+        public event EventHandler AfterRender;
 
         private void CullFace(EGLRenderFaceMode inMode)
         {
@@ -193,6 +170,10 @@ public class GLRenderObject : GLObject, ILineIntersectable3D
         public GLRenderer Renderer
         { get; } = new GLRenderer();
 
+        internal void FireBeforeRender()
+            => BeforeRender?.Invoke(this, EventArgs.Empty);
+        internal void FireAfterRender()
+            => AfterRender?.Invoke(this, EventArgs.Empty);
         internal int RenderInstanceID
         { get; set; } = -1;
     }

@@ -13,7 +13,7 @@ namespace GLTestVisualizer.TestView.Raycast
 
         protected override void CommitPropertiesCore()
         {
-            GetVariable<Vector4>("inColor").Value = new Vector4(Color, 1.0f);
+            SetVariableValue("inColor", new Vector4(Color, 1.0f));
 
             base.CommitPropertiesCore();
             return;

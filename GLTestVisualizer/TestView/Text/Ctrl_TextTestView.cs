@@ -162,12 +162,12 @@ namespace GLTestVisualizer.TestView.Text
         private void TextBoxInput_TextChanged(object sender, EventArgs e)
             => ChangeText((sender as TextBox).Text);
 
-        private void GLView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
+        private void GLView_OnRenderScene(object inSender, EventArgs inArgs)
         {
             m_Projection.Left = 0.0f;
-            m_Projection.Right = inControl.Width;
+            m_Projection.Right = GLView.Width;
             m_Projection.Top = 0.0f;
-            m_Projection.Bottom = -inControl.Height;
+            m_Projection.Bottom = -GLView.Height;
             m_Scene.Render(m_Camera);
             return;
         }

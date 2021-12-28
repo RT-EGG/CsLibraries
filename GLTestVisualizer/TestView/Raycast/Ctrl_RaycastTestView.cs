@@ -96,7 +96,7 @@ namespace GLTestVisualizer.TestView.Raycast
             return;
         }
 
-        private void GLFPSView_OnRenderScene(GLControl inControl, GLRenderParameter inParameter)
+        private void GLFPSView_OnRenderScene(object inSender, EventArgs inArgs)
         {
             Vector3 rayPoint0 = m_FPSCameraRayVisualizer.Transform.WorldPosition;
             Vector3 rayPoint1 = rayPoint0 + (m_FPSCameraRayVisualizer.Transform.WorldRotation * new Vector3(0.0f, 0.0f, -1.0f) * (float)UdRayLength.Value);
@@ -115,11 +115,11 @@ namespace GLTestVisualizer.TestView.Raycast
             m_Scene.DisplayList.Clear();
             m_Scene.DisplayList.Register(m_RaycastableObjects.Cast<GLRenderObject>().Concat(m_HitPointMarkerObjects));
 
-            m_FPSProjection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_FPSProjection.SetAngleAndViewportSize(45.0f, GLFPSView.Width, GLTPSView.Height);
             m_Scene.Render(m_FPSCamera);
         }
 
-        private void GLTPSView_OnRenderScene(GLControl inControl, GLRenderParameter inStatus)
+        private void GLTPSView_OnRenderScene(object inSender, EventArgs inArgs)
         {
             m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(1.0f, 1.0f, (float)UdRayLength.Value);
 
@@ -132,7 +132,7 @@ namespace GLTestVisualizer.TestView.Raycast
                 m_Scene.DisplayList.Register(m_OctreeRenderObject);
             }
 
-            m_TPSProjection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_TPSProjection.SetAngleAndViewportSize(45.0f, GLTPSView.Width, GLTPSView.Height);
             m_Scene.Render(m_TPSCamera);
             return;
         }

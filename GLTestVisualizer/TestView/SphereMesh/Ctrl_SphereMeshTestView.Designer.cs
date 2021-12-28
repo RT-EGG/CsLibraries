@@ -238,7 +238,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             this.GLViewer.Size = new System.Drawing.Size(509, 442);
             this.GLViewer.TabIndex = 2;
             this.GLViewer.VSync = false;
-            this.GLViewer.OnRenderScene += new RtCs.OpenGL.WinForms.GLRenderSceneEventHandler(this.GLViewer_OnRenderScene);
+            this.GLViewer.OnRenderScene += new System.EventHandler(this.GLViewer_OnRenderScene);
             // 
             // LabelRoundedCubeSphere
             // 

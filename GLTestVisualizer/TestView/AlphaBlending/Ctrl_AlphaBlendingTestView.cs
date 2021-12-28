@@ -61,9 +61,9 @@ namespace GLTestVisualizer.TestView.AlphaBlending
             return;
         }
 
-        private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderParameter inParameter)
+        private void glView_OnRenderScene(object inSender, EventArgs inArgs)
         {
-            m_Projection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Projection.SetAngleAndViewportSize(45.0f, glView.Width, glView.Height);
             m_Scene.Render(m_Camera);
             return;
         }

@@ -60,9 +60,9 @@ namespace GLTestVisualizer.TestView.Octree
             return;
         }
 
-        private void glView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, GLRenderParameter inParameter)
+        private void glView_OnRenderScene(object insender, EventArgs inArgs)
         {
-            m_Projection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_Projection.SetAngleAndViewportSize(45.0f, glView.Width, glView.Height);
             m_Scene.Render(m_Camera);
             return;
         }

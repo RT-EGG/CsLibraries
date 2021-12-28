@@ -130,7 +130,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             this.GLViewer.Size = new System.Drawing.Size(605, 283);
             this.GLViewer.TabIndex = 4;
             this.GLViewer.VSync = false;
-            this.GLViewer.OnRenderScene += new RtCs.OpenGL.WinForms.GLRenderSceneEventHandler(this.GLViewr_OnRenderScene);
+            this.GLViewer.OnRenderScene += new System.EventHandler(this.GLViewr_OnRenderScene);
             // 
             // timer1
             // 

@@ -20,7 +20,7 @@ namespace GLTestVisualizer.TestView.Octree
 
         protected override void CommitPropertiesCore()
         {
-            GetVariable<Vector4>("inColor").Value = Color;
+            SetVariableValue("inColor", Color);
 
             base.CommitPropertiesCore();
             return;

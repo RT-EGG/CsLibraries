@@ -67,7 +67,10 @@ namespace RtCs.OpenGL
 
                             GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)renderObject.PolygonMode);
                             renderObject.RenderFaceMode.CullFace();
+
+                            renderObject.FireBeforeRender();
                             GL.DrawElements(mesh.Topology.ToPrimitiveType(), mesh.Indices.Length, DrawElementsType.UnsignedInt, 0);
+                            renderObject.FireAfterRender();
                         }                                                                       
                     }
                 }
@@ -97,7 +100,10 @@ namespace RtCs.OpenGL
 
                 GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)obj.PolygonMode);
                 obj.RenderFaceMode.CullFace();
+
+                obj.FireBeforeRender();
                 GL.DrawElements(mesh.Topology.ToPrimitiveType(), mesh.Indices.Length, DrawElementsType.UnsignedInt, 0);
+                obj.FireAfterRender();
             });
             return;
         }

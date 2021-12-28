@@ -124,9 +124,9 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
-        private void GLViewr_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderParameter inParameter)
+        private void GLViewr_OnRenderScene(object inSender, EventArgs inArgs)
         {
-            m_Projection.SetAngleAndViewportSize(60.0f, inControl.Width, inControl.Height);
+            m_Projection.SetAngleAndViewportSize(60.0f, GLViewer.Width, GLViewer.Height);
             m_Scene.Render(m_Camera);
             return;
         }

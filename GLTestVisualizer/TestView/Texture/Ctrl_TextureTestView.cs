@@ -74,9 +74,9 @@ namespace GLTestVisualizer.TestView.Texture
             return;
         }
 
-        private void GLView_OnRenderScene(RtCs.OpenGL.WinForms.GLControl inControl, RtCs.OpenGL.GLRenderParameter inParameter)
+        private void GLView_OnRenderScene(object inSender, EventArgs inArgs)
         {
-            m_Projection.SetSymmetrical(inControl.Width, inControl.Height);
+            m_Projection.SetSymmetrical(GLView.Width, GLView.Height);
 
             m_Scene.DisplayList.Clear();
             m_Scene.DisplayList.Register(m_TextureObject);

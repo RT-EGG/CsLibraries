@@ -46,7 +46,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             m_FPSCameraController = new RotationCameraMouseController(GLFirstPersonView);
             m_FPSCameraController.Camera = m_FPSCamera;
 
-            m_TPSCameraController = new OrbitCameraMouseController(GLThrirdPersonView);
+            m_TPSCameraController = new OrbitCameraMouseController(GLThirdPersonView);
             m_TPSCameraController.Camera = m_TPSCamera;
             m_TPSCamera.Coordinate = new SphericalCoordinate {
                 AzimuthAngleDeg = 0.0f,
@@ -148,7 +148,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             return;
         }
 
-        private void GLFirstPersonView_OnRenderScene(GLControl inControl, GLRenderParameter inParameter)
+        private void GLFirstPersonView_OnRenderScene(object inSender, EventArgs inArgs)
         {
             if (m_CurrentParameterView == null) {
                 return;
@@ -160,10 +160,10 @@ namespace GLTestVisualizer.TestView.FrustumTest
             return;
         }
 
-        private void GLThridPersonView_OnRenderScene(GLControl inControl, GLRenderParameter inParameter)
+        private void GLThirdPersonView_OnRenderScene(object inSender, EventArgs inArgs)
         {
             m_Origin.Visible = true;
-            m_TPSProjection.SetAngleAndViewportSize(45.0f, inControl.Width, inControl.Height);
+            m_TPSProjection.SetAngleAndViewportSize(45.0f, GLThirdPersonView.Width, GLThirdPersonView.Height);
             m_Scene.Render(m_TPSCamera);
             return;
         }
@@ -187,12 +187,12 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 m_CurrentParameterView.Parent = PanelParameterView;
                 m_CurrentParameterView.Dock = DockStyle.Fill;
 
-                m_CurrentParameterView.SetAutoAspectReference(CheckBoxAutoAspect.Checked ? GLThrirdPersonView : null);
+                m_CurrentParameterView.SetAutoAspectReference(CheckBoxAutoAspect.Checked ? GLThirdPersonView : null);
             }
         }
 
         private void CheckBoxAutoAspect_CheckedChanged(object sender, EventArgs e)
-            => m_CurrentParameterView.SetAutoAspectReference(CheckBoxAutoAspect.Checked ? GLThrirdPersonView : null); 
+            => m_CurrentParameterView.SetAutoAspectReference(CheckBoxAutoAspect.Checked ? GLThirdPersonView : null); 
 
         private void ButtonRandomizer_Click(object sender, EventArgs e)
              => RandomizeSpheres();
@@ -205,7 +205,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
             CheckInFrustum();
             GLFirstPersonView.Invalidate();
-            GLThrirdPersonView.Invalidate();
+            GLThirdPersonView.Invalidate();
             return;
         }
 
