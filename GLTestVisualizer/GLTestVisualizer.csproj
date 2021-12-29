@@ -75,7 +75,10 @@
     <Compile Include="TestView\AlphaBlending\Ctrl_AlphaBlendingTestView.Designer.cs">
       <DependentUpon>Ctrl_AlphaBlendingTestView.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestView\AlphaBlending\GLCubeMaterial.cs" />
+    <Compile Include="TestView\Common\Material\GLColorMaterial.cs" />
+    <Compile Include="TestView\Common\Material\GLTextureMaterial.cs" />
+    <Compile Include="TestView\Common\Material\GLTransColorMaterial.cs" />
+    <Compile Include="TestView\Common\Material\GLVertexColorMaterial.cs" />
     <Compile Include="TestView\Ctrl_TestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,8 +115,6 @@
     <Compile Include="TestView\Octree\Ctrl_OctreeTestView.Designer.cs">
       <DependentUpon>Ctrl_OctreeTestView.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestView\Octree\GLOctreeCellMaterial.cs" />
-    <Compile Include="TestView\Octree\GLSolidColorMaterial.cs" />
     <Compile Include="TestView\Octree\OctreeRegistableRenderObject.cs" />
     <Compile Include="TestView\Octree\OctreeRenderObject.cs" />
     <Compile Include="TestView\Raycast\Ctrl_RaycastTestView.cs">
@@ -122,21 +123,18 @@
     <Compile Include="TestView\Raycast\Ctrl_RaycastTestView.Designer.cs">
       <DependentUpon>Ctrl_RaycastTestView.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestView\Raycast\GLColorMaterial.cs" />
     <Compile Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TestView\SphereMesh\Ctrl_SphereMeshTestView.Designer.cs">
       <DependentUpon>Ctrl_SphereMeshTestView.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestView\SphereMesh\GLSphereMaterial.cs" />
     <Compile Include="TestView\Texture\Ctrl_TextureTestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TestView\Texture\Ctrl_TextureTestView.Designer.cs">
       <DependentUpon>Ctrl_TextureTestView.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestView\Texture\GLTextureMaterial.cs" />
     <Compile Include="TestView\Text\Ctrl_TextTestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -144,7 +142,6 @@
       <DependentUpon>Ctrl_TextTestView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\Text\FontInitializer.cs" />
-    <Compile Include="TestView\Text\GLTextMaterial.cs" />
     <Compile Include="TestView\TransformMatrixDexomposition\Ctrl_DecompositeTransformMatrixView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,7 +155,6 @@
       <DependentUpon>Ctrl_TransformMatrixDecompositionTestView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\Common\GLAxisRenderObject.cs" />
-    <Compile Include="TestView\TransformMatrixDexomposition\GLBoxMaterial.cs" />
     <Compile Include="Utils\Extensions\MatrixExtensions.cs" />
     <Compile Include="Utils\Extensions\SphericalCoordinateExtensions.cs" />
     <Compile Include="Utils\Extensions\VectorExtensions.cs" />

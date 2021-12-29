@@ -144,7 +144,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             return;
         }
 
-        private GLMaterial m_Material = new GLBoxMaterial();
+        private GLMaterial m_Material = new GLVertexColorMaterial();
         private GLMesh m_Cube = GLPrimitiveMesh.CreateBox(1.0f, 1.0f, 1.0f);
         private GLRenderObject m_MatrixInputView = new GLRenderObject();
         private GLAxisRenderObject m_MatrixInputAxisView = new GLAxisRenderObject();

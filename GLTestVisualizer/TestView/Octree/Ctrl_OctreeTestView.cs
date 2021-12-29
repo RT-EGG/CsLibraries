@@ -108,7 +108,7 @@ namespace GLTestVisualizer.TestView.Octree
         private GLMesh m_SphereMesh = GLPrimitiveMesh.CreateSphereUV(8, 5);
         private GLRenderObject m_SphereBoundsObject = new GLRenderObject();
         private GLMesh m_SphereBoundsMesh = GLPrimitiveMesh.CreateBox();
-        private GLSolidColorMaterial m_SphereMaterial = new GLSolidColorMaterial();
+        private GLColorMaterial m_SphereMaterial = new GLColorMaterial() { Color = new Vector4(1.0f) };
 
         private GLPerspectiveProjection m_Projection = new GLPerspectiveProjection();
         private OrbitCameraModel m_Camera = new OrbitCameraModel();

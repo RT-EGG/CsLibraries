@@ -14,9 +14,9 @@ namespace GLTestVisualizer.TestView.Octree
         {
             int div = 2.Pow(inOctree.MaxLevel);
 
-            m_Materials = new GLOctreeCellMaterial[inOctree.MaxLevel + 1];
+            m_Materials = new GLTransColorMaterial[inOctree.MaxLevel + 1];
             for (int i = 0; i <= inOctree.MaxLevel; ++i) {
-                m_Materials[i] = new GLOctreeCellMaterial() {
+                m_Materials[i] = new GLTransColorMaterial() {
                     Color = CellColors[i]
                 };
 
@@ -74,7 +74,7 @@ namespace GLTestVisualizer.TestView.Octree
 
         private GLMesh m_CellMesh = GLPrimitiveMesh.CreateBox(1.0f, 1.0f, 1.0f);
         private GLMesh m_GridMesh = new GLMesh();
-        private GLSolidColorMaterial m_GridMaterial = new GLSolidColorMaterial();
+        private GLColorMaterial m_GridMaterial = new GLColorMaterial() { Color = new Vector4(1.0f) };
         private Dictionary<IOctreeCell, GLRenderObject> m_CellRenderers = new Dictionary<IOctreeCell, GLRenderObject>();
         private GLRenderObject m_GridRenderer = new GLRenderObject();
         private readonly Vector4[] CellColors = new Vector4[] {
@@ -87,6 +87,6 @@ namespace GLTestVisualizer.TestView.Octree
             new Vector4(0.8f, 0.0f, 0.8f, 0.5f),
             new Vector4(1.0f, 1.0f, 1.0f, 0.5f),
         };
-        private GLOctreeCellMaterial[] m_Materials = null;
+        private GLTransColorMaterial[] m_Materials = null;
     }
 }

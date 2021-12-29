@@ -1,11 +1,11 @@
 ﻿using RtCs.MathUtils;
 using RtCs.OpenGL;
 
-namespace GLTestVisualizer.TestView.Octree
+namespace GLTestVisualizer.TestView
 {
-    class GLSolidColorMaterial : GLMaterial
+    class GLColorMaterial : GLMaterial
     {
-        public GLSolidColorMaterial()
+        public GLColorMaterial()
         {
             base.Shader = GLRenderShaderProgram.Preset.Color;
             return;
@@ -13,12 +13,14 @@ namespace GLTestVisualizer.TestView.Octree
 
         protected override void CommitPropertiesCore()
         {
-            SetVariableValue("inColor", new Vector4(1.0f));
+            SetVariableValue("inColor", Color);
 
             base.CommitPropertiesCore();
             return;
         }
 
+        public Vector4 Color
+        { get; set; } = new Vector4(1.0f);
         private new GLRenderShaderProgram Shader => base.Shader;
     }
 }

@@ -48,13 +48,13 @@ namespace GLTestVisualizer.TestView.Raycast
             m_FPSCameraVisualizer.Transform.Parent = m_FPSCamera.Transform;
             m_FPSCameraVisualizer.Renderer.Mesh = m_SphereMesh;
             m_FPSCameraVisualizer.Renderer.Material = new GLColorMaterial {
-                Color = new Vector3(0.2f, 0.2f, 0.2f)
+                Color = new Vector4(0.2f, 0.2f, 0.2f, 1.0f)
             };
             m_FPSCameraRayVisualizer.Transform.Parent = m_FPSCameraVisualizer.Transform;
             m_FPSCameraRayVisualizer.Transform.LocalScale = new Vector3(0.0f, 0.0f, 10.0f);
             m_FPSCameraRayVisualizer.Renderer.Mesh = m_FPSCameraRayMesh;
             m_FPSCameraRayVisualizer.Renderer.Material = new GLColorMaterial {
-                Color = new Vector3(1.0f, 1.0f, 1.0f)
+                Color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f)
             };
 
             RandomizeObjects();
@@ -87,7 +87,7 @@ namespace GLTestVisualizer.TestView.Raycast
 
                 newObject.Renderer.Mesh = ((randomizer.Next() % 2) == 0) ? m_SphereMesh : m_CubeMesh;
                 newObject.Renderer.Material = new GLColorMaterial {
-                    Color = RenderColors[randomizer.Next() % RenderColors.Length]
+                    Color = new Vector4(RenderColors[randomizer.Next() % RenderColors.Length], 1.0f)
                 };
                 newObject.CalculateBoundingBox();
                 m_RaycastableObjects.Add(newObject);
@@ -196,7 +196,7 @@ namespace GLTestVisualizer.TestView.Raycast
             }
             GLRenderObject newObject = new GLRenderObject();
             newObject.Renderer.Mesh = m_SphereMesh;
-            newObject.Renderer.Material = new GLColorMaterial() { Color = new Vector3(1.0f, 1.0f, 1.0f) };
+            newObject.Renderer.Material = new GLColorMaterial() { Color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f) };
             return newObject;
         }
 

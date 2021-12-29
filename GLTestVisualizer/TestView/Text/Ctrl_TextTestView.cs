@@ -199,7 +199,7 @@ namespace GLTestVisualizer.TestView.Text
         private GLRenderObject m_AtlasTextureObject = new GLRenderObject();
         private GLMesh m_AtlasMesh = new GLMesh();
         private IGLColorTexture2D m_AtlasTexture = null;
-        private GLTextMaterial m_AtlasTextureMaterial = new GLTextMaterial();
+        private GLTextureMaterial m_AtlasTextureMaterial = new GLTextureMaterial();
         private GLTextureSampler m_TextureSampler = new GLTextureSampler();
 
         private readonly string InitialCharacterSet
@@ -254,7 +254,7 @@ namespace GLTestVisualizer.TestView.Text
             }
 
             private GLMesh m_Mesh = new GLMesh();
-            private GLTextMaterial m_Material = new GLTextMaterial();
+            private GLTextureMaterial m_Material = new GLTextureMaterial();
         }
     }
 }

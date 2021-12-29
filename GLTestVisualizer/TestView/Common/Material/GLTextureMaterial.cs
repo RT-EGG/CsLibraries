@@ -1,11 +1,11 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.OpenGL;
 
-namespace GLTestVisualizer.TestView.Text
+namespace GLTestVisualizer.TestView
 {
-    class GLTextMaterial : GLMaterial
+    class GLTextureMaterial : GLMaterial
     {
-        public GLTextMaterial()
+        public GLTextureMaterial()
         {
             base.Shader = GLRenderShaderProgram.Preset.Texture;
 

@@ -1,11 +1,10 @@
-﻿using RtCs.MathUtils;
-using RtCs.OpenGL;
+﻿using RtCs.OpenGL;
 
-namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
+namespace GLTestVisualizer.TestView
 {
-    class GLBoxMaterial : GLMaterial
+    class GLVertexColorMaterial : GLMaterial
     {
-        public GLBoxMaterial()
+        public GLVertexColorMaterial()
         {
             base.Shader = GLRenderShaderProgram.Preset.VertexColor;
             return;

@@ -2,14 +2,13 @@
 using RtCs.MathUtils;
 using RtCs.OpenGL;
 
-namespace GLTestVisualizer.TestView.AlphaBlending
+namespace GLTestVisualizer.TestView
 {
-    class GLCubeMaterial : GLMaterial
+    class GLTransColorMaterial : GLMaterial
     {
-        public GLCubeMaterial(Vector4 inColor)
+        public GLTransColorMaterial()
         {
             base.Shader = new GLRenderShaderProgram.Color();
-            Color = inColor;
 
             RenderLevel = EGLRenderLevel.Transparent;
             BlendParameters = new GLBlendParameters {

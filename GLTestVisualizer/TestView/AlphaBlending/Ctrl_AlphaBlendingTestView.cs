@@ -30,7 +30,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
                 GLRenderObject newObject = new GLRenderObject();
                 newObject.Transform.LocalPosition = inCenter;
                 newObject.Renderer.Mesh = m_CubeMesh;
-                newObject.Renderer.Material = new GLCubeMaterial(new Vector4(inRGB, 0.3f));
+                newObject.Renderer.Material = new GLTransColorMaterial() { Color = new Vector4(inRGB, 0.3f) };
                 newObject.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
                 newObject.RenderFaceMode = EGLRenderFaceMode.FrontAndBack;
 

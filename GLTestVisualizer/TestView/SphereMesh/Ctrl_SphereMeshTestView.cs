@@ -17,10 +17,14 @@ namespace GLTestVisualizer.TestView.SphereMesh
 
         public override void Start()
         {
+            GLColorMaterial material = new GLColorMaterial() {
+                Color = new Vector4(1.0f)
+            };
+
             m_UvSphere.Transform.LocalPosition = new Vector3(-2.5f, 0.0f, 0.0f);
             m_UvSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_UvSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereUV(5, 5);
-            m_UvSphere.Renderer.Material = new GLSphereMaterial();
+            m_UvSphere.Renderer.Material = material;
             m_UvSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
             m_UvAxix.Transform.Parent = m_UvSphere.Transform;
             m_UvAxix.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
@@ -28,7 +32,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             m_IcoSphere.Transform.LocalPosition = new Vector3(0.0f, 0.0f, 0.0f);
             m_IcoSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_IcoSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereICO(0);
-            m_IcoSphere.Renderer.Material = new GLSphereMaterial();
+            m_IcoSphere.Renderer.Material = material;
             m_IcoSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
             m_IcoAxis.Transform.Parent = m_IcoSphere.Transform;
             m_IcoAxis.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
@@ -36,7 +40,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             m_RcSphere.Transform.LocalPosition = new Vector3(2.5f, 0.0f, 0.0f);
             m_RcSphere.PolygonMode = EGLRenderPolygonMode.Line;
             m_RcSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereRoundedCube(2);
-            m_RcSphere.Renderer.Material = new GLSphereMaterial();
+            m_RcSphere.Renderer.Material = material;
             m_RcSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
             m_RcAxis.Transform.Parent = m_RcSphere.Transform;
             m_RcAxis.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
