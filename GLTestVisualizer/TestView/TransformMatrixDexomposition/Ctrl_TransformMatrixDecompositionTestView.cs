@@ -62,7 +62,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             m_Projection.Far = 100.0f;
             m_Camera.Projection = m_Projection;
             m_Camera.Transform.LocalPosition = new Vector3(0.0f, 2.0f, 2.0f);
-            m_Camera.Transform.LocalRotation = Quaternion.FromEuler((-45.0f).DegToRad(), 0.0f, 0.0f, EEulerRotationOrder.YXZ);
+            m_Camera.Transform.LookAt(new Vector3());
 
             m_Scene.DisplayList.Register(m_MatrixInputView);
             m_Scene.DisplayList.Register(m_MatrixInputAxisView);

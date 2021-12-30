@@ -652,6 +652,31 @@ namespace RtCs.MathUtils
         public static Matrix4x4 MakeSymmetricalPerspective(float aFovY, float aWidth, float aHeight, float aNear, float aFar)
             => MakeSymmetricalPerspective(aFovY, aWidth / aHeight, aNear, aFar);
 
+        /// <summary>
+        /// Create matrix like as to set the position and rotation of the camera,
+        /// </summary>
+        /// <param name="inCenter">The position of the camera.</param>
+        /// <param name="inTargetPoint">The point that the camera looks.</param>
+        /// <param name="inUpDirection">The direction that tha camera's head faces.</param>
+        /// <returns>Created view matrix.</returns>
+        public static Matrix4x4 MakeLookAtMatrix(Vector3 inCenter, Vector3 inTargetPoint, Vector3 inUpDirection)
+        {
+            if ((inCenter == inTargetPoint) || inUpDirection.IsZero) {
+                return Matrix4x4.MakeTranslate(inCenter);
+            }
+
+            Vector3 z = (inCenter - inTargetPoint).Normalized;
+            Vector3 x = Vector3.Cross(inUpDirection, z).Normalized;
+            Vector3 y = Vector3.Cross(z, x).Normalized;
+
+            return new Matrix4x4(
+                     x.x,  y.x,  z.x, inCenter.x,
+                     x.y,  y.y,  z.y, inCenter.y,
+                     x.z,  y.z,  z.z, inCenter.z,
+                    0.0f, 0.0f, 0.0f, 1.0f
+                );
+        }
+
         public override string ToString()
         {
             return $"{m00}, {m01}, {m02}, {m03}, {Environment.NewLine}" +
