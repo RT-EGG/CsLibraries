@@ -15,6 +15,7 @@
                 Color = new Color();
                 VertexColor = new VertexColor();
                 Texture = new Texture();
+                Phong = new Phong();
                 return;
             }
 
@@ -23,6 +24,8 @@
             public static VertexColor VertexColor
             { get; private set; }
             public static Texture Texture
+            { get; private set; }
+            public static Phong Phong
             { get; private set; }
         }
 

@@ -76,6 +76,7 @@
       <DependentUpon>Ctrl_AlphaBlendingTestView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\Common\Material\GLColorMaterial.cs" />
+    <Compile Include="TestView\Common\Material\GLPhongMaterial.cs" />
     <Compile Include="TestView\Common\Material\GLTextureMaterial.cs" />
     <Compile Include="TestView\Common\Material\GLTransColorMaterial.cs" />
     <Compile Include="TestView\Common\Material\GLVertexColorMaterial.cs" />
@@ -109,6 +110,12 @@
     </Compile>
     <Compile Include="TestView\FrustumTest\GLSphereMaterial.cs" />
     <Compile Include="TestView\FrustumTest\GLViewFrustumRendererObject.cs" />
+    <Compile Include="TestView\LIghting\Ctrl_LightingTestView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestView\LIghting\Ctrl_LightingTestView.Designer.cs">
+      <DependentUpon>Ctrl_LightingTestView.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestView\Octree\Ctrl_OctreeTestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -182,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\FrustumTest\Ctrl_ProjectionFrustumParameterView.resx">
       <DependentUpon>Ctrl_ProjectionFrustumParameterView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestView\LIghting\Ctrl_LightingTestView.resx">
+      <DependentUpon>Ctrl_LightingTestView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\Octree\Ctrl_OctreeTestView.resx">
       <DependentUpon>Ctrl_OctreeTestView.cs</DependentUpon>

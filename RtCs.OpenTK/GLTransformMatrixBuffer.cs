@@ -4,18 +4,21 @@ using System.Collections.Generic;
 
 namespace RtCs.OpenGL
 {
-    public class GLTransformMatrixBuffer
+    public class GLTransformMatrixBuffer : GLObject
     {
-        public void SetBuffers(GLCamera inCamera, IReadOnlyList<GLRenderObject> inObjects)
+        internal void SetBuffers(GLCamera inCamera, IReadOnlyList<GLRenderObject> inObjects)
         {
             Matrix4x4 viewMatrix = inCamera.ViewMatrix;
             Matrix4x4 projectionMatrix = (inCamera.Projection == null) ? Matrix4x4.Identity : inCamera.Projection.ProjectionMatrix;
             Matrix4x4 viewProjectionMatrix = projectionMatrix * viewMatrix;
+            Vector4 viewDirection = viewMatrix.Inversed * (new Vector4(0.0f, 0.0f, -1.0f, 0.0f));
 
-            float[] viewProjectionMatrixBuffer = new float[16 * 3];
-            viewMatrix.CopyToGLArray(viewProjectionMatrixBuffer, 0);
-            projectionMatrix.CopyToGLArray(viewProjectionMatrixBuffer, 16);
-            viewProjectionMatrix.CopyToGLArray(viewProjectionMatrixBuffer, 32);
+            float[] viewProjectionMatrixBuffer = new float[(4 * 1) + (16 * 3)];
+            int index = 0;
+            viewDirection.CopyToArray(viewProjectionMatrixBuffer, ref index);
+            viewMatrix.CopyToGLArray(viewProjectionMatrixBuffer, ref index);
+            projectionMatrix.CopyToGLArray(viewProjectionMatrixBuffer, ref index);
+            viewProjectionMatrix.CopyToGLArray(viewProjectionMatrixBuffer, ref index);
 
             ViewProjectionMatrixBuffer.AllocateBuffer(sizeof(float) * viewProjectionMatrixBuffer.Length, viewProjectionMatrixBuffer, BufferUsageHint.DynamicDraw);
 
@@ -58,16 +61,30 @@ namespace RtCs.OpenGL
             return;
         }
 
-        public GLBufferObject ViewProjectionMatrixBuffer
-        { get; set; } = new GLBufferObject();
-        public GLBufferObject ModelMatrixBuffer
-        { get; private set; } = new GLBufferObject();
-        public GLBufferObject ModelViewMatrixBuffer
-        { get; private set; } = new GLBufferObject();
-        public GLBufferObject ModelViewProjectionMatrixBuffer
-        { get; private set; } = new GLBufferObject();
-        public GLBufferObject NormalMatrixBuffer
-        { get; private set; } = new GLBufferObject();
+        internal GLShaderStorageBufferObject ViewProjectionMatrixBuffer
+        { get; } = new GLShaderStorageBufferObject();
+        internal GLShaderStorageBufferObject ModelMatrixBuffer
+        { get; } = new GLShaderStorageBufferObject();
+        internal GLShaderStorageBufferObject ModelViewMatrixBuffer
+        { get; } = new GLShaderStorageBufferObject();
+        internal GLShaderStorageBufferObject ModelViewProjectionMatrixBuffer
+        { get; } = new GLShaderStorageBufferObject();
+        internal GLShaderStorageBufferObject NormalMatrixBuffer
+        { get; } = new GLShaderStorageBufferObject();
+
+        protected override void DisposeObject(bool inDisposing)
+        {
+            base.DisposeObject(inDisposing);
+
+            if (inDisposing) {
+                ViewProjectionMatrixBuffer.Dispose();
+                ModelMatrixBuffer.Dispose();
+                ModelViewMatrixBuffer.Dispose();
+                ModelViewProjectionMatrixBuffer.Dispose();
+                NormalMatrixBuffer.Dispose();
+            }
+            return;
+        }
 
         private const BufferUsageHint UsageHint = BufferUsageHint.DynamicDraw;
         private const int BufferSize44 = 16 * sizeof(float);

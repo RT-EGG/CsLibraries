@@ -43,6 +43,8 @@ namespace RtCs.OpenGL
                     return new GLShaderUniformVariable.Float(inSocket);
                 case ActiveUniformType.Double:
                     return new GLShaderUniformVariable.Double(inSocket);
+                case ActiveUniformType.FloatVec3:
+                    return new GLShaderUniformVariable.Vec3(inSocket);
                 case ActiveUniformType.FloatVec4:
                     return new GLShaderUniformVariable.Vec4(inSocket);
                 case ActiveUniformType.FloatMat4:

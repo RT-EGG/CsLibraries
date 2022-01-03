@@ -1,6 +1,7 @@
 ﻿using GLTestVisualizer.TestView;
 using GLTestVisualizer.TestView.AlphaBlending;
 using GLTestVisualizer.TestView.FrustumTest;
+using GLTestVisualizer.TestView.Lighting;
 using GLTestVisualizer.TestView.Octree;
 using GLTestVisualizer.TestView.Raycast;
 using GLTestVisualizer.TestView.SphereMesh;
@@ -22,7 +23,8 @@ namespace GLTestVisualizer
         Octree,
         RayCast,
         Texture,
-        Text
+        Text,
+        Lighting,
     }
 
     public partial class FormMain : Form
@@ -75,6 +77,11 @@ namespace GLTestVisualizer
                 Type = TestContentType.Text,
                 Text = "Text",
                 ViewGenerator = () => new Ctrl_TextTestView()
+            });
+            ComboTestContent.Items.Add(new TestContentItem {
+                Type = TestContentType.Lighting,
+                Text = "Lighting",
+                ViewGenerator = () => new Ctrl_LightingTestView()
             });
 
             ComboTestContent.SelectedIndex = 0;

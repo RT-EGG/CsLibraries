@@ -1,4 +1,6 @@
 ﻿using RtCs.MathUtils;
+using RtCs.OpenGL.Utils;
+using System.Runtime.InteropServices;
 
 namespace RtCs.OpenGL
 {
@@ -68,6 +70,29 @@ namespace RtCs.OpenGL
                 result[(i * 4) + 3] = (float)inVectors[i].w;
             }
             return result;
+        }
+
+        public static void CopyToArray<T>(this T inValue, float[] inDst, int inIndex) where T : IVector
+            => CopyToArray(inValue, inDst, ref inIndex);
+
+        public static void CopyToArray<T>(this T inValue, float[] inDst, ref int inIndex) where T : IVector
+        {
+            for (int i = 0; i < inValue.Count; ++i) {
+                inDst[inIndex++] = inValue[i];
+            }
+            return;
+        }
+
+        public static void CopyToArray<T>(this T inValue, byte[] inDst, int inIndex) where T : IVector
+            => CopyToArray(inValue, inDst, ref inIndex);
+
+        public static void CopyToArray<T>(this T inValue, byte[] inDst, ref int inIndex) where T : IVector
+        {
+            float[] items = new float[inValue.Count];
+            inValue.CopyToArray(items, 0);
+
+            ByteConverter.WriteTo(items, inDst, ref inIndex);
+            return;
         }
     }
 }

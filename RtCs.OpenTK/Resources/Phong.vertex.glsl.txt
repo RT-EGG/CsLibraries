@@ -1,0 +1,24 @@
+#version 460
+
+#include "BuiltIn.h"
+
+layout (location = 0) in vec3 inPosition;
+layout (location = 1) in vec3 inNormal;
+
+out gl_PerVertex
+{
+	vec4 gl_Position;
+};
+
+layout (location = 0) out vec3 outNormal;
+layout (location = 1) out vec3 outWorldSpaceNormal;
+
+void main()
+{
+    ExpandBuiltInVariables();
+
+    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);
+    outNormal = NormalMatrix * inNormal;
+    outWorldSpaceNormal = (ModelMatrix * vec4(inNormal, 0.0)).xyz;
+    return;
+}

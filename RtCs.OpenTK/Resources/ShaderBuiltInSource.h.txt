@@ -1,4 +1,5 @@
-layout (std140) uniform BuiltIn_ViewProjectionMatrix {
+layout (std430) buffer BuiltIn_ViewProjectionMatrix {
+	vec4 WorldViewDirection;
 	mat4 ViewMatrix;
 	mat4 ProjectionMatrix;
 	mat4 ViewProjectionMatrix;
@@ -33,4 +34,63 @@ void ExpandBuiltInVariables()
 	ModelViewMatrix = ModelViewMatrices[RenderInstanceID];
 	ModelViewProjectionMatrix = ModelViewProjectionMatrices[RenderInstanceID];
 	NormalMatrix = NormalMatrices[RenderInstanceID];
-}
+};
+
+struct GLAmbientLight_
+{
+	float ColorR;
+	float ColorG;
+	float ColorB;
+	float Intensity;
+};
+
+struct GLAmbientLight
+{
+	vec3 Color;
+	float Intensity;
+};
+
+layout (std430) readonly buffer BuiltIn_AmbientLight {
+	GLAmbientLight_ AmbientLight;
+};
+
+GLAmbientLight GetAmbientLight()
+{
+	GLAmbientLight result;
+	result.Color = vec3(AmbientLight.ColorR, AmbientLight.ColorG, AmbientLight.ColorB);
+	result.Intensity = AmbientLight.Intensity;
+	return result;
+};
+
+struct GLDirectionalLight_
+{
+	float ColorR;
+	float ColorG;
+	float ColorB;
+	float Intensity;
+	float DirectionX;
+	float DirectionY;
+	float DirectionZ;
+};
+
+struct GLDirectionalLight
+{
+	vec3 Color;
+	float Intensity;
+	vec3 Direction;
+};
+
+layout (std430) readonly buffer BuiltIn_DirectionalLight {	
+	int DirectionalLightCount;
+	GLDirectionalLight_ DirectionalLights[];
+};
+
+GLDirectionalLight GetDirectionalLight(int inIndex)
+{
+	GLDirectionalLight_ source = DirectionalLights[inIndex];
+	GLDirectionalLight result;
+	result.Color = vec3(source.ColorR, source.ColorG, source.ColorB);
+	result.Intensity = source.Intensity;
+	result.Direction = vec3(source.DirectionX, source.DirectionY, source.DirectionZ);
+	return result;
+};

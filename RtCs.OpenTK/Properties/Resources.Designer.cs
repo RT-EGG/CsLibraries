@@ -65,7 +65,7 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///out vec4 outColor;
         ///
-        ///layout (location = 2) uniform vec4 inColor;
+        ///layout (location = 0) uniform vec4 inColor;
         ///
         ///void main()
         ///{
@@ -82,8 +82,7 @@ namespace RtCs.OpenGL.Properties {
         /// <summary>
         ///   #version 460
         ///
-        ///layout (location = 0) uniform mat4 inProjectionMatrix;
-        ///layout (location = 1) uniform mat4 inModelviewMatrix;
+        ///#include &quot;BuiltIn.h&quot;
         ///
         ///layout (location = 0) in vec3 inPosition;
         ///
@@ -94,7 +93,9 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///void main()
         ///{
-        ///    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);	
+        ///    ExpandBuiltInVariables();
+        ///
+        ///    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);	
         ///    return;
         ///} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -105,26 +106,46 @@ namespace RtCs.OpenGL.Properties {
         }
         
         /// <summary>
-        ///   layout (std140) uniform BuiltInMatrix4 {
-        ///	mat4 Matrix;
-        ///} BuiltIn_Model, BuiltIn_View, BuiltIn_Projection, BuiltIn_ModelView, BuiltIn_ViewProjection, BuiltIn_ModelViewProjection;
+        ///    に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Phong_fragment_glsl {
+            get {
+                return ResourceManager.GetString("Phong.fragment.glsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Phong_vertex_glsl {
+            get {
+                return ResourceManager.GetString("Phong.vertex.glsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   layout (std140) uniform BuiltIn_ViewProjectionMatrix {
+        ///	mat4 ViewMatrix;
+        ///	mat4 ProjectionMatrix;
+        ///	mat4 ViewProjectionMatrix;
+        ///};
         ///
-        ///layout (std140) uniform BuiltInMatrix3 {
-        ///	mat3 Matrix;
-        ///} BuiltIn_Normal;
+        ///layout (std430) readonly buffer BuiltIn_ModelMatrix {
+        ///	mat4 ModelMatrices[];
+        ///};
         ///
-        ///mat4 ModelMatrix;
-        ///mat4 ViewMatrix;
-        ///mat4 ProjectionMatrix;
-        ///mat4 ModelViewMatrix;
-        ///mat4 ViewProjectionMatrix;
-        ///mat4 ModelViewProjectionMatrix;
-        ///mat3 NormalMatrix;
+        ///layout (std430) readonly buffer BuiltIn_ModelViewMatrix {
+        ///	mat4 ModelViewMatrices[];
+        ///};
         ///
-        ///void ReadBuiltInVariables()
-        ///{
-        ///	ModelMatrix = BuiltIn_Model.Matrix;
-        ///	ViewMatrix =  [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///layout (std430) readonly buffer BuiltIn_ModelViewProjectionMatrix {
+        ///	mat4 ModelViewProjectionMatrices[];
+        ///};
+        ///
+        ///layout (std430) readonly buffer BuiltIn_NormalMatrix {
+        ///	mat3 NormalMatrices[];
+        ///};
+        ///        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ShaderBuiltInSource_h {
             get {
@@ -138,7 +159,7 @@ namespace RtCs.OpenGL.Properties {
         ///out vec4 outColor;
         ///
         ///layout (location = 0) in vec2 inTexCoord;
-        ///layout (location = 2) uniform sampler2D inTexture;
+        ///layout (location = 0) uniform sampler2D inTexture;
         ///
         ///void main()
         ///{
@@ -156,8 +177,7 @@ namespace RtCs.OpenGL.Properties {
         /// <summary>
         ///   #version 460
         ///
-        ///layout (location = 0) uniform mat4 inProjectionMatrix;
-        ///layout (location = 1) uniform mat4 inModelviewMatrix;
+        ///#include &quot;BuiltIn.h&quot;
         ///
         ///layout (location = 0) in vec3 inPosition;
         ///layout (location = 1) in vec2 inTexCoord;
@@ -170,7 +190,9 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///void main()
         ///{
-        ///    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);
+        ///    ExpandBuiltInVariables();
+        ///
+        ///    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);
         ///    outTexCoord = inTexCoord;
         ///    return;
         ///} に類似しているローカライズされた文字列を検索します。
@@ -203,8 +225,7 @@ namespace RtCs.OpenGL.Properties {
         /// <summary>
         ///   #version 460
         ///
-        ///layout (location = 0) uniform mat4 inProjectionMatrix;
-        ///layout (location = 1) uniform mat4 inModelviewMatrix;
+        ///#include &quot;BuiltIn.h&quot;
         ///
         ///layout (location = 0) in vec3 inPosition;
         ///layout (location = 1) in vec4 inColor;
@@ -217,7 +238,9 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///void main()
         ///{
-        ///    gl_Position = inProjectionMatrix * inModelviewMatrix * vec4(inPosition, 1.0);	
+        ///    ExpandBuiltInVariables();
+        ///
+        ///    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);	
         ///    outColor = inColor;
         ///    return;
         ///} に類似しているローカライズされた文字列を検索します。

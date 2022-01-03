@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace RtCs.OpenGL
 {
-    class GLSceneRenderer
+    class GLSceneRenderer : GLObject
     {
         public void Render(GLScene inScene, GLCamera inCamera)
         {
@@ -16,20 +16,28 @@ namespace RtCs.OpenGL
             displayObjects.AddRange(inScene.DisplayList.Items.Where(o => CanRender(o)));
 
             m_MatrixBuffer.SetBuffers(inCamera, displayObjects);
-            m_ViewMatrix = inCamera.ViewMatrix;
 
-            GL.BindBufferBase(BufferRangeTarget.UniformBuffer, 0, m_MatrixBuffer.ViewProjectionMatrixBuffer.ID);
-            GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 1, m_MatrixBuffer.ModelMatrixBuffer.ID);
-            GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 2, m_MatrixBuffer.ModelViewMatrixBuffer.ID);
-            GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 3, m_MatrixBuffer.ModelViewProjectionMatrixBuffer.ID);
-            GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 4, m_MatrixBuffer.NormalMatrixBuffer.ID);
+            GLShaderStorageBufferObject.ClearBindingBufferBase();
+
+            int viewProjectionMatrixBufferBinding = m_MatrixBuffer.ViewProjectionMatrixBuffer.BindBufferBase();
+            int modelMatrixBufferBinding = m_MatrixBuffer.ModelMatrixBuffer.BindBufferBase();
+            int modelViewMatrixBufferBinding = m_MatrixBuffer.ModelViewMatrixBuffer.BindBufferBase();
+            int modelViewProjectionMatrixBufferBinding = m_MatrixBuffer.ModelViewProjectionMatrixBuffer.BindBufferBase();
+            int normalMatrixBufferBinding = m_MatrixBuffer.NormalMatrixBuffer.BindBufferBase();
+
+            inScene.Lights.UpdateBuffers();
+            int ambientLightBufferBinding = inScene.Lights.AmbientLightBuffer.BindBufferBase();
+            int directionalLightBufferBinding = inScene.Lights.DirectionalLightBuffer.BindBufferBase();
 
             foreach (var shader in displayObjects.Select(o => o.Renderer.Material.Shader).Distinct()) {
-                TryCommitUniformBuffer(shader, "BuiltIn_ViewProjectionMatrix", 0);
-                TryCommitShaderStorageBuffer(shader, "BuiltIn_ModelMatrix", 1);
-                TryCommitShaderStorageBuffer(shader, "BuiltIn_ModelViewMatrix", 2);
-                TryCommitShaderStorageBuffer(shader, "BuiltIn_ModelViewProjectionMatrix", 3);
-                TryCommitShaderStorageBuffer(shader, "BuiltIn_NormalMatrix", 4);
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_ViewProjectionMatrix", viewProjectionMatrixBufferBinding);
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_ModelMatrix", modelMatrixBufferBinding);
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_ModelViewMatrix", modelViewMatrixBufferBinding);
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_ModelViewProjectionMatrix", modelViewProjectionMatrixBufferBinding);
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_NormalMatrix", normalMatrixBufferBinding);
+
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_AmbientLight", ambientLightBufferBinding);
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_DirectionalLight", directionalLightBufferBinding);
             }
 
             var grouped = GroupByRenderLevel(displayObjects);
@@ -162,7 +170,15 @@ namespace RtCs.OpenGL
             return true;
         }
 
-        private Matrix4x4 m_ViewMatrix = Matrix4x4.Identity;
+        protected override void DisposeObject(bool inDisposing)
+        {
+            base.DisposeObject(inDisposing);
+            if (inDisposing) {
+                m_MatrixBuffer.Dispose();
+            }
+            return;
+        }
+
         private GLTransformMatrixBuffer m_MatrixBuffer = new GLTransformMatrixBuffer();
         private GLViewFrustum m_ViewFrustum = default;
     }

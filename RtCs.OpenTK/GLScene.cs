@@ -4,13 +4,13 @@ namespace RtCs.OpenGL
 {
     public interface IGLScene
     {
-        IEnumerable<GLLight> Lights { get; }
+        GLLightEnvironment Lights { get; }
     }
 
     /// <summary>
     /// Represent the world to render.
     /// </summary>
-    public class GLScene : IGLScene
+    public class GLScene : GLObject, IGLScene
     {
         /// <summary>
         /// Render scene from camera.
@@ -28,8 +28,17 @@ namespace RtCs.OpenGL
         /// <summary>
         /// The light objects in scene.
         /// </summary>
-        public IEnumerable<GLLight> Lights
-        { get; set; } = new GLLight[0];
+        public GLLightEnvironment Lights
+        { get; } = new GLLightEnvironment();
+
+        protected override void DisposeObject(bool inDisposing)
+        {
+            base.DisposeObject(inDisposing);
+            if (inDisposing) {
+                m_SceneRenderer.Dispose();
+            }
+            return;
+        }
 
         private GLSceneRenderer m_SceneRenderer = new GLSceneRenderer();
     }

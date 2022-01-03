@@ -49,11 +49,18 @@ namespace RtCs.OpenGL
                 => GL.ProgramUniform1(inProgramID, inLocation, Value);
         }
 
+        public class Vec3 : GLShaderUniformVariable<Vector3>
+        {
+            public Vec3(GLShaderUniformVariableSocket inSocket) : base(inSocket) { }
+            protected override void CommitVariableCore(int inProgramID, int inLocation, CommitStatus inCommitState)
+                => GL.ProgramUniform3(inProgramID, inLocation, 1, Value.ToArray());
+        }
+
         public class Vec4 : GLShaderUniformVariable<Vector4>
         {
             public Vec4(GLShaderUniformVariableSocket inSocket) : base(inSocket) { }
             protected override void CommitVariableCore(int inProgramID, int inLocation, CommitStatus inCommitState)
-                => GL.ProgramUniform4(inProgramID, inLocation, 1, Value.Select(v => (float)v).ToArray());
+                => GL.ProgramUniform4(inProgramID, inLocation, 1, Value.ToArray());
         }
 
         public class Mat4 : GLShaderUniformVariable<Matrix4x4>

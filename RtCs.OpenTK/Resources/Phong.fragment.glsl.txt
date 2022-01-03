@@ -1,0 +1,49 @@
+#version 460
+
+#include "BuiltIn.h"
+
+out vec4 outColor;
+
+layout (location = 0) uniform vec3 inAmbient;
+layout (location = 1) uniform vec3 inDiffuse;
+layout (location = 2) uniform vec3 inSpecular;
+layout (location = 3) uniform vec3 inEmission;
+layout (location = 4) uniform float inShininess;
+
+layout (location = 0) in vec3 inNormal;
+layout (location = 1) in vec3 inWorldSpaceNormal;
+
+void main()
+{
+    ExpandBuiltInVariables();
+
+    // ambient
+    GLAmbientLight ambLight = GetAmbientLight();
+    vec3 ambient = inAmbient * (ambLight.Color.xyz * ambLight.Intensity);
+
+    // diffuse and specular
+    vec3 diffuse = vec3(0.0);
+    vec3 specular = vec3(0.0);
+    for (int i = 0; i < DirectionalLightCount; ++i) {
+        GLDirectionalLight light = GetDirectionalLight(i);
+
+        float d = max(dot(inWorldSpaceNormal, -light.Direction), 0.0);
+        diffuse += inDiffuse * light.Color * light.Intensity * d;
+
+        if (d > 0.0) {
+            vec3 halfVec = normalize(-WorldViewDirection.xyz - light.Direction);
+            float s = pow(max(dot(inWorldSpaceNormal, halfVec), 0.0), inShininess);
+            specular += inSpecular * light.Color * light.Intensity * s;
+        }
+    }
+
+    // emission
+    vec3 emission = inEmission;
+
+    vec3 color = ambient
+               + diffuse
+               + specular
+               + emission;
+    outColor = vec4(color, 1.0);
+    return;
+}

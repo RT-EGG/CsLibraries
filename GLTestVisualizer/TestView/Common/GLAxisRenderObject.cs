@@ -21,9 +21,13 @@ namespace GLTestVisualizer.TestView
             };
             mesh.Topology = EGLMeshTopology.Lines;
             mesh.Indices = Enumerable.Range(0, 6).ToArray();
+            mesh.Apply();
 
             Renderer.Mesh = mesh;
             Renderer.Material = new Material();
+
+            CalculateBoundingBox();
+            this.PolygonMode = EGLRenderPolygonMode.Line;
             return;
         }
 
