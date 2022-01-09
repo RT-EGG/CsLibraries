@@ -52,6 +52,9 @@ namespace RtCs.WinForms.Controls.ColorPicker
                     ColorInput.ValueChanged += ColorInput_ValueChanged;
                 }
 
+                ColorHSV hMax = new ColorHSV(m_Value.H, 1.0f, 1.0f);
+                SVPicker.RightTopColor = hMax.ToRGB().ToColor();
+
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
         }
