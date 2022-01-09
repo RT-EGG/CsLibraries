@@ -1,5 +1,6 @@
 ﻿using RtCs.MathUtils;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -24,6 +25,7 @@ namespace RtCs.WinForms.Controls.ColorPicker
             return;
         }
 
+        [Category("Action")]
         public event EventHandler ValueChanged;
 
         public Color Value

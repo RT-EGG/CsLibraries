@@ -28,11 +28,23 @@ namespace RtCs.WinForms.Controls.ColorPicker
         /// </summary>
         private void InitializeComponent()
         {
-            this.SampleColorPanel = new DoubleBufferedPanel();
+            this.ColorInput = new RtCs.WinForms.Controls.ColorPicker.ColorInput();
+            this.SampleColorPanel = new RtCs.WinForms.Controls.DoubleBufferedPanel();
             this.SVPicker = new RtCs.WinForms.Controls.ColorPickerBox();
             this.HSlider = new RtCs.WinForms.Controls.ColorSlider();
-            this.ColorInput = new RtCs.WinForms.Controls.ColorPicker.ColorInput();
             this.SuspendLayout();
+            // 
+            // ColorInput
+            // 
+            this.ColorInput.AlphaControlVisible = true;
+            this.ColorInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ColorInput.Location = new System.Drawing.Point(102, 259);
+            this.ColorInput.Name = "ColorInput";
+            this.ColorInput.Size = new System.Drawing.Size(188, 145);
+            this.ColorInput.TabIndex = 3;
+            this.ColorInput.Value = System.Drawing.Color.Transparent;
+            this.ColorInput.ValueChanged += new System.EventHandler(this.ColorInput_ValueChanged);
             // 
             // SampleColorPanel
             // 
@@ -79,16 +91,6 @@ namespace RtCs.WinForms.Controls.ColorPicker
             this.HSlider.ValueLineOverhangLength = 8;
             this.HSlider.ValueLineWidth = 3;
             this.HSlider.ValueChanged += new System.EventHandler(this.HSlider_ValueChanged);
-            // 
-            // ColorInput
-            // 
-            this.ColorInput.AlphaControlVisible = true;
-            this.ColorInput.Location = new System.Drawing.Point(102, 259);
-            this.ColorInput.Name = "ColorInput";
-            this.ColorInput.Size = new System.Drawing.Size(188, 145);
-            this.ColorInput.TabIndex = 3;
-            this.ColorInput.Value = System.Drawing.Color.Transparent;
-            this.ColorInput.ValueChanged += new System.EventHandler(this.ColorInput_ValueChanged);
             // 
             // ColorPicker
             // 
