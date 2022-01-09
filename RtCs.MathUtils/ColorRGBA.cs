@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace RtCs.MathUtils
 {
@@ -19,6 +20,10 @@ namespace RtCs.MathUtils
             : this(inRGB.R, inRGB.G, inRGB.B, inA)
         { }
 
+        public ColorRGBA(Color inColor)
+            : this(inColor.R, inColor.G, inColor.B, inColor.A)
+        { }
+
         public byte R { get; set; }
         public byte G { get; set; }
         public byte B { get; set; }
@@ -34,6 +39,9 @@ namespace RtCs.MathUtils
                 return;
             }
         }
+
+        public Color ToColor()
+            => Color.FromArgb(A, R, G, B);
 
         public static implicit operator ColorRGB(ColorRGBA inSource) => new ColorRGB(inSource.R, inSource.G, inSource.B);
 
@@ -54,6 +62,19 @@ namespace RtCs.MathUtils
             hashCode = hashCode * -1521134295 + B.GetHashCode();
             hashCode = hashCode * -1521134295 + A.GetHashCode();
             return hashCode;
+        }
+
+        public override string ToString()
+            => $"({R}, {G}, {B}, {A})";
+        internal static ColorRGBA Parse(string inValue)
+        {
+            string[] items = inValue.Split(',');
+            return new ColorRGBA(
+                    (byte)int.Parse(items[0]),
+                    (byte)int.Parse(items[1]),
+                    (byte)int.Parse(items[2]),
+                    (byte)int.Parse(items[3])
+                );
         }
 
         IEnumerator<byte> IEnumerable<byte>.GetEnumerator()
