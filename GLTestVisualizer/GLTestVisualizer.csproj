@@ -110,10 +110,19 @@
     </Compile>
     <Compile Include="TestView\FrustumTest\GLSphereMaterial.cs" />
     <Compile Include="TestView\FrustumTest\GLViewFrustumRendererObject.cs" />
-    <Compile Include="TestView\LIghting\Ctrl_LightingTestView.cs">
+    <Compile Include="TestView\Lighting\ColorPickerPopupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestView\Lighting\ColorPickerPopupDialog.Designer.cs">
+      <DependentUpon>ColorPickerPopupDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestView\Lighting\ColorSelectButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TestView\Lighting\Ctrl_LightingTestView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TestView\LIghting\Ctrl_LightingTestView.Designer.cs">
+    <Compile Include="TestView\Lighting\Ctrl_LightingTestView.Designer.cs">
       <DependentUpon>Ctrl_LightingTestView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestView\Octree\Ctrl_OctreeTestView.cs">
@@ -190,7 +199,10 @@
     <EmbeddedResource Include="TestView\FrustumTest\Ctrl_ProjectionFrustumParameterView.resx">
       <DependentUpon>Ctrl_ProjectionFrustumParameterView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestView\LIghting\Ctrl_LightingTestView.resx">
+    <EmbeddedResource Include="TestView\Lighting\ColorPickerPopupDialog.resx">
+      <DependentUpon>ColorPickerPopupDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestView\Lighting\Ctrl_LightingTestView.resx">
       <DependentUpon>Ctrl_LightingTestView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestView\Octree\Ctrl_OctreeTestView.resx">
