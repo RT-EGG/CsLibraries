@@ -54,10 +54,11 @@ namespace GLTestVisualizer.TestView.Lighting
             // 
             // PanelParameterEditor
             // 
-            this.PanelParameterEditor.ColumnCount = 3;
+            this.PanelParameterEditor.ColumnCount = 4;
             this.PanelParameterEditor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 182F));
             this.PanelParameterEditor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.PanelParameterEditor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.PanelParameterEditor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.PanelParameterEditor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.PanelParameterEditor.Controls.Add(this.PanelSphereMaterialEditor, 0, 0);
             this.PanelParameterEditor.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanelParameterEditor.Location = new System.Drawing.Point(0, 302);

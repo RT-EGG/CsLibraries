@@ -11,6 +11,9 @@ namespace RtCs.OpenGL
         public List<GLDirectionalLight> DirectionalLights
         { get; } = new List<GLDirectionalLight>();
 
+        public List<GLPointLight> PointLights
+        { get; } = new List<GLPointLight>();
+
         internal void UpdateBuffers()
         {
             byte[] buffer = AmbientLight.GenerateBuffer();
@@ -19,12 +22,17 @@ namespace RtCs.OpenGL
             buffer = DirectionalLights.GenerateBuffer();
             DirectionalLightBuffer.AllocateBuffer(buffer.Length, buffer, BufferUsageHint.DynamicDraw);
 
+            buffer = PointLights.GenerateBuffer();
+            PointLightBuffer.AllocateBuffer(buffer.Length, buffer, BufferUsageHint.DynamicDraw);
+
             return;
         }
 
         internal GLShaderStorageBufferObject AmbientLightBuffer
         { get; } = new GLShaderStorageBufferObject();
         internal GLShaderStorageBufferObject DirectionalLightBuffer
+        { get; } = new GLShaderStorageBufferObject();
+        internal GLShaderStorageBufferObject PointLightBuffer
         { get; } = new GLShaderStorageBufferObject();
 
         protected override void DisposeObject(bool inDisposing)
@@ -34,6 +42,7 @@ namespace RtCs.OpenGL
             if (inDisposing) {
                 AmbientLightBuffer.Dispose();
                 DirectionalLightBuffer.Dispose();
+                PointLightBuffer.Dispose();
             }
             return;
         }

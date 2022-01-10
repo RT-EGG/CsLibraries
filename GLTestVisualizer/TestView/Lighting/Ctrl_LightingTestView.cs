@@ -44,6 +44,7 @@ namespace GLTestVisualizer.TestView.Lighting
 
             m_Scene.Lights.AmbientLight.Color = new ColorRGB(255, 255, 255);
             m_Scene.Lights.AmbientLight.Intensity = 0.5f;
+
             m_DirectionalLights.Add(
                     new GLDirectionalLight {
                         Color = new ColorRGB(255, 255, 255),
@@ -51,7 +52,30 @@ namespace GLTestVisualizer.TestView.Lighting
                         Direction = new Vector3(-1.0f, -1.0f, -1.0f).Normalized,
                     }
                 );
-            m_Scene.Lights.DirectionalLights.AddRange(m_DirectionalLights);
+            //m_Scene.Lights.DirectionalLights.AddRange(m_DirectionalLights);
+
+            m_PointLights.Add(
+                    new GLPointLight {
+                        Color = new ColorRGB(255, 0, 0),
+                        Intensity = 1.0f,
+                        Range = 10.0f
+                    }
+                );
+            m_PointLights.Add(
+                    new GLPointLight {
+                        Color = new ColorRGB(0, 255, 0),
+                        Intensity = 1.0f,
+                        Range = 10.0f
+                    }
+                );
+            m_PointLights.Add(
+                    new GLPointLight {
+                        Color = new ColorRGB(0, 0, 255),
+                        Intensity = 1.0f,
+                        Range = 10.0f
+                    }
+                );
+            m_Scene.Lights.PointLights.AddRange(m_PointLights);
 
             ButtonSphereMaterialAmbient.Value = VectorToColor(m_SphereMaterial.Ambient);
             ButtonSphereMaterialDiffuse.Value = VectorToColor(m_SphereMaterial.Diffuse);
@@ -70,7 +94,21 @@ namespace GLTestVisualizer.TestView.Lighting
         private void UpdateTimer_Tick(object sender, EventArgs e)
         {
             GLControl.Invalidate();
+
+            t += (float)Math.PI * 0.01f;
+            void MoveTo(Transform transform, float thete)
+            {
+                float ct = 2.0f * (float)Math.Cos(thete);
+                float st = 2.0f * (float)Math.Sin(thete);
+                transform.LocalPosition = new Vector3(st, 2.0f, ct);
+            }
+
+            for (int i = 0; i < 3; ++i) {
+                MoveTo(m_PointLights[i].Transform, t + ((i * (2.0f / 3.0f)) * (float)Math.PI));
+            }
         }
+
+        private float t = 0.0f;
 
         private void ButtonSphereMaterialAmbient_ValueChanged(object sender, EventArgs e)
             => m_SphereMaterial.Ambient = ColorToVector3((sender as ColorSelectButton).Value);
@@ -104,6 +142,6 @@ namespace GLTestVisualizer.TestView.Lighting
         private GLPhongMaterial m_SphereMaterial = new GLPhongMaterial();
 
         private List<GLDirectionalLight> m_DirectionalLights = new List<GLDirectionalLight>();
-
+        private List<GLPointLight> m_PointLights = new List<GLPointLight>();
     }
 }

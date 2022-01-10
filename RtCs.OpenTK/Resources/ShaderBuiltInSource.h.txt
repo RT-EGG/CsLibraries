@@ -94,3 +94,65 @@ GLDirectionalLight GetDirectionalLight(int inIndex)
 	result.Direction = vec3(source.DirectionX, source.DirectionY, source.DirectionZ);
 	return result;
 };
+
+struct GLPointLight_
+{
+	float ColorR;
+	float ColorG;
+	float ColorB;
+	float Intensity;
+	float PositionX;
+	float PositionY;
+	float PositionZ;	
+	float DirectionX;
+	float DirectionY;
+	float DirectionZ;
+	float Range;
+};
+
+struct GLPointLight
+{
+	vec3 Color;
+	float Intensity;
+	vec3 Position;
+	vec3 Direction;
+	float Range;
+};
+
+layout (std430) readonly buffer BuiltIn_PointLight {
+	int PointLightCount;
+	GLPointLight_ PointLights[];
+};
+
+GLPointLight GetPointLight(int inIndex)
+{
+	GLPointLight_ source = PointLights[inIndex];
+	GLPointLight result;
+
+	result.Color = vec3(source.ColorR, source.ColorG, source.ColorB);
+	result.Intensity = source.Intensity;
+	result.Position = vec3(source.PositionX, source.PositionY, source.PositionZ);
+	result.Direction = vec3(source.DirectionX, source.DirectionY, source.DirectionZ);
+	result.Range = source.Range;
+	return result;
+};
+
+float PointLightIntensityAt(GLPointLight inLight, vec3 inPosition)
+{
+	float d = length(inLight.Position - inPosition);
+	if (inLight.Range <= 1.0e-5) {
+		return 0.0f;
+	}
+	if (d > inLight.Range) {
+		return 0.0f;
+	}
+	if (d <= 1.0e-5) {
+		return inLight.Intensity;
+	}
+
+	float a = d / inLight.Range;
+	a = 1.0 - a;
+	a = a * a;
+
+	return a * inLight.Intensity;
+};

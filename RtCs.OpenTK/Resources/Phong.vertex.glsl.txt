@@ -12,6 +12,7 @@ out gl_PerVertex
 
 layout (location = 0) out vec3 outNormal;
 layout (location = 1) out vec3 outWorldSpaceNormal;
+layout (location = 2) out vec3 outWorldSpacePosition;
 
 void main()
 {
@@ -20,5 +21,6 @@ void main()
     gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);
     outNormal = NormalMatrix * inNormal;
     outWorldSpaceNormal = (ModelMatrix * vec4(inNormal, 0.0)).xyz;
+    outWorldSpacePosition = (ModelMatrix * vec4(inPosition, 1.0)).xyz;
     return;
 }

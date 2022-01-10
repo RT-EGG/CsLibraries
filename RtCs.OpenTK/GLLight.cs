@@ -11,8 +11,9 @@ namespace RtCs.OpenGL
         {
             ConstantBufferSize.Add(typeof(GLLight), (sizeof(float) * (3 + 1)));
             ConstantBufferSize.Add(typeof(GLDirectionalLight), ConstantBufferSize[typeof(GLLight)] + (sizeof(float) * 3));
-            ConstantBufferSize.Add(typeof(GLPointLight), ConstantBufferSize[typeof(GLLight)] + (sizeof(float) * 1));
-            ConstantBufferSize.Add(typeof(GLSpotLight), ConstantBufferSize[typeof(GLLight)] + (sizeof(float) * 1));
+            ConstantBufferSize.Add(typeof(GLLocationLight), ConstantBufferSize[typeof(GLLight)] * sizeof(float) * 6);
+            ConstantBufferSize.Add(typeof(GLPointLight), ConstantBufferSize[typeof(GLLocationLight)] + (sizeof(float) * 1));
+            ConstantBufferSize.Add(typeof(GLSpotLight), ConstantBufferSize[typeof(GLLocationLight)] + (sizeof(float) * 1));
             return;
         }
             
@@ -54,6 +55,17 @@ namespace RtCs.OpenGL
     {
         public Transform Transform
         { get; } = new Transform();
+
+        protected override void WriteToBufferCore(byte[] inDst, ref int inIndex)
+        {
+            base.WriteToBufferCore(inDst, ref inIndex);
+            Matrix4x4 world = Transform.WorldMatrix;
+            Vector3 position = (world * new Vector4(0.0f, 0.0f, 0.0f, 1.0f)).XYZ;
+            Vector3 direction = (world * new Vector4(0.0f)).XYZ;
+
+            position.CopyToArray(inDst, ref inIndex);
+            direction.CopyToArray(inDst, ref inIndex);
+        }
     }
 
     public class GLPointLight : GLLocationLight
