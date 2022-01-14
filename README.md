@@ -3,5 +3,5 @@ my libraries.
 
 [API Reference](https://rt-egg.github.io/CsLibraries/)
 
-## Develip Environment
+## Develop Environment
 VisualStudio 2019
