@@ -11,9 +11,9 @@ namespace RtCs.OpenGL
         {
             ConstantBufferSize.Add(typeof(GLLight), (sizeof(float) * (3 + 1)));
             ConstantBufferSize.Add(typeof(GLDirectionalLight), ConstantBufferSize[typeof(GLLight)] + (sizeof(float) * 3));
-            ConstantBufferSize.Add(typeof(GLLocationLight), ConstantBufferSize[typeof(GLLight)] * sizeof(float) * 6);
+            ConstantBufferSize.Add(typeof(GLLocationLight), ConstantBufferSize[typeof(GLLight)] + (sizeof(float) * 6));
             ConstantBufferSize.Add(typeof(GLPointLight), ConstantBufferSize[typeof(GLLocationLight)] + (sizeof(float) * 1));
-            ConstantBufferSize.Add(typeof(GLSpotLight), ConstantBufferSize[typeof(GLLocationLight)] + (sizeof(float) * 1));
+            ConstantBufferSize.Add(typeof(GLSpotLight), ConstantBufferSize[typeof(GLLocationLight)] + (sizeof(float) * 2));
             return;
         }
             
@@ -61,7 +61,7 @@ namespace RtCs.OpenGL
             base.WriteToBufferCore(inDst, ref inIndex);
             Matrix4x4 world = Transform.WorldMatrix;
             Vector3 position = (world * new Vector4(0.0f, 0.0f, 0.0f, 1.0f)).XYZ;
-            Vector3 direction = (world * new Vector4(0.0f)).XYZ;
+            Vector3 direction = (world * new Vector4(0.0f, 0.0f, -1.0f, 0.0f)).XYZ;
 
             position.CopyToArray(inDst, ref inIndex);
             direction.CopyToArray(inDst, ref inIndex);
@@ -85,11 +85,14 @@ namespace RtCs.OpenGL
     {
         public float Range
         { get; set; } = 1.0f;
+        public float Angle
+        { get; set; } = (float)Math.PI * 0.25f;
 
         protected override void WriteToBufferCore(byte[] inDst, ref int inIndex)
         {
             base.WriteToBufferCore(inDst, ref inIndex);
             ByteConverter.WriteTo(Range, inDst, ref inIndex);
+            ByteConverter.WriteTo(Angle, inDst, ref inIndex);
             return;
         }
     }

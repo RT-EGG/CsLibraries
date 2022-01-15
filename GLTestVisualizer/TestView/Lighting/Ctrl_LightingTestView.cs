@@ -1,4 +1,5 @@
-﻿using RtCs.MathUtils;
+﻿using OpenTK.Graphics.OpenGL4;
+using RtCs.MathUtils;
 using RtCs.OpenGL;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace GLTestVisualizer.TestView.Lighting
             m_Camera.Projection = m_Projection;
             m_Camera.Coordinate = new SphericalCoordinate {
                 AzimuthAngleDeg = 0.0f,
-                ElevationAngleDeg = 0.0f,
-                Radius = 5.0f
+                ElevationAngleDeg = -45.0f,
+                Radius = 10.0f
             };
             m_CameraController = new OrbitCameraMouseController(GLControl);
             m_CameraController.Camera = m_Camera;
@@ -31,16 +32,40 @@ namespace GLTestVisualizer.TestView.Lighting
             m_AxisRenderObject.Transform.LocalScale = new Vector3(5.0f);
             m_AxisRenderObject.CalculateBoundingBox();
 
-            m_SphereObject.Renderer.Mesh = m_SphereMesh;
-            m_SphereObject.Renderer.Material = m_SphereMaterial;
-            m_SphereMaterial.Ambient = new Vector3(1.0f, 1.0f, 1.0f);
-            m_SphereMaterial.Diffuse = new Vector3(1.0f, 1.0f, 1.0f);
-            m_SphereMaterial.Specular = new Vector3(1.0f, 1.0f, 1.0f);
-            m_SphereMaterial.Emission = new Vector3(0.0f);
-            m_SphereMaterial.Shininess = 10.0f;
+            m_QuadMesh.Vertices = new Vector3[] {
+                new Vector3(-1.0f,  1.0f, 0.0f),
+                new Vector3(-1.0f, -1.0f, 0.0f),
+                new Vector3( 1.0f, -1.0f, 0.0f),
+                new Vector3( 1.0f,  1.0f, 0.0f)
+            };
+            m_QuadMesh.Normals = new Vector3[] {
+                new Vector3(0.0f, 0.0f, 1.0f),
+                new Vector3(0.0f, 0.0f, 1.0f),
+                new Vector3(0.0f, 0.0f, 1.0f),
+                new Vector3(0.0f, 0.0f, 1.0f)
+            };
+            m_QuadMesh.VertexBufferUsageHint = BufferUsageHint.StaticDraw;
+            m_QuadMesh.CalculateBoundingBox();
+
+            m_QuadMesh.Topology = EGLMeshTopology.Quads;
+            m_QuadMesh.Indices = new int[] {
+                0, 1, 2, 3
+            };
+            m_QuadMesh.IndexBufferUsageHint = BufferUsageHint.StaticDraw;
+            m_QuadMesh.Apply();
+
+            m_QuadObject.Transform.LocalRotation = Quaternion.FromEuler((-90.0f).DegToRad(), 0.0f, 0.0f, EEulerRotationOrder.YXZ);
+            m_QuadObject.Transform.LocalScale = new Vector3(10.0f, 10.0f, 1.0f);
+            m_QuadObject.Renderer.Mesh = m_QuadMesh;
+            m_QuadObject.Renderer.Material = m_QuadMaterial;
+            m_QuadMaterial.Ambient = new Vector3(1.0f, 1.0f, 1.0f);
+            m_QuadMaterial.Diffuse = new Vector3(1.0f, 1.0f, 1.0f);
+            m_QuadMaterial.Specular = new Vector3(1.0f, 1.0f, 1.0f);
+            m_QuadMaterial.Emission = new Vector3(0.0f);
+            m_QuadMaterial.Shininess = 10.0f;
 
             m_Scene.DisplayList.Register(m_AxisRenderObject);
-            m_Scene.DisplayList.Register(m_SphereObject);
+            m_Scene.DisplayList.Register(m_QuadObject);
 
             m_Scene.Lights.AmbientLight.Color = new ColorRGB(255, 255, 255);
             m_Scene.Lights.AmbientLight.Intensity = 0.5f;
@@ -48,7 +73,7 @@ namespace GLTestVisualizer.TestView.Lighting
             m_DirectionalLights.Add(
                     new GLDirectionalLight {
                         Color = new ColorRGB(255, 255, 255),
-                        Intensity = 0.5f,
+                        Intensity = 0.25f,
                         Direction = new Vector3(-1.0f, -1.0f, -1.0f).Normalized,
                     }
                 );
@@ -75,12 +100,22 @@ namespace GLTestVisualizer.TestView.Lighting
                         Range = 10.0f
                     }
                 );
-            m_Scene.Lights.PointLights.AddRange(m_PointLights);
+            //m_Scene.Lights.PointLights.AddRange(m_PointLights);
 
-            ButtonSphereMaterialAmbient.Value = VectorToColor(m_SphereMaterial.Ambient);
-            ButtonSphereMaterialDiffuse.Value = VectorToColor(m_SphereMaterial.Diffuse);
-            ButtonSphereMaterialSpecular.Value = VectorToColor(m_SphereMaterial.Specular);
-            ButtonSphereMaterialEmission.Value = VectorToColor(m_SphereMaterial.Emission);
+            m_SpotLights.Add(
+                    new GLSpotLight {
+                        Color = new ColorRGB(255, 255, 0),
+                        Intensity = 1.0f,
+                        Range = 10.0f,
+                        Angle = (45.0f).DegToRad()
+                    }
+                );
+            m_Scene.Lights.SpotLights.AddRange(m_SpotLights);
+
+            ButtonSphereMaterialAmbient.Value = VectorToColor(m_QuadMaterial.Ambient);
+            ButtonSphereMaterialDiffuse.Value = VectorToColor(m_QuadMaterial.Diffuse);
+            ButtonSphereMaterialSpecular.Value = VectorToColor(m_QuadMaterial.Specular);
+            ButtonSphereMaterialEmission.Value = VectorToColor(m_QuadMaterial.Emission);
             return;
         }
 
@@ -106,21 +141,24 @@ namespace GLTestVisualizer.TestView.Lighting
             for (int i = 0; i < 3; ++i) {
                 MoveTo(m_PointLights[i].Transform, t + ((i * (2.0f / 3.0f)) * (float)Math.PI));
             }
+
+            m_SpotLights[0].Transform.LocalPosition = new Vector3(2.0f * (float)Math.Cos(t), 1.0f, 2.0f * (float)Math.Sin(t));
+            m_SpotLights[0].Transform.LookAt(new Vector3(0.0f, 0.0f, 0.0f));
         }
 
         private float t = 0.0f;
 
         private void ButtonSphereMaterialAmbient_ValueChanged(object sender, EventArgs e)
-            => m_SphereMaterial.Ambient = ColorToVector3((sender as ColorSelectButton).Value);
+            => m_QuadMaterial.Ambient = ColorToVector3((sender as ColorSelectButton).Value);
 
         private void ButtonSphereMaterialDiffuse_ValueChanged(object sender, EventArgs e)
-            => m_SphereMaterial.Diffuse = ColorToVector3((sender as ColorSelectButton).Value);
+            => m_QuadMaterial.Diffuse = ColorToVector3((sender as ColorSelectButton).Value);
 
         private void ButtonSphereMaterialSpecular_ValueChanged(object sender, EventArgs e)
-            => m_SphereMaterial.Specular = ColorToVector3((sender as ColorSelectButton).Value);
+            => m_QuadMaterial.Specular = ColorToVector3((sender as ColorSelectButton).Value);
 
         private void ButtonSphereMaterialEmission_ValueChanged(object sender, EventArgs e)
-            => m_SphereMaterial.Emission = ColorToVector3((sender as ColorSelectButton).Value);
+            => m_QuadMaterial.Emission = ColorToVector3((sender as ColorSelectButton).Value);
 
         private Vector3 ColorToVector3(Color inValue)
             => new Vector3(inValue.R / 255.0f, inValue.G / 255.0f, inValue.B / 255.0f);
@@ -137,11 +175,12 @@ namespace GLTestVisualizer.TestView.Lighting
         private OrbitCameraMouseController m_CameraController;
 
         private GLAxisRenderObject m_AxisRenderObject = new GLAxisRenderObject();
-        private GLRenderObject m_SphereObject = new GLRenderObject();
-        private GLMesh m_SphereMesh = GLPrimitiveMesh.CreateSphereICO(3);
-        private GLPhongMaterial m_SphereMaterial = new GLPhongMaterial();
+        private GLRenderObject m_QuadObject = new GLRenderObject();
+        private GLMesh m_QuadMesh = new GLMesh();
+        private GLPhongMaterial m_QuadMaterial = new GLPhongMaterial();
 
         private List<GLDirectionalLight> m_DirectionalLights = new List<GLDirectionalLight>();
         private List<GLPointLight> m_PointLights = new List<GLPointLight>();
+        private List<GLSpotLight> m_SpotLights = new List<GLSpotLight>();
     }
 }

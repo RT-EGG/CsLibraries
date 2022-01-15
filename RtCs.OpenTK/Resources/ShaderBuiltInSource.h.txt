@@ -139,15 +139,90 @@ GLPointLight GetPointLight(int inIndex)
 
 float PointLightIntensityAt(GLPointLight inLight, vec3 inPosition)
 {
-	float d = length(inLight.Position - inPosition);
 	if (inLight.Range <= 1.0e-5) {
 		return 0.0f;
+	}
+
+	float d = length(inLight.Position - inPosition);
+	if (d <= 1.0e-5) {
+		return inLight.Intensity;
 	}
 	if (d > inLight.Range) {
 		return 0.0f;
 	}
+
+	float a = d / inLight.Range;
+	a = 1.0 - a;
+	a = a * a;
+
+	return a * inLight.Intensity;
+};
+
+struct GLSpotLight_
+{
+	float ColorR;
+	float ColorG;
+	float ColorB;
+	float Intensity;
+	float PositionX;
+	float PositionY;
+	float PositionZ;	
+	float DirectionX;
+	float DirectionY;
+	float DirectionZ;
+	float Range;
+	float Angle;
+};
+
+struct GLSpotLight
+{
+	vec3 Color;
+	float Intensity;
+	vec3 Position;
+	vec3 Direction;
+	float Range;
+	float Angle;
+};
+
+layout (std430) readonly buffer BuiltIn_SpotLight {
+	int SpotLightCount;
+	GLSpotLight_ SpotLights[];
+};
+
+GLSpotLight GetSpotLight(int inIndex)
+{
+	GLSpotLight_ source = SpotLights[inIndex];
+	GLSpotLight result;
+
+	result.Color = vec3(source.ColorR, source.ColorG, source.ColorB);
+	result.Intensity = source.Intensity;
+	result.Position = vec3(source.PositionX, source.PositionY, source.PositionZ);
+	result.Direction = vec3(source.DirectionX, source.DirectionY, source.DirectionZ);
+	result.Range = source.Range;
+	result.Angle = source.Angle;
+	return result;
+};
+
+float SpotLightIntensityAt(GLSpotLight inLight, vec3 inPosition)
+{
+	if (inLight.Range <= 1.0e-5) {
+		return 0.0f;
+	}
+	if (inLight.Angle <= 1.0e-5) {
+		return 0.0f;
+	}
+
+	vec3 direction = normalize(inPosition - inLight.Position);
+	if (dot(direction, inLight.Direction) < cos(inLight.Angle)) {
+		return 0.0f;
+	}
+
+	float d = length(inLight.Position - inPosition);
 	if (d <= 1.0e-5) {
 		return inLight.Intensity;
+	}
+	if (d > inLight.Range) {
+		return 0.0f;
 	}
 
 	float a = d / inLight.Range;

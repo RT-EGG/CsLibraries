@@ -29,6 +29,7 @@ namespace RtCs.OpenGL
             int ambientLightBufferBinding = inScene.Lights.AmbientLightBuffer.BindBufferBase();
             int directionalLightBufferBinding = inScene.Lights.DirectionalLightBuffer.BindBufferBase();
             int pointLightBufferBinding = inScene.Lights.PointLightBuffer.BindBufferBase();
+            int spotLightBufferBinding = inScene.Lights.SpotLightBuffer.BindBufferBase();
 
             foreach (var shader in displayObjects.Select(o => o.Renderer.Material.Shader).Distinct()) {
                 TryCommitShaderStorageBuffer(shader, "BuiltIn_ViewProjectionMatrix", viewProjectionMatrixBufferBinding);
@@ -40,6 +41,7 @@ namespace RtCs.OpenGL
                 TryCommitShaderStorageBuffer(shader, "BuiltIn_AmbientLight", ambientLightBufferBinding);
                 TryCommitShaderStorageBuffer(shader, "BuiltIn_DirectionalLight", directionalLightBufferBinding);
                 TryCommitShaderStorageBuffer(shader, "BuiltIn_PointLight", pointLightBufferBinding);
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_SpotLight", spotLightBufferBinding);
             }
 
             var grouped = GroupByRenderLevel(displayObjects);
