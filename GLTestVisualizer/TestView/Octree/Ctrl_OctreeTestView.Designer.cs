@@ -47,7 +47,6 @@ namespace GLTestVisualizer.TestView.Octree
             this.glView.Name = "glView";
             this.glView.Size = new System.Drawing.Size(455, 390);
             this.glView.TabIndex = 0;
-            this.glView.VSync = false;
             this.glView.OnRenderScene += new System.EventHandler(this.glView_OnRenderScene);
             // 
             // ValidationTimer

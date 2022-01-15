@@ -37,31 +37,34 @@ namespace GLTestVisualizer
             this.ComboTestContent.Dock = System.Windows.Forms.DockStyle.Top;
             this.ComboTestContent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboTestContent.FormattingEnabled = true;
-            this.ComboTestContent.Location = new System.Drawing.Point(3, 3);
-            this.ComboTestContent.MaximumSize = new System.Drawing.Size(200, 0);
+            this.ComboTestContent.Location = new System.Drawing.Point(4, 4);
+            this.ComboTestContent.Margin = new System.Windows.Forms.Padding(4);
+            this.ComboTestContent.MaximumSize = new System.Drawing.Size(233, 0);
             this.ComboTestContent.Name = "ComboTestContent";
-            this.ComboTestContent.Size = new System.Drawing.Size(200, 20);
+            this.ComboTestContent.Size = new System.Drawing.Size(233, 23);
             this.ComboTestContent.TabIndex = 0;
             this.ComboTestContent.SelectionChangeCommitted += new System.EventHandler(this.ComboTestContent_SelectionChangeCommitted);
             // 
             // PanelContentView
             // 
             this.PanelContentView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContentView.Location = new System.Drawing.Point(3, 23);
+            this.PanelContentView.Location = new System.Drawing.Point(4, 27);
+            this.PanelContentView.Margin = new System.Windows.Forms.Padding(4);
             this.PanelContentView.Name = "PanelContentView";
-            this.PanelContentView.Padding = new System.Windows.Forms.Padding(3);
-            this.PanelContentView.Size = new System.Drawing.Size(749, 424);
+            this.PanelContentView.Padding = new System.Windows.Forms.Padding(4);
+            this.PanelContentView.Size = new System.Drawing.Size(873, 531);
             this.PanelContentView.TabIndex = 1;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 450);
+            this.ClientSize = new System.Drawing.Size(881, 562);
             this.Controls.Add(this.PanelContentView);
             this.Controls.Add(this.ComboTestContent);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
-            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Padding = new System.Windows.Forms.Padding(4);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResumeLayout(false);
 

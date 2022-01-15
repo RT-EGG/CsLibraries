@@ -167,7 +167,6 @@ namespace GLTestVisualizer.TestView.Texture
             this.GLView.Name = "GLView";
             this.GLView.Size = new System.Drawing.Size(745, 386);
             this.GLView.TabIndex = 0;
-            this.GLView.VSync = false;
             this.GLView.OnRenderScene += new System.EventHandler(this.GLView_OnRenderScene);
             this.GLView.SizeChanged += new System.EventHandler(this.GLView_SizeChanged);
             // 

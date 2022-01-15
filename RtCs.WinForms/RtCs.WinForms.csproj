@@ -1,103 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B57252FD-C829-4A56-AF1F-687171E31B2C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>RtCs.WinForms</RootNamespace>
-    <AssemblyName>RtCs.WinForms</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\RtCs.MathUtils\RtCs.MathUtils.csproj" />
+    <ProjectReference Include="..\RtCs\RtCs.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Controls\ColorPicker\ColorInput.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ColorPicker\ColorInput.Designer.cs">
-      <DependentUpon>ColorInput.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ColorPicker\ColorPicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ColorPicker\ColorPicker.Designer.cs">
-      <DependentUpon>ColorPicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ColorPicker\ColorRectangleBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ColorPicker\ColorRectangleBox.Designer.cs">
-      <DependentUpon>ColorRectangleBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ColorPicker\ColorSlider.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ColorPicker\ColorSlider.Designer.cs">
-      <DependentUpon>ColorSlider.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DoubleBufferedPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextMeasure.cs" />
-    <Compile Include="Utils\ColorExtensions.cs" />
-    <Compile Include="Utils\Extensions\BitmapExtensions.cs" />
-    <Compile Include="Utils\Extensions\ComponentExtensions.cs" />
-    <Compile Include="Utils\Extensions\SizeExtensions.cs" />
-    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RtCs.MathUtils\RtCs.MathUtils.csproj">
-      <Project>{47a7c945-e8a1-413b-96d0-41d1d669b4aa}</Project>
-      <Name>RtCs.MathUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RtCs\RtCs.csproj">
-      <Project>{3631604b-1a60-422f-9932-d18ed0fc9458}</Project>
-      <Name>RtCs</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Controls\ColorPicker\ColorInput.resx">
-      <DependentUpon>ColorInput.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ColorPicker\ColorPicker.resx">
-      <DependentUpon>ColorPicker.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ColorPicker\ColorSlider.resx">
-      <DependentUpon>ColorSlider.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
