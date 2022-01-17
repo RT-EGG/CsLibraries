@@ -42,7 +42,7 @@ namespace GLTestVisualizer.TestView.AlphaBlending
             this.glView.Size = new System.Drawing.Size(349, 263);
             this.glView.TabIndex = 0;
             this.glView.VSync = false;
-            this.glView.OnRenderScene += new System.EventHandler(this.glView_OnRenderScene);
+            this.glView.RenderScene += new System.EventHandler(this.glView_OnRenderScene);
             // 
             // timer1
             // 

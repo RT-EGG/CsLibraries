@@ -208,7 +208,7 @@ namespace GLTestVisualizer.TestView.Lighting
             this.GLControl.Size = new System.Drawing.Size(574, 302);
             this.GLControl.TabIndex = 0;
             this.GLControl.VSync = false;
-            this.GLControl.OnRenderScene += new System.EventHandler(this.GLControl_OnRenderScene);
+            this.GLControl.RenderScene += new System.EventHandler(this.GLControl_OnRenderScene);
             // 
             // Ctrl_LightingTestView
             // 

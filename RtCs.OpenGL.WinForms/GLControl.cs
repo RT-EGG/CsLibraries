@@ -8,8 +8,8 @@ namespace RtCs.OpenGL.WinForms
 {
     public partial class GLControl : OpenTK.GLControl
     {
-        [Category("Rendering")]
-        public event EventHandler OnRenderScene;
+        [Category("Appearance")]
+        public event EventHandler RenderScene;
 
         public GLControl()
         { 
@@ -64,7 +64,7 @@ namespace RtCs.OpenGL.WinForms
             GL.ClearDepth(1.0f);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            OnRenderScene?.Invoke(this, EventArgs.Empty);
+            RenderScene?.Invoke(this, EventArgs.Empty);
 
             SwapBuffers();
             return;

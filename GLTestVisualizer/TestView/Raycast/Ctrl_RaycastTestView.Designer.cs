@@ -55,7 +55,7 @@ namespace GLTestVisualizer.TestView.Raycast
             this.GLFPSView.Size = new System.Drawing.Size(252, 270);
             this.GLFPSView.TabIndex = 0;
             this.GLFPSView.VSync = false;
-            this.GLFPSView.OnRenderScene += new System.EventHandler(this.GLFPSView_OnRenderScene);
+            this.GLFPSView.RenderScene += new System.EventHandler(this.GLFPSView_OnRenderScene);
             // 
             // PanelParameters
             // 
@@ -160,7 +160,7 @@ namespace GLTestVisualizer.TestView.Raycast
             this.GLTPSView.Size = new System.Drawing.Size(252, 270);
             this.GLTPSView.TabIndex = 1;
             this.GLTPSView.VSync = false;
-            this.GLTPSView.OnRenderScene += new System.EventHandler(this.GLTPSView_OnRenderScene);
+            this.GLTPSView.RenderScene += new System.EventHandler(this.GLTPSView_OnRenderScene);
             // 
             // PanelFPSView
             // 

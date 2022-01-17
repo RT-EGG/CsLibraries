@@ -102,7 +102,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             this.GLThirdPersonView.Size = new System.Drawing.Size(304, 319);
             this.GLThirdPersonView.TabIndex = 0;
             this.GLThirdPersonView.VSync = false;
-            this.GLThirdPersonView.OnRenderScene += new System.EventHandler(this.GLThirdPersonView_OnRenderScene);
+            this.GLThirdPersonView.RenderScene += new System.EventHandler(this.GLThirdPersonView_OnRenderScene);
             // 
             // PanelViews
             // 
@@ -129,7 +129,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             this.GLFirstPersonView.Size = new System.Drawing.Size(303, 319);
             this.GLFirstPersonView.TabIndex = 1;
             this.GLFirstPersonView.VSync = false;
-            this.GLFirstPersonView.OnRenderScene += new System.EventHandler(this.GLFirstPersonView_OnRenderScene);
+            this.GLFirstPersonView.RenderScene += new System.EventHandler(this.GLFirstPersonView_OnRenderScene);
             // 
             // ButtonRandomizer
             // 
