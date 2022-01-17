@@ -28,6 +28,20 @@ namespace RtCs.OpenGL
             { get; set; } = TextureUnit.Texture0;
         }
 
+        public class Bool : GLShaderUniformVariable<bool>
+        {
+            public Bool(GLShaderUniformVariableSocket inSocket) : base(inSocket) { }
+            protected override void CommitVariableCore(int inProgramID, int inLocation, CommitStatus inCommitState)
+                => GL.ProgramUniform1(inProgramID, inLocation, Value ? 1 : 0);
+        }
+
+        public class BoolVec3 : GLShaderUniformVariable<Container3<bool>>
+        {
+            public BoolVec3(GLShaderUniformVariableSocket inSocket) : base(inSocket) { }
+            protected override void CommitVariableCore(int inProgramID, int inLocation, CommitStatus inCommitState)
+                => GL.ProgramUniform3(inProgramID, inLocation, Value[0] ? 1 : 0, Value[1] ? 1 : 0, Value[2] ? 1 : 0);
+        }
+
         public class Int : GLShaderUniformVariable<int>
         {
             public Int(GLShaderUniformVariableSocket inSocket) : base(inSocket) { }

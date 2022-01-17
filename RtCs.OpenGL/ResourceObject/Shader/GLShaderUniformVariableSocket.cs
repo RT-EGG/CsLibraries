@@ -37,6 +37,10 @@ namespace RtCs.OpenGL
         public static GLShaderUniformVariable CreateDefaultProperty(GLShaderUniformVariableSocket inSocket)
         {
             switch (inSocket.Type) {
+                case ActiveUniformType.Bool:
+                    return new GLShaderUniformVariable.Bool(inSocket);
+                case ActiveUniformType.BoolVec3:
+                    return new GLShaderUniformVariable.BoolVec3(inSocket);
                 case ActiveUniformType.Int:
                     return new GLShaderUniformVariable.Int(inSocket);
                 case ActiveUniformType.Float:

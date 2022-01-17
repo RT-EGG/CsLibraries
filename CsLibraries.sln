@@ -9,13 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RtCs.MathUtils", "RtCs.Math
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RtCs", "RtCs\RtCs.csproj", "{3631604B-1A60-422F-9932-D18ED0FC9458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.OpenGL", "RtCs.OpenTK\RtCs.OpenGL.csproj", "{D601C9F1-17D8-413E-9BC7-4FFF732479F4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLShaderCompiler", "GLShaderCompiler\GLShaderCompiler.csproj", "{07716FF3-028B-40DC-B23B-AD7B59EF9D42}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.OpenGL.WinForms", "RtCs.OpenGL.WinForms\RtCs.OpenGL.WinForms.csproj", "{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.WinForms", "RtCs.WinForms\RtCs.WinForms.csproj", "{B57252FD-C829-4A56-AF1F-687171E31B2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.OpenGL", "RtCs.OpenGL\RtCs.OpenGL.csproj", "{D601C9F1-17D8-413E-9BC7-4FFF732479F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
