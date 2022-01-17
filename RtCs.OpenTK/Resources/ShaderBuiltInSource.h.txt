@@ -23,18 +23,10 @@ layout (std430) readonly buffer BuiltIn_NormalMatrix {
 
 uniform int RenderInstanceID;
 
-mat4 ModelMatrix;
-mat4 ModelViewMatrix;
-mat4 ModelViewProjectionMatrix;
-mat3 NormalMatrix;
-
-void ExpandBuiltInVariables()
-{
-	ModelMatrix = ModelMatrices[RenderInstanceID];
-	ModelViewMatrix = ModelViewMatrices[RenderInstanceID];
-	ModelViewProjectionMatrix = ModelViewProjectionMatrices[RenderInstanceID];
-	NormalMatrix = NormalMatrices[RenderInstanceID];
-};
+#define ModelMatrix ModelMatrices[RenderInstanceID]
+#define ModelViewMatrix ModelViewMatrices[RenderInstanceID]
+#define ModelViewProjectionMatrix ModelViewProjectionMatrices[RenderInstanceID]
+#define NormalMatrix NormalMatrices[RenderInstanceID]
 
 struct GLAmbientLight_
 {

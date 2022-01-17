@@ -16,8 +16,6 @@ layout (location = 2) in vec3 inWorldSpacePosition;
 
 void main()
 {
-    ExpandBuiltInVariables();
-
     // ambient
     GLAmbientLight ambLight = GetAmbientLight();
     vec3 ambient = inAmbient * (ambLight.Color.xyz * ambLight.Intensity);

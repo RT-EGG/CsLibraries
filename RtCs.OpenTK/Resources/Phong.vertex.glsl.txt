@@ -16,8 +16,6 @@ layout (location = 2) out vec3 outWorldSpacePosition;
 
 void main()
 {
-    ExpandBuiltInVariables();
-
     gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);
     outNormal = NormalMatrix * inNormal;
     outWorldSpaceNormal = (ModelMatrix * vec4(inNormal, 0.0)).xyz;
