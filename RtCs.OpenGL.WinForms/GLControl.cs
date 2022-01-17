@@ -26,6 +26,11 @@ namespace RtCs.OpenGL.WinForms
             if (GraphicsContext != this.Context) {
                 GraphicsContext.MakeCurrent(this.WindowInfo);
             }
+
+            if (GLProperties == null) {
+                GLProperties = new GLProperties();
+                GLProperties.Collect();
+            }
             return;
         }
 
@@ -81,6 +86,8 @@ namespace RtCs.OpenGL.WinForms
             return mode | GetDesignMode(inControl.Parent);
         }
 
+        private static GLProperties GLProperties
+        { get; set; } = null;
         private static IGraphicsContext GraphicsContext
         { get; set; } = null;
     }

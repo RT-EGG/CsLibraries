@@ -46,7 +46,7 @@ namespace RtCs.OpenGL
         /// This function create the instance of GLShaderTextSource, load text from Assembly.GetExecutingAssembly().GetManifestResourceStream(inResourceName).\n
         /// About exceptions thrown this method, see Assembly.GetExecutingAssembly().GetManifestResourceStream().
         /// </remarks>
-        public static GLShaderTextSource CreateAssemblyTextResourceSource(string inResourceName)
+        internal static GLShaderTextSource CreateAssemblyTextResourceSource(string inResourceName)
         {
             var assembly = Assembly.GetExecutingAssembly();
             using (StreamReader reader = new StreamReader(assembly.GetManifestResourceStream(inResourceName))) {

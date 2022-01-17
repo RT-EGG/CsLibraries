@@ -12,7 +12,9 @@ namespace RtCs.OpenGL
         Triangles,
         Quads,
         Points,
-        Lines
+        Lines,
+        PatchedTriangles,
+        PatchedQuads,
     }
 
     public static class EGLMeshTopologyExtensions
@@ -28,6 +30,9 @@ namespace RtCs.OpenGL
                     return PrimitiveType.Points;
                 case EGLMeshTopology.Lines:
                     return PrimitiveType.Lines;
+                case EGLMeshTopology.PatchedTriangles:
+                case EGLMeshTopology.PatchedQuads:
+                    return PrimitiveType.Patches;
             }
             throw new InvalidEnumValueException<EGLMeshTopology>(inValue);
         }

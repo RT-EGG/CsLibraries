@@ -47,6 +47,7 @@
     <Compile Include="GLLightEnvironment.cs" />
     <Compile Include="GLMainThreadTask.cs" />
     <Compile Include="GLMaterial.cs" />
+    <Compile Include="GLProperties.cs" />
     <Compile Include="GLSceneRenderer.cs" />
     <Compile Include="GLTransformMatrixBuffer.cs" />
     <Compile Include="GLObject.cs" />

@@ -81,6 +81,14 @@ namespace RtCs.OpenGL
                             renderObject.RenderFaceMode.CullFace();
 
                             renderObject.FireBeforeRender();
+                            switch (mesh.Topology) {
+                                case EGLMeshTopology.PatchedTriangles:
+                                    GL.PatchParameter(PatchParameterInt.PatchVertices, 3);
+                                    break;
+                                case EGLMeshTopology.PatchedQuads:
+                                    GL.PatchParameter(PatchParameterInt.PatchVertices, 4);
+                                    break;
+                            }
                             GL.DrawElements(mesh.Topology.ToPrimitiveType(), mesh.Indices.Length, DrawElementsType.UnsignedInt, 0);
                             renderObject.FireAfterRender();
                         }                                                                       
