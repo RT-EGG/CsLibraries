@@ -44,7 +44,7 @@ namespace RtCs.OpenGL
     {
         public GLMesh()
         {
-            VertexPositionAttribute = AddAttribute(new GLVertexVector3AttributeDescriptor(GLVertexAttribute.AttributeName_Vertex));
+            VertexPositionAttribute = AddAttribute(new GLVertexAttributeDescriptor<Vector3>(GLVertexAttribute.AttributeName_Vertex));
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace RtCs.OpenGL
         public IGLVertexAttribute<T> AddAttribute<T>(GLVertexAttributeDescriptor<T> inDescriptor) where T : unmanaged
         {
             var newAttribute = new GLVertexAttribute<T>(inDescriptor);
-            VertexAttributes.Add(newAttribute);
+            m_VertexAttributes.Add(newAttribute);
 
             return newAttribute;
         }
@@ -86,11 +86,13 @@ namespace RtCs.OpenGL
         /// <returns></returns>
         public IGLVertexAttribute<T> GetAttribute<T>(string inName) where T : unmanaged
         {
-            if (VertexAttributes.TryGetFirst(out var att, a => a.Description.Name == inName)) {
+            if (m_VertexAttributes.TryGetFirst(out var att, a => a.Description.Name == inName)) {
                 return att as GLVertexAttribute<T>;
             }
             return null;
         }
+
+        internal IGLVertexAttributeList VertexAttributes => m_VertexAttributes;
 
         /// <summary>
         /// Type of basic shape of the mesh object.
@@ -182,13 +184,13 @@ namespace RtCs.OpenGL
         private void UpdateBuffer()
         {
             int bufferSize = 0;
-            foreach (var attribute in VertexAttributes) {
+            foreach (var attribute in m_VertexAttributes) {
                 bufferSize += attribute.BufferSize;
             }
 
             byte[] buffer = new byte[bufferSize];
             int offset = 0;
-            foreach (var attribute in VertexAttributes) {
+            foreach (var attribute in m_VertexAttributes) {
                 offset += attribute.CopyToBuffer(buffer, offset);
             }
 
@@ -284,22 +286,6 @@ namespace RtCs.OpenGL
             }
         }
 
-        internal void BindAttributes(IEnumerable<GLVertexAttributePointer> inAttributes)
-        {
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBuffer.ID);
-            foreach (var attribPointer in inAttributes) {
-                if (!VertexAttributes.TryGetFirst(out var attribute, a => a.Description.Name == attribPointer.Name)) {
-                    continue;
-                }
-
-                GL.EnableVertexAttribArray(attribPointer.Index);
-                attribute.BindPointer(attribPointer, attribute.Offset);
-            }
-
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, IndexBuffer);
-            return;
-        }
-
         public GLBufferObject VertexBuffer
         { get; } = new GLBufferObject();
         public GLBufferObject IndexBuffer
@@ -307,7 +293,6 @@ namespace RtCs.OpenGL
 
         private IGLVertexAttribute<Vector3> VertexPositionAttribute
         { get; } = null;
-        private List<IGLVertexAttribute> VertexAttributes
-        { get; } = new List<IGLVertexAttribute>();
+        private GLVertexAttributeList m_VertexAttributes = new GLVertexAttributeList();
     }
 }

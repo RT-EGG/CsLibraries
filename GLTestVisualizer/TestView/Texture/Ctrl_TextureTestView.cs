@@ -15,7 +15,7 @@ namespace GLTestVisualizer.TestView.Texture
         {
             InitializeComponent();
 
-            m_MeshTexCoords = m_TextureMesh.AddAttribute(new GLVertexVector2AttributeDescriptor(GLVertexAttribute.AttributeName_TexCoord));
+            m_MeshTexCoords = m_TextureMesh.AddAttribute(new GLVertexAttributeDescriptor<Vector2>(GLVertexAttribute.AttributeName_TexCoord));
             return;
         }
 

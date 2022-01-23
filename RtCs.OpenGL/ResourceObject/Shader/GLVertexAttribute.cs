@@ -7,7 +7,6 @@
         int BufferSize { get; }
 
         int CopyToBuffer(byte[] inDestination, int inOffset);
-        void BindPointer(GLVertexAttributePointer inPointer, int inOffset);
     }
 
     /// <summary>
@@ -38,11 +37,6 @@
         {
             Offset = inOffset;
             return Descriptor.CopyToBuffer(Buffer, inDestination, inOffset);
-        }
-
-        public void BindPointer(GLVertexAttributePointer inPointer, int inOffset)
-        {
-            Descriptor.BindPointer(inPointer, inOffset);
         }
 
         public int BufferSize => Descriptor.Size * Buffer.Length;

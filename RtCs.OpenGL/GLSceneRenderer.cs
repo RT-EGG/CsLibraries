@@ -73,7 +73,9 @@ namespace RtCs.OpenGL
 
                     foreach (var meshGroup in materialGroup.GroupBy(o => o.Renderer.Mesh)) {
                         GLMesh mesh = meshGroup.Key;
-                        mesh.BindAttributes(shader.VertexAttribPointers);
+                        GL.BindBuffer(BufferTarget.ArrayBuffer, mesh.VertexBuffer);
+                        GL.BindBuffer(BufferTarget.ElementArrayBuffer, mesh.IndexBuffer);
+                        shader.BindVertexAttributes(mesh.VertexAttributes);
 
                         foreach (var renderObject in meshGroup) {
                             var location = GL.GetUniformLocation(shader.ID, "RenderInstanceID");
@@ -115,7 +117,9 @@ namespace RtCs.OpenGL
                 GL.UseProgram(shader.ID);
                 material.CommitProperties();
                 material.BlendParameters.Apply();
-                mesh.BindAttributes(shader.VertexAttribPointers);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, mesh.VertexBuffer);
+                GL.BindBuffer(BufferTarget.ElementArrayBuffer, mesh.IndexBuffer);
+                shader.BindVertexAttributes(mesh.VertexAttributes);
 
                 var location = GL.GetUniformLocation(shader.ID, "RenderInstanceID");
                 GL.ProgramUniform1(shader.ID, location, obj.RenderInstanceID);

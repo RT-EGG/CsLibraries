@@ -10,7 +10,7 @@ namespace RtCs.OpenGL
     /// </remarks>
     public partial class GLRenderShaderProgram : GLShaderProgram
     {
-        public IList<GLVertexAttributePointer> VertexAttribPointers
-        { get; } = new List<GLVertexAttributePointer>();
+        public virtual void BindVertexAttributes(IGLVertexAttributeList inAttributes)
+        { }
     }
 }

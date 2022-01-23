@@ -15,9 +15,6 @@ namespace RtCs.OpenGL
         {
             public VertexColor()
             {
-                VertexAttribPointers.Add(new GLVertexAttributePointer(0, GLVertexAttribute.AttributeName_Vertex));
-                VertexAttribPointers.Add(new GLVertexAttributePointer(1, GLVertexAttribute.AttributeName_Color));
-
                 AfterCreateResource += (sender, args) => {
                     m_VertexShader = new GLShader.GLVertexShader();
                     m_FragmentShader = new GLShader.GLFragmentShader();
@@ -31,6 +28,20 @@ namespace RtCs.OpenGL
                     return;
                 };
                 return;
+            }
+
+            public override void BindVertexAttributes(IGLVertexAttributeList inAttributes)
+            {
+                base.BindVertexAttributes(inAttributes);
+
+                if (inAttributes.TryGetBufferPointerOffset(GLVertexAttribute.AttributeName_Vertex, out int vertex)) {
+                    GL.EnableVertexAttribArray(0);
+                    GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, sizeof(float) * 3, vertex);
+                }
+                if (inAttributes.TryGetBufferPointerOffset(GLVertexAttribute.AttributeName_Color, out int color)) {
+                    GL.EnableVertexAttribArray(1);
+                    GL.VertexAttribPointer(1, 4, VertexAttribPointerType.Float, false, sizeof(float) * 4, color);
+                }
             }
 
             private GLShader.GLVertexShader m_VertexShader = null;

@@ -1,4 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using RtCs.MathUtils;
 using System.Diagnostics;
 
 namespace RtCs.OpenGL
@@ -15,8 +16,6 @@ namespace RtCs.OpenGL
         {
             public Color()
             {
-                VertexAttribPointers.Add(new GLVertexAttributePointer(0, GLVertexAttribute.AttributeName_Vertex));
-
                 AfterCreateResource += (sender, args) => {
                     m_VertexShader = new GLShader.GLVertexShader();
                     m_FragmentShader = new GLShader.GLFragmentShader();
@@ -30,6 +29,16 @@ namespace RtCs.OpenGL
                     return;
                 };
                 return;
+            }
+
+            public override void BindVertexAttributes(IGLVertexAttributeList inAttributes)
+            {
+                base.BindVertexAttributes(inAttributes);
+
+                if (inAttributes.TryGetBufferPointerOffset(GLVertexAttribute.AttributeName_Vertex, out var vertex)) {
+                    GL.EnableVertexAttribArray(0);
+                    GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, sizeof(float) * 3, vertex);
+                }
             }
 
             private GLShader.GLVertexShader m_VertexShader = null;

@@ -39,7 +39,7 @@ namespace GLTestVisualizer.TestView.Lighting
                 new Vector3( 1.0f, -1.0f, 0.0f),
                 new Vector3( 1.0f,  1.0f, 0.0f)
             };
-            m_QuadMeshNormals = m_QuadMesh.AddAttribute(new GLVertexVector3AttributeDescriptor(GLVertexAttribute.AttributeName_Normal));
+            m_QuadMeshNormals = m_QuadMesh.AddAttribute(new GLVertexAttributeDescriptor<Vector3>(GLVertexAttribute.AttributeName_Normal));
             m_QuadMeshNormals.Buffer = new Vector3[] {
                 new Vector3(0.0f, 0.0f, 1.0f),
                 new Vector3(0.0f, 0.0f, 1.0f),

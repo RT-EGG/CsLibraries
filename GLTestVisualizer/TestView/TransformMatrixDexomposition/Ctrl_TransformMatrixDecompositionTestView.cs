@@ -40,7 +40,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                     vertColors[i] = new Vector4(1.0f, 1.0f, 0.0f, 1.0f); // +z
                 }
             }
-            m_CubeColors = m_Cube.AddAttribute(new GLVertexVector4AttributeDescriptor(GLVertexAttribute.AttributeName_Color));
+            m_CubeColors = m_Cube.AddAttribute(new GLVertexAttributeDescriptor<Vector4>(GLVertexAttribute.AttributeName_Color));
             m_CubeColors.Buffer = vertColors;
             m_Cube.Apply();
 

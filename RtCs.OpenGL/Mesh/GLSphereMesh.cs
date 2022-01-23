@@ -271,7 +271,7 @@ namespace RtCs.OpenGL
             GLMesh mesh = new GLMesh();
             mesh.Topology = EGLMeshTopology.Triangles;
             mesh.Vertices = inPositions.ToArray();
-            IGLVertexAttribute<Vector3> normals = mesh.AddAttribute(new GLVertexVector3AttributeDescriptor(GLVertexAttribute.AttributeName_Normal));
+            IGLVertexAttribute<Vector3> normals = mesh.AddAttribute(new GLVertexAttributeDescriptor<Vector3>(GLVertexAttribute.AttributeName_Normal));
             normals.Buffer = SetupSphereNormals(mesh.Vertices);
 
             mesh.Indices = inIndices.ToArray();

@@ -67,7 +67,7 @@ namespace RtCs.OpenGL
                 new Vector3( hx,  hy,  hz)
             };
 
-            IGLVertexAttribute<Vector3> normals = mesh.AddAttribute(new GLVertexVector3AttributeDescriptor(GLVertexAttribute.AttributeName_Normal));
+            IGLVertexAttribute<Vector3> normals = mesh.AddAttribute(new GLVertexAttributeDescriptor<Vector3>(GLVertexAttribute.AttributeName_Normal));
             normals.Buffer = new Vector3[24] {
                 // -x
                 new Vector3(-1.0f, 0.0f, 0.0f),
