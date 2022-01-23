@@ -38,7 +38,8 @@ namespace GLTestVisualizer.TestView.Lighting
                 new Vector3( 1.0f, -1.0f, 0.0f),
                 new Vector3( 1.0f,  1.0f, 0.0f)
             };
-            m_QuadMesh.Normals = new Vector3[] {
+            m_QuadMeshNormals = m_QuadMesh.AddAttribute(new GLVertexVector3AttributeDescriptor(GLVertexAttribute.AttributeName_Normal));
+            m_QuadMeshNormals.Buffer = new Vector3[] {
                 new Vector3(0.0f, 0.0f, 1.0f),
                 new Vector3(0.0f, 0.0f, 1.0f),
                 new Vector3(0.0f, 0.0f, 1.0f),
@@ -77,7 +78,7 @@ namespace GLTestVisualizer.TestView.Lighting
                         Direction = new Vector3(-1.0f, -1.0f, -1.0f).Normalized,
                     }
                 );
-            //m_Scene.Lights.DirectionalLights.AddRange(m_DirectionalLights);
+            m_Scene.Lights.DirectionalLights.AddRange(m_DirectionalLights);
 
             m_PointLights.Add(
                     new GLPointLight {
@@ -177,6 +178,7 @@ namespace GLTestVisualizer.TestView.Lighting
         private GLAxisRenderObject m_AxisRenderObject = new GLAxisRenderObject();
         private GLRenderObject m_QuadObject = new GLRenderObject();
         private GLMesh m_QuadMesh = new GLMesh();
+        private IGLVertexAttribute<Vector3> m_QuadMeshNormals = null;
         private GLPhongMaterial m_QuadMaterial = new GLPhongMaterial();
 
         private List<GLDirectionalLight> m_DirectionalLights = new List<GLDirectionalLight>();

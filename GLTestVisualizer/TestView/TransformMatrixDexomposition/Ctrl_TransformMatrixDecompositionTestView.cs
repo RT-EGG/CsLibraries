@@ -1,5 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL4;
-using RtCs.MathUtils;
+﻿using RtCs.MathUtils;
 using RtCs.OpenGL;
 using System;
 
@@ -41,7 +40,8 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                     vertColors[i] = new Vector4(1.0f, 1.0f, 0.0f, 1.0f); // +z
                 }
             }
-            m_Cube.Colors = vertColors;
+            m_CubeColors = m_Cube.AddAttribute(new GLVertexVector4AttributeDescriptor(GLVertexAttribute.AttributeName_Color));
+            m_CubeColors.Buffer = vertColors;
             m_Cube.Apply();
 
             m_MatrixInputView.Renderer.Mesh = m_Cube;
@@ -146,6 +146,7 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
         private GLMaterial m_Material = new GLVertexColorMaterial();
         private GLMesh m_Cube = GLPrimitiveMesh.CreateBox(1.0f, 1.0f, 1.0f);
+        private IGLVertexAttribute<Vector4> m_CubeColors = null;
         private GLRenderObject m_MatrixInputView = new GLRenderObject();
         private GLAxisRenderObject m_MatrixInputAxisView = new GLAxisRenderObject();
         private GLRenderObject m_MatrixOutputView = new GLRenderObject();

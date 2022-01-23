@@ -1,6 +1,6 @@
 ﻿using RtCs.MathUtils;
 using RtCs.OpenGL.Utils;
-using System.Runtime.InteropServices;
+using System;
 
 namespace RtCs.OpenGL
 {
@@ -8,6 +8,10 @@ namespace RtCs.OpenGL
     {
         public static double[] ToDoubleArray(this Vector3[] inVectors)
         {
+            if (inVectors == null) {
+                return null;
+            }
+
             double[] result = new double[inVectors.Length * 3];
             for (int i = 0; i < inVectors.Length; ++i) {
                 result[(i * 3) + 0] = inVectors[i].x;
@@ -19,6 +23,10 @@ namespace RtCs.OpenGL
 
         public static float[] ToFloatArray(this Vector3[] inVectors)
         {
+            if (inVectors == null) {
+                return null;
+            }
+
             float[] result = new float[inVectors.Length * 3];
             for (int i = 0; i < inVectors.Length; ++i) {
                 result[(i * 3) + 0] = (float)inVectors[i].x;
@@ -30,6 +38,10 @@ namespace RtCs.OpenGL
 
         public static double[] ToDoubleArray(this Vector2[] inVectors)
         {
+            if (inVectors == null) {
+                return null;
+            }
+
             double[] result = new double[inVectors.Length * 2];
             for (int i = 0; i < inVectors.Length; ++i) {
                 result[(i * 2) + 0] = inVectors[i].x;
@@ -40,6 +52,10 @@ namespace RtCs.OpenGL
 
         public static float[] ToFloatArray(this Vector2[] inVectors)
         {
+            if (inVectors == null) {
+                return null;
+            }
+
             float[] result = new float[inVectors.Length * 2];
             for (int i = 0; i < inVectors.Length; ++i) {
                 result[(i * 2) + 0] = (float)inVectors[i].x;
@@ -50,6 +66,10 @@ namespace RtCs.OpenGL
 
         public static double[] ToDoubleArray(this Vector4[] inVectors)
         {
+            if (inVectors == null) {
+                return null;
+            }
+
             double[] result = new double[inVectors.Length * 4];
             for (int i = 0; i < inVectors.Length; ++i) {
                 result[(i * 4) + 0] = inVectors[i].x;
@@ -62,6 +82,10 @@ namespace RtCs.OpenGL
 
         public static float[] ToFloatArray(this Vector4[] inVectors)
         {
+            if (inVectors == null) {
+                return null;
+            }
+            
             float[] result = new float[inVectors.Length * 4];
             for (int i = 0; i < inVectors.Length; ++i) {
                 result[(i * 4) + 0] = (float)inVectors[i].x;

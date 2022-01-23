@@ -72,6 +72,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GLRenderer.cs" />
     <Compile Include="ResourceObject\GLShaderStorageBufferObject.cs" />
+    <Compile Include="ResourceObject\GLVertexAttributeDescriptor.cs" />
+    <Compile Include="ResourceObject\Shader\GLVertexAttribute.cs" />
     <Compile Include="ResourceObject\Shader\GLBlendParameters.cs" />
     <Compile Include="ResourceObject\Shader\GLComputeShaderProgram.cs" />
     <Compile Include="ResourceObject\Shader\GLRenderShaderProgram.cs" />
@@ -85,7 +87,6 @@
     <Compile Include="ResourceObject\Shader\GLShader.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderSource.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderUniformVariableSocket.cs" />
-    <Compile Include="ResourceObject\Shader\GLVertexAttribute.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttributePointer.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Color.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Phong.cs" />

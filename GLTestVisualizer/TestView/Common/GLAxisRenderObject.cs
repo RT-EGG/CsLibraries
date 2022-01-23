@@ -14,7 +14,8 @@ namespace GLTestVisualizer.TestView
                 new Vector3(), new Vector3(0.0f, 1.0f, 0.0f),
                 new Vector3(), new Vector3(0.0f, 0.0f, 1.0f)
             };
-            mesh.Colors = new Vector4[] {
+            IGLVertexAttribute<Vector4> meshColors = mesh.AddAttribute(new GLVertexVector4AttributeDescriptor(GLVertexAttribute.AttributeName_Color));
+            meshColors.Buffer = new Vector4[] {
                 new Vector4(1.0f, 0.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f),
                 new Vector4(0.0f, 1.0f, 0.0f, 1.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f),
                 new Vector4(0.0f, 0.0f, 1.0f, 1.0f), new Vector4(0.0f, 0.0f, 1.0f, 1.0f)

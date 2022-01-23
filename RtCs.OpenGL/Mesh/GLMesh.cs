@@ -3,7 +3,6 @@ using RtCs.MathUtils;
 using RtCs.MathUtils.Geometry;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RtCs.OpenGL
 {
@@ -43,6 +42,11 @@ namespace RtCs.OpenGL
     /// </summary>
     public class GLMesh : GLObject, ILineIntersectable3D
     {
+        public GLMesh()
+        {
+            VertexPositionAttribute = AddAttribute(new GLVertexVector3AttributeDescriptor(GLVertexAttribute.AttributeName_Vertex));
+        }
+
         /// <summary>
         /// Apply all changes.
         /// </summary>
@@ -53,25 +57,40 @@ namespace RtCs.OpenGL
             => GLMainThreadTask.CreateNew(_ => UpdateBuffer());
 
         /// <summary>
-        /// Position of vertices.
+        /// The position attribute of vertex.
         /// </summary>
         public Vector3[] Vertices
-        { get; set; } = default;
+        {
+            get => VertexPositionAttribute.Buffer;
+            set => VertexPositionAttribute.Buffer = value;
+        }
+
         /// <summary>
-        /// Normal of vertices.
+        /// Add custom attribute for vertex.
         /// </summary>
-        public Vector3[] Normals
-        { get; set; } = default;
+        /// <typeparam name="T">The type of attribute.</typeparam>
+        /// <param name="inDescriptor">The description of attribute,</param>
+        public IGLVertexAttribute<T> AddAttribute<T>(GLVertexAttributeDescriptor<T> inDescriptor) where T : unmanaged
+        {
+            var newAttribute = new GLVertexAttribute<T>(inDescriptor);
+            VertexAttributes.Add(newAttribute);
+
+            return newAttribute;
+        }
+
         /// <summary>
-        /// Texture coordinate of vertices.
+        /// Get added custom attribute.
         /// </summary>
-        public Vector2[] TexCoords
-        { get; set; } = default;
-        /// <summary>
-        /// Color of vertices.
-        /// </summary>
-        public Vector4[] Colors
-        { get; set; } = default;
+        /// <typeparam name="T">The type of attribute.</typeparam>
+        /// <param name="inName">The name to identify.</param>
+        /// <returns></returns>
+        public IGLVertexAttribute<T> GetAttribute<T>(string inName) where T : unmanaged
+        {
+            if (VertexAttributes.TryGetFirst(out var att, a => a.Description.Name == inName)) {
+                return att as GLVertexAttribute<T>;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Type of basic shape of the mesh object.
@@ -141,9 +160,6 @@ namespace RtCs.OpenGL
         public void Clear()
         {
             Vertices = null;
-            Normals = null;
-            TexCoords = null;
-            Colors = null;
             Indices = null;
             BoundingBox = default;
             return;
@@ -165,33 +181,18 @@ namespace RtCs.OpenGL
 
         private void UpdateBuffer()
         {
+            int bufferSize = 0;
+            foreach (var attribute in VertexAttributes) {
+                bufferSize += attribute.BufferSize;
+            }
+
+            byte[] buffer = new byte[bufferSize];
             int offset = 0;
-            void AddAttribute(EGLVertexAttributeType inType, GLVertexAttribute inAtt)
-            {
-                VertexAttributes[inType] = inAtt;
-                offset += inAtt.Data.Length;
+            foreach (var attribute in VertexAttributes) {
+                offset += attribute.CopyToBuffer(buffer, offset);
             }
 
-            VertexAttributes.Clear();
-            if (!Vertices.IsNullOrEmpty()) {
-                AddAttribute(EGLVertexAttributeType.Position, new GLVertexAttribute.Position { DataOffset = offset, Data = Vertices.ToFloatArray() });
-            }
-            if (!Normals.IsNullOrEmpty()) {
-                AddAttribute(EGLVertexAttributeType.Normal, new GLVertexAttribute.Normal { DataOffset = offset, Data = Normals.ToFloatArray() });
-            }
-            if (!TexCoords.IsNullOrEmpty()) {
-                AddAttribute(EGLVertexAttributeType.TexCoord, new GLVertexAttribute.TexCoord { DataOffset = offset, Data = TexCoords.ToFloatArray() });
-            }
-            if (!Colors.IsNullOrEmpty()) {
-                AddAttribute(EGLVertexAttributeType.Color, new GLVertexAttribute.Color { DataOffset = offset, Data = Colors.ToFloatArray() });
-            }
-
-            float[] buffer = new float[offset];
-            foreach (var attrib in VertexAttributes.Cast<GLVertexAttribute>()) {
-                Array.Copy(attrib.Data, 0, buffer, attrib.DataOffset, attrib.Data.Length);
-            }
-
-            VertexBuffer.AllocateBuffer(buffer.Length * sizeof(float), buffer, VertexBufferUsageHint);
+            VertexBuffer.AllocateBuffer(buffer.Length, buffer, VertexBufferUsageHint);
 
             var indices = Indices;
             if (!indices.IsNullOrEmpty()) {
@@ -285,14 +286,14 @@ namespace RtCs.OpenGL
 
         internal void BindAttributes(IEnumerable<GLVertexAttributePointer> inAttributes)
         {
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBuffer);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBuffer.ID);
             foreach (var attribPointer in inAttributes) {
-                var attrib = VertexAttributes[attribPointer.AttributeType];
-                if (attrib == null) {
+                if (!VertexAttributes.TryGetFirst(out var attribute, a => a.Description.Name == attribPointer.Name)) {
                     continue;
                 }
+
                 GL.EnableVertexAttribArray(attribPointer.Index);
-                GL.VertexAttribPointer(attribPointer.Index, attrib.Size, VertexAttribPointerType.Float, false, attrib.Stride, attrib.Offset);
+                attribute.BindPointer(attribPointer, attribute.Offset);
             }
 
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, IndexBuffer);
@@ -304,7 +305,9 @@ namespace RtCs.OpenGL
         public GLBufferObject IndexBuffer
         { get; } = new GLBufferObject();
 
-        public GLVertexAttributeList VertexAttributes
-        { get; } = new GLVertexAttributeList();
+        private IGLVertexAttribute<Vector3> VertexPositionAttribute
+        { get; } = null;
+        private List<IGLVertexAttribute> VertexAttributes
+        { get; } = new List<IGLVertexAttribute>();
     }
 }

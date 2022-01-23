@@ -90,7 +90,13 @@ namespace RtCs.OpenGL
         {
             public override ShaderType ShaderType => ShaderType.TessControlShader;
 
-            public static int MaxTessGenLevel => GLProperties.MaxTessGenLeven;
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <remarks>
+            /// The value may be not correct value until initialize opengl context.
+            /// </remarks>
+            //public static int MaxTessGenLevel => GLProperties.MaxTessGenLeven;
         }
 
         public class GLTessEvaluationShader : GLShader

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using OpenTK.Graphics.OpenGL4;
+using System.Diagnostics;
 
 namespace RtCs.OpenGL
 {
@@ -14,7 +15,7 @@ namespace RtCs.OpenGL
         {
             public Color()
             {
-                VertexAttribPointers.Add(new GLVertexAttributePointer.Position(0));
+                VertexAttribPointers.Add(new GLVertexAttributePointer(0, GLVertexAttribute.AttributeName_Vertex));
 
                 AfterCreateResource += (sender, args) => {
                     m_VertexShader = new GLShader.GLVertexShader();

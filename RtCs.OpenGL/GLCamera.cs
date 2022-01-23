@@ -28,30 +28,4 @@ namespace RtCs.OpenGL
         public Matrix4x4 ProjectionMatrix => (Projection == null) ? Matrix4x4.Identity : Projection.ProjectionMatrix;
         public GLViewFrustum ViewFrustum => new GLViewFrustum(ViewMatrix, ProjectionMatrix);
     }
-
-    //public static class GLCameraExtensions
-    //{
-    //    public static void Render(this IGLCamera inCamera, GLRenderParameter inParameter, GLScene inScene)
-    //        => inCamera.Render(inParameter, s => inScene.Render(s));
-
-    //    public static void Render(this IGLCamera inCamera, GLRenderParameter inStatus, Action<GLRenderParameter> inRender)
-    //    {
-    //        inStatus.ProjectionMatrix.PushMatrix();
-    //        try {
-    //            inStatus.ProjectionMatrix.LoadMatrix(inCamera.ProjectionMatrix);
-
-    //            inStatus.ModelViewMatrix.View.PushMatrix();
-    //            try {
-    //                inStatus.ModelViewMatrix.View.LoadMatrix(inCamera.ViewMatrix);
-
-    //                inRender(inStatus);
-
-    //            } finally {
-    //                inStatus.ModelViewMatrix.View.PopMatrix();
-    //            }
-    //        } finally {
-    //            inStatus.ProjectionMatrix.PopMatrix();
-    //        }
-    //    }
-    //}
 }

@@ -4,7 +4,6 @@ using RtCs.OpenGL;
 using RtCs.OpenGL.WinForms;
 using RtCs.WinForms;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -16,6 +15,7 @@ namespace GLTestVisualizer.TestView.Texture
         {
             InitializeComponent();
 
+            m_MeshTexCoords = m_TextureMesh.AddAttribute(new GLVertexVector2AttributeDescriptor(GLVertexAttribute.AttributeName_TexCoord));
             return;
         }
 
@@ -29,7 +29,8 @@ namespace GLTestVisualizer.TestView.Texture
                 new Vector3( 1.0f, -1.0f, 0.0f),
                 new Vector3( 1.0f,  1.0f, 0.0f),
             };
-            m_TextureMesh.TexCoords = new Vector2[] {
+            
+            m_MeshTexCoords.Buffer = new Vector2[] {
                 new Vector2(0.0f, 0.0f),
                 new Vector2(0.0f, 1.0f),
                 new Vector2(1.0f, 1.0f),
@@ -158,7 +159,7 @@ namespace GLTestVisualizer.TestView.Texture
             fitSizeHalf.x /= m_Texture.Width;
             fitSizeHalf.y /= m_Texture.Height;
             fitSizeHalf *= 0.5f;
-            m_TextureMesh.TexCoords = new Vector2[] {
+            m_MeshTexCoords.Buffer = new Vector2[] {
                 new Vector2(0.5f - fitSizeHalf.x, 0.5f - fitSizeHalf.y),
                 new Vector2(0.5f - fitSizeHalf.x, 0.5f + fitSizeHalf.y),
                 new Vector2(0.5f + fitSizeHalf.x, 0.5f + fitSizeHalf.y),
@@ -175,6 +176,7 @@ namespace GLTestVisualizer.TestView.Texture
         private GLScene m_Scene = new GLScene();
         private GLRenderObject m_TextureObject = new GLRenderObject();
         private GLMesh m_TextureMesh = new GLMesh();
+        private IGLVertexAttribute<Vector2> m_MeshTexCoords = null;
         private GLTextureMaterial m_TextureMaterial = new GLTextureMaterial();
         private GLTextureSampler m_Sampler = new GLTextureSampler();
         private GLColorTexture2D m_Texture = new GLColorTexture2D(64, 64);

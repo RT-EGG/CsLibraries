@@ -114,13 +114,13 @@ namespace RtCs.OpenGL
             get => m_Shader;
             set {
                 if (m_Shader != null) {
-                    m_Shader.OnAfterLinked -= OnShaderLinked;
+                    m_Shader.AfterLinked -= OnShaderLinked;
                 }
 
                 m_UniformVariables.Clear();
                 m_Shader = value;
                 if (m_Shader != null) {
-                    m_Shader.OnAfterLinked += OnShaderLinked;
+                    m_Shader.AfterLinked += OnShaderLinked;
                 }
                 ResetupProperties();
                 return;
@@ -147,13 +147,13 @@ namespace RtCs.OpenGL
             Dictionary<string, GLShaderUniformVariable> newList = new Dictionary<string, GLShaderUniformVariable>();
             if (m_Shader != null) {
                 // Inherit from previous properties.
-                foreach (var socket in m_Shader.UniformPropertySockets) {
+                foreach (var socket in m_Shader.UniformVariableSockets) {
                     if (m_UniformVariables.TryGetValue(socket.Name, out var property)) {
                         newList.Add(socket.Name, property);
                     }
                 }
 
-                foreach (var defaultProperty in m_Shader.CreateDefaultProperties()) {
+                foreach (var defaultProperty in m_Shader.CreateDefaultUniformVariable()) {
                     if (defaultProperty?.Socket == null) {
                         continue;
                     }

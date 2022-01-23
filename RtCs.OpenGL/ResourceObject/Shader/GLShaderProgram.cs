@@ -45,7 +45,7 @@ namespace RtCs.OpenGL
                 m_UniformBlockSockets.Clear();
                 m_LinkError.AddRange(GL.GetProgramInfoLog(ID).Split('\n'));
             }
-            OnAfterLinked?.Invoke(this);
+            AfterLinked?.Invoke(this);
             return Linked;
         }
 
@@ -55,7 +55,7 @@ namespace RtCs.OpenGL
         /// <remarks>
         /// This will be updated when called Link().
         /// </remarks>
-        public IReadOnlyList<GLShaderUniformVariableSocket> UniformPropertySockets
+        public IReadOnlyList<GLShaderUniformVariableSocket> UniformVariableSockets
             => m_UniformPropertySockets;
 
         /// <summary>
@@ -105,8 +105,8 @@ namespace RtCs.OpenGL
         /// </summary>
         /// <param name="inName">Search key equivalent to GLShaderUniformPropertySocket.Name.</param>
         /// <returns>Returns property socket matched with inName, if not found returns null.</returns>
-        public GLShaderUniformVariableSocket GetPropertySocket(string inName)
-            => UniformPropertySockets.FirstOrDefault(s => s.Name == inName);
+        public GLShaderUniformVariableSocket GetUniformVariableSocket(string inName)
+            => UniformVariableSockets.FirstOrDefault(s => s.Name == inName);
 
         /// <summary>
         /// Create default property for each sockets to initialize.
@@ -114,8 +114,8 @@ namespace RtCs.OpenGL
         /// <returns>
         /// Default properties.
         /// </returns>
-        public virtual IEnumerable<GLShaderUniformVariable> CreateDefaultProperties()
-            => UniformPropertySockets.Select(s => s.CreateDefaultProperty()).Where(s => s != null);
+        public virtual IEnumerable<GLShaderUniformVariable> CreateDefaultUniformVariable()
+            => UniformVariableSockets.Select(s => s.CreateDefaultProperty()).Where(s => s != null);
 
         protected override void CreateResourceCore()
         {
@@ -187,7 +187,7 @@ namespace RtCs.OpenGL
         /// <remarks>
         /// This event will be called whether the Link() is successed or failed.
         /// </remarks>
-        public event Action<GLShaderProgram> OnAfterLinked;
+        public event Action<GLShaderProgram> AfterLinked;
 
         private int m_LinkState = 0;
         private List<string> m_LinkError = new List<string>();

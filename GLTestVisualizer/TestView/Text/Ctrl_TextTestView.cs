@@ -15,6 +15,8 @@ namespace GLTestVisualizer.TestView.Text
         public Ctrl_TextTestView()
         {
             InitializeComponent();
+
+            m_AtlasMeshTexCoords = m_AtlasMesh.AddAttribute(new GLVertexVector2AttributeDescriptor(GLVertexAttribute.AttributeName_TexCoord));
         }
 
         public override void Start()
@@ -34,7 +36,7 @@ namespace GLTestVisualizer.TestView.Text
                 new Vector3(0.5f, -0.5f, 0.0f),
                 new Vector3(0.5f, 0.5f, 0.0f)
             };
-            m_AtlasMesh.TexCoords = new Vector2[] {
+            m_AtlasMeshTexCoords.Buffer = new Vector2[] {
                 new Vector2(0.0f, 0.0f),
                 new Vector2(0.0f, 1.0f),
                 new Vector2(1.0f, 1.0f),
@@ -198,6 +200,7 @@ namespace GLTestVisualizer.TestView.Text
 
         private GLRenderObject m_AtlasTextureObject = new GLRenderObject();
         private GLMesh m_AtlasMesh = new GLMesh();
+        private IGLVertexAttribute<Vector2> m_AtlasMeshTexCoords = null;
         private IGLColorTexture2D m_AtlasTexture = null;
         private GLTextureMaterial m_AtlasTextureMaterial = new GLTextureMaterial();
         private GLTextureSampler m_TextureSampler = new GLTextureSampler();
@@ -228,7 +231,8 @@ namespace GLTestVisualizer.TestView.Text
                     new Vector3(inQuadSize.x, -inQuadSize.y, 0.0f),
                     new Vector3(inQuadSize.x, 0.0f, 0.0f)
                 };
-                m_Mesh.TexCoords = new Vector2[] {
+                m_MeshTexCoords = m_Mesh.AddAttribute(new GLVertexVector2AttributeDescriptor(GLVertexAttribute.AttributeName_TexCoord));
+                m_MeshTexCoords.Buffer = new Vector2[] {
                     new Vector2(inTexCoord.Left, inTexCoord.Top),
                     new Vector2(inTexCoord.Left, inTexCoord.Bottom),
                     new Vector2(inTexCoord.Right, inTexCoord.Bottom),
@@ -254,6 +258,7 @@ namespace GLTestVisualizer.TestView.Text
             }
 
             private GLMesh m_Mesh = new GLMesh();
+            private IGLVertexAttribute<Vector2> m_MeshTexCoords = null;
             private GLTextureMaterial m_Material = new GLTextureMaterial();
         }
     }
