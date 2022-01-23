@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace RtCs.OpenGL.WinForms
 {
-    public partial class GLControl : OpenTK.GLControl
+    public partial class GLControl : OpenTK.GLControl, IGLRenderTarget
     {
         [Category("Appearance")]
         public event EventHandler RenderScene;

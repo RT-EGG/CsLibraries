@@ -37,6 +37,7 @@ namespace GLTestVisualizer.TestView.Raycast
             m_TPSProjection.Near = 0.01f;
             m_TPSProjection.Far = 1000.0f;
             m_TPSCamera.Projection = m_TPSProjection;
+            m_TPSCamera.RenderTarget = GLTPSView;
 
             m_FPSCameraController = new FreeFlyCameraKeyMouseController(GLFPSView);
             m_FPSCameraController.Camera = m_FPSCamera;
@@ -44,6 +45,7 @@ namespace GLTestVisualizer.TestView.Raycast
             m_FPSProjection.Near = 0.01f;
             m_FPSProjection.Far = 1000.0f;
             m_FPSCamera.Projection = m_FPSProjection;
+            m_FPSCamera.RenderTarget = GLFPSView;
 
             m_FPSCameraVisualizer.Transform.Parent = m_FPSCamera.Transform;
             m_FPSCameraVisualizer.Renderer.Mesh = m_SphereMesh;

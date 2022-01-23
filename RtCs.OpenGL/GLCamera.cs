@@ -1,6 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL4;
-using RtCs.MathUtils;
-using System;
+﻿using RtCs.MathUtils;
 
 namespace RtCs.OpenGL
 {
@@ -22,6 +20,8 @@ namespace RtCs.OpenGL
         public Transform Transform
         { get; } = new Transform();
         public GLProjection Projection
+        { get; set; } = null;
+        public IGLRenderTarget RenderTarget
         { get; set; } = null;
 
         public Matrix4x4 ViewMatrix => Transform.WorldMatrix.Inversed;

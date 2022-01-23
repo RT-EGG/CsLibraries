@@ -45,6 +45,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
             m_FPSCameraController = new RotationCameraMouseController(GLFirstPersonView);
             m_FPSCameraController.Camera = m_FPSCamera;
+            m_FPSCamera.RenderTarget = GLFirstPersonView;
 
             m_TPSCameraController = new OrbitCameraMouseController(GLThirdPersonView);
             m_TPSCameraController.Camera = m_TPSCamera;
@@ -56,6 +57,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
             m_TPSProjection.Near = 0.01f;
             m_TPSProjection.Far = 1000.0f;
             m_TPSCamera.Projection = m_TPSProjection;
+            m_TPSCamera.RenderTarget = GLThirdPersonView;
 
             timer1.Enabled = true;
             RandomizeSpheres();

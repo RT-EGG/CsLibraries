@@ -21,6 +21,10 @@ layout (std430) readonly buffer BuiltIn_NormalMatrix {
 	mat3 NormalMatrices[];
 };
 
+layout (std430) readonly buffer BuiltIn_Viewport {
+	ivec2 ViewportSize;
+};
+
 uniform int RenderInstanceID;
 
 #define ModelMatrix ModelMatrices[RenderInstanceID]

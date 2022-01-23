@@ -1,6 +1,8 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
+using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace RtCs.OpenGL
 {
@@ -8,6 +10,11 @@ namespace RtCs.OpenGL
     {
         internal void SetBuffers(GLCamera inCamera, IReadOnlyList<GLRenderObject> inObjects)
         {
+            byte[] viewportBuffer = new byte [sizeof(int) * 2];
+            MemoryMarshal.Cast<int, byte>((new int[] { inCamera.RenderTarget.Width, inCamera.RenderTarget.Height }).AsSpan())
+                .TryCopyTo(new Span<byte>(viewportBuffer));
+            ViewportBuffer.AllocateBuffer(viewportBuffer.Length, viewportBuffer, BufferUsageHint.DynamicDraw);
+
             Matrix4x4 viewMatrix = inCamera.ViewMatrix;
             Matrix4x4 projectionMatrix = (inCamera.Projection == null) ? Matrix4x4.Identity : inCamera.Projection.ProjectionMatrix;
             Matrix4x4 viewProjectionMatrix = projectionMatrix * viewMatrix;
@@ -61,6 +68,8 @@ namespace RtCs.OpenGL
             return;
         }
 
+        internal GLShaderStorageBufferObject ViewportBuffer
+        { get; } = new GLShaderStorageBufferObject();
         internal GLShaderStorageBufferObject ViewProjectionMatrixBuffer
         { get; } = new GLShaderStorageBufferObject();
         internal GLShaderStorageBufferObject ModelMatrixBuffer
@@ -77,6 +86,7 @@ namespace RtCs.OpenGL
             base.DisposeObject(inDisposing);
 
             if (inDisposing) {
+                ViewportBuffer.Dispose();
                 ViewProjectionMatrixBuffer.Dispose();
                 ModelMatrixBuffer.Dispose();
                 ModelViewMatrixBuffer.Dispose();

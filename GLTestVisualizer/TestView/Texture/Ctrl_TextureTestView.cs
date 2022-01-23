@@ -72,6 +72,7 @@ namespace GLTestVisualizer.TestView.Texture
             m_Projection.Near = -10.0f;
             m_Projection.Far = 10.0f;
             m_Camera.Projection = m_Projection;
+            m_Camera.RenderTarget = GLView;
             return;
         }
 

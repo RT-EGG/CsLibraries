@@ -55,6 +55,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             m_Projection.Near = 0.01f;
             m_Projection.Far = 100.0f;
             m_Camera.Projection = m_Projection;
+            m_Camera.RenderTarget = GLViewer;
             m_Camera.Transform.LocalPosition = new Vector3(0.0f, 2.0f, 5.0f);
             m_Camera.Transform.LookAt(new Vector3());
             return;

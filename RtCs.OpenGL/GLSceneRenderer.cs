@@ -19,6 +19,7 @@ namespace RtCs.OpenGL
 
             GLShaderStorageBufferObject.ClearBindingBufferBase();
 
+            int viewportBufferBinding = m_MatrixBuffer.ViewportBuffer.BindBufferBase();
             int viewProjectionMatrixBufferBinding = m_MatrixBuffer.ViewProjectionMatrixBuffer.BindBufferBase();
             int modelMatrixBufferBinding = m_MatrixBuffer.ModelMatrixBuffer.BindBufferBase();
             int modelViewMatrixBufferBinding = m_MatrixBuffer.ModelViewMatrixBuffer.BindBufferBase();
@@ -32,6 +33,7 @@ namespace RtCs.OpenGL
             int spotLightBufferBinding = inScene.Lights.SpotLightBuffer.BindBufferBase();
 
             foreach (var shader in displayObjects.Select(o => o.Renderer.Material.Shader).Distinct()) {
+                TryCommitShaderStorageBuffer(shader, "BuiltIn_Viewport", viewportBufferBinding);
                 TryCommitShaderStorageBuffer(shader, "BuiltIn_ViewProjectionMatrix", viewProjectionMatrixBufferBinding);
                 TryCommitShaderStorageBuffer(shader, "BuiltIn_ModelMatrix", modelMatrixBufferBinding);
                 TryCommitShaderStorageBuffer(shader, "BuiltIn_ModelViewMatrix", modelViewMatrixBufferBinding);

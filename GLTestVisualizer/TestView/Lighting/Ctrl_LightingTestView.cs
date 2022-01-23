@@ -21,6 +21,7 @@ namespace GLTestVisualizer.TestView.Lighting
             m_Projection.Near = 0.01f;
             m_Projection.Far = 100.0f;
             m_Camera.Projection = m_Projection;
+            m_Camera.RenderTarget = GLControl;
             m_Camera.Coordinate = new SphericalCoordinate {
                 AzimuthAngleDeg = 0.0f,
                 ElevationAngleDeg = -45.0f,
