@@ -1,5 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RtCs.MathUtils;
+using System;
+using System.Runtime.InteropServices;
 
 namespace RtCs.OpenGL
 {
@@ -146,20 +148,12 @@ namespace RtCs.OpenGL
 
         protected override void LoadPixels(ColorRGBA[] inPixels)
         {
-            byte[] bytes = new byte[inPixels.Length * 4];
-            for (int i = 0; i < inPixels.Length; ++i) {
-                bytes[(i * 4) + 0] = inPixels[i].R;
-                bytes[(i * 4) + 1] = inPixels[i].G;
-                bytes[(i * 4) + 2] = inPixels[i].B;
-                bytes[(i * 4) + 3] = inPixels[i].A;
-            }
+            byte[] bytes = MemoryMarshal.AsBytes(inPixels.AsSpan()).ToArray();
 
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, ID);
             GL.PixelStore(PixelStoreParameter.UnpackAlignment, 1);
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat, Width, Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, bytes);
-
-            GL.GetTextureImage(ID, 0, PixelFormat.Rgba, PixelType.UnsignedByte, bytes.Length, bytes);
             return;
         }
     }
