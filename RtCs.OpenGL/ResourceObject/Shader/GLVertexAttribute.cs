@@ -34,12 +34,16 @@
         { get; private set; } = 0;
 
         public int CopyToBuffer(byte[] inDestination, int inOffset)
-        {
+        { 
             Offset = inOffset;
-            return Descriptor.CopyToBuffer(Buffer, inDestination, inOffset);
+            if (Buffer != null) {
+                return Descriptor.CopyToBuffer(Buffer, inDestination, inOffset);
+            } else {
+                return 0;
+            }
         }
 
-        public int BufferSize => Descriptor.Size * Buffer.Length;
+        public int BufferSize => Descriptor.Size * ((Buffer == null) ? 0 : Buffer.Length);
         IGLVertexAttributeDescriptor IGLVertexAttribute.Description => Descriptor;
     }
 
