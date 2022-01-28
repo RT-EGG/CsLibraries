@@ -18,6 +18,9 @@ namespace RtCs.MathUtils
 
         public float Length => Math.Abs(Max - Min);
 
+        public float Interpolate(float inRatio)
+            => (Min * (1.0f - inRatio)) + (Max * inRatio);
+
         public bool Contains(float inValue)
             => (Min.CompareTo(inValue) >= 0) && (Max.CompareTo(inValue) <= 0);
 
