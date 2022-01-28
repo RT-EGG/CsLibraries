@@ -61,6 +61,74 @@ namespace RtCs.OpenGL.Properties {
         }
         
         /// <summary>
+        ///   struct GLAmbientLight_
+        ///{
+        ///	float ColorR;
+        ///	float ColorG;
+        ///	float ColorB;
+        ///	float Intensity;
+        ///};
+        ///
+        ///struct GLAmbientLight
+        ///{
+        ///	vec3 Color;
+        ///	float Intensity;
+        ///};
+        ///
+        ///layout (std430) readonly buffer BuiltIn_AmbientLight {
+        ///	GLAmbientLight_ AmbientLight;
+        ///};
+        ///
+        ///GLAmbientLight GetAmbientLight()
+        ///{
+        ///	GLAmbientLight result;
+        ///	result.Color = vec3(AmbientLight.ColorR, AmbientLight.ColorG, AmbientLight.ColorB);
+        ///	result.Intensity = AmbientLight.Intensity;
+        ///	return result;
+        ///};
+        ///
+        ///struct GLDirectionalLight_
+        ///{
+        ///	float [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string BuiltIn_Light_h {
+            get {
+                return ResourceManager.GetString("BuiltIn_Light.h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   
+        ///
+        ///
+        ///layout (std430) buffer BuiltIn_ViewProjectionMatrix {
+        ///	vec4 WorldViewDirection;
+        ///	mat4 ViewMatrix;
+        ///	mat4 ProjectionMatrix;
+        ///	mat4 ViewProjectionMatrix;
+        ///};
+        ///
+        ///layout (std430) readonly buffer BuiltIn_ModelMatrix {
+        ///	mat4 ModelMatrices[];
+        ///};
+        ///
+        ///layout (std430) readonly buffer BuiltIn_ModelViewMatrix {
+        ///	mat4 ModelViewMatrices[];
+        ///};
+        ///
+        ///layout (std430) readonly buffer BuiltIn_ModelViewProjectionMatrix {
+        ///	mat4 ModelViewProjectionMatrices[];
+        ///};
+        ///
+        ///layout (std430) readonly buffer BuiltIn_NormalMatrix { [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string BuiltIn_Matrix_h {
+            get {
+                return ResourceManager.GetString("BuiltIn_Matrix.h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   #version 460
         ///
         ///out vec4 outColor;
@@ -82,7 +150,7 @@ namespace RtCs.OpenGL.Properties {
         /// <summary>
         ///   #version 460
         ///
-        ///#include &quot;BuiltIn.h&quot;
+        ///#include &lt;Matrix.h&gt;
         ///
         ///layout (location = 0) in vec3 inPosition;
         ///
@@ -93,8 +161,6 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///void main()
         ///{
-        ///    ExpandBuiltInVariables();
-        ///
         ///    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);	
         ///    return;
         ///} に類似しているローカライズされた文字列を検索します。
@@ -106,7 +172,26 @@ namespace RtCs.OpenGL.Properties {
         }
         
         /// <summary>
-        ///    に類似しているローカライズされた文字列を検索します。
+        ///   #version 460
+        ///
+        ///#include &lt;Light.h&gt;
+        ///
+        ///out vec4 outColor;
+        ///
+        ///layout (location = 0) uniform vec3 inAmbient;
+        ///layout (location = 1) uniform vec3 inDiffuse;
+        ///layout (location = 2) uniform vec3 inSpecular;
+        ///layout (location = 3) uniform vec3 inEmission;
+        ///layout (location = 4) uniform float inShininess;
+        ///
+        ///layout (location = 0) in vec3 inNormal;
+        ///layout (location = 1) in vec3 inWorldSpaceNormal;
+        ///layout (location = 2) in vec3 inWorldSpacePosition;
+        ///
+        ///void main()
+        ///{
+        ///    // ambient
+        ///    GLAmbientLight ambLight = G [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Phong_fragment_glsl {
             get {
@@ -115,41 +200,31 @@ namespace RtCs.OpenGL.Properties {
         }
         
         /// <summary>
-        ///    に類似しているローカライズされた文字列を検索します。
+        ///   #version 460
+        ///
+        ///#include &lt;Matrix.h&gt;
+        ///
+        ///layout (location = 0) in vec3 inPosition;
+        ///layout (location = 1) in vec3 inNormal;
+        ///
+        ///out gl_PerVertex
+        ///{
+        ///	vec4 gl_Position;
+        ///};
+        ///
+        ///layout (location = 0) out vec3 outNormal;
+        ///layout (location = 1) out vec3 outWorldSpaceNormal;
+        ///layout (location = 2) out vec3 outWorldSpacePosition;
+        ///
+        ///void main()
+        ///{
+        ///    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);
+        ///    outNormal = NormalMatrix * inNormal;
+        ///    outWorldSpaceNormal = (ModelMatrix * vec4(inNo [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Phong_vertex_glsl {
             get {
                 return ResourceManager.GetString("Phong.vertex.glsl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   layout (std140) uniform BuiltIn_ViewProjectionMatrix {
-        ///	mat4 ViewMatrix;
-        ///	mat4 ProjectionMatrix;
-        ///	mat4 ViewProjectionMatrix;
-        ///};
-        ///
-        ///layout (std430) readonly buffer BuiltIn_ModelMatrix {
-        ///	mat4 ModelMatrices[];
-        ///};
-        ///
-        ///layout (std430) readonly buffer BuiltIn_ModelViewMatrix {
-        ///	mat4 ModelViewMatrices[];
-        ///};
-        ///
-        ///layout (std430) readonly buffer BuiltIn_ModelViewProjectionMatrix {
-        ///	mat4 ModelViewProjectionMatrices[];
-        ///};
-        ///
-        ///layout (std430) readonly buffer BuiltIn_NormalMatrix {
-        ///	mat3 NormalMatrices[];
-        ///};
-        ///        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ShaderBuiltInSource_h {
-            get {
-                return ResourceManager.GetString("ShaderBuiltInSource.h", resourceCulture);
             }
         }
         
@@ -177,7 +252,7 @@ namespace RtCs.OpenGL.Properties {
         /// <summary>
         ///   #version 460
         ///
-        ///#include &quot;BuiltIn.h&quot;
+        ///#include &lt;Matrix.h&gt;
         ///
         ///layout (location = 0) in vec3 inPosition;
         ///layout (location = 1) in vec2 inTexCoord;
@@ -190,8 +265,6 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///void main()
         ///{
-        ///    ExpandBuiltInVariables();
-        ///
         ///    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);
         ///    outTexCoord = inTexCoord;
         ///    return;
@@ -225,7 +298,7 @@ namespace RtCs.OpenGL.Properties {
         /// <summary>
         ///   #version 460
         ///
-        ///#include &quot;BuiltIn.h&quot;
+        ///#include &lt;Matrix.h&gt;
         ///
         ///layout (location = 0) in vec3 inPosition;
         ///layout (location = 1) in vec4 inColor;
@@ -238,8 +311,6 @@ namespace RtCs.OpenGL.Properties {
         ///
         ///void main()
         ///{
-        ///    ExpandBuiltInVariables();
-        ///
         ///    gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(inPosition, 1.0);	
         ///    outColor = inColor;
         ///    return;

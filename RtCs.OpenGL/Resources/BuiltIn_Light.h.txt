@@ -1,37 +1,3 @@
-layout (std430) buffer BuiltIn_ViewProjectionMatrix {
-	vec4 WorldViewDirection;
-	mat4 ViewMatrix;
-	mat4 ProjectionMatrix;
-	mat4 ViewProjectionMatrix;
-};
-
-layout (std430) readonly buffer BuiltIn_ModelMatrix {
-	mat4 ModelMatrices[];
-};
-
-layout (std430) readonly buffer BuiltIn_ModelViewMatrix {
-	mat4 ModelViewMatrices[];
-};
-
-layout (std430) readonly buffer BuiltIn_ModelViewProjectionMatrix {
-	mat4 ModelViewProjectionMatrices[];
-};
-
-layout (std430) readonly buffer BuiltIn_NormalMatrix {
-	mat3 NormalMatrices[];
-};
-
-layout (std430) readonly buffer BuiltIn_Viewport {
-	ivec2 ViewportSize;
-};
-
-uniform int RenderInstanceID;
-
-#define ModelMatrix ModelMatrices[RenderInstanceID]
-#define ModelViewMatrix ModelViewMatrices[RenderInstanceID]
-#define ModelViewProjectionMatrix ModelViewProjectionMatrices[RenderInstanceID]
-#define NormalMatrix NormalMatrices[RenderInstanceID]
-
 struct GLAmbientLight_
 {
 	float ColorR;

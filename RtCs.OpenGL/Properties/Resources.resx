@@ -118,6 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BuiltIn_Light.h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BuiltIn_Light.h.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="BuiltIn_Matrix.h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BuiltIn_Matrix.h.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
   <data name="Color.fragment.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Color.fragment.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
@@ -129,9 +135,6 @@
   </data>
   <data name="Phong.vertex.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Phong.vertex.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
-  </data>
-  <data name="ShaderBuiltInSource.h" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ShaderBuiltInSource.h.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
   <data name="Texture.fragment.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Texture.fragment.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>

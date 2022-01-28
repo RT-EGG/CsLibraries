@@ -72,21 +72,23 @@
     <Compile Include="Mesh\GLMesh.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GLRenderer.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderCompileIncludeFileError.cs" />
     <Compile Include="ResourceObject\GLShaderStorageBufferObject.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderCompileError.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderCompileIncludeDirectiveError.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderProgramLinkError.cs" />
+    <Compile Include="ResourceObject\Shader\GLShaderTextCompiler.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttributeDescriptor.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttribute.cs" />
     <Compile Include="ResourceObject\Shader\GLBlendParameters.cs" />
     <Compile Include="ResourceObject\Shader\GLComputeShaderProgram.cs" />
     <Compile Include="ResourceObject\Shader\GLRenderShaderProgram.cs" />
-    <Compile Include="ResourceObject\Shader\GLShaderBinarySource.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderBuiltInVariables.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderProgram.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderStorageBufferSocket.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderUniformBlockSocket.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderUniformVariable.cs" />
-    <Compile Include="ResourceObject\Shader\GLShaderTextSource.cs" />
     <Compile Include="ResourceObject\Shader\GLShader.cs" />
-    <Compile Include="ResourceObject\Shader\GLShaderSource.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderUniformVariableSocket.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttributeList.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Color.cs" />
@@ -146,13 +148,16 @@
     <EmbeddedResource Include="Resources\Texture.fragment.glsl.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ShaderBuiltInSource.h.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\Phong.vertex.glsl.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Phong.fragment.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\BuiltIn_Matrix.h.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\BuiltIn_Light.h.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

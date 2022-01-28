@@ -12,37 +12,6 @@ namespace RtCs.OpenGL
     /// </remarks>
     public abstract partial class GLShader : GLResourceIdObject
     {
-        /// <summary>
-        /// Compile shader using the source.
-        /// </summary>
-        /// <param name="inSource">Shader source to compile.</param>
-        /// <returns>If compile successed, return true, otherwise false.</returns>
-        /// <remarks>
-        /// The error will be stored to CompileError when this function failed.
-        /// </remarks>
-        public bool Compile(GLShaderSource inSource)
-        {
-            m_CompileError.Clear();
-            if (ID == 0) {
-                m_CompileError.Add("Shader object has not created.");
-                return false;
-            }
-
-            if (inSource == null) {
-                m_CompileError.Add("Shader source has not been ready.");
-                return false;
-            }
-
-            inSource.LoadSource(ID);
-            GL.CompileShader(ID);
-
-            GL.GetShader(ID, ShaderParameter.CompileStatus, out m_CompileState);
-            if (!Compiled) {
-                m_CompileError.AddRange(GL.GetShaderInfoLog(ID).Split('\n'));
-            }
-            return Compiled;
-        }
-
         protected override void CreateResourceCore()
         {
             base.CreateResourceCore();
@@ -67,14 +36,14 @@ namespace RtCs.OpenGL
         /// <summary>
         /// The status the last compilation is successed.
         /// </summary>
-        public bool Compiled => m_CompileState != 0;
+        public bool Compiled
+        { get; internal set; } = false;
+        //public bool Compiled => m_CompileState != 0;
         /// <summary>
         /// The error of last compilation.
         /// </summary>
-        public IReadOnlyList<string> CompileError => m_CompileError;
-
-        private int m_CompileState = 0;
-        private List<string> m_CompileError = new List<string>();
+        public IReadOnlyList<GLShaderCompileError> CompileError
+        { get; internal set; } = new List<GLShaderCompileError>();
 
         public class GLVertexShader : GLShader
         {

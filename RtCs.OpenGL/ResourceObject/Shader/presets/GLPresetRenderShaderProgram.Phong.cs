@@ -19,8 +19,9 @@ namespace RtCs.OpenGL
                     m_VertexShader = new GLShader.GLVertexShader();
                     m_FragmentShader = new GLShader.GLFragmentShader();
 
-                    m_VertexShader.Compile(GLShaderTextSource.CreateAssemblyTextResourceSource($"RtCs.OpenGL.Resources.Phong.vertex.glsl.txt"));
-                    m_FragmentShader.Compile(GLShaderTextSource.CreateAssemblyTextResourceSource($"RtCs.OpenGL.Resources.Phong.fragment.glsl.txt"));
+                    GLShaderTextCompiler compiler = new GLShaderTextCompiler();
+                    compiler.CompileFromTextResourceFile(m_VertexShader, "RtCs.OpenGL.Resources.Phong.vertex.glsl.txt");
+                    compiler.CompileFromTextResourceFile(m_FragmentShader, "RtCs.OpenGL.Resources.Phong.fragment.glsl.txt");
 
                     AttachShader(m_VertexShader);
                     AttachShader(m_FragmentShader);

@@ -1,6 +1,7 @@
 #version 460
 
-#include "BuiltIn.h"
+#include <Matrix.h>
+#include <Light.h>
 
 out vec4 outColor;
 
