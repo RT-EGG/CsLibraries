@@ -98,6 +98,15 @@ namespace RtCs.OpenGL.Properties {
         }
         
         /// <summary>
+        ///    に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string BuiltIn_Math_h {
+            get {
+                return ResourceManager.GetString("BuiltIn_Math.h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   
         ///
         ///
@@ -125,6 +134,31 @@ namespace RtCs.OpenGL.Properties {
         internal static string BuiltIn_Matrix_h {
             get {
                 return ResourceManager.GetString("BuiltIn_Matrix.h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   float rand(in vec2 co)
+        ///{
+        ///    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+        ///}
+        ///
+        ///float rand(in vec2 co, in float seed)
+        ///{
+        ///    return fract(sin(dot(co.xy ,vec2(12.9898,78.233)) * seed) * 43758.5453);
+        ///}
+        ///
+        ///// Gold Noise ©2015 dcerisano@standard3d.com
+        ///// - based on the Golden Ratio
+        ///// - uniform normalized distribution
+        ///// - fastest static noise generator function (also runs at low precision)
+        ///// - use with indicated seeding method
+        ///// https://www.shadertoy.com/view/ltB3zD
+        ///float goldN [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string BuiltIn_Random_h {
+            get {
+                return ResourceManager.GetString("BuiltIn_Random.h", resourceCulture);
             }
         }
         
@@ -174,6 +208,7 @@ namespace RtCs.OpenGL.Properties {
         /// <summary>
         ///   #version 460
         ///
+        ///#include &lt;Matrix.h&gt;
         ///#include &lt;Light.h&gt;
         ///
         ///out vec4 outColor;
@@ -191,7 +226,7 @@ namespace RtCs.OpenGL.Properties {
         ///void main()
         ///{
         ///    // ambient
-        ///    GLAmbientLight ambLight = G [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///    GLAmbi [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Phong_fragment_glsl {
             get {

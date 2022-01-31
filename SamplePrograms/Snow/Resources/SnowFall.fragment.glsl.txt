@@ -1,0 +1,23 @@
+#version 460
+
+#include <Light.h>
+
+layout (location = 0) flat in int inDiscard;
+out vec4 outColor;
+
+void main()
+{
+    if (inDiscard == 0) {
+        discard;
+    }
+        
+    float len = length((gl_PointCoord - vec2(0.5, 0.5)) * 2.0);
+    GLAmbientLight ambLight = GetAmbientLight();
+    outColor.xyz = vec3(1.0) * ambLight.Color * ambLight.Intensity;
+    outColor.w   = 1.0 - len;
+
+    if (outColor.w < 0.01) {
+        discard;
+    }
+    return;
+}

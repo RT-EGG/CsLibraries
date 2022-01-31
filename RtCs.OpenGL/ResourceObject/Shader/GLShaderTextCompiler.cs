@@ -239,6 +239,12 @@ namespace RtCs.OpenGL
                 case "<Light.h>":
                     outSource = LoadBuiltInResourceFile("RtCs.OpenGL.Resources.BuiltIn_Light.h.txt");
                     return true;
+                case "<Random.h>":
+                    outSource = LoadBuiltInResourceFile("RtCs.OpenGL.Resources.BuiltIn_Random.h.txt");
+                    return true;
+                case "<Math.h>":
+                    outSource = LoadBuiltInResourceFile("RtCs.OpenGL.Resources.BuiltIn_Math.h.txt");
+                    return true;
 
             }
             outSource = "";

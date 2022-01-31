@@ -118,40 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="BuiltIn_Light.h" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BuiltIn_Light.h.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="BuiltIn_SnowParticle.h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BuiltIn_SnowParticle.h.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="BuiltIn_Math.h" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BuiltIn_Math.h.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowCover.compute.Initialize.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowCover.compute.randomize.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="BuiltIn_Matrix.h" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BuiltIn_Matrix.h.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowCover.compute.update.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowCover.compute.update.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="BuiltIn_Random.h" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BuiltIn_Random.h.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowCover.fragment.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowCover.fragment.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="Color.fragment.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Color.fragment.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowCover.tess_control.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowCover.tess_control.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="Color.vertex.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Color.vertex.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowCover.tess_evaluate.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowCover.tess_evaluate.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="Phong.fragment.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Phong.fragment.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowCover.vertex.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowCover.vertex.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="Phong.vertex.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Phong.vertex.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowFall.compute.update.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowFall.compute.update.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="Texture.fragment.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Texture.fragment.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowFall.fragment.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowFall.fragment.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="Texture.vertex.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Texture.vertex.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
-  </data>
-  <data name="VertexColor.fragment.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VertexColor.fragment.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
-  </data>
-  <data name="VertexColor.vertex.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VertexColor.vertex.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="SnowFall.vertex.glsl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnowFall.vertex.glsl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
 </root>

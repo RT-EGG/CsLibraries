@@ -75,6 +75,7 @@
     <Compile Include="Utils\ColorExtensions.cs" />
     <Compile Include="Utils\Extensions\BitmapExtensions.cs" />
     <Compile Include="Utils\Extensions\ComponentExtensions.cs" />
+    <Compile Include="Utils\Extensions\ControlExtensions.cs" />
     <Compile Include="Utils\Extensions\SizeExtensions.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>

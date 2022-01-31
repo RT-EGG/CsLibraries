@@ -1,0 +1,133 @@
+#version 460
+
+#include <Math.h>
+#include <Random.h>
+#include <Particle.h>
+
+vec3 CalcFieldFluctuationAt(vec3 inPosition)
+{
+	return vec3(
+		sin(inPosition.x * 9.1) * sin(inPosition.y * 11.2) * sin(inPosition.z * 2.5),
+		0.0,
+		sin(inPosition.x * 25.7) * sin(inPosition.y * 18.8) * sin(inPosition.z * 27.9)
+	);
+}
+
+vec3 GetRandomGeneratePosition(int inIndex, vec3 inBoundsMin, vec3 inBoundsMax, float inSeed)
+{
+	vec2 co = vec2(inIndex * 0.5 * inSeed, inSeed);
+	return vec3(
+		mix(inBoundsMin.x, inBoundsMax.x, rand(co, inSeed * 1.0)),
+		mix(inBoundsMin.y, inBoundsMax.y, rand(co, inSeed * 2.0)),
+		mix(inBoundsMin.z, inBoundsMax.z, rand(co, inSeed * 3.0))
+	);
+}
+
+uniform bool inNewGenerationEnabled;
+uniform vec3 inNewGenerationBoundsMin;
+uniform vec3 inNewGenerationBoundsMax;
+uniform vec2 inInitRadiusRange;
+uniform vec2 inInitDensityRange;
+uniform float inDeadAltitude;
+uniform int inPointCount;
+uniform float inTimeSpan;
+uniform float inRandomSeed;
+
+layout (rgba32f) uniform image2D inLandHeights;
+uniform vec3 inLandBoundsMin;
+uniform vec3 inLandBoundsMax;
+uniform float inLandHeightScale;
+
+const float GravityAccel = 9.80665; // m/s^2
+const float AirRegistance = 0.24; // kg/m
+
+Particle Generate(int inIndex)
+{
+	Particle particle;
+	particle.Status = 1;
+	particle.Position = GetRandomGeneratePosition(inIndex, inNewGenerationBoundsMin, inNewGenerationBoundsMax, inRandomSeed);
+	particle.Velocity = vec3(0.0);
+	vec2 co = vec2(inIndex * inRandomSeed, inRandomSeed);
+	particle.Radius = mix(inInitRadiusRange.x, inInitRadiusRange.y, rand(co, inRandomSeed));
+	particle.Density = mix(inInitDensityRange.x, inInitDensityRange.y, rand(co, inRandomSeed));
+	return particle;
+}
+
+Particle Update(Particle inParticle)
+{
+	float maxSpeed = (inParticle.Density * GravityAccel) / AirRegistance;
+	vec3 acceleration = vec3(0.0, -GravityAccel, 0.0);
+
+	vec3 newVelocity = inParticle.Velocity + (acceleration * inTimeSpan);
+	if (length(newVelocity) > maxSpeed) {
+		newVelocity = normalize(newVelocity) * maxSpeed;
+	}
+
+	vec3 newPosition = inParticle.Position + (newVelocity * inTimeSpan);
+	newPosition += 0.01 * CalcFieldFluctuationAt(newPosition);
+
+	if (inBounds(newPosition.x, inLandBoundsMin.x, inLandBoundsMax.x) && inBounds(newPosition.z, inLandBoundsMin.z, inLandBoundsMax.z)) {
+		ivec2 texSize = imageSize(inLandHeights);
+		vec2 posOnTexture = vec2((newPosition.x - inLandBoundsMin.x) / (inLandBoundsMax.x - inLandBoundsMin.x),
+								 (newPosition.z - inLandBoundsMin.z) / (inLandBoundsMax.z - inLandBoundsMin.z));
+		posOnTexture.y = 1.0 - posOnTexture.y;
+		ivec2 texCoord = ivec2(int(posOnTexture.x * texSize.x),
+                               int(posOnTexture.y * texSize.y));
+		texCoord.x = min(texSize.x - 1, max(0, texCoord.x));
+        texCoord.y = min(texSize.y - 1, max(0, texCoord.y));
+
+		float altitude = imageLoad(inLandHeights, texCoord).x * inLandHeightScale;
+		if (newPosition.y <= altitude) {
+			// on ground, pile up
+			int range = 10;
+			for (int y = max(0, texCoord.y - range); y < min(texSize.y - 1, texCoord.y + range); ++y) {
+                for (int x = max(0, texCoord.x - range); x < min(texSize.x - 1, texCoord.x + range); ++x) {
+                    vec4 h = imageLoad(inLandHeights, ivec2(x, y));
+                    h.x += 0.1 * inParticle.Radius;
+                    imageStore(inLandHeights, ivec2(x, y), vec4(h));
+                }
+            }
+
+			inParticle.Status = 0;
+		}
+
+	} else {
+		if (newPosition.y <= inDeadAltitude) {
+			inParticle.Status = 0;
+		}
+	}
+
+	inParticle.Position = newPosition;
+	inParticle.Velocity = newVelocity;
+	return inParticle;
+}
+
+layout (local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
+void main()
+{
+	int index = int(gl_GlobalInvocationID.x
+      + (gl_GlobalInvocationID.y * (gl_WorkGroupSize.x * gl_NumWorkGroups.x))
+      + (gl_GlobalInvocationID.z * ((gl_WorkGroupSize.x * gl_NumWorkGroups.x) * (gl_WorkGroupSize.y * gl_NumWorkGroups.y))));
+
+	if (index >= inPointCount) {
+		return;
+	}
+
+	Particle particle = GetParticle(index);
+	switch (particle.Status) {
+		case 0:
+			// is deactive.
+			if (inNewGenerationEnabled) {
+				particle = Generate(index);
+			}
+			break;
+
+		case 1:
+			// is active.
+			particle = Update(particle);
+			break;
+	}
+	SetParticle(index, particle);
+
+	return;
+}

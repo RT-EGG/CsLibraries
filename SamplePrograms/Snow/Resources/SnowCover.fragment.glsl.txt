@@ -1,0 +1,74 @@
+#version 460
+
+#include <Light.h>
+
+uniform bvec3 inChannelVisibility;
+uniform int inRenderMode;
+uniform sampler2D inSurfaceTexture;
+uniform vec3 inAmbient;
+uniform vec3 inDiffuse;
+layout (location = 0) in vec2 inTexCoord;
+layout (location = 1) in float inOffset;
+layout (location = 2) in vec3 inWorldPosition;
+layout (location = 3) in vec3 inWorldNormal;
+layout (location = 0) out vec4 outColor;
+
+vec3 CalcBaseShadeColor()
+{
+    GLAmbientLight ambLight = GetAmbientLight();
+    vec3 ambient = inAmbient * (ambLight.Color.xyz * ambLight.Intensity);
+
+    vec3 diffuse = vec3(0.0);
+    for (int i = 0; i < DirectionalLightCount; ++i) {
+        GLDirectionalLight light = GetDirectionalLight(i);
+
+        float d = max(dot(inWorldNormal, -light.Direction), 0.0);
+        diffuse += inDiffuse * light.Color * light.Intensity * d;
+    }
+
+    return ambient + diffuse;
+}
+
+void main()
+{
+    switch (inRenderMode) {
+        case 0: // Surface
+            outColor = texture(inSurfaceTexture, inTexCoord);
+            outColor.xyz *= CalcBaseShadeColor();
+            outColor.w = 1.0;
+            break;
+        case 1: // Normal
+            //outColor = vec4(normalize(cross(dFdx(inWorldPosition), dFdy(inWorldPosition))), 1.0);
+            outColor = vec4(inWorldNormal, 1.0);
+            break;
+        case 2: // Offset
+            outColor = vec4(vec3(inOffset), 1.0);
+            break;
+        default:
+            outColor = vec4(1.0);
+            break;
+    };
+
+/*
+    outFragColor = vec4(0.0, 0.0, 0.0, 1.0);
+    for (int i = 0; i < 1; ++i) {
+        float diffusion = dot(inNormal, -Lights[i].Direction);
+    
+        outFragColor += (FrontMaterial.Ambient * Lights[i].Material.Ambient)
+                      + (FrontMaterial.Diffuse * Lights[i].Material.Diffuse * diffusion);
+    }
+    outFragColor *= texture(inSurfaceTexture, inSurfaceTexCoord);
+    outFragColor.w = 1.0;
+*/
+
+    if (!inChannelVisibility.r) {
+        outColor.x = 0.0;
+    }
+    if (!inChannelVisibility.g) {
+        outColor.y = 0.0;
+    }
+    if (!inChannelVisibility.b) {
+        outColor.z = 0.0;
+    }
+    return;    
+}

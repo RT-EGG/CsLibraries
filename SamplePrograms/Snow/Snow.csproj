@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2285C624-0304-4B7F-8DE3-BAF35A5ABB4F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Snow</RootNamespace>
+    <AssemblyName>Snow</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK, Version=3.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OpenTK.3.1.0\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=3.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OpenTK.GLControl.3.1.0\lib\net20\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveProperty, Version=8.0.3.0, Culture=neutral, PublicKeyToken=910d1732782c71cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReactiveProperty.8.0.3\lib\net461\ReactiveProperty.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveProperty.Core, Version=8.0.3.0, Culture=neutral, PublicKeyToken=910d1732782c71cb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReactiveProperty.Core.8.0.3\lib\netstandard2.0\ReactiveProperty.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reactive.5.0.0\lib\net472\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Camera\OrbitCameraController.cs" />
+    <Compile Include="Camera\OrbitCamera.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenGL\ShaderCompiler.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SceneObject\SnowFall\Material.cs" />
+    <Compile Include="SceneObject\SnowFall\Mesh.cs" />
+    <Compile Include="SceneObject\SnowFall\Model.cs" />
+    <Compile Include="SceneObject\SnowFall\ParticleUpdater.cs" />
+    <Compile Include="SceneObject\SnowFall\Shader.cs" />
+    <Compile Include="SceneObject\SnowFall\VertexParticleAttribute.cs" />
+    <Compile Include="SimulationModel.cs" />
+    <Compile Include="Scene.cs" />
+    <Compile Include="SceneObject\SnowCover\HeightMap.cs" />
+    <Compile Include="SceneObject\SnowCover\HeightMapRandomizer.cs" />
+    <Compile Include="SceneObject\SnowCover\Material.cs" />
+    <Compile Include="SceneObject\SnowCover\Mesh.cs" />
+    <Compile Include="SceneObject\SnowCover\Model.cs" />
+    <Compile Include="SceneObject\SnowCover\Shader.cs" />
+    <Compile Include="View\SimulationView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\SimulationView.Designer.cs">
+      <DependentUpon>SimulationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SnowCoverVisibilityConfigurationView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\SnowCoverVisibilityConfigurationView.Designer.cs">
+      <DependentUpon>SnowCoverVisibilityConfigurationView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="View\SimulationView.resx">
+      <DependentUpon>SimulationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SnowCoverVisibilityConfigurationView.resx">
+      <DependentUpon>SnowCoverVisibilityConfigurationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SnowCover.tess_control.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SnowCover.vertex.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RtCs.MathUtils\RtCs.MathUtils.csproj">
+      <Project>{47a7c945-e8a1-413b-96d0-41d1d669b4aa}</Project>
+      <Name>RtCs.MathUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RtCs.OpenGL.WinForms\RtCs.OpenGL.WinForms.csproj">
+      <Project>{86b1aadf-03cc-420b-a654-f1c9b46ecfa1}</Project>
+      <Name>RtCs.OpenGL.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RtCs.OpenGL\RtCs.OpenGL.csproj">
+      <Project>{d601c9f1-17d8-413e-9bc7-4fff732479f4}</Project>
+      <Name>RtCs.OpenGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RtCs.WinForms\RtCs.WinForms.csproj">
+      <Project>{b57252fd-c829-4a56-af1f-687171e31b2c}</Project>
+      <Name>RtCs.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RtCs\RtCs.csproj">
+      <Project>{3631604b-1a60-422f-9932-d18ed0fc9458}</Project>
+      <Name>RtCs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SnowCover.tess_evaluate.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SnowCover.fragment.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SnowCover.compute.randomize.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SnowFall.vertex.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SnowFall.fragment.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SnowFall.compute.update.glsl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\BuiltIn_SnowParticle.h.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SnowCover.compute.update.glsl.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist $(TargetDir)\resources (
+    mkdir $(TargetDir)\resources
+)
+xcopy $(ProjectDir)bin\resources $(TargetDir)\resources /Y</PostBuildEvent>
+  </PropertyGroup>
+</Project>

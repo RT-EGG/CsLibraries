@@ -1,0 +1,53 @@
+struct LayoutParticle
+{
+	int Status;
+	float Radius;
+	float Density;
+	float PositionX;
+	float PositionY;
+	float PositionZ;
+	float VelocityX;
+	float VelocityY;
+	float VelocityZ;
+};
+
+struct Particle
+{
+	int Status;
+	float Radius;
+	float Density;
+	vec3 Position;
+	vec3 Velocity;
+};
+
+layout (std430) buffer Particle_ {
+	LayoutParticle[] LayoutParticles;
+};
+
+Particle GetParticle(int inIndex)
+{
+	LayoutParticle source = LayoutParticles[inIndex];
+	Particle result;
+	result.Status = source.Status;
+	result.Radius = source.Radius;
+	result.Density = source.Density;
+	result.Position = vec3(source.PositionX, source.PositionY, source.PositionZ);
+	result.Velocity = vec3(source.VelocityX, source.VelocityY, source.VelocityZ);
+	return result;
+};
+
+void SetParticle(int inIndex, Particle inValue)
+{
+	LayoutParticle dst;
+	dst.Status = inValue.Status;
+	dst.Radius = inValue.Radius;
+	dst.Density = inValue.Density;
+	dst.PositionX = inValue.Position.x;
+	dst.PositionY = inValue.Position.y;
+	dst.PositionZ = inValue.Position.z;
+	dst.VelocityX = inValue.Velocity.x;
+	dst.VelocityY = inValue.Velocity.y;
+	dst.VelocityZ = inValue.Velocity.z;
+	LayoutParticles[inIndex] = dst;
+	return;
+};

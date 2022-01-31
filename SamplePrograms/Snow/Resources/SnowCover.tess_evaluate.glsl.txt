@@ -1,0 +1,87 @@
+#version 460
+
+#include <Matrix.h>
+
+layout (quads, equal_spacing, ccw) in;
+
+layout (binding = 0)  uniform sampler2D inHeightMap;
+layout (location = 6) uniform float inMinHeight;
+layout (location = 7) uniform float inMaxHeight;
+
+in gl_PerVertex
+{
+	vec4 gl_Position;
+}gl_in[gl_MaxPatchVertices];
+
+layout (location = 0) in vec3 inNormal[gl_MaxPatchVertices];
+layout (location = 1) in vec2 inTexCoord[gl_MaxPatchVertices];
+
+out gl_PerVertex
+{
+	vec4 gl_Position;
+};
+
+layout (location = 0) out vec2 outTexCoord;
+layout (location = 1) out float outOffset;
+layout (location = 2) out vec3 outWorldPosition;
+layout (location = 3) out vec3 outWorldNormal;
+
+vec4 CalcPositionAt(vec3 inTessCoord)
+{
+    vec4 p0 = mix( gl_in[0].gl_Position, gl_in[1].gl_Position, inTessCoord.x );
+	vec4 p1 = mix( gl_in[3].gl_Position, gl_in[2].gl_Position, inTessCoord.x );
+    return mix( p0, p1, inTessCoord.y );
+}
+
+vec2 CalcTexCoordAt(vec3 inTessCoord)
+{
+    vec2 t0 = mix( inTexCoord[0], inTexCoord[1], inTessCoord.x );
+    vec2 t1 = mix( inTexCoord[3], inTexCoord[2], inTessCoord.x );
+    return mix( t0, t1, inTessCoord.y );
+}
+
+vec3 CalcNormalAt(vec3 inTessCoord)
+{
+    vec3 n0 = mix( inNormal[0], inNormal[1], inTessCoord.x );
+    vec3 n1 = mix( inNormal[3], inNormal[2], inTessCoord.x );
+    return mix( n0, n1, inTessCoord.y );
+}
+
+vec4 CalcOffsetedPositionAt(vec3 inTessCoord, out float outOffset)
+{
+    vec4 position = CalcPositionAt(inTessCoord);
+    vec2 texCoord = CalcTexCoordAt(inTessCoord); 
+    vec3 normal   = CalcNormalAt(inTessCoord);
+
+    float d = mix(inMinHeight, inMaxHeight, texture(inHeightMap, texCoord).r);
+    
+    position.xyz += normal * d;
+    outOffset = d;
+    return position;
+}
+
+vec4 CalcOffsetedPositionAt(vec3 inTessCoord)
+{
+    float dummy = 0.0;
+    return CalcOffsetedPositionAt(inTessCoord, dummy);
+}
+
+void main()
+{
+    float offset = 0.0;
+
+    outWorldPosition = (ModelMatrix * CalcOffsetedPositionAt(gl_TessCoord, offset)).xyz;
+    gl_Position = ProjectionMatrix * ModelViewMatrix * CalcOffsetedPositionAt(gl_TessCoord, offset);
+        
+    outTexCoord = CalcTexCoordAt(gl_TessCoord);
+    outOffset = offset / (inMaxHeight - inMinHeight);
+
+    const float DELTA = 0.01;
+    vec4 px0 = ModelMatrix * normalize(CalcOffsetedPositionAt(gl_TessCoord + vec3(-DELTA, 0.0, 0.0)));
+    vec4 px1 = ModelMatrix * normalize(CalcOffsetedPositionAt(gl_TessCoord + vec3(+DELTA, 0.0, 0.0)));
+    vec4 py0 = ModelMatrix * normalize(CalcOffsetedPositionAt(gl_TessCoord + vec3(0.0, -DELTA, 0.0)));
+    vec4 py1 = ModelMatrix * normalize(CalcOffsetedPositionAt(gl_TessCoord + vec3(0.0, +DELTA, 0.0)));
+    
+    outWorldNormal = normalize(cross(px1.xyz - px0.xyz, py1.xyz - py0.xyz));
+	return;
+}

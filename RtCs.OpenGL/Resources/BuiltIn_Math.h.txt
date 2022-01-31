@@ -1,0 +1,18 @@
+bool inBounds(float value, float boundsMin, float boundsMax)
+{
+	return ((boundsMin <= value) && (value <= boundsMax));
+}
+
+
+bool inBounds(vec2 value, vec2 boundsMin, vec2 boundsMax)
+{
+	return ((boundsMin.x <= value.x) && (value.x <= boundsMax.x))
+		&& ((boundsMin.y <= value.y) && (value.y <= boundsMax.y));
+}
+
+bool inBounds(vec3 value, vec3 boundsMin, vec3 boundsMax)
+{
+	return ((boundsMin.x <= value.x) && (value.x <= boundsMax.x))
+		&& ((boundsMin.y <= value.y) && (value.y <= boundsMax.y))
+		&& ((boundsMin.z <= value.z) && (value.z <= boundsMax.z));
+}

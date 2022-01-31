@@ -76,7 +76,6 @@
     <Compile Include="ResourceObject\GLShaderStorageBufferObject.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderCompileError.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderCompileIncludeDirectiveError.cs" />
-    <Compile Include="ResourceObject\Shader\GLShaderProgramLinkError.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderTextCompiler.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttributeDescriptor.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttribute.cs" />
@@ -158,6 +157,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\BuiltIn_Light.h.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\BuiltIn_Random.h.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\BuiltIn_Math.h.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

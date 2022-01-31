@@ -1,0 +1,17 @@
+#version460
+
+#include <Particle.h>
+
+uniform int inPointCount;
+
+layout (local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
+void main()
+{
+	int index = int(gl_GlobalInvocationID.x
+      + (gl_GlobalInvocationID.y * (gl_WorkGroupSize.x * gl_NumWorkGroups.x))
+      + (gl_GlobalInvocationID.z * ((gl_WorkGroupSize.x * gl_NumWorkGroups.x) * (gl_WorkGroupSize.y * gl_NumWorkGroups.y))));
+
+	if (index >= inPointCount) {
+		return;
+	}
+}

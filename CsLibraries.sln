@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RtCs.MathUtils", "RtCs.Math
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RtCs", "RtCs\RtCs.csproj", "{3631604B-1A60-422F-9932-D18ED0FC9458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLShaderCompiler", "GLShaderCompiler\GLShaderCompiler.csproj", "{07716FF3-028B-40DC-B23B-AD7B59EF9D42}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.OpenGL.WinForms", "RtCs.OpenGL.WinForms\RtCs.OpenGL.WinForms.csproj", "{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.WinForms", "RtCs.WinForms\RtCs.WinForms.csproj", "{B57252FD-C829-4A56-AF1F-687171E31B2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SamplePrograms", "SamplePrograms", "{90F87912-2F36-401F-A0EF-899C380437B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snow", "SamplePrograms\Snow\Snow.csproj", "{2285C624-0304-4B7F-8DE3-BAF35A5ABB4F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtCs.OpenGL", "RtCs.OpenGL\RtCs.OpenGL.csproj", "{D601C9F1-17D8-413E-9BC7-4FFF732479F4}"
 EndProject
@@ -35,14 +37,6 @@ Global
 		{3631604B-1A60-422F-9932-D18ED0FC9458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3631604B-1A60-422F-9932-D18ED0FC9458}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3631604B-1A60-422F-9932-D18ED0FC9458}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D601C9F1-17D8-413E-9BC7-4FFF732479F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D601C9F1-17D8-413E-9BC7-4FFF732479F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D601C9F1-17D8-413E-9BC7-4FFF732479F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D601C9F1-17D8-413E-9BC7-4FFF732479F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07716FF3-028B-40DC-B23B-AD7B59EF9D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07716FF3-028B-40DC-B23B-AD7B59EF9D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07716FF3-028B-40DC-B23B-AD7B59EF9D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07716FF3-028B-40DC-B23B-AD7B59EF9D42}.Release|Any CPU.Build.0 = Release|Any CPU
 		{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86B1AADF-03CC-420B-A654-F1C9B46ECFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,9 +45,20 @@ Global
 		{B57252FD-C829-4A56-AF1F-687171E31B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B57252FD-C829-4A56-AF1F-687171E31B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B57252FD-C829-4A56-AF1F-687171E31B2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2285C624-0304-4B7F-8DE3-BAF35A5ABB4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2285C624-0304-4B7F-8DE3-BAF35A5ABB4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2285C624-0304-4B7F-8DE3-BAF35A5ABB4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2285C624-0304-4B7F-8DE3-BAF35A5ABB4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D601C9F1-17D8-413E-9BC7-4FFF732479F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D601C9F1-17D8-413E-9BC7-4FFF732479F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D601C9F1-17D8-413E-9BC7-4FFF732479F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D601C9F1-17D8-413E-9BC7-4FFF732479F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2285C624-0304-4B7F-8DE3-BAF35A5ABB4F} = {90F87912-2F36-401F-A0EF-899C380437B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {170BCDB2-D1CE-4CFD-89E3-AD72149FF2F0}
