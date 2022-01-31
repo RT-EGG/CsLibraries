@@ -211,6 +211,6 @@
     <PostBuildEvent>if not exist $(TargetDir)\resources (
     mkdir $(TargetDir)\resources
 )
-xcopy $(ProjectDir)bin\resources $(TargetDir)\resources /Y</PostBuildEvent>
+xcopy $(ProjectDir)Assets $(TargetDir)\resources /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
