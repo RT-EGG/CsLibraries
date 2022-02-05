@@ -1,5 +1,4 @@
 ﻿using OpenTK.Graphics.OpenGL4;
-using RtCs.MathUtils;
 using System.Diagnostics;
 
 namespace RtCs.OpenGL
@@ -26,7 +25,8 @@ namespace RtCs.OpenGL
 
                     AttachShader(m_VertexShader);
                     AttachShader(m_FragmentShader);
-                    Debug.Assert(Link());
+                    Link();
+                    Debug.Assert(Linked);
                     return;
                 };
                 return;
