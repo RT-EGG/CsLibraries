@@ -3,6 +3,7 @@ using RtCs.MathUtils;
 using RtCs.MathUtils.Geometry;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RtCs.OpenGL
 {
@@ -44,7 +45,8 @@ namespace RtCs.OpenGL
     {
         public GLMesh()
         {
-            VertexPositionAttribute = AddAttribute(new GLVertexAttributeDescriptor<Vector3>(GLVertexAttribute.AttributeName_Vertex));
+            VertexPositionAttribute = AddAttribute<Vector3>(GLVertexAttribute.AttributeName_Vertex,
+                                                            new GLVertexAttributeDescriptor(GLVertexAttribute.AttributeName_Vertex, 3, sizeof(float)));
         }
 
         /// <summary>
@@ -70,9 +72,35 @@ namespace RtCs.OpenGL
         /// </summary>
         /// <typeparam name="T">The type of attribute.</typeparam>
         /// <param name="inDescriptor">The description of attribute,</param>
-        public IGLVertexAttribute<T> AddAttribute<T>(GLVertexAttributeDescriptor<T> inDescriptor) where T : unmanaged
+        public IGLVertexAttribute<T> AddAttribute<T>(string inName, GLVertexAttributeDescriptor inDescriptor) where T : unmanaged
         {
-            var newAttribute = new GLVertexAttribute<T>(inDescriptor);
+            var newAttribute = new GLVertexAttribute<T>(inName, inDescriptor);
+            m_VertexAttributes.Add(newAttribute);
+
+            return newAttribute;
+        }
+
+        /// <summary>
+        /// Add custom attribute for vertex.
+        /// </summary>
+        /// <typeparam name="T">The type of attribute.</typeparam>
+        /// <param name="inDescriptor">The description of attribute,</param>
+        public IGLVertexAttribute<T> AddAttribute<T>(string inName, IEnumerable<GLVertexAttributeDescriptor> inDescriptors) where T : unmanaged
+        {
+            var newAttribute = new GLVertexAttribute<T>(inName, inDescriptors.ToArray());
+            m_VertexAttributes.Add(newAttribute);
+
+            return newAttribute;
+        }
+
+        /// <summary>
+        /// Add custom attribute for vertex.
+        /// </summary>
+        /// <typeparam name="T">The type of attribute.</typeparam>
+        /// <param name="inDescriptor">The description of attribute,</param>
+        public IGLVertexAttribute<T> AddAttribute<T>(string inName, params GLVertexAttributeDescriptor[] inDescriptors) where T : unmanaged
+        {
+            var newAttribute = new GLVertexAttribute<T>(inName, inDescriptors);
             m_VertexAttributes.Add(newAttribute);
 
             return newAttribute;
@@ -86,13 +114,13 @@ namespace RtCs.OpenGL
         /// <returns></returns>
         public IGLVertexAttribute<T> GetAttribute<T>(string inName) where T : unmanaged
         {
-            if (m_VertexAttributes.TryGetFirst(out var att, a => a.Description.Name == inName)) {
+            if (m_VertexAttributes.TryGetFirst(out var att, a => a.Name == inName)) {
                 return att as GLVertexAttribute<T>;
             }
             return null;
         }
 
-        internal IGLVertexAttributeList VertexAttributes => m_VertexAttributes;
+        internal GLVertexAttributeList VertexAttributes => m_VertexAttributes;
 
         /// <summary>
         /// Type of basic shape of the mesh object.
@@ -188,9 +216,19 @@ namespace RtCs.OpenGL
                 bufferSize += attribute.BufferSize;
             }
 
+            m_VertexBufferDescriptors.Clear();
             byte[] buffer = new byte[bufferSize];
             int offset = 0;
             foreach (var attribute in m_VertexAttributes) {
+                attribute.Offset = offset;
+                int descOffset = offset;
+                int stride = attribute.Stride;
+
+                foreach (var desc in attribute.Descriptors) {
+                    m_VertexBufferDescriptors.Add(new GLVertexBufferDescriptor(descOffset, desc));
+                    descOffset += desc.Stride;
+                }
+
                 offset += attribute.CopyToBuffer(buffer, offset);
             }
 
@@ -200,15 +238,33 @@ namespace RtCs.OpenGL
             if (!indices.IsNullOrEmpty()) {
                 IndexBuffer.AllocateBuffer(indices.Length * sizeof(int), indices, IndexBufferUsageHint);
             }
+
+            AfterBufferUpdate?.Invoke(this, EventArgs.Empty);
             return;
         }
+
+        public bool TryGetVertexBindingPoint(string inElementName, out int outPoint)
+        {
+            if (m_VertexBufferDescriptors.TryGetFirst(out var desc, d => d.AttributeDescriptor.Name == inElementName)) {
+                outPoint = desc.Offset;
+                return true;
+            }
+            outPoint = -1;
+            return false;
+        }
+        //=> m_VertexBufferDescriptors.TryGetFirst()
+        //=> m_VertexBindingPoints.TryGetValue(inElementName, out outPoint);
+
+        internal IReadOnlyList<GLVertexBufferDescriptor> VertexBufferDescriptors => m_VertexBufferDescriptors;
 
         protected override void DisposeObject(bool inDisposing)
         {
             base.DisposeObject(inDisposing);
 
-            VertexBuffer?.Dispose();
-            IndexBuffer?.Dispose();
+            if (inDisposing) {
+                VertexBuffer?.Dispose();
+                IndexBuffer?.Dispose();
+            }
             return;
         }
 
@@ -290,6 +346,10 @@ namespace RtCs.OpenGL
         { get; } = new GLBufferObject();
         public GLBufferObject IndexBuffer
         { get; } = new GLBufferObject();
+
+        public event EventHandler AfterBufferUpdate;
+
+        private List<GLVertexBufferDescriptor> m_VertexBufferDescriptors = new List<GLVertexBufferDescriptor>();
 
         private IGLVertexAttribute<Vector3> VertexPositionAttribute
         { get; } = null;

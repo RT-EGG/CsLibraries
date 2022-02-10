@@ -168,7 +168,7 @@ public class GLRenderObject : GLObject, ILineIntersectable3D
         /// Renderer object following the object.
         /// </summary>
         public GLRenderer Renderer
-        { get; } = new GLRenderer();
+        { get; set; } = new GLRenderer();
 
         internal void FireBeforeRender()
             => BeforeRender?.Invoke(this, EventArgs.Empty);

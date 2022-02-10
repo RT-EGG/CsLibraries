@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OpenTK.Graphics.OpenGL4;
+using System.Collections.Generic;
 
 namespace RtCs.OpenGL
 {
@@ -10,7 +11,11 @@ namespace RtCs.OpenGL
     /// </remarks>
     public partial class GLRenderShaderProgram : GLShaderProgram
     {
-        public virtual void BindVertexAttributes(IGLVertexAttributeList inAttributes)
-        { }
+        public IEnumerable<GLVertexAttributePointer> VertexAttributePointers => m_VertexAttributePointers;
+
+        protected void AddAttributePointer(GLVertexAttributePointer inPointer)
+            => m_VertexAttributePointers.Add(inPointer);
+
+        private List<GLVertexAttributePointer> m_VertexAttributePointers = new List<GLVertexAttributePointer>();
     }
 }

@@ -40,7 +40,8 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
                     vertColors[i] = new Vector4(1.0f, 1.0f, 0.0f, 1.0f); // +z
                 }
             }
-            m_CubeColors = m_Cube.AddAttribute(new GLVertexAttributeDescriptor<Vector4>(GLVertexAttribute.AttributeName_Color));
+            m_CubeColors = m_Cube.AddAttribute<Vector4>(GLVertexAttribute.AttributeName_Color,
+                                                        new GLVertexAttributeDescriptor(GLVertexAttribute.AttributeName_Color, 4, sizeof(float)));
             m_CubeColors.Buffer = vertColors;
             m_Cube.Apply();
 
@@ -53,10 +54,14 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
             m_MatrixOutputView.Transform.LocalPosition = new Vector3(1.0f, 0.0f, 0.0f);
             m_MatrixOutputView.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
 
+            m_MatrixInputAxisView.Renderer = m_AxisRenderer;
             m_MatrixInputAxisView.Transform.Parent = m_MatrixInputView.Transform;
             m_MatrixInputAxisView.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
+            m_MatrixInputAxisView.CalculateBoundingBox();
+            m_MatrixOutputAxisView.Renderer = m_AxisRenderer;
             m_MatrixOutputAxisView.Transform.Parent = m_MatrixOutputView.Transform;
             m_MatrixOutputAxisView.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
+            m_MatrixOutputAxisView.CalculateBoundingBox();
 
             m_Projection.Near = 0.01f;
             m_Projection.Far = 100.0f;
@@ -78,12 +83,12 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
             timer1.Enabled = false;
 
-            m_MatrixInputAxisView.Dispose();
-            m_MatrixOutputAxisView.Dispose();
-            m_MatrixInputView.Dispose();
-            m_MatrixOutputView.Dispose();
+            m_MatrixInputView.Renderer.Dispose();
+            m_MatrixOutputView.Renderer.Dispose();
             m_Material.Dispose();
             m_Cube.Dispose();
+
+            m_Scene.Dispose();
             return;
         }
 
@@ -147,11 +152,12 @@ namespace GLTestVisualizer.TestView.TransformMatrixDexomposition
 
         private GLMaterial m_Material = new GLVertexColorMaterial();
         private GLMesh m_Cube = GLPrimitiveMesh.CreateBox(1.0f, 1.0f, 1.0f);
+        private GLAxisRenderObject m_AxisRenderer = new GLAxisRenderObject();
         private IGLVertexAttribute<Vector4> m_CubeColors = null;
         private GLRenderObject m_MatrixInputView = new GLRenderObject();
-        private GLAxisRenderObject m_MatrixInputAxisView = new GLAxisRenderObject();
+        private GLRenderObject m_MatrixInputAxisView = new GLRenderObject();
         private GLRenderObject m_MatrixOutputView = new GLRenderObject();
-        private GLAxisRenderObject m_MatrixOutputAxisView = new GLAxisRenderObject();
+        private GLRenderObject m_MatrixOutputAxisView = new GLRenderObject();
         private Transform m_DummyTransform = new Transform();
 
         private GLScene m_Scene = new GLScene();

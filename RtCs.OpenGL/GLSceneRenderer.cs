@@ -71,31 +71,25 @@ namespace RtCs.OpenGL
                     material.CommitProperties();
                     material.BlendParameters.Apply();
 
-                    foreach (var meshGroup in materialGroup.GroupBy(o => o.Renderer.Mesh)) {
-                        GLMesh mesh = meshGroup.Key;
-                        GL.BindBuffer(BufferTarget.ArrayBuffer, mesh.VertexBuffer);
-                        GL.BindBuffer(BufferTarget.ElementArrayBuffer, mesh.IndexBuffer);
-                        shader.BindVertexAttributes(mesh.VertexAttributes);
+                    foreach (var renderObject in materialGroup) {
+                        var location = GL.GetUniformLocation(shader.ID, "RenderInstanceID");
+                        GL.ProgramUniform1(shader.ID, location, renderObject.RenderInstanceID);
 
-                        foreach (var renderObject in meshGroup) {
-                            var location = GL.GetUniformLocation(shader.ID, "RenderInstanceID");
-                            GL.ProgramUniform1(shader.ID, location, renderObject.RenderInstanceID);
+                        GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)renderObject.PolygonMode);
+                        renderObject.RenderFaceMode.CullFace();
 
-                            GL.PolygonMode(MaterialFace.FrontAndBack, (PolygonMode)renderObject.PolygonMode);
-                            renderObject.RenderFaceMode.CullFace();
+                        switch (renderObject.Renderer.Mesh.Topology) {
+                            case EGLMeshTopology.PatchedTriangles:
+                                GL.PatchParameter(PatchParameterInt.PatchVertices, 3);
+                                break;
+                            case EGLMeshTopology.PatchedQuads:
+                                GL.PatchParameter(PatchParameterInt.PatchVertices, 4);
+                                break;
+                        }
 
-                            renderObject.FireBeforeRender();
-                            switch (mesh.Topology) {
-                                case EGLMeshTopology.PatchedTriangles:
-                                    GL.PatchParameter(PatchParameterInt.PatchVertices, 3);
-                                    break;
-                                case EGLMeshTopology.PatchedQuads:
-                                    GL.PatchParameter(PatchParameterInt.PatchVertices, 4);
-                                    break;
-                            }
-                            GL.DrawElements(mesh.Topology.ToPrimitiveType(), mesh.Indices.Length, DrawElementsType.UnsignedInt, 0);
-                            renderObject.FireAfterRender();
-                        }                                                                       
+                        renderObject.FireBeforeRender();
+                        renderObject.Renderer.Render();
+                        renderObject.FireAfterRender();
                     }
                 }
             }
@@ -117,9 +111,6 @@ namespace RtCs.OpenGL
                 GL.UseProgram(shader.ID);
                 material.CommitProperties();
                 material.BlendParameters.Apply();
-                GL.BindBuffer(BufferTarget.ArrayBuffer, mesh.VertexBuffer);
-                GL.BindBuffer(BufferTarget.ElementArrayBuffer, mesh.IndexBuffer);
-                shader.BindVertexAttributes(mesh.VertexAttributes);
 
                 var location = GL.GetUniformLocation(shader.ID, "RenderInstanceID");
                 GL.ProgramUniform1(shader.ID, location, obj.RenderInstanceID);
@@ -128,7 +119,7 @@ namespace RtCs.OpenGL
                 obj.RenderFaceMode.CullFace();
 
                 obj.FireBeforeRender();
-                GL.DrawElements(mesh.Topology.ToPrimitiveType(), mesh.Indices.Length, DrawElementsType.UnsignedInt, 0);
+                obj.Renderer.Render();
                 obj.FireAfterRender();
             });
             return;

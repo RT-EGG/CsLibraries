@@ -1,7 +1,5 @@
-﻿using OpenTK.Graphics.OpenGL4;
-using RtCs.OpenGL;
+﻿using RtCs.OpenGL;
 using Snow.OpenGL;
-using System;
 
 namespace Snow.SceneObject.SnowFall
 {
@@ -9,6 +7,10 @@ namespace Snow.SceneObject.SnowFall
     {
         public Shader()
         {
+            AddAttributePointer(new GLVertexAttributePointer.Int1(0, Mesh.AttributeName_Status));
+            AddAttributePointer(new GLVertexAttributePointer.Float1(1, Mesh.AttributeName_Radius));
+            AddAttributePointer(new GLVertexAttributePointer.Float3(2, Mesh.AttributeName_Position));
+
             AfterCreateResource += (sender, args) => {
                 m_VertexShader = new GLShader.GLVertexShader();
                 m_FragmentShader = new GLShader.GLFragmentShader();
@@ -22,21 +24,6 @@ namespace Snow.SceneObject.SnowFall
 
                 Link();
             };
-        }
-
-        public override void BindVertexAttributes(IGLVertexAttributeList inAttributes)
-        {
-            base.BindVertexAttributes(inAttributes);
-
-            if (inAttributes.TryGetBufferPointerOffset(Mesh.AttributeName, out int attribute)) {
-                GL.EnableVertexAttribArray(0);
-                GL.EnableVertexAttribArray(1);
-                GL.EnableVertexAttribArray(2);
-
-                GL.VertexAttribIPointer(0, 1, VertexAttribIntegerType.Int, VertexParticleAttribute.Size, (IntPtr)(attribute + 0));
-                GL.VertexAttribPointer(1, 1, VertexAttribPointerType.Float, false, VertexParticleAttribute.Size, (IntPtr)(attribute + sizeof(int)));
-                GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, VertexParticleAttribute.Size, (IntPtr)(attribute + sizeof(int) + sizeof(float) + sizeof(float)));
-            }
         }
 
         private GLShader m_VertexShader = null;

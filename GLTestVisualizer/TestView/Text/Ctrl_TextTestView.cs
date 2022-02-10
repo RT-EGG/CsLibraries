@@ -16,7 +16,8 @@ namespace GLTestVisualizer.TestView.Text
         {
             InitializeComponent();
 
-            m_AtlasMeshTexCoords = m_AtlasMesh.AddAttribute(new GLVertexAttributeDescriptor<Vector2>(GLVertexAttribute.AttributeName_TexCoord));
+            m_AtlasMeshTexCoords = m_AtlasMesh.AddAttribute<Vector2>(GLVertexAttribute.AttributeName_TexCoord,
+                                                                     new GLVertexAttributeDescriptor(GLVertexAttribute.AttributeName_TexCoord, 2, sizeof(float)));
         }
 
         public override void Start()
@@ -232,7 +233,8 @@ namespace GLTestVisualizer.TestView.Text
                     new Vector3(inQuadSize.x, -inQuadSize.y, 0.0f),
                     new Vector3(inQuadSize.x, 0.0f, 0.0f)
                 };
-                m_MeshTexCoords = m_Mesh.AddAttribute(new GLVertexAttributeDescriptor<Vector2>(GLVertexAttribute.AttributeName_TexCoord));
+                m_MeshTexCoords = m_Mesh.AddAttribute<Vector2>(GLVertexAttribute.AttributeName_TexCoord,
+                                                               new GLVertexAttributeDescriptor(GLVertexAttribute.AttributeName_TexCoord, 2, sizeof(float)));
                 m_MeshTexCoords.Buffer = new Vector2[] {
                     new Vector2(inTexCoord.Left, inTexCoord.Top),
                     new Vector2(inTexCoord.Left, inTexCoord.Bottom),

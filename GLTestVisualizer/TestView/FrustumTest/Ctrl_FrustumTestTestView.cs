@@ -1,7 +1,6 @@
 ﻿using RtCs;
 using RtCs.MathUtils;
 using RtCs.OpenGL;
-using RtCs.OpenGL.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -118,7 +117,6 @@ namespace GLTestVisualizer.TestView.FrustumTest
             }
 
             m_Scene.DisplayList.Clear();
-            m_Scene.DisplayList.Register(m_Origin);
             m_Scene.DisplayList.Register(m_FrustumRenderObject);
             m_Scene.DisplayList.Register(m_SphereObjects);
             m_Scene.DisplayList.Register(m_CubeObjects);
@@ -156,7 +154,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
                 return;
             }
 
-            m_Origin.Visible = false;
+            //m_Origin.Visible = false;
             m_FPSCamera.Projection = m_CurrentParameterView.Projection;
             m_Scene.Render(m_FPSCamera);
             return;
@@ -164,7 +162,7 @@ namespace GLTestVisualizer.TestView.FrustumTest
 
         private void GLThirdPersonView_OnRenderScene(object inSender, EventArgs inArgs)
         {
-            m_Origin.Visible = true;
+            //m_Origin.Visible = true;
             m_TPSProjection.SetAngleAndViewportSize(45.0f, GLThirdPersonView.Width, GLThirdPersonView.Height);
             m_Scene.Render(m_TPSCamera);
             return;
@@ -223,8 +221,6 @@ namespace GLTestVisualizer.TestView.FrustumTest
         private Ctrl_ProjectionParameterView m_CurrentParameterView = null;
 
         private GLScene m_Scene = new GLScene();
-
-        private GLAxisRenderObject m_Origin = new GLAxisRenderObject();
         private GLViewFrustumRendererObject m_FrustumRenderObject = new GLViewFrustumRendererObject();
         private RotationCameraModel m_FPSCamera = new RotationCameraModel();
         private RotationCameraMouseController m_FPSCameraController = null;

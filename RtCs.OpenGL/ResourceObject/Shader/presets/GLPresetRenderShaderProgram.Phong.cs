@@ -1,5 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL4;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace RtCs.OpenGL
 {
@@ -15,6 +14,9 @@ namespace RtCs.OpenGL
         {
             public Phong()
             {
+                AddAttributePointer(new GLVertexAttributePointer.Float3(0, GLVertexAttribute.AttributeName_Vertex));
+                AddAttributePointer(new GLVertexAttributePointer.Float3(1, GLVertexAttribute.AttributeName_Normal, true));
+
                 AfterCreateResource += (sender, args) => {
                     m_VertexShader = new GLShader.GLVertexShader();
                     m_FragmentShader = new GLShader.GLFragmentShader();
@@ -30,20 +32,6 @@ namespace RtCs.OpenGL
                     return;
                 };
                 return;
-            }
-
-            public override void BindVertexAttributes(IGLVertexAttributeList inAttributes)
-            {
-                base.BindVertexAttributes(inAttributes);
-
-                if (inAttributes.TryGetBufferPointerOffset(GLVertexAttribute.AttributeName_Vertex, out int vertex)) {
-                    GL.EnableVertexAttribArray(0);
-                    GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, sizeof(float) * 3, vertex);
-                }
-                if (inAttributes.TryGetBufferPointerOffset(GLVertexAttribute.AttributeName_Normal, out int normal)) {
-                    GL.EnableVertexAttribArray(1);
-                    GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, sizeof(float) * 3, normal);
-                }
             }
 
             private GLShader.GLVertexShader m_VertexShader = null;

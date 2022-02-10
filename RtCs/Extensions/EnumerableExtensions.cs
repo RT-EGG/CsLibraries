@@ -62,6 +62,18 @@ namespace RtCs
             return false;
         }
 
+        public static bool TryGetValue<Key, Value>(this IReadOnlyDictionary<Key, Value> inItems, out Value outValue, Predicate<Key> inComparer)
+        {
+            foreach (var item in inItems) {
+                if (inComparer(item.Key)) {
+                    outValue = item.Value;
+                    return true;
+                }
+            }
+            outValue = default;
+            return false;
+        }
+
         public static IEnumerable<T> ElementsAt<T>(this IReadOnlyList<T> inItems, IEnumerable<int> inIndices)
         {
             foreach (var index in inIndices) {
@@ -78,6 +90,16 @@ namespace RtCs
                 result[i++] = inItems[index];
             }
             return result;
+        }
+
+        public static bool Contains<T>(this IEnumerable<T> inItems, Predicate<T> inComparer)
+        {
+            foreach (T item in inItems) {
+                if (inComparer(item)) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static bool IsEmpty(this IEnumerable inItems)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenTK.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace RtCs.OpenGL
@@ -20,6 +21,9 @@ namespace RtCs.OpenGL
         /// </summary>
         public T Argument
         { get; set; } = default;
+
+        public bool ExecuteIfCanSoon
+        { get; set; } = true;
     }
 
     /// <summary>
@@ -105,6 +109,8 @@ namespace RtCs.OpenGL
         }
 
         private static Queue<GLMainThreadTask> m_TaskQueue = new Queue<GLMainThreadTask>();
-        private static bool CanProcessSoon => OpenTK.Graphics.GraphicsContext.CurrentContext != null;
+        private static bool CanProcessSoon => CurrentGraphicsContext != null;
+
+        public static IGraphicsContext CurrentGraphicsContext = null;
     }
 }

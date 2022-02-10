@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GLTestVisualizer.TestView
 {
-    class GLAxisRenderObject : GLRenderObject
+    class GLAxisRenderObject : GLRenderer
     {
         public GLAxisRenderObject()
         {
@@ -14,7 +14,8 @@ namespace GLTestVisualizer.TestView
                 new Vector3(), new Vector3(0.0f, 1.0f, 0.0f),
                 new Vector3(), new Vector3(0.0f, 0.0f, 1.0f)
             };
-            IGLVertexAttribute<Vector4> meshColors = mesh.AddAttribute(new GLVertexAttributeDescriptor<Vector4>(GLVertexAttribute.AttributeName_Color));
+            IGLVertexAttribute<Vector4> meshColors = mesh.AddAttribute<Vector4>(GLVertexAttribute.AttributeName_Color,
+                                                                                new GLVertexAttributeDescriptor(GLVertexAttribute.AttributeName_Color, 4, sizeof(float)));
             meshColors.Buffer = new Vector4[] {
                 new Vector4(1.0f, 0.0f, 0.0f, 1.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f),
                 new Vector4(0.0f, 1.0f, 0.0f, 1.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f),
@@ -24,17 +25,25 @@ namespace GLTestVisualizer.TestView
             mesh.Indices = Enumerable.Range(0, 6).ToArray();
             mesh.Apply();
 
-            Renderer.Mesh = mesh;
-            Renderer.Material = new Material();
+            Mesh = mesh;
+            Material = new AxisRenderMaterial();
 
-            CalculateBoundingBox();
-            this.PolygonMode = EGLRenderPolygonMode.Line;
             return;
         }
 
-        private class Material : GLMaterial
+        protected override void DisposeObject(bool inDisposing)
         {
-            public Material()
+            base.DisposeObject(inDisposing);
+
+            if (inDisposing) {
+                Mesh.Dispose();
+                Material.Dispose();
+            }
+        }
+
+        private class AxisRenderMaterial : GLMaterial
+        {
+            public AxisRenderMaterial()
             {
                 base.Shader = GLRenderShaderProgram.Preset.VertexColor;
                 return;

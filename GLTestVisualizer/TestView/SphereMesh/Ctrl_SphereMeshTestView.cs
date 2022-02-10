@@ -26,6 +26,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             m_UvSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereUV(5, 5);
             m_UvSphere.Renderer.Material = material;
             m_UvSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
+            m_UvAxix.Renderer = m_AxisRenderer;
             m_UvAxix.Transform.Parent = m_UvSphere.Transform;
             m_UvAxix.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
 
@@ -34,6 +35,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             m_IcoSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereICO(0);
             m_IcoSphere.Renderer.Material = material;
             m_IcoSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
+            m_IcoAxis.Renderer = m_AxisRenderer;
             m_IcoAxis.Transform.Parent = m_IcoSphere.Transform;
             m_IcoAxis.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
 
@@ -42,6 +44,7 @@ namespace GLTestVisualizer.TestView.SphereMesh
             m_RcSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereRoundedCube(2);
             m_RcSphere.Renderer.Material = material;
             m_RcSphere.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
+            m_RcAxis.Renderer = m_AxisRenderer;
             m_RcAxis.Transform.Parent = m_RcSphere.Transform;
             m_RcAxis.FrustumCullingMode = EGLFrustumCullingMode.AlwaysRender;
 
@@ -66,8 +69,11 @@ namespace GLTestVisualizer.TestView.SphereMesh
             base.Exit();
 
             m_UvSphere.Renderer.Mesh.Dispose();
+            m_UvSphere.Renderer.Dispose();
             m_IcoSphere.Renderer.Mesh.Dispose();
+            m_IcoSphere.Renderer.Dispose();
             m_RcSphere.Renderer.Mesh.Dispose();
+            m_RcSphere.Renderer.Dispose();
             return;
         }
 
@@ -79,13 +85,22 @@ namespace GLTestVisualizer.TestView.SphereMesh
         }
 
         private void UdICOSubdivision_ValueChanged(object sender, EventArgs e)
-            => m_IcoSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereICO((int)UdICOSubdivision.Value);
+        {
+            m_IcoSphere.Renderer.Mesh.Dispose();
+            m_IcoSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereICO((int)UdICOSubdivision.Value);
+        }
 
         private void UdUVSubdivision_ValueChanged(object sender, EventArgs e)
-            => m_UvSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereUV((int)UdUVSlices.Value, (int)UdUVStacks.Value);
+        {
+            m_UvSphere.Renderer.Mesh.Dispose();
+            m_UvSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereUV((int)UdUVSlices.Value, (int)UdUVStacks.Value);
+        }
 
         private void UdRoundedCubeSubdivision_ValueChanged(object sender, EventArgs e)
-            => m_RcSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereRoundedCube((int)UdRoundedCubeSubdivision.Value);
+        {
+            m_RcSphere.Renderer.Mesh.Dispose();
+            m_RcSphere.Renderer.Mesh = GLPrimitiveMesh.CreateSphereRoundedCube((int)UdRoundedCubeSubdivision.Value);
+        }
 
         private void RenderTimer_Tick(object sender, EventArgs e)
         {
@@ -101,14 +116,16 @@ namespace GLTestVisualizer.TestView.SphereMesh
             return;
         }
 
+        private GLRenderer m_AxisRenderer = new GLAxisRenderObject();
+
         private GLRenderObject m_UvSphere = new GLRenderObject();
-        private GLAxisRenderObject m_UvAxix = new GLAxisRenderObject();
+        private GLRenderObject m_UvAxix = new GLRenderObject();
 
         private GLRenderObject m_IcoSphere = new GLRenderObject();
-        private GLAxisRenderObject m_IcoAxis = new GLAxisRenderObject();
+        private GLRenderObject m_IcoAxis = new GLRenderObject();
 
         private GLRenderObject m_RcSphere = new GLRenderObject();
-        private GLAxisRenderObject m_RcAxis = new GLAxisRenderObject();
+        private GLRenderObject m_RcAxis = new GLRenderObject();
 
         private GLScene m_Scene = new GLScene();
         private GLPerspectiveProjection m_Projection = new GLPerspectiveProjection();

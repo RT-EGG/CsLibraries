@@ -10,10 +10,16 @@ namespace Snow.SceneObject.SnowFall
         {
             Vertices = null;
 
-            Attribute = AddAttribute(new GLVertexAttributeDescriptor<VertexParticleAttribute>(AttributeName));
+            Attribute = AddAttribute<VertexParticleAttribute>(
+                VertexParticleAttribute.AttributeName,
+                new GLVertexAttributeDescriptor(AttributeName_Status, 1, sizeof(int)),
+                new GLVertexAttributeDescriptor(AttributeName_Radius, 1, sizeof(float)),
+                new GLVertexAttributeDescriptor(AttributeName_Density, 1, sizeof(float)),
+                new GLVertexAttributeDescriptor(AttributeName_Position, 3, sizeof(float)),
+                new GLVertexAttributeDescriptor(AttributeName_Velocity, 3, sizeof(float))
+            );
             Attribute.Buffer = new VertexParticleAttribute[2048];
 
-            Random randomizer = new Random();
             for (int i = 0; i < Attribute.Buffer.Length; ++i) {
                 VertexParticleAttribute particle = default;
                 particle.status = 0;
@@ -46,6 +52,10 @@ namespace Snow.SceneObject.SnowFall
 
         private ParticleUpdater m_ParticleUpdater = new ParticleUpdater();
 
-        public const string AttributeName = "ParticleAttribute";
+        public const string AttributeName_Status   = "ParticleStatus";
+        public const string AttributeName_Radius   = "ParticleRadius";
+        public const string AttributeName_Density  = "ParticleDensity";
+        public const string AttributeName_Position = "ParticlePosition";
+        public const string AttributeName_Velocity = "ParticleVelocity";
     }
 }

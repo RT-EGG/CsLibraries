@@ -60,7 +60,11 @@ namespace RtCs.OpenGL
         {
             base.DisposeObject(inDisposing);
 
-            GLMainThreadTask.CreateNew(_ => DestroyResource());
+            if (inDisposing) {
+                GLMainThreadTask.CreateNew(_ => DestroyResource(), new GLMainThreadTaskOptions {
+                    ExecuteIfCanSoon = false
+                });
+            }
             return;
         }
 

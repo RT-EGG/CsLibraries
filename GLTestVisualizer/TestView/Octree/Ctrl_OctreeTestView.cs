@@ -2,7 +2,6 @@
 using RtCs.MathUtils;
 using RtCs.OpenGL;
 using System;
-using System.Collections.Generic;
 
 namespace GLTestVisualizer.TestView.Octree
 {

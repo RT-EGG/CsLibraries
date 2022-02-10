@@ -58,6 +58,7 @@
     <Compile Include="Mesh\GLGridMesh.cs" />
     <Compile Include="Mesh\GLLineMesh.cs" />
     <Compile Include="Mesh\GLSphereMesh.cs" />
+    <Compile Include="Mesh\GLSubMesh.cs" />
     <Compile Include="Projection\GLViewFrustum.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -72,6 +73,9 @@
     <Compile Include="Mesh\GLMesh.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GLRenderer.cs" />
+    <Compile Include="ResourceObject\GLVertexArrayObject.cs" />
+    <Compile Include="ResourceObject\GLMeshRendererDictionary.cs" />
+    <Compile Include="ResourceObject\GLVertexBufferDescriptor.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderCompileIncludeFileError.cs" />
     <Compile Include="ResourceObject\GLShaderStorageBufferObject.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderCompileError.cs" />
@@ -90,6 +94,7 @@
     <Compile Include="ResourceObject\Shader\GLShader.cs" />
     <Compile Include="ResourceObject\Shader\GLShaderUniformVariableSocket.cs" />
     <Compile Include="ResourceObject\Shader\GLVertexAttributeList.cs" />
+    <Compile Include="ResourceObject\Shader\GLVertexAttributePointer.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Color.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Phong.cs" />
     <Compile Include="ResourceObject\Shader\presets\GLPresetRenderShaderProgram.Preset.cs" />
@@ -97,6 +102,7 @@
     <Compile Include="ResourceObject\Texture\GLTexture.cs" />
     <Compile Include="ResourceObject\Texture\GLTextureReference.cs" />
     <Compile Include="ResourceObject\Texture\GLTextureSampler.cs" />
+    <Compile Include="ResourceObject\GLMeshRenderer.cs" />
     <Compile Include="Utils\ByteConverter.cs" />
     <Compile Include="Utils\Extensions\ColorExtensions.cs" />
     <Compile Include="Utils\Extensions\MatrixExtensions.cs" />

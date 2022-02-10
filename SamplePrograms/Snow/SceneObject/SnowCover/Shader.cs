@@ -1,5 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL4;
-using RtCs.OpenGL;
+﻿using RtCs.OpenGL;
 using Snow.OpenGL;
 
 namespace Snow.SceneObject.SnowCover
@@ -8,6 +7,10 @@ namespace Snow.SceneObject.SnowCover
     {
         public Shader()
         {
+            AddAttributePointer(new GLVertexAttributePointer.Float3(0, GLVertexAttribute.AttributeName_Vertex));
+            AddAttributePointer(new GLVertexAttributePointer.Float3(1, GLVertexAttribute.AttributeName_Normal));
+            AddAttributePointer(new GLVertexAttributePointer.Float2(2, GLVertexAttribute.AttributeName_TexCoord));
+
             AfterCreateResource += (sender, args) => {
                 m_VertexShader = new GLShader.GLVertexShader();
                 m_TessControlShader = new GLShader.GLTessControlShader();
@@ -37,24 +40,6 @@ namespace Snow.SceneObject.SnowCover
                 m_TessControlShader.Dispose();
                 m_TessEvaluateShader.Dispose();
                 m_FragmentShader.Dispose();
-            }
-        }
-
-        public override void BindVertexAttributes(IGLVertexAttributeList inAttributes)
-        {
-            base.BindVertexAttributes(inAttributes);
-
-            if (inAttributes.TryGetBufferPointerOffset(GLVertexAttribute.AttributeName_Vertex, out int vertex)) {
-                GL.EnableVertexAttribArray(0);
-                GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, sizeof(float) * 3, vertex);
-            }
-            if (inAttributes.TryGetBufferPointerOffset(GLVertexAttribute.AttributeName_Normal, out int normal)) {
-                GL.EnableVertexAttribArray(1);
-                GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, sizeof(float) * 3, normal);
-            }
-            if (inAttributes.TryGetBufferPointerOffset(GLVertexAttribute.AttributeName_TexCoord, out int texcoord)) {
-                GL.EnableVertexAttribArray(2);
-                GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, sizeof(float) * 2, texcoord);
             }
         }
 

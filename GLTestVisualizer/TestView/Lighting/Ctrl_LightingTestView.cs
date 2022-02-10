@@ -30,8 +30,8 @@ namespace GLTestVisualizer.TestView.Lighting
             m_CameraController = new OrbitCameraMouseController(GLControl);
             m_CameraController.Camera = m_Camera;
 
-            m_AxisRenderObject.Transform.LocalScale = new Vector3(5.0f);
-            m_AxisRenderObject.CalculateBoundingBox();
+            //m_AxisRenderObject.Transform.LocalScale = new Vector3(5.0f);
+            //m_AxisRenderObject.CalculateBoundingBox();
 
             m_QuadMesh.Vertices = new Vector3[] {
                 new Vector3(-1.0f,  1.0f, 0.0f),
@@ -39,7 +39,8 @@ namespace GLTestVisualizer.TestView.Lighting
                 new Vector3( 1.0f, -1.0f, 0.0f),
                 new Vector3( 1.0f,  1.0f, 0.0f)
             };
-            m_QuadMeshNormals = m_QuadMesh.AddAttribute(new GLVertexAttributeDescriptor<Vector3>(GLVertexAttribute.AttributeName_Normal));
+            m_QuadMeshNormals = m_QuadMesh.AddAttribute<Vector3>(GLVertexAttribute.AttributeName_Normal,
+                                                                 new GLVertexAttributeDescriptor(GLVertexAttribute.AttributeName_Normal, 3, sizeof(float)));
             m_QuadMeshNormals.Buffer = new Vector3[] {
                 new Vector3(0.0f, 0.0f, 1.0f),
                 new Vector3(0.0f, 0.0f, 1.0f),
@@ -66,7 +67,7 @@ namespace GLTestVisualizer.TestView.Lighting
             m_QuadMaterial.Emission = new Vector3(0.0f);
             m_QuadMaterial.Shininess = 10.0f;
 
-            m_Scene.DisplayList.Register(m_AxisRenderObject);
+            //m_Scene.DisplayList.Register(m_AxisRenderObject);
             m_Scene.DisplayList.Register(m_QuadObject);
 
             m_Scene.Lights.AmbientLight.Color = new ColorRGB(255, 255, 255);

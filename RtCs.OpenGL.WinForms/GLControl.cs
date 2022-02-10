@@ -61,6 +61,7 @@ namespace RtCs.OpenGL.WinForms
         private void RuntimePaint(PaintEventArgs e)
         {
             MakeCurrent();
+            GLMainThreadTaskQueue.CurrentGraphicsContext = GraphicsContext;
             GLMainThreadTaskQueue.Process();
 
             GL.Viewport(e.ClipRectangle);
@@ -72,6 +73,7 @@ namespace RtCs.OpenGL.WinForms
             RenderScene?.Invoke(this, EventArgs.Empty);
 
             SwapBuffers();
+            GLMainThreadTaskQueue.CurrentGraphicsContext = null;
             return;
         }
 
